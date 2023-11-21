@@ -29,17 +29,17 @@
 
 <p align="center">
   <em>
-    This is ME, Duong Thai Tan (TanHipp), I study Information technology (IT) <a href="https://www.nctu.edu.vn/"> <b>https://www.nctu.edu.vn/ Web Design and Software Development</b>, Information Technology </a>. <br>
+    This is ME, Duong Thai Tan (duongthaitan), I study Information technology (IT) <a href="https://www.nctu.edu.vn/"> <b>https://www.nctu.edu.vn/ Web Design and Software Development</b>, Information Technology </a>. <br>
     A budding <b>Fontend | UI & UX Developer</b> and a <b>Competitive Programming Enthusiast
   Learning while HOPING & HUSTLING!!!
 
-<p align="center"> <img src="https://komarev.com/ghpvc/?username=TanHipp" alt="https://github.com/TanHipp" /> <img src="https://badges.pufler.dev/repos/TanHipp" alt=""/></p>
+<p align="center"> <img src="https://komarev.com/ghpvc/?username=duongthaitan" alt="https://github.com/duongthaitan" /> <img src="https://badges.pufler.dev/repos/duongthaitan" alt=""/></p>
  <br>
 
 <img align="right" width=200px height=200px alt="side_sticker" src="https://media.giphy.com/media/TEnXkcsHrP4YedChhA/giphy.gif" />
 
 
-- 👋 Hi, I’m Duong Thai Tan ( TanHipp )
+- 👋 Hi, I’m Duong Thai Tan ( duongthaitan )
     
 - 🌱 I’m currently learning **Frontend** 👨‍💻💪      
     
@@ -47,7 +47,7 @@
       
 - ✍ I'm a student of: [Nam Can Tho University ](https://www.nctu.edu.vn/) (DNC)
   
-- 🧐 Portfolio Website: https://tanhipp.github.io/IT_TanHipp
+- 🧐 Portfolio Website: https://duongthaitan.github.io/IT_duongthaitan
     
     
  
@@ -58,20 +58,20 @@
  Contact for work| Liên hệ công việc: <img src='https://raw.githubusercontent.com/ShahriarShafin/ShahriarShafin/main/Assets/handshake.gif' width="90px"> </h2>
 <p align="center">
   </a>
-  <a href="https://www.facebook.com/TanHipp/" target="_blank" alt="Facebook">
+  <a href="https://www.facebook.com/duongthaitan/" target="_blank" alt="Facebook">
   <img src="https://img.icons8.com/3d-fluency/65/000000/facebook-circled.png"/>
   </a>
   <a>
-  <a href="https://www.instagram.com/tanhipp.it"  target="_blank" alt="Instagram">
+  <a href="https://www.instagram.com/duongthaitan.it"  target="_blank" alt="Instagram">
   <img src="https://img.icons8.com/3d-fluency/65/000000/instagram-new.png"/>
   </a>  
   <a href="https://id.zalo.me/account?continue=https%3A%2F%2Fchat.zalo.me%2F"  target="_blank" alt="Zalo">
   <img src="https://img.icons8.com/color/65/000000/zalo.png"/>
   </a>
-  <a herf="https://www.tiktok.com/@tanhippit" alt="Tiktok">
+  <a herf="https://www.tiktok.com/@duongthaitanit" alt="Tiktok">
   <img src="https://img.icons8.com/fluency/65/000000/tiktok.png"/>
   </a> 
-  <a href="https://github.com/TanHipp" alt="Github">
+  <a href="https://github.com/duongthaitan" alt="Github">
   <img src="https://img.icons8.com/3d-fluency/65/000000/github.png"/>
   </a> 
   <a href="https://www.youtube.com/channel/UCaRr1SjyHm61RrLY-DIBm1g" alt="Youtube channel" target="_blank" >
@@ -138,9 +138,9 @@
 <table style="width:100%;">
   <tr>
     <td>
-      <p>&nbsp;<img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=TanHipp&theme=swift&hide_border=false" width="100%" /></p>
-      <p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=TanHipp&theme=swift&hide_border=false&include_all_commits=false&count_private=true" width="100%" /></p>
-      <p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=TanHipp&theme=swift&hide_border=false&include_all_commits=false&count_private=true&layout=compact" width="100%" /></p>
+      <p>&nbsp;<img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=duongthaitan&theme=swift&hide_border=false" width="100%" /></p>
+      <p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=duongthaitan&theme=swift&hide_border=false&include_all_commits=false&count_private=true" width="100%" /></p>
+      <p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=duongthaitan&theme=swift&hide_border=false&include_all_commits=false&count_private=true&layout=compact" width="100%" /></p>
     <td>
       <br>
       <p align="center"> 
@@ -149,7 +149,7 @@
     </td>
   </tr>
 </table>
-<p>&nbsp;<img align="center" src="https://github-trophies.vercel.app/?username=TanHipp&theme=flat&no-frame=true&no-bg=false&margin-w=4" width="100%" /</p>
+<p>&nbsp;<img align="center" src="https://github-trophies.vercel.app/?username=duongthaitan&theme=flat&no-frame=true&no-bg=false&margin-w=4" width="100%" /</p>
 
     
 
@@ -213,7 +213,7 @@ Spotify Playing|Âm nhạc 🎧
 <p align="center">Github Contributions | Thời gian hoạt động trên Github 📈</p>
 <br>
 <p align='center'>
-<img src="https://activity-graph.herokuapp.com/graph?username=TanHipp&theme=react-dark&hide_border=true">
+<img src="https://activity-graph.herokuapp.com/graph?username=duongthaitan&theme=react-dark&hide_border=true">
 <p>
 
 <br>
@@ -238,10 +238,10 @@ Spotify Playing|Âm nhạc 🎧
 <img src="https://media.giphy.com/media/iY8CRBdQXODJSCERIr/giphy.gif" width="30px">&nbsp;
 SỐ LƯỢT TRUY CẬP TRANG💖
 
-![Visitor Count](https://profile-counter.glitch.me/TanHipp/count.svg)
+![Visitor Count](https://profile-counter.glitch.me/duongthaitan/count.svg)
 <br>
 <br>
-<img src="https://media.giphy.com/media/LnQjpWaON8nhr21vNW/giphy.gif" width="60"> <em><b>I love connecting with different people from around the world, so if you want to be my friend, feel free to <a href="https://twitter.com/TanHipp">reach out</a> and introduce yourself and don’t just say hi, tell me about yourself</b> 💜</em>
+<img src="https://media.giphy.com/media/LnQjpWaON8nhr21vNW/giphy.gif" width="60"> <em><b>I love connecting with different people from around the world, so if you want to be my friend, feel free to <a href="https://twitter.com/duongthaitan">reach out</a> and introduce yourself and don’t just say hi, tell me about yourself</b> 💜</em>
 </p>
 <!-- RAINBOW LINE TOP -->
 <img src="https://github.com/AnderMendoza/AnderMendoza/raw/main/assets/line-neon.gif" width="100%">
