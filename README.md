@@ -212,14 +212,16 @@ Spotify Playing|Âm nhạc 🎧
 <hr>
 <p align="center">Github Contributions | Thời gian hoạt động trên Github 📈</p>
 <br>
-<p align='center'>
-<img src="https://activity-graph.herokuapp.com/graph?username=duongthaitan&theme=react-dark&hide_border=true">
-<p>
+
+[![](https://github-readme-stats.vercel.app/api?username=duongthaitan&show_icons=true&theme=tokyonight&hide_border=true&locale=en)](https://github.com/duongthaitan)
+[![](https://github-readme-streak-stats.herokuapp.com/?user=duongthaitan&theme=material-palenight)](https://github.com/duongthaitan)
+
 
 <br>
-<p align="center">Con Rắn Của Dương Thái Tân =))</p>
-<p align='center'>
-<img src="https://github.com/ngoctienTNT/ngoctienTNT/blob/output/github-contribution-grid-snake.svg">
+<p align="center">Con Rắn Của Dương Thái Tân</p>
+<p align="center">
+  <img  src="https://raw.githubusercontent.com/Elanza-48/Elanza-48/main/resources/img/github-contribution-grid-snake.svg"
+    alt="example" />
 </p>
 
 
@@ -228,7 +230,7 @@ Spotify Playing|Âm nhạc 🎧
 <br>
 <br>
 <img src="https://media.giphy.com/media/iY8CRBdQXODJSCERIr/giphy.gif" width="30px">&nbsp;
-✍️Random Dev Quote | Ngẫu Nhiên Trích Đoạn Của Lập Trình Viên
+✍️Random Dev Quote | Ngẫu Nhiên Trích Đoạn
 <br>
 <br>
 <p>&nbsp;<img align="center" src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=light" width="90%" height="90%" /></p>
@@ -236,8 +238,8 @@ Spotify Playing|Âm nhạc 🎧
 <br>
 
 <img src="https://media.giphy.com/media/iY8CRBdQXODJSCERIr/giphy.gif" width="30px">&nbsp;
-SỐ LƯỢT TRUY CẬP TRANG💖
 
+SỐ LƯỢT TRUY CẬP TRANG💖
 ![Visitor Count](https://profile-counter.glitch.me/duongthaitan/count.svg)
 <br>
 <br>
