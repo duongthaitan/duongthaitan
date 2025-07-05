@@ -212,27 +212,22 @@
     <img src="https://cultofthepartyparrot.com/parrots/hd/mustacheparrot.gif" width="30" height="30"/>
 </div>
 -->
-
-<br>
-
+<hr>
+<img src="https://media.giphy.com/media/iY8CRBdQXODJSCERIr/giphy.gif" width="30px">&nbsp;
 Spotify Playing 🎧
 
 [![Spotify](https://novatorem.bgstatic.vercel.app/api/spotify)](https://open.spotify.com/user/315vn5ocyqkorpqwxvjeldw4blqa) 
-
+<hr>
 <!--<img align="right" alt="GIF" height="110px" src="https://media.giphy.com/media/J5B1Y8QZnzXXbLQIBu/giphy.gif" /> -->
 
 <img src="https://media.giphy.com/media/iY8CRBdQXODJSCERIr/giphy.gif" width="30px">&nbsp;
-
-Certificates
+Certificates📑
 <br>
 <p>
   <a href="https://fullstack.edu.vn/cert/4tv2o"><img src="https://scontent.fvca1-1.fna.fbcdn.net/v/t1.15752-9/339905638_1659748734541324_1626939098417181753_n.png?_nc_cat=105&ccb=1-7&_nc_sid=ae9488&_nc_ohc=r8_ipXuON68AX8xQ4lB&_nc_ht=scontent.fvca1-1.fna&oh=03_AdTxxTrFCVMichtm9gCecl0N3oSBJMIl6pDrx3shxNnX7g&oe=6457604A" width="250px"; alt="F8 | Information Technology Onboarding"></a>
   <a href="https://fullstack.edu.vn/cert/kj7vr"><img src="https://scontent.fvca1-3.fna.fbcdn.net/v/t1.15752-9/340094593_182277984198931_5337890316984592241_n.png?_nc_cat=111&ccb=1-7&_nc_sid=ae9488&_nc_ohc=hLPsnXYWOw4AX-ty3lQ&_nc_ht=scontent.fvca1-3.fna&oh=03_AdRy5EtyjLYra2zqFiqF8pg9zntMWDgE5etIKiJy9CAirQ&oe=64572EB8" width="250px"; alt="PHP Introduction Courses"></a>
   <a href="https://fullstack.edu.vn/cert/d0gj4"><img src="https://scontent.fvca1-2.fna.fbcdn.net/v/t1.15752-9/340065544_1358214571412576_2654490619853548336_n.png?_nc_cat=100&ccb=1-7&_nc_sid=ae9488&_nc_ohc=VehUGFoDkr4AX_Mdru9&_nc_ht=scontent.fvca1-2.fna&oh=03_AdS2uaSoUG-7Cwp-tocIpTzB69SsRHfY6KoxxnkM8fvMPw&oe=645743EF" width="250px"; alt="JavaScript Basic"></a>
 </p>
- 
-<img src="https://media.giphy.com/media/iY8CRBdQXODJSCERIr/giphy.gif" width="30px">&nbsp;
-Certificates  
 <p>   
   <a href="https://www.sololearn.com/certificates/CT-11PGKZIX"><img src="https://api2.sololearn.com/v2/certificates/CT-11PGKZIX/image/png" width="250px";   alt="PHP Introduction Courses">
   </a>
@@ -242,12 +237,6 @@ Certificates
 
 <br>
 <hr>
-<p align="center">Github Contributions📈</p>
-<br>
-
-[![](https://github-readme-stats.vercel.app/api?username=duongthaitan&show_icons=true&theme=tokyonight&hide_border=true&locale=en)](https://github.com/duongthaitan)
-
-[![](https://github-readme-streak-stats.herokuapp.com/?user=duongthaitan&theme=material-palenight)](https://github.com/duongthaitan)
 
 
 <br>
@@ -263,7 +252,8 @@ Random Dev Quote✍️
 <br>
 <p>&nbsp;<img align="center" src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=light" width="90%" height="90%" /></p>
 <br>
-
+<hr>
+<img src="https://media.giphy.com/media/iY8CRBdQXODJSCERIr/giphy.gif" width="30px">&nbsp;
 Visitor💖
 ![Visitor Count](https://profile-counter.glitch.me/duongthaitan/count.svg)
 <br>
