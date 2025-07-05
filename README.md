@@ -22,14 +22,14 @@
   </a>
 
 </h1>
-<h3 align="center">Web Design and Software Developer from Vietnam  </h3>
+<h3 align="center">Fontend Developer | UI Web Designer from Vietnam  </h3>
 
 
 
 
 <p align="center">
   <em>
-    This is ME, Duong Thai Tan (duongthaitan), I study Information technology (IT) <a href="https://www.nctu.edu.vn/"> <b>https://www.nctu.edu.vn/ Web Design and Software Development</b>, Information Technology </a>. <br>
+    This is ME, Duong Thai Tan (duongthaitan), I study Information technology (IT) Fontend Developer | UI Web Designer</b>, Information Technology </a>. <br>
     A budding <b>Fontend | UI & UX Developer</b> and a <b>Competitive Programming Enthusiast
   Learning while HOPING & HUSTLING!!!
 
@@ -39,15 +39,13 @@
 <img align="right" width=200px height=200px alt="side_sticker" src="https://media.giphy.com/media/TEnXkcsHrP4YedChhA/giphy.gif" />
 
 
-- 👋 Hi, I’m Duong Thai Tan ( duongthaitan )
+- 👋 Hi, I’m Duong Thai Tan ( Tandev.foto )
     
-- 🌱 I’m currently learning **Frontend** 👨‍💻💪      
+- 🌱 I’m currently learning **Fontend Developer | UI Web Designer** 👨‍💻💪      
     
-- 🌱 I’m currently learning Web Development, Html5, CSS3, JavaScript...
-      
-- ✍ I'm a student of: [Nam Can Tho University ](https://www.nctu.edu.vn/) (DNC)
+- 🌱 I’m currently learning Web Development, Html, CSS, JS...
   
-- 🧐 Portfolio Website: https://duongthaitan.github.io/IT_duongthaitan
+- 🧐 Portfolio Website: https://www.tanhipp.id.vn/
     
     
  
@@ -57,30 +55,27 @@
 <h2><img src="https://media.giphy.com/media/iY8CRBdQXODJSCERIr/giphy.gif" width="30px">&nbsp;
  Contact for work| Liên hệ công việc: <img src='https://raw.githubusercontent.com/ShahriarShafin/ShahriarShafin/main/Assets/handshake.gif' width="90px"> </h2>
 <p align="center">
-  </a>
-  <a href="https://www.facebook.com/duongthaitan/" target="_blank" alt="Facebook">
-  <img src="https://img.icons8.com/3d-fluency/65/000000/facebook-circled.png"/>
-  </a>
-  <a>
-  <a href="https://www.instagram.com/duongthaitan.it"  target="_blank" alt="Instagram">
-  <img src="https://img.icons8.com/3d-fluency/65/000000/instagram-new.png"/>
-  </a>  
-  <a href="https://id.zalo.me/account?continue=https%3A%2F%2Fchat.zalo.me%2F"  target="_blank" alt="Zalo">
-  <img src="https://img.icons8.com/color/65/000000/zalo.png"/>
-  </a>
-  <a herf="https://www.tiktok.com/@duongthaitanit" alt="Tiktok">
-  <img src="https://img.icons8.com/fluency/65/000000/tiktok.png"/>
-  </a> 
-  <a href="https://github.com/duongthaitan" alt="Github">
-  <img src="https://img.icons8.com/3d-fluency/65/000000/github.png"/>
-  </a> 
-  <a href="https://www.youtube.com/channel/UCaRr1SjyHm61RrLY-DIBm1g" alt="Youtube channel" target="_blank" >
-  <img src="https://img.icons8.com/3d-fluency/65/000000/youtube-play.png"/>
-  </a>
+    <a href="https://www.linkedin.com/in/duongthaitan/" target="_blank" alt="LinkedIn">
+  <img src="https://img.icons8.com/3d-fluency/65/linkedin--v1.png"/>
+
   <a href="matan13@gmail.com" alt="Email">
   <img src="https://img.icons8.com/3d-fluency/65/000000/gmail.png"/>
-<!--🦶FOOTER--> 
-<!-- <img src="https://raw.githubusercontent.com/trinib/trinib/main/.images/footer.svg" width="100%"> -->
+    
+  <a href="https://www.facebook.com/duongthaitan/" target="_blank" alt="Facebook">
+  <img src="https://img.icons8.com/3d-fluency/65/000000/facebook-circled.png"/>
+
+  <a href="https://www.instagram.com/thaitan.duong_"  target="_blank" alt="Instagram">
+  <img src="https://img.icons8.com/3d-fluency/65/000000/instagram-new.png"/>
+
+  <a href="https://zalo.me/0336608983"  target="_blank" alt="Zalo">
+  <img src="https://img.icons8.com/color/65/000000/zalo.png"/>
+
+  <a herf="https://www.tiktok.com/@tandev.foto" alt="Tiktok">
+  <img src="https://img.icons8.com/fluency/65/000000/tiktok.png"/>
+
+  <a href="https://github.com/duongthaitan" alt="Github">
+  <img src="https://img.icons8.com/3d-fluency/65/000000/github.png"/>
+
 </p>
 
 
