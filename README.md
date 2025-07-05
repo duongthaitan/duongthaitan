@@ -255,10 +255,11 @@ Random Dev Quote✍️
 <hr>
 <img src="https://media.giphy.com/media/iY8CRBdQXODJSCERIr/giphy.gif" width="30px">&nbsp;
 Visitor💖
+
 ![Visitor Count](https://profile-counter.glitch.me/duongthaitan/count.svg)
+
 <br>
-<br>
-<img src="https://media.giphy.com/media/LnQjpWaON8nhr21vNW/giphy.gif" width="60"> <em><b>I love connecting with different people from around the world, so if you want to be my friend, feel free to <a href="https://twitter.com/duongthaitan">reach out</a> and introduce yourself and don’t just say hi, tell me about yourself</b> 💜</em>
+
 </p>
 <!-- RAINBOW LINE TOP -->
 <img src="https://github.com/AnderMendoza/AnderMendoza/raw/main/assets/line-neon.gif" width="100%">
