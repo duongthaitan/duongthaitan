@@ -7,6 +7,11 @@
   <img src="./assets/leo-header.svg" width="100%" alt="Leo Universe Header"/>
 </div>
 
+<!-- ✦ THE LION KING — 3D HERO ✦ -->
+<div align="center">
+  <img src="./assets/golden-lion.png" width="280" alt="The Golden Lion"/>
+</div>
+
 <!-- ✦ ANIMATED TYPING ✦ -->
 <div align="center">
   <a href="https://git.io/typing-svg">
