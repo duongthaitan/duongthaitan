@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 80" width="1200" height="80">
+  <defs>
+    <linearGradient id="fireGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0a0a0a"/>
+      <stop offset="20%" stop-color="#FF4500" stop-opacity="0.8"/>
+      <stop offset="35%" stop-color="#FF8C00"/>
+      <stop offset="50%" stop-color="#FFD700"/>
+      <stop offset="65%" stop-color="#FF8C00"/>
+      <stop offset="80%" stop-color="#FF4500" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#0a0a0a"/>
+    </linearGradient>
+    <filter id="fireGlow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  
+  <style>
+    @keyframes flameMove { 
+      0% { d: path("M0,50 Q100,20 200,45 Q300,70 400,40 Q500,10 600,45 Q700,75 800,35 Q900,5 1000,40 Q1100,65 1200,50"); }
+      33% { d: path("M0,45 Q100,65 200,35 Q300,15 400,50 Q500,70 600,30 Q700,10 800,50 Q900,70 1000,35 Q1100,15 1200,45"); }
+      66% { d: path("M0,55 Q100,30 200,55 Q300,40 400,20 Q500,55 600,65 Q700,35 800,20 Q900,55 1000,45 Q1100,70 1200,50"); }
+      100% { d: path("M0,50 Q100,20 200,45 Q300,70 400,40 Q500,10 600,45 Q700,75 800,35 Q900,5 1000,40 Q1100,65 1200,50"); }
+    }
+    @keyframes sparkle { 0%, 100% { opacity: 0; } 50% { opacity: 1; } }
+    .flame { animation: flameMove 4s ease-in-out infinite; }
+    .spark { animation: sparkle 1.5s ease-in-out infinite; }
+  </style>
+  
+  <rect width="1200" height="80" fill="#0a0a0a"/>
+  
+  <!-- Fire line -->
+  <path d="M0,50 Q100,20 200,45 Q300,70 400,40 Q500,10 600,45 Q700,75 800,35 Q900,5 1000,40 Q1100,65 1200,50" 
+        fill="none" stroke="url(#fireGrad)" stroke-width="2" filter="url(#fireGlow)" opacity="0.8"/>
+  
+  <!-- Center glow line -->
+  <line x1="200" y1="40" x2="1000" y2="40" stroke="#FFD700" stroke-width="0.3" opacity="0.2"/>
+  
+  <!-- Sparkle dots -->
+  <circle cx="200" cy="40" r="2" fill="#FFD700" class="spark" style="animation-delay: 0s"/>
+  <circle cx="400" cy="40" r="1.5" fill="#FF8C00" class="spark" style="animation-delay: 0.3s"/>
+  <circle cx="600" cy="40" r="2.5" fill="#FFD700" class="spark" style="animation-delay: 0.6s"/>
+  <circle cx="800" cy="40" r="1.5" fill="#FF8C00" class="spark" style="animation-delay: 0.9s"/>
+  <circle cx="1000" cy="40" r="2" fill="#FFD700" class="spark" style="animation-delay: 1.2s"/>
+  
+  <!-- Leo symbols -->
+  <text x="550" y="44" font-size="10" fill="#FFD700" opacity="0.4">♌</text>
+  <text x="640" y="44" font-size="10" fill="#FFD700" opacity="0.4">♌</text>
+</svg>
