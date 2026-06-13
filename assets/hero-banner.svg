@@ -1,168 +1,59 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="300" viewBox="0 0 900 300">
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="250" viewBox="0 0 900 250">
   <defs>
-    <!-- Background gradient -->
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#020617"/>
-      <stop offset="30%" style="stop-color:#0f172a"/>
-      <stop offset="70%" style="stop-color:#1e1b4b"/>
-      <stop offset="100%" style="stop-color:#020617"/>
+      <stop offset="0%" style="stop-color:#0c1222"/>
+      <stop offset="100%" style="stop-color:#161b2e"/>
     </linearGradient>
-    
-    <!-- Accent gradients -->
-    <linearGradient id="accent1" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#22d3ee"/>
-      <stop offset="100%" style="stop-color:#a78bfa"/>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#64748b"/>
+      <stop offset="100%" style="stop-color:#94a3b8"/>
     </linearGradient>
-    <linearGradient id="accent2" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#a78bfa"/>
-      <stop offset="100%" style="stop-color:#f472b6"/>
-    </linearGradient>
-    <linearGradient id="nameGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#22d3ee"/>
-      <stop offset="40%" style="stop-color:#818cf8"/>
-      <stop offset="100%" style="stop-color:#c084fc"/>
-    </linearGradient>
-    
-    <!-- Glow filters -->
-    <filter id="glow">
-      <feGaussianBlur stdDeviation="4" result="blur"/>
-      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-    <filter id="softGlow">
-      <feGaussianBlur stdDeviation="12" result="blur"/>
-      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-    <filter id="bigGlow">
-      <feGaussianBlur stdDeviation="25" result="blur"/>
-      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-    
-    <!-- Glassmorphic card -->
-    <filter id="glass">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="10"/>
-    </filter>
-    
     <style>
-      @keyframes float1 { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-12px); } }
-      @keyframes float2 { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-8px); } }
-      @keyframes pulse { 0%,100% { opacity: 0.3; } 50% { opacity: 0.8; } }
-      @keyframes blink { 0%,49% { opacity: 1; } 50%,100% { opacity: 0; } }
-      @keyframes orbit { 0% { transform: rotate(0deg) translateX(80px) rotate(0deg); } 100% { transform: rotate(360deg) translateX(80px) rotate(-360deg); } }
-      @keyframes dash { to { stroke-dashoffset: 0; } }
-      @keyframes fadeSlide { 0% { opacity: 0; transform: translateY(10px); } 100% { opacity: 1; transform: translateY(0); } }
-      @keyframes shimmer { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
-      @keyframes matrixDrop1 { 0% { transform: translateY(-20px); opacity: 0; } 10% { opacity: 0.7; } 90% { opacity: 0.7; } 100% { transform: translateY(320px); opacity: 0; } }
-      @keyframes matrixDrop2 { 0% { transform: translateY(-40px); opacity: 0; } 10% { opacity: 0.5; } 90% { opacity: 0.5; } 100% { transform: translateY(340px); opacity: 0; } }
-      
-      .float1 { animation: float1 6s ease-in-out infinite; }
-      .float2 { animation: float2 4s ease-in-out infinite; }
-      .pulse { animation: pulse 3s ease-in-out infinite; }
-      .blink { animation: blink 1s step-end infinite; }
-      .shimmer { animation: shimmer 2s ease-in-out infinite; }
-      
-      .matrix1 { animation: matrixDrop1 8s linear infinite; }
-      .matrix2 { animation: matrixDrop2 6s linear 1s infinite; }
-      .matrix3 { animation: matrixDrop1 10s linear 3s infinite; }
-      .matrix4 { animation: matrixDrop2 7s linear 2s infinite; }
-      .matrix5 { animation: matrixDrop1 9s linear 4s infinite; }
-      .matrix6 { animation: matrixDrop2 11s linear 0.5s infinite; }
-      .matrix7 { animation: matrixDrop1 7s linear 5s infinite; }
-      .matrix8 { animation: matrixDrop2 8s linear 3.5s infinite; }
-      
-      .dot1 { animation: pulse 2s ease-in-out infinite; }
-      .dot2 { animation: pulse 2s ease-in-out 0.7s infinite; }
-      .dot3 { animation: pulse 2s ease-in-out 1.4s infinite; }
+      @keyframes blink { 0%,49%{opacity:1} 50%,100%{opacity:0} }
+      @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+      .cursor { animation: blink 1.1s step-end infinite; }
     </style>
   </defs>
-  
-  <!-- Deep space background -->
-  <rect width="900" height="300" fill="url(#bg)"/>
-  
-  <!-- Matrix rain columns (subtle, in background) -->
-  <g font-family="'Fira Code','SF Mono',monospace" font-size="10" opacity="0.12">
-    <text x="45" y="0" fill="#22d3ee" class="matrix1">0 1 0 1</text>
-    <text x="145" y="0" fill="#a78bfa" class="matrix2">{ } ; :</text>
-    <text x="280" y="0" fill="#22d3ee" class="matrix3">&lt; / &gt; =</text>
-    <text x="620" y="0" fill="#a78bfa" class="matrix5">( ) [ ]</text>
-    <text x="755" y="0" fill="#22d3ee" class="matrix6">+ - * %</text>
-    <text x="830" y="0" fill="#a78bfa" class="matrix7"># @ ! $</text>
-    <text x="380" y="0" fill="#f472b6" class="matrix8">&amp; | ~ ^</text>
+
+  <rect width="900" height="250" fill="url(#bg)"/>
+
+  <!-- Minimal grid dots -->
+  <g fill="#1e293b" opacity="0.4">
+    <circle cx="60" cy="40" r="0.8"/><circle cx="120" cy="40" r="0.8"/><circle cx="180" cy="40" r="0.8"/>
+    <circle cx="240" cy="40" r="0.8"/><circle cx="300" cy="40" r="0.8"/><circle cx="360" cy="40" r="0.8"/>
+    <circle cx="60" cy="80" r="0.8"/><circle cx="120" cy="80" r="0.8"/><circle cx="180" cy="80" r="0.8"/>
+    <circle cx="240" cy="80" r="0.8"/><circle cx="300" cy="80" r="0.8"/><circle cx="360" cy="80" r="0.8"/>
+    <circle cx="540" cy="160" r="0.8"/><circle cx="600" cy="160" r="0.8"/><circle cx="660" cy="160" r="0.8"/>
+    <circle cx="720" cy="160" r="0.8"/><circle cx="780" cy="160" r="0.8"/><circle cx="840" cy="160" r="0.8"/>
+    <circle cx="540" cy="200" r="0.8"/><circle cx="600" cy="200" r="0.8"/><circle cx="660" cy="200" r="0.8"/>
+    <circle cx="720" cy="200" r="0.8"/><circle cx="780" cy="200" r="0.8"/><circle cx="840" cy="200" r="0.8"/>
   </g>
-  
-  <!-- Floating orbs (background atmosphere) -->
-  <circle cx="120" cy="80" r="60" fill="#22d3ee" opacity="0.04" filter="url(#bigGlow)"/>
-  <circle cx="780" cy="220" r="80" fill="#a78bfa" opacity="0.04" filter="url(#bigGlow)"/>
-  <circle cx="450" cy="150" r="100" fill="#818cf8" opacity="0.03" filter="url(#bigGlow)"/>
-  
-  <!-- Constellation dots -->
-  <circle cx="80" cy="30" r="1.5" fill="#22d3ee" class="dot1"/>
-  <circle cx="170" cy="55" r="1" fill="#a78bfa" class="dot2"/>
-  <circle cx="260" cy="25" r="1.5" fill="#f472b6" class="dot3"/>
-  <circle cx="340" cy="65" r="1" fill="#22d3ee" class="dot1"/>
-  <circle cx="500" cy="35" r="1.5" fill="#a78bfa" class="dot2"/>
-  <circle cx="580" cy="50" r="1" fill="#f472b6" class="dot3"/>
-  <circle cx="660" cy="28" r="1.5" fill="#22d3ee" class="dot1"/>
-  <circle cx="740" cy="60" r="1" fill="#a78bfa" class="dot2"/>
-  <circle cx="830" cy="40" r="1.5" fill="#f472b6" class="dot3"/>
-  
-  <!-- Constellation lines (subtle) -->
-  <line x1="80" y1="30" x2="170" y2="55" stroke="#22d3ee" stroke-width="0.3" opacity="0.2"/>
-  <line x1="170" y1="55" x2="260" y2="25" stroke="#a78bfa" stroke-width="0.3" opacity="0.15"/>
-  <line x1="500" y1="35" x2="580" y2="50" stroke="#a78bfa" stroke-width="0.3" opacity="0.2"/>
-  <line x1="660" y1="28" x2="740" y2="60" stroke="#22d3ee" stroke-width="0.3" opacity="0.15"/>
-  
-  <!-- Glassmorphic card background -->
-  <rect x="140" y="60" width="620" height="185" rx="16" fill="#0f172a" fill-opacity="0.6" stroke="#334155" stroke-width="0.5"/>
-  <rect x="140" y="60" width="620" height="185" rx="16" fill="url(#bg)" fill-opacity="0.3"/>
-  
-  <!-- Left accent bar -->
-  <rect x="140" y="60" width="3" height="185" rx="1.5" fill="url(#accent1)" opacity="0.8"/>
-  
-  <!-- Status indicator -->
-  <circle cx="175" cy="88" r="4" fill="#22c55e" class="shimmer"/>
-  <text x="188" y="92" font-family="'Fira Code','SF Mono',monospace" font-size="11" fill="#94a3b8">available for hire</text>
-  
+
+  <!-- Left accent line -->
+  <rect x="60" y="55" width="2" height="140" rx="1" fill="#3b82f6" opacity="0.6"/>
+
+  <!-- Greeting -->
+  <text x="80" y="85" font-family="'Inter','Segoe UI',sans-serif" font-size="15" fill="#64748b" letter-spacing="3">HEY THERE, I'M</text>
+
   <!-- Name -->
-  <text x="175" y="132" font-family="'Inter','Segoe UI',system-ui,sans-serif" font-size="36" font-weight="800" fill="url(#nameGrad)" filter="url(#glow)">Duong Thai Tan</text>
-  
-  <!-- Role tagline -->
-  <text x="175" y="162" font-family="'Fira Code','SF Mono',monospace" font-size="14" fill="#94a3b8">
-    <tspan fill="#22d3ee">const</tspan> role <tspan fill="#c084fc">=</tspan> <tspan fill="#fbbf24">"Frontend Developer &amp; UI/UX Designer"</tspan><tspan fill="#94a3b8">;</tspan>
+  <text x="80" y="130" font-family="'Inter','Segoe UI',sans-serif" font-size="42" font-weight="800" fill="#e2e8f0">Duong Thai Tan</text>
+
+  <!-- Role -->
+  <text x="80" y="160" font-family="'JetBrains Mono','Fira Code',monospace" font-size="15" fill="#64748b">
+    <tspan fill="#3b82f6">Frontend Developer</tspan>
+    <tspan fill="#334155"> · </tspan>
+    <tspan fill="#64748b">UI/UX Designer</tspan>
+    <tspan fill="#334155"> · </tspan>
+    <tspan fill="#64748b">Vietnam</tspan>
   </text>
-  
-  <!-- Location & info line -->
-  <text x="175" y="188" font-family="'Fira Code','SF Mono',monospace" font-size="12" fill="#64748b">
-    📍 Vietnam  ·  💻 Web Dev  ·  🎨 Creative Coder  ·  📸 Photographer
+
+  <!-- Status line -->
+  <text x="80" y="192" font-family="'JetBrains Mono','Fira Code',monospace" font-size="12" fill="#475569">
+    <tspan fill="#475569">~/tan $</tspan>
+    <tspan fill="#94a3b8"> open to work</tspan>
+    <tspan fill="#22c55e"> ●</tspan>
   </text>
-  
-  <!-- Tech tags -->
-  <g font-family="'Fira Code','SF Mono',monospace" font-size="10">
-    <!-- Tag 1 -->
-    <rect x="175" y="200" width="65" height="22" rx="4" fill="#22d3ee" fill-opacity="0.1" stroke="#22d3ee" stroke-width="0.5" stroke-opacity="0.3"/>
-    <text x="190" y="215" fill="#22d3ee">Vue.js</text>
-    <!-- Tag 2 -->
-    <rect x="248" y="200" width="72" height="22" rx="4" fill="#a78bfa" fill-opacity="0.1" stroke="#a78bfa" stroke-width="0.5" stroke-opacity="0.3"/>
-    <text x="260" y="215" fill="#a78bfa">Laravel</text>
-    <!-- Tag 3 -->
-    <rect x="328" y="200" width="72" height="22" rx="4" fill="#f472b6" fill-opacity="0.1" stroke="#f472b6" stroke-width="0.5" stroke-opacity="0.3"/>
-    <text x="340" y="215" fill="#f472b6">Three.js</text>
-    <!-- Tag 4 -->
-    <rect x="408" y="200" width="48" height="22" rx="4" fill="#fbbf24" fill-opacity="0.1" stroke="#fbbf24" stroke-width="0.5" stroke-opacity="0.3"/>
-    <text x="420" y="215" fill="#fbbf24">PHP</text>
-    <!-- Tag 5 -->
-    <rect x="464" y="200" width="35" height="22" rx="4" fill="#34d399" fill-opacity="0.1" stroke="#34d399" stroke-width="0.5" stroke-opacity="0.3"/>
-    <text x="472" y="215" fill="#34d399">C#</text>
-  </g>
-  
-  <!-- Blinking cursor at end -->
-  <rect x="507" y="202" width="2" height="18" fill="#22d3ee" class="blink"/>
-  
-  <!-- Bottom glow line -->
-  <rect x="0" y="296" width="900" height="4" fill="url(#accent1)" opacity="0.15" filter="url(#softGlow)"/>
-  
-  <!-- Corner decorations -->
-  <path d="M 0 0 L 40 0 L 0 40 Z" fill="#22d3ee" opacity="0.06"/>
-  <path d="M 900 0 L 860 0 L 900 40 Z" fill="#a78bfa" opacity="0.06"/>
-  <path d="M 0 300 L 40 300 L 0 260 Z" fill="#a78bfa" opacity="0.06"/>
-  <path d="M 900 300 L 860 300 L 900 260 Z" fill="#22d3ee" opacity="0.06"/>
+
+  <!-- Cursor -->
+  <rect x="265" y="181" width="7" height="14" fill="#3b82f6" class="cursor" opacity="0.8"/>
 </svg>
