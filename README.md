@@ -92,27 +92,40 @@ Outside of code, I'm into photography 📸 and video editing 🎬 — I like cra
 
 ### Certifications
 
-<div align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="./assets/certifications.svg" />
-    <source media="(prefers-color-scheme: light)" srcset="./assets/certifications.svg" />
-    <img src="./assets/certifications.svg" width="100%" alt="Certifications" />
-  </picture>
-</div>
+<table>
+<tr>
+<td valign="top" width="50%">
 
-<details>
-<summary>📜 Quick links to all certificates</summary>
+**F8 Fullstack**
+
+<a href="https://fullstack.edu.vn/cert/4tv2o">
+  <img src="https://img.shields.io/badge/IT_Onboarding-passed-blue?style=flat&logo=checkmarx&logoColor=white&color=0f172a" />
+</a>
 <br>
+<a href="https://fullstack.edu.vn/cert/d0gj4">
+  <img src="https://img.shields.io/badge/JavaScript_Basic-passed-blue?style=flat&logo=javascript&logoColor=f7df1e&color=0f172a" />
+</a>
+<br>
+<a href="https://fullstack.edu.vn/cert/kj7vr">
+  <img src="https://img.shields.io/badge/PHP_Introduction-passed-blue?style=flat&logo=php&logoColor=white&color=0f172a" />
+</a>
 
-| | Certificate | Platform | Verify |
-|:---:|:---|:---:|:---:|
-| 📋 | Information Technology Onboarding | F8 Fullstack | [↗](https://fullstack.edu.vn/cert/4tv2o) |
-| ⚡ | JavaScript Basic | F8 Fullstack | [↗](https://fullstack.edu.vn/cert/d0gj4) |
-| 🐘 | PHP Introduction | F8 Fullstack | [↗](https://fullstack.edu.vn/cert/kj7vr) |
-| 🎓 | PHP Course | SoloLearn | [↗](https://www.sololearn.com/certificates/CT-11PGKZIX) |
-| ⚙️ | Introduction to C | SoloLearn | [↗](https://www.sololearn.com/certificates/CC-USOBZSX7) |
+</td>
+<td valign="top" width="50%">
 
-</details>
+**SoloLearn**
+
+<a href="https://www.sololearn.com/certificates/CT-11PGKZIX">
+  <img src="https://img.shields.io/badge/PHP_Course-passed-blue?style=flat&logo=php&logoColor=white&color=0f172a" />
+</a>
+<br>
+<a href="https://www.sololearn.com/certificates/CC-USOBZSX7">
+  <img src="https://img.shields.io/badge/Introduction_to_C-passed-blue?style=flat&logo=c&logoColor=a8b9cc&color=0f172a" />
+</a>
+
+</td>
+</tr>
+</table>
 
 ---
 
