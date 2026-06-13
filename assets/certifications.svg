@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="440" viewBox="0 0 840 440">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap');
+    </style>
+  </defs>
+
+  <!-- Canvas -->
+  <rect width="840" height="440" fill="#0a0a0a"/>
+
+  <!-- ── Header ── -->
+  <text x="40" y="52" font-family="'Inter','Helvetica Neue','Arial',sans-serif" font-size="11" fill="#555" letter-spacing="5" font-weight="500">CERTIFICATIONS</text>
+  <line x1="40" y1="68" x2="800" y2="68" stroke="#1a1a1a" stroke-width="1"/>
+
+  <!-- Row 1 -->
+  <text x="40" y="112" font-family="'Inter','Helvetica Neue',sans-serif" font-size="32" fill="#1a1a1a" font-weight="300">01</text>
+  <text x="100" y="106" font-family="'Inter','Helvetica Neue',sans-serif" font-size="15" fill="#e5e5e5" font-weight="500" letter-spacing="0.2">Information Technology Onboarding</text>
+  <text x="100" y="124" font-family="'Inter','Helvetica Neue',sans-serif" font-size="11" fill="#555" font-weight="400">F8 Fullstack</text>
+  <a href="https://fullstack.edu.vn/cert/4tv2o" target="_blank">
+    <text x="790" y="112" font-family="'Inter','Helvetica Neue',sans-serif" font-size="12" fill="#666" text-anchor="end" font-weight="400">↗</text>
+  </a>
+  <line x1="40" y1="144" x2="800" y2="144" stroke="#141414" stroke-width="0.5"/>
+
+  <!-- Row 2 -->
+  <text x="40" y="188" font-family="'Inter','Helvetica Neue',sans-serif" font-size="32" fill="#1a1a1a" font-weight="300">02</text>
+  <text x="100" y="182" font-family="'Inter','Helvetica Neue',sans-serif" font-size="15" fill="#e5e5e5" font-weight="500" letter-spacing="0.2">JavaScript Basic</text>
+  <text x="100" y="200" font-family="'Inter','Helvetica Neue',sans-serif" font-size="11" fill="#555" font-weight="400">F8 Fullstack</text>
+  <a href="https://fullstack.edu.vn/cert/d0gj4" target="_blank">
+    <text x="790" y="188" font-family="'Inter','Helvetica Neue',sans-serif" font-size="12" fill="#666" text-anchor="end" font-weight="400">↗</text>
+  </a>
+  <line x1="40" y1="220" x2="800" y2="220" stroke="#141414" stroke-width="0.5"/>
+
+  <!-- Row 3 -->
+  <text x="40" y="264" font-family="'Inter','Helvetica Neue',sans-serif" font-size="32" fill="#1a1a1a" font-weight="300">03</text>
+  <text x="100" y="258" font-family="'Inter','Helvetica Neue',sans-serif" font-size="15" fill="#e5e5e5" font-weight="500" letter-spacing="0.2">PHP Introduction</text>
+  <text x="100" y="276" font-family="'Inter','Helvetica Neue',sans-serif" font-size="11" fill="#555" font-weight="400">F8 Fullstack</text>
+  <a href="https://fullstack.edu.vn/cert/kj7vr" target="_blank">
+    <text x="790" y="264" font-family="'Inter','Helvetica Neue',sans-serif" font-size="12" fill="#666" text-anchor="end" font-weight="400">↗</text>
+  </a>
+  <line x1="40" y1="296" x2="800" y2="296" stroke="#141414" stroke-width="0.5"/>
+
+  <!-- Row 4 -->
+  <text x="40" y="340" font-family="'Inter','Helvetica Neue',sans-serif" font-size="32" fill="#1a1a1a" font-weight="300">04</text>
+  <text x="100" y="334" font-family="'Inter','Helvetica Neue',sans-serif" font-size="15" fill="#e5e5e5" font-weight="500" letter-spacing="0.2">PHP Course</text>
+  <text x="100" y="352" font-family="'Inter','Helvetica Neue',sans-serif" font-size="11" fill="#555" font-weight="400">SoloLearn</text>
+  <a href="https://www.sololearn.com/certificates/CT-11PGKZIX" target="_blank">
+    <text x="790" y="340" font-family="'Inter','Helvetica Neue',sans-serif" font-size="12" fill="#666" text-anchor="end" font-weight="400">↗</text>
+  </a>
+  <line x1="40" y1="372" x2="800" y2="372" stroke="#141414" stroke-width="0.5"/>
+
+  <!-- Row 5 -->
+  <text x="40" y="410" font-family="'Inter','Helvetica Neue',sans-serif" font-size="32" fill="#1a1a1a" font-weight="300">05</text>
+  <text x="100" y="404" font-family="'Inter','Helvetica Neue',sans-serif" font-size="15" fill="#e5e5e5" font-weight="500" letter-spacing="0.2">Introduction to C</text>
+  <text x="100" y="422" font-family="'Inter','Helvetica Neue',sans-serif" font-size="11" fill="#555" font-weight="400">SoloLearn</text>
+  <a href="https://www.sololearn.com/certificates/CC-USOBZSX7" target="_blank">
+    <text x="790" y="410" font-family="'Inter','Helvetica Neue',sans-serif" font-size="12" fill="#666" text-anchor="end" font-weight="400">↗</text>
+  </a>
+
+</svg>

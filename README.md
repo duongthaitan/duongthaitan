@@ -92,13 +92,27 @@ Outside of code, I'm into photography 📸 and video editing 🎬 — I like cra
 
 ### Certifications
 
-| Certificate | Platform | Link |
-|:---|:---:|:---:|
-| Information Technology Onboarding | F8 Fullstack | [View](https://fullstack.edu.vn/cert/4tv2o) |
-| JavaScript Basic | F8 Fullstack | [View](https://fullstack.edu.vn/cert/d0gj4) |
-| PHP Introduction | F8 Fullstack | [View](https://fullstack.edu.vn/cert/kj7vr) |
-| PHP Course | SoloLearn | [View](https://www.sololearn.com/certificates/CT-11PGKZIX) |
-| Introduction to C | SoloLearn | [View](https://www.sololearn.com/certificates/CC-USOBZSX7) |
+<div align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/certifications.svg" />
+    <source media="(prefers-color-scheme: light)" srcset="./assets/certifications.svg" />
+    <img src="./assets/certifications.svg" width="100%" alt="Certifications" />
+  </picture>
+</div>
+
+<details>
+<summary>📜 Quick links to all certificates</summary>
+<br>
+
+| | Certificate | Platform | Verify |
+|:---:|:---|:---:|:---:|
+| 📋 | Information Technology Onboarding | F8 Fullstack | [↗](https://fullstack.edu.vn/cert/4tv2o) |
+| ⚡ | JavaScript Basic | F8 Fullstack | [↗](https://fullstack.edu.vn/cert/d0gj4) |
+| 🐘 | PHP Introduction | F8 Fullstack | [↗](https://fullstack.edu.vn/cert/kj7vr) |
+| 🎓 | PHP Course | SoloLearn | [↗](https://www.sololearn.com/certificates/CT-11PGKZIX) |
+| ⚙️ | Introduction to C | SoloLearn | [↗](https://www.sololearn.com/certificates/CC-USOBZSX7) |
+
+</details>
 
 ---
 
