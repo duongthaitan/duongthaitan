@@ -2,23 +2,29 @@
   <img src="./assets/hero-banner.svg" width="100%" alt="Duong Thai Tan"/>
 </div>
 
+<div align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=500&size=16&duration=3000&pause=1500&color=94A3B8&center=true&vCenter=true&random=false&width=520&lines=Building+pixel-perfect+interfaces+%F0%9F%8E%AF;Crafting+clean+%26+maintainable+code+%E2%9C%A8;Exploring+Vue.js+%2B+Three.js+%F0%9F%94%AE;Open+to+new+opportunities+%F0%9F%9A%80" alt="Typing SVG" />
+</div>
+
 <br>
 
 <div align="center">
   <a href="mailto:matan13@gmail.com">
-    <img src="https://img.shields.io/badge/Email-matan13@gmail.com-blue?style=flat&logo=gmail&logoColor=white&color=0f172a" />
+    <img src="https://img.shields.io/badge/Gmail-matan13@gmail.com-0f172a?style=for-the-badge&logo=gmail&logoColor=white" />
   </a>
-  &nbsp;&nbsp;
+  &nbsp;
   <a href="https://www.linkedin.com/in/duongthaitan/">
-    <img src="https://img.shields.io/badge/LinkedIn-duongthaitan-blue?style=flat&logo=linkedin&logoColor=white&color=0f172a" />
+    <img src="https://img.shields.io/badge/LinkedIn-duongthaitan-0f172a?style=for-the-badge&logo=linkedin&logoColor=white" />
   </a>
-  &nbsp;&nbsp;
+  &nbsp;
   <a href="https://www.facebook.com/duongthaitan/">
-    <img src="https://img.shields.io/badge/Facebook-duongthaitan-blue?style=flat&logo=facebook&logoColor=white&color=0f172a" />
+    <img src="https://img.shields.io/badge/Facebook-duongthaitan-0f172a?style=for-the-badge&logo=facebook&logoColor=white" />
   </a>
-  &nbsp;&nbsp;
-  <img src="https://komarev.com/ghpvc/?username=duongthaitan&style=flat&color=0f172a&label=views" />
+  &nbsp;
+  <img src="https://komarev.com/ghpvc/?username=duongthaitan&style=for-the-badge&color=0f172a&label=PROFILE+VIEWS" />
 </div>
+
+<br>
 
 ---
 
@@ -88,6 +94,12 @@ Outside of code, I'm into photography 📸 and video editing 🎬 — I like cra
   </picture>
 </div>
 
+<br>
+
+<div align="center">
+  <img src="https://github-profile-trophy.vercel.app/?username=duongthaitan&theme=nord&no-frame=true&no-bg=true&column=7&margin-w=6" alt="Trophies" width="98%" />
+</div>
+
 ---
 
 ### Certifications
@@ -99,15 +111,15 @@ Outside of code, I'm into photography 📸 and video editing 🎬 — I like cra
 **F8 Fullstack**
 
 <a href="https://fullstack.edu.vn/cert/4tv2o">
-  <img src="https://img.shields.io/badge/IT_Onboarding-passed-blue?style=flat&logo=checkmarx&logoColor=white&color=0f172a" />
+  <img src="https://img.shields.io/badge/IT_Onboarding-passed-0f172a?style=flat-square&logo=checkmarx&logoColor=white" />
 </a>
 <br>
 <a href="https://fullstack.edu.vn/cert/d0gj4">
-  <img src="https://img.shields.io/badge/JavaScript_Basic-passed-blue?style=flat&logo=javascript&logoColor=f7df1e&color=0f172a" />
+  <img src="https://img.shields.io/badge/JavaScript_Basic-passed-0f172a?style=flat-square&logo=javascript&logoColor=f7df1e" />
 </a>
 <br>
 <a href="https://fullstack.edu.vn/cert/kj7vr">
-  <img src="https://img.shields.io/badge/PHP_Introduction-passed-blue?style=flat&logo=php&logoColor=white&color=0f172a" />
+  <img src="https://img.shields.io/badge/PHP_Introduction-passed-0f172a?style=flat-square&logo=php&logoColor=white" />
 </a>
 
 </td>
@@ -116,11 +128,11 @@ Outside of code, I'm into photography 📸 and video editing 🎬 — I like cra
 **SoloLearn**
 
 <a href="https://www.sololearn.com/certificates/CT-11PGKZIX">
-  <img src="https://img.shields.io/badge/PHP_Course-passed-blue?style=flat&logo=php&logoColor=white&color=0f172a" />
+  <img src="https://img.shields.io/badge/PHP_Course-passed-0f172a?style=flat-square&logo=php&logoColor=white" />
 </a>
 <br>
 <a href="https://www.sololearn.com/certificates/CC-USOBZSX7">
-  <img src="https://img.shields.io/badge/Introduction_to_C-passed-blue?style=flat&logo=c&logoColor=a8b9cc&color=0f172a" />
+  <img src="https://img.shields.io/badge/Introduction_to_C-passed-0f172a?style=flat-square&logo=c&logoColor=a8b9cc" />
 </a>
 
 </td>
@@ -130,15 +142,25 @@ Outside of code, I'm into photography 📸 and video editing 🎬 — I like cra
 ---
 
 <div align="center">
-  <a href="https://duongthaitan.github.io/duongthaitan/leo-3d/index.html">3D Portfolio</a>
-  &nbsp;·&nbsp;
-  <a href="https://www.instagram.com/thaitan.duong_">Instagram</a>
-  &nbsp;·&nbsp;
-  <a href="https://www.tiktok.com/@tandev.foto">TikTok</a>
-  &nbsp;·&nbsp;
-  <a href="https://zalo.me/0336608983">Zalo</a>
-  &nbsp;·&nbsp;
-  <a href="https://open.spotify.com/user/315vn5ocyqkorpqwxvjeldw4blqa">Spotify</a>
+  <a href="https://duongthaitan.github.io/duongthaitan/leo-3d/index.html">
+    <img src="https://img.shields.io/badge/3D_Portfolio-Visit-0f172a?style=flat-square&logo=threedotjs&logoColor=white" />
+  </a>
+  &nbsp;&nbsp;
+  <a href="https://www.instagram.com/thaitan.duong_">
+    <img src="https://img.shields.io/badge/Instagram-Follow-0f172a?style=flat-square&logo=instagram&logoColor=white" />
+  </a>
+  &nbsp;&nbsp;
+  <a href="https://www.tiktok.com/@tandev.foto">
+    <img src="https://img.shields.io/badge/TikTok-Follow-0f172a?style=flat-square&logo=tiktok&logoColor=white" />
+  </a>
+  &nbsp;&nbsp;
+  <a href="https://zalo.me/0336608983">
+    <img src="https://img.shields.io/badge/Zalo-Chat-0f172a?style=flat-square&logo=zalo&logoColor=white" />
+  </a>
+  &nbsp;&nbsp;
+  <a href="https://open.spotify.com/user/315vn5ocyqkorpqwxvjeldw4blqa">
+    <img src="https://img.shields.io/badge/Spotify-Listen-0f172a?style=flat-square&logo=spotify&logoColor=1db954" />
+  </a>
 </div>
 
 <br>
@@ -150,3 +172,7 @@ Outside of code, I'm into photography 📸 and video editing 🎬 — I like cra
     <img src="https://raw.githubusercontent.com/platane/snk/output/github-contribution-grid-snake-dark.svg" alt="contribution snake" width="95%"/>
   </picture>
 </div>
+
+<br>
+
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:0f172a,100:1e293b&height=100&section=footer" />
