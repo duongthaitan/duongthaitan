@@ -142,9 +142,9 @@ I like crafting things that look good, whether it's a UI or a photo.
 
 <div align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api?username=duongthaitan&show_icons=true&hide_border=true&include_all_commits=true&count_private=true&title_color=e6edf3&text_color=8b949e&icon_color=58a6ff&bg_color=0d1117&border_radius=8" />
-    <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats.vercel.app/api?username=duongthaitan&show_icons=true&hide_border=true&include_all_commits=true&count_private=true&title_color=1f2328&text_color=656d76&icon_color=0969da&bg_color=ffffff&border_radius=8" />
-    <img width="48%" src="https://github-readme-stats.vercel.app/api?username=duongthaitan&show_icons=true&hide_border=true&include_all_commits=true&count_private=true&title_color=e6edf3&text_color=8b949e&icon_color=58a6ff&bg_color=0d1117&border_radius=8" alt="GitHub Stats" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api?username=duongthaitan&show_icons=true&hide_border=true&count_private=true&rank_icon=github&title_color=e6edf3&text_color=8b949e&icon_color=58a6ff&bg_color=0d1117&border_radius=8" />
+    <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats.vercel.app/api?username=duongthaitan&show_icons=true&hide_border=true&count_private=true&rank_icon=github&title_color=1f2328&text_color=656d76&icon_color=0969da&bg_color=ffffff&border_radius=8" />
+    <img width="48%" src="https://github-readme-stats.vercel.app/api?username=duongthaitan&show_icons=true&hide_border=true&count_private=true&rank_icon=github&title_color=e6edf3&text_color=8b949e&icon_color=58a6ff&bg_color=0d1117&border_radius=8" alt="GitHub Stats" />
   </picture>
   &nbsp;
   <picture>
