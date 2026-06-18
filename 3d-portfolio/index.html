@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Duong Thai Tan — Interactive 3D Portfolio showcasing frontend development skills with Three.js">
+<title>3D Portfolio — Duong Thai Tan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    overflow: hidden;
+    background: #0a0a0f;
+    font-family: 'Inter', system-ui, sans-serif;
+    color: #e6edf3;
+  }
+
+  canvas { display: block; }
+
+  /* Loading Screen */
+  #loader {
+    position: fixed; inset: 0; z-index: 100;
+    background: #0a0a0f;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+  }
+  #loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+
+  .loader-ring {
+    width: 60px; height: 60px;
+    border: 2px solid transparent;
+    border-top-color: #0ea5e9;
+    border-right-color: #8b5cf6;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .loader-text {
+    margin-top: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: #8b949e;
+    letter-spacing: 3px;
+  }
+
+  /* Title Overlay */
+  #title-overlay {
+    position: fixed; top: 0; left: 0; right: 0;
+    padding: 30px 40px;
+    pointer-events: none; z-index: 10;
+    display: flex; justify-content: space-between; align-items: flex-start;
+  }
+
+  .brand h1 {
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    font-weight: 700;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, #0ea5e9, #8b5cf6, #ec4899);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 4s ease infinite;
+  }
+
+  .brand p {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: #6e7681;
+    letter-spacing: 4px;
+    margin-top: 4px;
+  }
+
+  .nav-links {
+    display: flex; gap: 20px;
+    pointer-events: auto;
+  }
+  .nav-links a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: #8b949e;
+    text-decoration: none;
+    letter-spacing: 1px;
+    padding: 6px 14px;
+    border: 1px solid #21262d;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+  }
+  .nav-links a:hover {
+    color: #0ea5e9;
+    border-color: #0ea5e9;
+    background: rgba(14, 165, 233, 0.05);
+  }
+
+  @keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  /* Bottom info bar */
+  #bottom-bar {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    padding: 20px 40px;
+    display: flex; justify-content: space-between; align-items: flex-end;
+    pointer-events: none; z-index: 10;
+  }
+
+  .hint {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    color: #6e7681;
+    letter-spacing: 2px;
+  }
+
+  .status {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    color: #6e7681;
+    text-align: right;
+  }
+  .status .dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    background: #3fb950;
+    border-radius: 50%;
+    margin-right: 6px;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
+
+  /* Center info card */
+  #info-card {
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    pointer-events: none;
+    z-index: 10;
+    opacity: 0;
+    animation: fadeInUp 1s ease 1.5s forwards;
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+    to { opacity: 1; transform: translateX(-50%) translateY(0); }
+  }
+
+  #info-card h2 {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 300;
+    letter-spacing: 6px;
+    color: #e6edf3;
+    margin-bottom: 8px;
+  }
+  #info-card h2 strong {
+    font-weight: 700;
+    background: linear-gradient(135deg, #0ea5e9, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  #info-card p {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: #8b949e;
+    letter-spacing: 3px;
+  }
+
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    #title-overlay, #bottom-bar { padding: 16px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Loading Screen -->
+<div id="loader">
+  <div class="loader-ring"></div>
+  <div class="loader-text">INITIALIZING</div>
+</div>
+
+<!-- Title Overlay -->
+<div id="title-overlay">
+  <div class="brand">
+    <h1>DUONG THAI TAN</h1>
+    <p>FRONTEND DEVELOPER</p>
+  </div>
+  <div class="nav-links">
+    <a href="https://github.com/duongthaitan">GitHub</a>
+    <a href="https://www.linkedin.com/in/duongthaitan/">LinkedIn</a>
+  </div>
+</div>
+
+<!-- Center Info -->
+<div id="info-card">
+  <h2>CREATIVE <strong>DEVELOPER</strong></h2>
+  <p>VIETNAM · FRONTEND · UI/UX</p>
+</div>
+
+<!-- Bottom Bar -->
+<div id="bottom-bar">
+  <div class="hint">↔ MOVE MOUSE TO INTERACT</div>
+  <div class="status">
+    <span class="dot"></span>AVAILABLE FOR WORK
+  </div>
+</div>
+
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.164.1/examples/jsm/"}}
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+
+// ─── Scene Setup ───
+const scene = new THREE.Scene();
+scene.fog = new THREE.FogExp2(0x0a0a0f, 0.035);
+
+const camera = new THREE.PerspectiveCamera(55, innerWidth / innerHeight, 0.1, 500);
+camera.position.set(0, 0, 6);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+renderer.setSize(innerWidth, innerHeight);
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.2;
+document.body.appendChild(renderer.domElement);
+
+// ─── Post-processing ───
+const composer = new EffectComposer(renderer);
+composer.addPass(new RenderPass(scene, camera));
+
+const bloomPass = new UnrealBloomPass(
+  new THREE.Vector2(innerWidth, innerHeight), 1.5, 0.4, 0.85
+);
+bloomPass.threshold = 0.3;
+bloomPass.strength = 0.6;
+bloomPass.radius = 0.5;
+composer.addPass(bloomPass);
+
+// ─── Color Palette ───
+const COLORS = {
+  cyan: new THREE.Color(0x0ea5e9),
+  violet: new THREE.Color(0x8b5cf6),
+  pink: new THREE.Color(0xec4899),
+  gold: new THREE.Color(0xfbbf24),
+  white: new THREE.Color(0xe6edf3),
+};
+
+// ─── Central Geometry ───
+const icoGeometry = new THREE.IcosahedronGeometry(1.6, 1);
+const icoWireframe = new THREE.LineSegments(
+  new THREE.WireframeGeometry(icoGeometry),
+  new THREE.ShaderMaterial({
+    uniforms: {
+      uTime: { value: 0 },
+      uColor1: { value: COLORS.cyan },
+      uColor2: { value: COLORS.violet },
+      uColor3: { value: COLORS.pink },
+    },
+    vertexShader: `
+      varying vec3 vPos;
+      uniform float uTime;
+      void main() {
+        vPos = position;
+        vec3 p = position;
+        float wave = sin(p.x * 2.0 + uTime) * cos(p.y * 2.0 + uTime * 0.7) * 0.05;
+        p += normal * wave;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.0);
+      }
+    `,
+    fragmentShader: `
+      uniform vec3 uColor1, uColor2, uColor3;
+      uniform float uTime;
+      varying vec3 vPos;
+      void main() {
+        float t = sin(vPos.y * 1.5 + uTime * 0.5) * 0.5 + 0.5;
+        vec3 col = mix(uColor1, uColor2, t);
+        col = mix(col, uColor3, sin(vPos.x * 2.0 + uTime * 0.3) * 0.5 + 0.5);
+        gl_FragColor = vec4(col, 0.6);
+      }
+    `,
+    transparent: true,
+    depthWrite: false,
+  })
+);
+scene.add(icoWireframe);
+
+// Inner solid with glow
+const icoSolid = new THREE.Mesh(
+  new THREE.IcosahedronGeometry(1.2, 2),
+  new THREE.ShaderMaterial({
+    uniforms: {
+      uTime: { value: 0 },
+      uColor1: { value: COLORS.cyan },
+      uColor2: { value: COLORS.pink },
+    },
+    vertexShader: `
+      varying vec3 vNormal;
+      varying vec3 vPos;
+      void main() {
+        vNormal = normalize(normalMatrix * normal);
+        vPos = position;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+      }
+    `,
+    fragmentShader: `
+      uniform float uTime;
+      uniform vec3 uColor1, uColor2;
+      varying vec3 vNormal;
+      varying vec3 vPos;
+      void main() {
+        float fresnel = pow(1.0 - abs(dot(vNormal, vec3(0.0, 0.0, 1.0))), 3.0);
+        vec3 col = mix(uColor1, uColor2, sin(uTime * 0.3 + vPos.y) * 0.5 + 0.5);
+        gl_FragColor = vec4(col * fresnel * 0.4, fresnel * 0.3);
+      }
+    `,
+    transparent: true,
+    depthWrite: false,
+    side: THREE.DoubleSide,
+  })
+);
+scene.add(icoSolid);
+
+// ─── Orbiting Particles (rings) ───
+function createOrbitRing(count, radius, color, speed, sizeRange) {
+  const positions = new Float32Array(count * 3);
+  const sizes = new Float32Array(count);
+  const phases = new Float32Array(count);
+
+  for (let i = 0; i < count; i++) {
+    const angle = (i / count) * Math.PI * 2;
+    const r = radius + (Math.random() - 0.5) * 0.3;
+    positions[i * 3] = Math.cos(angle) * r;
+    positions[i * 3 + 1] = (Math.random() - 0.5) * 0.4;
+    positions[i * 3 + 2] = Math.sin(angle) * r;
+    sizes[i] = Math.random() * sizeRange[1] + sizeRange[0];
+    phases[i] = Math.random() * Math.PI * 2;
+  }
+
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  geo.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+  geo.setAttribute('phase', new THREE.BufferAttribute(phases, 1));
+
+  const mat = new THREE.ShaderMaterial({
+    uniforms: {
+      uTime: { value: 0 },
+      uColor: { value: color },
+    },
+    vertexShader: `
+      attribute float size;
+      attribute float phase;
+      varying float vAlpha;
+      uniform float uTime;
+      void main() {
+        vAlpha = sin(uTime * 2.0 + phase) * 0.3 + 0.7;
+        vec4 mv = modelViewMatrix * vec4(position, 1.0);
+        gl_PointSize = size * (150.0 / -mv.z);
+        gl_Position = projectionMatrix * mv;
+      }
+    `,
+    fragmentShader: `
+      uniform vec3 uColor;
+      varying float vAlpha;
+      void main() {
+        float d = length(gl_PointCoord - 0.5) * 2.0;
+        if (d > 1.0) discard;
+        float a = (1.0 - d * d) * vAlpha * 0.7;
+        gl_FragColor = vec4(uColor, a);
+      }
+    `,
+    transparent: true,
+    depthWrite: false,
+    blending: THREE.AdditiveBlending,
+  });
+
+  const points = new THREE.Points(geo, mat);
+  points.userData = { speed, radius };
+  scene.add(points);
+  return points;
+}
+
+const ring1 = createOrbitRing(80, 2.5, COLORS.cyan, 0.15, [0.5, 1.5]);
+const ring2 = createOrbitRing(60, 3.2, COLORS.violet, -0.1, [0.3, 1.0]);
+const ring3 = createOrbitRing(40, 3.8, COLORS.pink, 0.08, [0.2, 0.8]);
+
+// Tilt the rings
+ring1.rotation.x = 0.3;
+ring2.rotation.x = -0.5;
+ring2.rotation.z = 0.4;
+ring3.rotation.x = 0.8;
+ring3.rotation.z = -0.3;
+
+// ─── Ambient Floating Particles ───
+const ambientCount = 600;
+const ambientGeo = new THREE.BufferGeometry();
+const ambientPos = new Float32Array(ambientCount * 3);
+const ambientSizes = new Float32Array(ambientCount);
+
+for (let i = 0; i < ambientCount; i++) {
+  const r = 5 + Math.random() * 40;
+  const theta = Math.random() * Math.PI * 2;
+  const phi = Math.acos(2 * Math.random() - 1);
+  ambientPos[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+  ambientPos[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+  ambientPos[i * 3 + 2] = r * Math.cos(phi);
+  ambientSizes[i] = Math.random() * 1.5 + 0.2;
+}
+
+ambientGeo.setAttribute('position', new THREE.BufferAttribute(ambientPos, 3));
+ambientGeo.setAttribute('size', new THREE.BufferAttribute(ambientSizes, 1));
+
+const ambientMat = new THREE.ShaderMaterial({
+  uniforms: { uTime: { value: 0 } },
+  vertexShader: `
+    attribute float size;
+    varying float vDist;
+    void main() {
+      vec4 mv = modelViewMatrix * vec4(position, 1.0);
+      vDist = -mv.z;
+      gl_PointSize = size * (80.0 / -mv.z);
+      gl_Position = projectionMatrix * mv;
+    }
+  `,
+  fragmentShader: `
+    varying float vDist;
+    void main() {
+      float d = length(gl_PointCoord - 0.5) * 2.0;
+      if (d > 1.0) discard;
+      float fade = clamp(1.0 - vDist / 50.0, 0.0, 1.0);
+      float a = (1.0 - d * d) * fade * 0.3;
+      gl_FragColor = vec4(0.9, 0.92, 0.95, a);
+    }
+  `,
+  transparent: true,
+  depthWrite: false,
+  blending: THREE.AdditiveBlending,
+});
+
+scene.add(new THREE.Points(ambientGeo, ambientMat));
+
+// ─── Mouse Tracking ───
+let mouseX = 0, mouseY = 0;
+let targetMouseX = 0, targetMouseY = 0;
+
+document.addEventListener('mousemove', (e) => {
+  targetMouseX = (e.clientX / innerWidth - 0.5) * 2;
+  targetMouseY = (e.clientY / innerHeight - 0.5) * 2;
+});
+
+document.addEventListener('touchmove', (e) => {
+  const touch = e.touches[0];
+  targetMouseX = (touch.clientX / innerWidth - 0.5) * 2;
+  targetMouseY = (touch.clientY / innerHeight - 0.5) * 2;
+});
+
+// ─── Resize Handler ───
+window.addEventListener('resize', () => {
+  camera.aspect = innerWidth / innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+  composer.setSize(innerWidth, innerHeight);
+});
+
+// ─── Hide Loader ───
+setTimeout(() => {
+  document.getElementById('loader').classList.add('hidden');
+}, 1200);
+
+// ─── Animation Loop ───
+const clock = new THREE.Clock();
+
+function animate() {
+  requestAnimationFrame(animate);
+  const elapsed = clock.getElapsedTime();
+
+  // Smooth mouse interpolation
+  mouseX += (targetMouseX - mouseX) * 0.03;
+  mouseY += (targetMouseY - mouseY) * 0.03;
+
+  // Rotate central geometry
+  icoWireframe.rotation.y = elapsed * 0.12 + mouseX * 0.3;
+  icoWireframe.rotation.x = elapsed * 0.08 + mouseY * 0.2;
+  icoSolid.rotation.y = elapsed * 0.1 + mouseX * 0.2;
+  icoSolid.rotation.x = elapsed * 0.06 + mouseY * 0.15;
+
+  // Update shader uniforms
+  icoWireframe.material.uniforms.uTime.value = elapsed;
+  icoSolid.material.uniforms.uTime.value = elapsed;
+
+  // Rotate orbit rings
+  ring1.rotation.y = elapsed * ring1.userData.speed;
+  ring2.rotation.y = elapsed * ring2.userData.speed;
+  ring3.rotation.y = elapsed * ring3.userData.speed;
+
+  ring1.material.uniforms.uTime.value = elapsed;
+  ring2.material.uniforms.uTime.value = elapsed;
+  ring3.material.uniforms.uTime.value = elapsed;
+
+  // Ambient particles
+  ambientMat.uniforms.uTime.value = elapsed;
+
+  // Camera subtle movement
+  camera.position.x += (mouseX * 0.8 - camera.position.x) * 0.02;
+  camera.position.y += (-mouseY * 0.5 - camera.position.y) * 0.02;
+  camera.lookAt(0, 0, 0);
+
+  composer.render();
+}
+
+animate();
+</script>
+</body>
+</html>

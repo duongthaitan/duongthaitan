@@ -3,51 +3,68 @@
 </div>
 
 <div align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=500&size=15&duration=3000&pause=1500&color=8B949E&center=true&vCenter=true&random=false&width=500&lines=Building+pixel-perfect+interfaces+%F0%9F%8E%AF;Crafting+clean+%26+maintainable+code+%E2%9C%A8;Exploring+Vue.js+%2B+Three.js+%F0%9F%94%AE;Open+to+new+opportunities+%F0%9F%9A%80" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=500&size=14&duration=3000&pause=1500&color=8B949E&center=true&vCenter=true&random=false&width=520&lines=%E2%9C%A8+Building+pixel-perfect+interfaces;%F0%9F%94%AE+Exploring+Vue.js+%2B+Three.js;%F0%9F%8E%AF+Crafting+clean+%26+maintainable+code;%F0%9F%9A%80+Open+to+new+opportunities" alt="Typing SVG" />
 </div>
 
 <br>
 
 <div align="center">
   <a href="mailto:matan13@gmail.com">
-    <img src="https://img.shields.io/badge/Gmail-matan13@gmail.com-0d1117?style=for-the-badge&logo=gmail&logoColor=ea4335" />
+    <img src="https://img.shields.io/badge/Gmail-matan13@gmail.com-0d1117?style=flat-square&logo=gmail&logoColor=ea4335" />
   </a>
-  &nbsp;
+  &nbsp;&nbsp;
   <a href="https://www.linkedin.com/in/duongthaitan/">
-    <img src="https://img.shields.io/badge/LinkedIn-duongthaitan-0d1117?style=for-the-badge&logo=linkedin&logoColor=0a66c2" />
+    <img src="https://img.shields.io/badge/LinkedIn-duongthaitan-0d1117?style=flat-square&logo=linkedin&logoColor=0a66c2" />
   </a>
-  &nbsp;
+  &nbsp;&nbsp;
   <a href="https://www.facebook.com/duongthaitan/">
-    <img src="https://img.shields.io/badge/Facebook-duongthaitan-0d1117?style=for-the-badge&logo=facebook&logoColor=1877f2" />
+    <img src="https://img.shields.io/badge/Facebook-duongthaitan-0d1117?style=flat-square&logo=facebook&logoColor=1877f2" />
   </a>
-  &nbsp;
-  <img src="https://komarev.com/ghpvc/?username=duongthaitan&style=for-the-badge&color=0d1117&label=VIEWS" />
+  &nbsp;&nbsp;
+  <img src="https://komarev.com/ghpvc/?username=duongthaitan&style=flat-square&color=0d1117&label=PROFILE+VIEWS" />
 </div>
 
 <br>
 
----
+<img src="./assets/section-divider.svg" width="100%" />
 
 <br>
 
 <div align="center">
 
-### `$ whoami`
+```js
+~/duongthaitan $ cat about.json
+```
 
 </div>
+
+<br>
 
 <div align="center">
 <table>
 <tr>
 <td>
 
-🧑‍💻 I'm a **frontend developer** based in **Vietnam** with a strong eye for design.  
-I build responsive web applications with clean, maintainable code and pixel-perfect interfaces.
+```json
+{
+  "name": "Duong Thai Tan",
+  "role": "Frontend Developer",
+  "location": "Vietnam 🇻🇳",
+  "focus": ["Vue.js", "Three.js", "Design Systems"],
+  "hobbies": ["Photography 📸", "Video Editing 🎬"],
+  "status": "Open to work ●"
+}
+```
 
-📸 Outside of code, I'm into **photography** and **video editing** 🎬  
-I like crafting things that look good, whether it's a UI or a photo.
+</td>
+<td width="40%">
 
-🎯 `Currently focused on` **Vue.js ecosystem** · **Three.js** · **Design Systems**
+🧑‍💻 I'm a **frontend developer** with a strong eye for design.
+I build responsive web applications with clean code and pixel-perfect interfaces.
+
+📸 Outside of code, I'm into **photography** and **video editing** — I like crafting things that look good, whether it's a UI or a photo.
+
+🎯 Currently exploring the **Vue.js ecosystem**, **Three.js** for 3D web, and building **design systems**.
 
 </td>
 </tr>
@@ -56,13 +73,15 @@ I like crafting things that look good, whether it's a UI or a photo.
 
 <br>
 
----
+<img src="./assets/section-divider.svg" width="100%" />
 
 <br>
 
 <div align="center">
 
-### `$ cat skills.json`
+```js
+~/duongthaitan $ cat tech-stack.json
+```
 
 </div>
 
@@ -73,53 +92,53 @@ I like crafting things that look good, whether it's a UI or a photo.
 <tr>
 <td align="center" width="33%">
 
-**Frontend**
+<img src="https://img.shields.io/badge/─────_Frontend_─────-0d1117?style=flat-square" />
 
-<br>
+<br><br>
 
-<img src="https://skillicons.dev/icons?i=html,css,js&theme=dark" height="40" />
+<img src="https://skillicons.dev/icons?i=html,css,js&theme=dark" height="38" />
 <br>
-<img src="https://skillicons.dev/icons?i=vue,bootstrap,threejs&theme=dark" height="40" />
+<img src="https://skillicons.dev/icons?i=vue,bootstrap,threejs&theme=dark" height="38" />
 
-<br>
+<br><br>
 
-`HTML` `CSS` `JavaScript`
+`HTML` · `CSS` · `JavaScript`
 <br>
-`Vue.js` `Bootstrap` `Three.js`
+`Vue.js` · `Bootstrap` · `Three.js`
 
 </td>
 <td align="center" width="33%">
 
-**Backend**
+<img src="https://img.shields.io/badge/─────_Backend_──────-0d1117?style=flat-square" />
 
-<br>
+<br><br>
 
-<img src="https://skillicons.dev/icons?i=php,laravel,java&theme=dark" height="40" />
+<img src="https://skillicons.dev/icons?i=php,laravel,java&theme=dark" height="38" />
 <br>
-<img src="https://skillicons.dev/icons?i=cs,dotnet,cpp&theme=dark" height="40" />
+<img src="https://skillicons.dev/icons?i=cs,dotnet,cpp&theme=dark" height="38" />
 
-<br>
+<br><br>
 
-`PHP` `Laravel` `Java`
+`PHP` · `Laravel` · `Java`
 <br>
-`C#` `.NET` `C++`
+`C#` · `.NET` · `C++`
 
 </td>
 <td align="center" width="33%">
 
-**Tools & Platforms**
+<img src="https://img.shields.io/badge/────_Tools_&_Dev_────-0d1117?style=flat-square" />
 
-<br>
+<br><br>
 
-<img src="https://skillicons.dev/icons?i=vscode,figma,github&theme=dark" height="40" />
+<img src="https://skillicons.dev/icons?i=vscode,figma,github&theme=dark" height="38" />
 <br>
-<img src="https://skillicons.dev/icons?i=ps,mysql,selenium&theme=dark" height="40" />
+<img src="https://skillicons.dev/icons?i=ps,mysql,selenium&theme=dark" height="38" />
 
-<br>
+<br><br>
 
-`VS Code` `Figma` `GitHub`
+`VS Code` · `Figma` · `GitHub`
 <br>
-`Photoshop` `MySQL` `Selenium`
+`Photoshop` · `MySQL` · `Selenium`
 
 </td>
 </tr>
@@ -128,13 +147,15 @@ I like crafting things that look good, whether it's a UI or a photo.
 
 <br>
 
----
+<img src="./assets/section-divider.svg" width="100%" />
 
 <br>
 
 <div align="center">
 
-### `$ git log --stat`
+```js
+~/duongthaitan $ git log --oneline --graph
+```
 
 </div>
 
@@ -142,15 +163,15 @@ I like crafting things that look good, whether it's a UI or a photo.
 
 <div align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api?username=duongthaitan&show_icons=true&hide_border=true&count_private=true&rank_icon=github&title_color=e6edf3&text_color=8b949e&icon_color=58a6ff&bg_color=0d1117&border_radius=8" />
-    <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats.vercel.app/api?username=duongthaitan&show_icons=true&hide_border=true&count_private=true&rank_icon=github&title_color=1f2328&text_color=656d76&icon_color=0969da&bg_color=ffffff&border_radius=8" />
-    <img width="48%" src="https://github-readme-stats.vercel.app/api?username=duongthaitan&show_icons=true&hide_border=true&count_private=true&rank_icon=github&title_color=e6edf3&text_color=8b949e&icon_color=58a6ff&bg_color=0d1117&border_radius=8" alt="GitHub Stats" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api?username=duongthaitan&show_icons=true&hide_border=true&count_private=true&rank_icon=github&title_color=0ea5e9&text_color=8b949e&icon_color=8b5cf6&bg_color=0d1117&border_radius=8" />
+    <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats.vercel.app/api?username=duongthaitan&show_icons=true&hide_border=true&count_private=true&rank_icon=github&title_color=0969da&text_color=656d76&icon_color=8250df&bg_color=ffffff&border_radius=8" />
+    <img width="48%" src="https://github-readme-stats.vercel.app/api?username=duongthaitan&show_icons=true&hide_border=true&count_private=true&rank_icon=github&title_color=0ea5e9&text_color=8b949e&icon_color=8b5cf6&bg_color=0d1117&border_radius=8" alt="GitHub Stats" />
   </picture>
   &nbsp;
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://streak-stats.demolab.com?user=duongthaitan&hide_border=true&border_radius=8&background=0d1117&ring=58a6ff&fire=e3b341&currStreakLabel=e6edf3&sideLabels=8b949e&currStreakNum=e6edf3&sideNums=8b949e&dates=6e7681" />
-    <source media="(prefers-color-scheme: light)" srcset="https://streak-stats.demolab.com?user=duongthaitan&hide_border=true&border_radius=8&background=ffffff&ring=0969da&fire=e3b341&currStreakLabel=1f2328&sideLabels=656d76&currStreakNum=1f2328&sideNums=656d76&dates=8b949e" />
-    <img width="48%" src="https://streak-stats.demolab.com?user=duongthaitan&hide_border=true&border_radius=8&background=0d1117&ring=58a6ff&fire=e3b341&currStreakLabel=e6edf3&sideLabels=8b949e&currStreakNum=e6edf3&sideNums=8b949e&dates=6e7681" alt="GitHub Streak" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://streak-stats.demolab.com?user=duongthaitan&hide_border=true&border_radius=8&background=0d1117&ring=0ea5e9&fire=ec4899&currStreakLabel=e6edf3&sideLabels=8b949e&currStreakNum=e6edf3&sideNums=8b949e&dates=6e7681" />
+    <source media="(prefers-color-scheme: light)" srcset="https://streak-stats.demolab.com?user=duongthaitan&hide_border=true&border_radius=8&background=ffffff&ring=0969da&fire=cf222e&currStreakLabel=1f2328&sideLabels=656d76&currStreakNum=1f2328&sideNums=656d76&dates=8b949e" />
+    <img width="48%" src="https://streak-stats.demolab.com?user=duongthaitan&hide_border=true&border_radius=8&background=0d1117&ring=0ea5e9&fire=ec4899&currStreakLabel=e6edf3&sideLabels=8b949e&currStreakNum=e6edf3&sideNums=8b949e&dates=6e7681" alt="GitHub Streak" />
   </picture>
 </div>
 
@@ -158,9 +179,9 @@ I like crafting things that look good, whether it's a UI or a photo.
 
 <div align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=duongthaitan&layout=compact&hide_border=true&title_color=e6edf3&text_color=8b949e&bg_color=0d1117&border_radius=8&langs_count=8" />
-    <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=duongthaitan&layout=compact&hide_border=true&title_color=1f2328&text_color=656d76&bg_color=ffffff&border_radius=8&langs_count=8" />
-    <img width="40%" src="https://github-readme-stats.vercel.app/api/top-langs/?username=duongthaitan&layout=compact&hide_border=true&title_color=e6edf3&text_color=8b949e&bg_color=0d1117&border_radius=8&langs_count=8" alt="Top Languages" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=duongthaitan&layout=compact&hide_border=true&title_color=0ea5e9&text_color=8b949e&bg_color=0d1117&border_radius=8&langs_count=8" />
+    <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=duongthaitan&layout=compact&hide_border=true&title_color=0969da&text_color=656d76&bg_color=ffffff&border_radius=8&langs_count=8" />
+    <img width="40%" src="https://github-readme-stats.vercel.app/api/top-langs/?username=duongthaitan&layout=compact&hide_border=true&title_color=0ea5e9&text_color=8b949e&bg_color=0d1117&border_radius=8&langs_count=8" alt="Top Languages" />
   </picture>
 </div>
 
@@ -168,21 +189,23 @@ I like crafting things that look good, whether it's a UI or a photo.
 
 <div align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-activity-graph.vercel.app/graph?username=duongthaitan&bg_color=0d1117&color=8b949e&line=58a6ff&point=e6edf3&area=true&area_color=161b22&hide_border=true&radius=8" />
-    <source media="(prefers-color-scheme: light)" srcset="https://github-readme-activity-graph.vercel.app/graph?username=duongthaitan&bg_color=ffffff&color=656d76&line=0969da&point=1f2328&area=true&area_color=f6f8fa&hide_border=true&radius=8" />
-    <img width="98%" src="https://github-readme-activity-graph.vercel.app/graph?username=duongthaitan&bg_color=0d1117&color=8b949e&line=58a6ff&point=e6edf3&area=true&area_color=161b22&hide_border=true&radius=8" alt="Contribution Graph" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-activity-graph.vercel.app/graph?username=duongthaitan&bg_color=0d1117&color=8b949e&line=0ea5e9&point=ec4899&area=true&area_color=0ea5e9&hide_border=true&radius=8" />
+    <source media="(prefers-color-scheme: light)" srcset="https://github-readme-activity-graph.vercel.app/graph?username=duongthaitan&bg_color=ffffff&color=656d76&line=0969da&point=8250df&area=true&area_color=ddf4ff&hide_border=true&radius=8" />
+    <img width="98%" src="https://github-readme-activity-graph.vercel.app/graph?username=duongthaitan&bg_color=0d1117&color=8b949e&line=0ea5e9&point=ec4899&area=true&area_color=0ea5e9&hide_border=true&radius=8" alt="Contribution Graph" />
   </picture>
 </div>
 
 <br>
 
----
+<img src="./assets/section-divider.svg" width="100%" />
 
 <br>
 
 <div align="center">
 
-### `$ cat certifications.md`
+```js
+~/duongthaitan $ cat certifications.md
+```
 
 </div>
 
@@ -193,9 +216,9 @@ I like crafting things that look good, whether it's a UI or a photo.
 <tr>
 <td align="center" width="50%">
 
-**🎓 F8 Fullstack**
+<img src="https://img.shields.io/badge/──_F8_Fullstack_──-0d1117?style=flat-square&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0iIzBlYTVlOSIgdmlld0JveD0iMCAwIDE2IDE2Ij48cGF0aCBkPSJNMTEgMUg1YTIgMiAwIDAgMC0yIDJ2MTBhMiAyIDAgMCAwIDIgMmg2YTIgMiAwIDAgMCAyLTJWM2EyIDIgMCAwIDAtMi0yem0tMSAxMkg2VjNINXY5LjVhLjUuNSAwIDAgMSAxIDB6Ii8+PC9zdmc+&logoColor=0ea5e9" />
 
-<br>
+<br><br>
 
 <a href="https://fullstack.edu.vn/cert/4tv2o">
   <img src="https://img.shields.io/badge/✓_IT_Onboarding-passed-0d1117?style=flat-square&logo=checkmarx&logoColor=3fb950" />
@@ -212,9 +235,9 @@ I like crafting things that look good, whether it's a UI or a photo.
 </td>
 <td align="center" width="50%">
 
-**🎓 SoloLearn**
+<img src="https://img.shields.io/badge/──_SoloLearn_──-0d1117?style=flat-square&logo=sololearn&logoColor=0ea5e9" />
 
-<br>
+<br><br>
 
 <a href="https://www.sololearn.com/certificates/CT-11PGKZIX">
   <img src="https://img.shields.io/badge/✓_PHP_Course-passed-0d1117?style=flat-square&logo=php&logoColor=777bb4" />
@@ -231,21 +254,23 @@ I like crafting things that look good, whether it's a UI or a photo.
 
 <br>
 
----
+<img src="./assets/section-divider.svg" width="100%" />
 
 <br>
 
 <div align="center">
 
-### `$ echo $SOCIALS`
+```js
+~/duongthaitan $ echo $CONNECT
+```
 
 </div>
 
 <br>
 
 <div align="center">
-  <a href="https://duongthaitan.github.io/duongthaitan/leo-3d/index.html">
-    <img src="https://img.shields.io/badge/🌐_3D_Portfolio-Visit-0d1117?style=for-the-badge" />
+  <a href="https://duongthaitan.github.io/duongthaitan/3d-portfolio/index.html">
+    <img src="https://img.shields.io/badge/🌐_3D_Portfolio-Explore-0d1117?style=for-the-badge" />
   </a>
   &nbsp;
   <a href="https://www.instagram.com/thaitan.duong_">
