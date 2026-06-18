@@ -1,14 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="12" viewBox="0 0 900 12">
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="4" viewBox="0 0 900 4">
   <defs>
-    <linearGradient id="divGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#0d1117"/>
+    <linearGradient id="d" x1="0%" y1="0%" x2="100%">
+      <stop offset="0%" stop-color="#8b949e" stop-opacity="0"/>
       <stop offset="15%" stop-color="#0ea5e9" stop-opacity="0.4"/>
+      <stop offset="35%" stop-color="#0ea5e9" stop-opacity="0.5"/>
       <stop offset="50%" stop-color="#8b5cf6" stop-opacity="0.6"/>
+      <stop offset="65%" stop-color="#ec4899" stop-opacity="0.5"/>
       <stop offset="85%" stop-color="#ec4899" stop-opacity="0.4"/>
-      <stop offset="100%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#8b949e" stop-opacity="0"/>
     </linearGradient>
   </defs>
-  <rect width="900" height="12" fill="#0d1117"/>
-  <line x1="60" y1="6" x2="840" y2="6" stroke="url(#divGrad)" stroke-width="1" stroke-linecap="round"/>
-  <circle cx="450" cy="6" r="2" fill="#8b5cf6" opacity="0.6"/>
+  <line x1="40" y1="2" x2="860" y2="2" stroke="url(#d)" stroke-width="1" stroke-linecap="round"/>
 </svg>
