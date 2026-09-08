@@ -1,0 +1,64 @@
+name: Update public profile metrics
+
+on:
+  schedule:
+    - cron: '17 2 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/render-metrics*'
+      - '.github/workflows/update-profile.yml'
+
+permissions: {}
+concurrency:
+  group: public-profile-metrics
+  cancel-in-progress: false
+
+jobs:
+  update:
+    if: github.repository == 'duongthaitan/duongthaitan' && github.event.repository.default_branch == 'main' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6, verified upstream
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6, verified upstream
+        with:
+          node-version: '24'
+      - name: Test renderer
+        run: node --test scripts/render-metrics.test.mjs
+      - name: Render and update only the metrics asset
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ github.token }}
+          GH_HOST: github.com
+        run: |
+          set -euo pipefail
+          trap 'printf "%s\n" "Metrics update failed." >&2' ERR
+          asset=assets/github-metrics.svg
+          git ls-files --error-unmatch "$asset" >/dev/null 2>&1
+          before=$(git hash-object "$asset" 2>/dev/null)
+          [[ "$before" =~ ^[0-9a-f]{40}$ ]]
+          node scripts/render-metrics.mjs
+          after=$(git hash-object "$asset" 2>/dev/null)
+          [[ "$before" != "$after" ]] || exit 0
+          endpoint=repos/duongthaitan/duongthaitan/contents/assets/github-metrics.svg
+          remote=$(gh api "$endpoint?ref=main" --jq .sha 2>/dev/null)
+          [[ "$remote" == "$before" ]]
+          export METRICS_SHA="$before"
+          payload=$(mktemp)
+          trap 'rm -f "$payload"' EXIT
+          node --input-type=module - "$payload" 2>/dev/null <<'NODE'
+          import { readFile, writeFile } from 'node:fs/promises';
+          const content = (await readFile('assets/github-metrics.svg')).toString('base64');
+          await writeFile(process.argv[2], JSON.stringify({
+            message: 'chore: update public profile metrics',
+            branch: 'main', sha: process.env.METRICS_SHA, content
+          }), { mode: 0o600 });
+          NODE
+          gh api --silent --method PUT "$endpoint" --input "$payload" 2>/dev/null
