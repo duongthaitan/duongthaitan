@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="200" viewBox="0 0 900 200" role="img" aria-labelledby="work-title work-desc">
+  <title id="work-title">Selected work — A portal for ideas</title>
+  <desc id="work-desc">A dimensional glass-blue solid, its edges traced with fine wireframe lines, floats out of a tilted violet portal. A shaded moon, distant stars and drifting rose nebulae surround the luminous gateway.</desc>
+  <defs>
+    <clipPath id="work-frame"><rect width="900" height="200" rx="16"/></clipPath>
+    <radialGradient id="work-nebula"><stop stop-color="#5346b5" stop-opacity=".38"/><stop offset=".54" stop-color="#372a75" stop-opacity=".16"/><stop offset="1" stop-color="#070b19" stop-opacity="0"/></radialGradient>
+    <radialGradient id="work-rose"><stop stop-color="#c15eac" stop-opacity=".26"/><stop offset="1" stop-color="#070b19" stop-opacity="0"/></radialGradient>
+    <radialGradient id="work-aura"><stop offset=".55" stop-color="#a394ef" stop-opacity="0"/><stop offset=".75" stop-color="#9e8ce6" stop-opacity=".17"/><stop offset="1" stop-color="#7b69c8" stop-opacity="0"/></radialGradient>
+    <radialGradient id="work-portal" cx=".57" cy=".52" r=".61"><stop stop-color="#0a1023"/><stop offset=".66" stop-color="#131831"/><stop offset=".87" stop-color="#2e2958"/><stop offset="1" stop-color="#70639d"/></radialGradient>
+    <linearGradient id="work-rim" x1="670" y1="26" x2="789" y2="171" gradientUnits="userSpaceOnUse"><stop stop-color="#f1d8f7"/><stop offset=".3" stop-color="#c5b2f5"/><stop offset=".6" stop-color="#7169b6"/><stop offset=".82" stop-color="#a4b4ed"/><stop offset="1" stop-color="#e2d6fc"/></linearGradient>
+    <linearGradient id="work-top" x1="637" y1="77" x2="731" y2="104" gradientUnits="userSpaceOnUse"><stop stop-color="#dae5f4"/><stop offset=".48" stop-color="#93aace"/><stop offset="1" stop-color="#6578a6"/></linearGradient>
+    <linearGradient id="work-left" x1="637" y1="91" x2="681" y2="161" gradientUnits="userSpaceOnUse"><stop stop-color="#6482ad"/><stop offset=".5" stop-color="#344c78"/><stop offset="1" stop-color="#1e2b4c"/></linearGradient>
+    <linearGradient id="work-right" x1="729" y1="91" x2="681" y2="157" gradientUnits="userSpaceOnUse"><stop stop-color="#556390"/><stop offset=".44" stop-color="#333555"/><stop offset="1" stop-color="#111a31"/></linearGradient>
+    <radialGradient id="work-moon" cx=".27" cy=".23" r=".82"><stop stop-color="#e9e3f4"/><stop offset=".3" stop-color="#b6b0ce"/><stop offset=".61" stop-color="#696883"/><stop offset="1" stop-color="#11172a"/></radialGradient>
+    <style>
+      text{font-family:'Segoe UI',Arial,sans-serif;fill:#e6edf3}.secondary{fill:#aeb8c5}.label{font-family:ui-monospace,Consolas,monospace;letter-spacing:1.6px}.solid{animation:work-settle 3.8s ease-out 1}.portal{transform-origin:733px 99px;animation:work-portal-settle 4s ease-out 1}@keyframes work-settle{from{transform:translate(5px,-4px)}to{transform:translate(0,0)}}@keyframes work-portal-settle{from{transform:rotate(2deg)}to{transform:rotate(0)}}@media(prefers-reduced-motion:reduce){.solid,.portal{animation:none}}@media(forced-colors:active){.decor{display:none}.background{fill:Canvas}.border{stroke:CanvasText}text,.secondary{fill:CanvasText}}
+    </style>
+  </defs>
+  <g clip-path="url(#work-frame)">
+    <rect class="background" width="900" height="200" fill="#070b19"/>
+    <g class="decor">
+      <ellipse cx="726" cy="101" rx="316" ry="184" fill="url(#work-nebula)" transform="rotate(-22 726 101)"/>
+      <ellipse cx="800" cy="29" rx="181" ry="110" fill="url(#work-rose)"/>
+      <ellipse cx="557" cy="173" rx="212" ry="76" fill="url(#work-rose)" opacity=".6" transform="rotate(-16 557 173)"/>
+      <g fill="#b7c4e5" opacity=".43">
+        <circle cx="22" cy="77" r=".6"/><circle cx="74" cy="20" r=".65"/><circle cx="132" cy="58" r=".5"/><circle cx="186" cy="19" r=".7"/><circle cx="238" cy="68" r=".55"/><circle cx="299" cy="24" r=".65"/><circle cx="347" cy="70" r=".6"/><circle cx="405" cy="19" r=".7"/><circle cx="446" cy="86" r=".65"/>
+        <circle cx="18" cy="159" r=".7"/><circle cx="87" cy="181" r=".55"/><circle cx="163" cy="162" r=".55"/><circle cx="223" cy="183" r=".7"/><circle cx="291" cy="159" r=".6"/><circle cx="354" cy="181" r=".7"/><circle cx="408" cy="145" r=".6"/><circle cx="471" cy="170" r=".65"/>
+        <circle cx="490" cy="35" r=".75"/><circle cx="529" cy="83" r=".6"/><circle cx="568" cy="19" r=".65"/><circle cx="615" cy="70" r=".55"/><circle cx="653" cy="22" r=".7"/><circle cx="702" cy="14" r=".55"/><circle cx="778" cy="17" r=".65"/><circle cx="825" cy="45" r=".6"/><circle cx="872" cy="22" r=".7"/>
+        <circle cx="511" cy="140" r=".55"/><circle cx="553" cy="178" r=".7"/><circle cx="585" cy="119" r=".6"/><circle cx="623" cy="164" r=".55"/><circle cx="671" cy="187" r=".7"/><circle cx="727" cy="178" r=".65"/><circle cx="792" cy="186" r=".6"/><circle cx="838" cy="136" r=".75"/><circle cx="881" cy="171" r=".65"/><circle cx="874" cy="99" r=".55"/>
+      </g>
+      <g fill="#e6edf3"><circle cx="455" cy="48" r="1.1" opacity=".7"/><circle cx="538" cy="112" r="1" opacity=".75"/><circle cx="837" cy="82" r="1.2"/><circle cx="605" cy="186" r="1" opacity=".75"/><circle cx="858" cy="156" r="1.1" opacity=".7"/><circle cx="377" cy="134" r=".9" opacity=".6"/></g>
+      <path d="M861 53v7m-3.5-3.5h7M524 166v5m-2.5-2.5h5" fill="none" stroke="#d5daf5" stroke-opacity=".65" stroke-linecap="round"/>
+      <path d="M519 160C614 49 776 21 867 58" fill="none" stroke="#b4a7d7" stroke-opacity=".17" stroke-width=".8"/>
+      <ellipse cx="717" cy="174" rx="135" ry="14" fill="url(#work-nebula)"/>
+      <g class="portal">
+        <ellipse cx="733" cy="99" rx="96" ry="109" transform="rotate(23 733 99)" fill="url(#work-aura)"/>
+        <ellipse cx="738" cy="103" rx="66" ry="78" transform="rotate(23 738 103)" fill="#181a34" stroke="#484568" stroke-width="7"/>
+        <ellipse cx="733" cy="99" rx="66" ry="78" transform="rotate(23 733 99)" fill="url(#work-portal)" stroke="url(#work-rim)" stroke-width="6"/>
+        <ellipse cx="733" cy="99" rx="71" ry="83" transform="rotate(23 733 99)" fill="none" stroke="#c7b7ef" stroke-width=".8" stroke-opacity=".48"/>
+        <ellipse cx="733" cy="99" rx="61" ry="73" transform="rotate(23 733 99)" fill="none" stroke="#b8b1e9" stroke-width="1" stroke-opacity=".6"/>
+        <ellipse cx="733" cy="99" rx="50" ry="60" transform="rotate(23 733 99)" fill="none" stroke="#8a89c1" stroke-width=".7" stroke-opacity=".17"/>
+        <path d="M667 99A66 78 0 0 1 733 21" transform="rotate(23 733 99)" fill="none" stroke="#f0dffa" stroke-width="1.5" stroke-linecap="round"/>
+        <g fill="#ddd7f1" opacity=".7"><circle cx="754" cy="56" r=".85"/><circle cx="774" cy="87" r=".65"/><circle cx="750" cy="137" r=".8"/><circle cx="738" cy="72" r=".6"/><circle cx="721" cy="49" r=".55"/></g>
+      </g>
+      <circle cx="583" cy="46" r="12" fill="url(#work-moon)"/>
+      <path d="M572 43A12 12 0 0 1 587 35" fill="none" stroke="#e8e5f6" stroke-opacity=".7" stroke-width=".8"/>
+      <circle cx="580" cy="43" r="2.4" fill="#8b819b" opacity=".38"/>
+      <g class="solid" stroke-linejoin="round">
+        <path d="M637 93 684 70 731 93 681 117Z" fill="url(#work-top)" stroke="#b5c6e4" stroke-width=".9"/>
+        <path d="M637 93 681 117 681 159 637 135Z" fill="url(#work-left)" stroke="#7f9cc6" stroke-width=".8"/>
+        <path d="M681 117 731 93 731 133 681 159Z" fill="url(#work-right)" stroke="#7c82b0" stroke-width=".8"/>
+        <path d="M653 85 699 108M669 78 716 101M653 102 700 78M668 110 716 86" fill="none" stroke="#e8eaf8" stroke-width=".7" stroke-opacity=".35"/>
+        <path d="M652 101V143M667 109V151M637 107 681 131M637 121 681 145" fill="none" stroke="#a4c3e2" stroke-width=".7" stroke-opacity=".32"/>
+        <path d="M698 109V151M715 101V141M681 131 731 107M681 145 731 120" fill="none" stroke="#aaa3d7" stroke-width=".7" stroke-opacity=".24"/>
+        <path d="M637 93 684 70 731 93M637 93 681 117V159" fill="none" stroke="#e0e6f8" stroke-width="1.1" stroke-opacity=".8"/>
+        <circle cx="637" cy="93" r="2" fill="#f1edff"/><circle cx="684" cy="70" r="1.5" fill="#e4e4fb"/>
+      </g>
+      <path d="M600 171C665 186 792 159 840 113" fill="none" stroke="#c4b5df" stroke-opacity=".21" stroke-width=".8"/>
+      <circle cx="820" cy="131" r="2" fill="#cdb5e4"/>
+    </g>
+    <text x="40" y="39" class="label secondary" font-size="10">SECTOR 03 / WORK</text>
+    <text x="38" y="104" font-size="39" font-weight="650" letter-spacing="-1">Selected work</text>
+    <text x="40" y="137" class="secondary" font-size="15">Ideas, given dimension.</text>
+    <path class="decor" d="M40 164H70" stroke="#aeabe5" stroke-width="1.5"/>
+  </g>
+  <rect class="border" x=".5" y=".5" width="899" height="199" rx="15.5" fill="none" stroke="#8390b7" stroke-opacity=".23"/>
+</svg>

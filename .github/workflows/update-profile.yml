@@ -7,6 +7,10 @@ on:
   push:
     branches: [main]
     paths:
+      - 'README.md'
+      - 'assets/hero-banner.svg'
+      - 'assets/section-divider.svg'
+      - 'assets/galaxy/*.svg'
       - 'scripts/render-metrics*'
       - '.github/workflows/update-profile.yml'
 

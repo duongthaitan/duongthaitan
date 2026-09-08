@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="200" viewBox="0 0 900 200" role="img" aria-labelledby="about-title about-desc">
+  <title id="about-title">Mission control — About</title>
+  <desc id="about-desc">A blue-green home planet turns from a sunlit rim into deep night. Two softly lit moons travel along tilted orbital paths through violet nebulae and a varied starfield.</desc>
+  <defs>
+    <clipPath id="about-frame"><rect width="900" height="200" rx="16"/></clipPath>
+    <clipPath id="about-globe"><circle cx="696" cy="105" r="66"/></clipPath>
+    <radialGradient id="about-nebula"><stop stop-color="#6251b6" stop-opacity=".38"/><stop offset=".52" stop-color="#392b77" stop-opacity=".17"/><stop offset="1" stop-color="#070b19" stop-opacity="0"/></radialGradient>
+    <radialGradient id="about-rose"><stop stop-color="#b5579e" stop-opacity=".24"/><stop offset="1" stop-color="#070b19" stop-opacity="0"/></radialGradient>
+    <radialGradient id="about-air"><stop offset=".76" stop-color="#a7d4f9" stop-opacity="0"/><stop offset=".83" stop-color="#8ebff4" stop-opacity=".21"/><stop offset="1" stop-color="#8ebff4" stop-opacity="0"/></radialGradient>
+    <radialGradient id="about-ocean" cx=".26" cy=".22" r=".85"><stop stop-color="#d7eced"/><stop offset=".23" stop-color="#82becb"/><stop offset=".5" stop-color="#427892"/><stop offset=".76" stop-color="#233a5c"/><stop offset="1" stop-color="#0b1329"/></radialGradient>
+    <radialGradient id="about-night" cx=".18" cy=".2" r=".91"><stop offset=".28" stop-color="#060b19" stop-opacity="0"/><stop offset=".59" stop-color="#060b19" stop-opacity=".19"/><stop offset=".84" stop-color="#060b19" stop-opacity=".7"/><stop offset="1" stop-color="#060b19" stop-opacity=".98"/></radialGradient>
+    <radialGradient id="about-moon" cx=".25" cy=".19" r=".83"><stop stop-color="#f4e3d6"/><stop offset=".35" stop-color="#c4b4c2"/><stop offset=".67" stop-color="#69647f"/><stop offset="1" stop-color="#12182e"/></radialGradient>
+    <linearGradient id="about-rim" x1="649" y1="54" x2="744" y2="148" gradientUnits="userSpaceOnUse"><stop stop-color="#deffff"/><stop offset=".55" stop-color="#a7caff" stop-opacity=".5"/><stop offset="1" stop-color="#7b92de" stop-opacity="0"/></linearGradient>
+    <style>
+      text{font-family:'Segoe UI',Arial,sans-serif;fill:#e6edf3}.secondary{fill:#aeb8c5}.label{font-family:ui-monospace,Consolas,monospace;letter-spacing:1.6px}.world{animation:about-settle 3.6s ease-out 1}.moon{transform-origin:696px 105px;animation:about-orbit 3.8s ease-out 1}@keyframes about-settle{from{transform:translate(0,4px)}to{transform:translate(0,0)}}@keyframes about-orbit{from{transform:rotate(-3deg)}to{transform:rotate(0)}}@media(prefers-reduced-motion:reduce){.world,.moon{animation:none}}@media(forced-colors:active){.decor{display:none}.background{fill:Canvas}.border{stroke:CanvasText}text,.secondary{fill:CanvasText}}
+    </style>
+  </defs>
+  <g clip-path="url(#about-frame)">
+    <rect class="background" width="900" height="200" fill="#070b19"/>
+    <g class="decor">
+      <ellipse cx="715" cy="94" rx="330" ry="191" fill="url(#about-nebula)" transform="rotate(-15 715 94)"/>
+      <ellipse cx="802" cy="164" rx="236" ry="110" fill="url(#about-rose)" transform="rotate(-28 802 164)"/>
+      <ellipse cx="407" cy="-22" rx="209" ry="120" fill="url(#about-nebula)" opacity=".5"/>
+      <g fill="#b5c3e2" opacity=".46">
+        <circle cx="19" cy="70" r=".55"/><circle cx="72" cy="18" r=".7"/><circle cx="118" cy="61" r=".5"/><circle cx="154" cy="23" r=".6"/><circle cx="210" cy="57" r=".55"/><circle cx="249" cy="19" r=".8"/><circle cx="307" cy="60" r=".65"/><circle cx="352" cy="25" r=".5"/><circle cx="392" cy="78" r=".7"/><circle cx="440" cy="18" r=".7"/>
+        <circle cx="28" cy="149" r=".7"/><circle cx="81" cy="179" r=".55"/><circle cx="150" cy="160" r=".5"/><circle cx="238" cy="184" r=".7"/><circle cx="302" cy="155" r=".55"/><circle cx="379" cy="176" r=".8"/><circle cx="451" cy="143" r=".7"/><circle cx="468" cy="96" r=".6"/><circle cx="493" cy="177" r=".55"/>
+        <circle cx="505" cy="32" r=".8"/><circle cx="547" cy="79" r=".6"/><circle cx="573" cy="14" r=".6"/><circle cx="623" cy="28" r=".7"/><circle cx="663" cy="16" r=".5"/><circle cx="738" cy="24" r=".65"/><circle cx="782" cy="47" r=".7"/><circle cx="838" cy="19" r=".6"/><circle cx="870" cy="59" r=".75"/>
+        <circle cx="528" cy="124" r=".5"/><circle cx="558" cy="166" r=".75"/><circle cx="609" cy="129" r=".6"/><circle cx="640" cy="182" r=".65"/><circle cx="708" cy="188" r=".8"/><circle cx="766" cy="170" r=".55"/><circle cx="816" cy="116" r=".6"/><circle cx="856" cy="164" r=".7"/><circle cx="884" cy="125" r=".55"/><circle cx="800" cy="186" r=".55"/>
+      </g>
+      <g fill="#e6edf3"><circle cx="476" cy="54" r="1.1" opacity=".7"/><circle cx="824" cy="79" r="1.25"/><circle cx="584" cy="189" r="1" opacity=".7"/><circle cx="361" cy="142" r=".9" opacity=".6"/><circle cx="758" cy="15" r="1" opacity=".8"/></g>
+      <path d="M863 96v7m-3.5-3.5h7M591 30v5m-2.5-2.5h5" fill="none" stroke="#d0dbf5" stroke-opacity=".64" stroke-linecap="round"/>
+      <ellipse cx="696" cy="105" rx="161" ry="52" transform="rotate(-17 696 105)" fill="none" stroke="#a8b2df" stroke-opacity=".28" stroke-width=".8"/>
+      <ellipse cx="696" cy="105" rx="116" ry="83" transform="rotate(22 696 105)" fill="none" stroke="#a991cf" stroke-opacity=".15" stroke-width=".8"/>
+      <g class="world">
+        <circle cx="696" cy="105" r="80" fill="url(#about-air)"/>
+        <circle cx="696" cy="105" r="66" fill="url(#about-ocean)"/>
+        <g clip-path="url(#about-globe)">
+          <path d="M646 58 660 53 672 61 670 71 685 77 681 90 669 94 664 110 652 113 646 101 634 94 631 75Z" fill="#a1c3b6" opacity=".7"/>
+          <path d="M690 109 704 104 718 113 726 112 736 125 727 137 723 157 711 166 700 147 701 133 693 126Z" fill="#7fa59d" opacity=".67"/>
+          <path d="M711 45 728 50 748 67 738 76 726 68 713 71 703 61Z" fill="#c1d1c2" opacity=".42"/>
+          <path d="M634 84C650 71 663 81 674 76S695 77 704 83M643 120C663 111 681 116 690 124M685 55C701 53 711 59 722 55" fill="none" stroke="#f1f1e5" stroke-opacity=".37" stroke-width="3" stroke-linecap="round"/>
+          <path d="M637 92C658 83 667 92 685 88M674 144C689 137 706 145 714 141M715 98C729 91 742 104 757 97" fill="none" stroke="#dbe9e8" stroke-opacity=".22" stroke-width="1.8" stroke-linecap="round"/>
+          <circle cx="696" cy="105" r="66" fill="url(#about-night)"/>
+        </g>
+        <circle cx="696" cy="105" r="65.7" fill="none" stroke="url(#about-rim)" stroke-width="1.2"/>
+      </g>
+      <path d="M542 150C574 180 711 173 808 122" fill="none" stroke="#c1bee7" stroke-opacity=".24" stroke-width=".8"/>
+      <g class="moon">
+        <circle cx="591" cy="67" r="13" fill="url(#about-moon)"/>
+        <path d="M579 64A13 13 0 0 1 594 54" fill="none" stroke="#fceadd" stroke-opacity=".6" stroke-width=".8"/>
+        <circle cx="587" cy="63" r="2.7" fill="#9f8caa" opacity=".38"/>
+        <circle cx="593" cy="70" r="1.8" fill="#544763" opacity=".35"/>
+        <circle cx="794" cy="141" r="8" fill="url(#about-moon)"/>
+        <path d="M787 138A8 8 0 0 1 795 133" fill="none" stroke="#e9e0f3" stroke-width=".7" stroke-opacity=".7"/>
+      </g>
+      <circle cx="827" cy="68" r="2.1" fill="#b6b9ee"/>
+      <path d="M855 220A102 102 0 0 1 942 134" fill="none" stroke="#9483cb" stroke-opacity=".12" stroke-width="12"/>
+      <path d="M855 220A102 102 0 0 1 942 134L956 235Z" fill="#10132a" stroke="#9b8dce" stroke-opacity=".4"/>
+    </g>
+    <text x="40" y="39" class="label secondary" font-size="10">SECTOR 01 / ABOUT</text>
+    <text x="38" y="104" font-size="39" font-weight="650" letter-spacing="-1">Mission control</text>
+    <text x="40" y="137" class="secondary" font-size="15">The person behind the pixels.</text>
+    <path class="decor" d="M40 164H70" stroke="#aeabe5" stroke-width="1.5"/>
+  </g>
+  <rect class="border" x=".5" y=".5" width="899" height="199" rx="15.5" fill="none" stroke="#8390b7" stroke-opacity=".23"/>
+</svg>

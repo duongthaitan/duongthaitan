@@ -1,98 +1,141 @@
 <p align="center">
-  <img src="./assets/hero-banner.svg" width="100%" alt="Duong Thai Tan — frontend developer, UI/UX designer, Vietnam. Code meets craft." />
+  <img src="./assets/hero-banner.svg" width="100%" alt="Duong Thai Tan — code meets cosmos. Frontend developer and UI/UX enthusiast from Vietnam, against a three-dimensional galaxy." />
 </p>
 
 <h1 align="center">Duong Thai Tan</h1>
 <p align="center">
-  <strong>Thoughtful interfaces. Expressive details. Code that holds up.</strong><br />
-  Frontend developer &amp; UI/UX enthusiast based in Vietnam.
+  <strong>A creative orbit between code, design, and the unexpected.</strong><br />
+  Frontend developer &amp; UI/UX enthusiast · Vietnam
 </p>
+
+<p align="center"><samp>THOUGHTFUL INTERFACES / EXPRESSIVE MOTION / GROUNDED ENGINEERING</samp></p>
 
 <p align="center">
-  <a href="#selected-work">Selected work</a> &nbsp; / &nbsp;
-  <a href="#github-snapshot">GitHub snapshot</a> &nbsp; / &nbsp;
-  <a href="https://www.linkedin.com/in/duongthaitan/">LinkedIn</a> &nbsp; / &nbsp;
-  <a href="https://www.instagram.com/thaitan.duong_">Photography</a>
+  <a href="#mission-control">About</a> &nbsp; · &nbsp;
+  <a href="#technology-constellation">Toolkit</a> &nbsp; · &nbsp;
+  <a href="#selected-work">Work</a> &nbsp; · &nbsp;
+  <a href="#github-snapshot">Telemetry</a> &nbsp; · &nbsp;
+  <a href="#learning-coordinates">Learning</a> &nbsp; · &nbsp;
+  <a href="#flight-systems">Systems</a> &nbsp; · &nbsp;
+  <a href="#open-a-channel">Connect</a>
 </p>
 
-<img src="./assets/section-divider.svg" width="100%" alt="" />
+<br />
 
-## A little about me
+<img src="./assets/galaxy/about.svg" width="100%" alt="" />
 
-I build responsive web interfaces with an eye for layout, motion, and the small details that make a product feel considered. Clean, maintainable code matters as much as the pixels.
+## Mission control
 
-Away from the editor, I explore **photography and video editing**. Different tools, same curiosity: how do you turn an idea into something people feel?
+**One foot in engineering. One eye on the possibilities.**
 
-**Currently exploring**
-- **Vue.js** — reusable components and frontend architecture.
-- **Three.js** — interactive geometry and immersive web experiences.
-- **Design systems** — consistent interfaces, accessible patterns, less guesswork.
+I build responsive web interfaces where layout, motion, and small details work together. The goal isn't just a good first impression — it's an experience supported by clean, maintainable code.
 
-## The toolkit
+Beyond the editor, **photography and video editing** shape the way I see light, composition, and timing. Different tools; the same drive to turn an idea into something people can feel.
 
-| Area | Tools & technologies |
+### In my current orbit
+
+| Exploring | What draws me in |
 | :--- | :--- |
-| Interfaces | HTML · CSS · JavaScript · Vue.js · Bootstrap |
-| Creative web | Three.js · Figma · Photoshop |
-| Workflow | GitHub · VS Code · MySQL · Selenium |
+| **Vue.js** | Reusable components and considered frontend architecture |
+| **Three.js** | Interactive geometry and immersive web experiences |
+| **Design systems** | Consistent interfaces, accessible patterns, less guesswork |
+
+<br />
+
+<img src="./assets/galaxy/toolkit.svg" width="100%" alt="" />
+
+## Technology constellation
+
+**Different tools. One connected creative process.**
+
+| System | Tools & technologies |
+| :--- | :--- |
+| **Interface engineering** | HTML · CSS · JavaScript · Vue.js · Bootstrap |
+| **Creative development** | Three.js · Figma · Photoshop |
+| **Everyday workflow** | GitHub · VS Code · MySQL · Selenium |
 
 <details>
-<summary>More languages & frameworks I've worked with</summary>
+<summary><strong>Beyond the frontend / additional languages & frameworks</strong></summary>
 
 PHP · Laravel · Java · C# · .NET · C++
 
+Tools I've worked with along the way — a toolkit, not a proficiency ranking.
+
 </details>
 
-<img src="./assets/section-divider.svg" width="100%" alt="" />
+<br />
+
+<img src="./assets/galaxy/selected-work.svg" width="100%" alt="" />
 
 ## Selected work
 
-### 01 / An orbital playground
+### An orbital playground
 
-**A 3D portfolio built with Three.js.** Wireframe geometry, orbiting particles, bloom, and pointer interaction — an experiment where frontend meets motion design.
+**An interactive 3D portfolio built with Three.js.** A small universe of wireframe geometry, orbiting particles, bloom, and pointer interaction — where frontend engineering meets motion design.
 
-**HTML · CSS · JavaScript · Three.js**
+- **Explore:** a scene that responds beyond a static page.
+- **Built with:** HTML · CSS · JavaScript · Three.js.
+- **The idea:** experiment with depth, atmosphere, and interaction on the web.
 
-[Explore the source](./3d-portfolio/index.html) · [Open the GitHub Pages version](https://duongthaitan.github.io/duongthaitan/3d-portfolio/index.html)
+**[Explore the source](./3d-portfolio/index.html)** &nbsp; / &nbsp; **[Open the GitHub Pages version](https://duongthaitan.github.io/duongthaitan/3d-portfolio/index.html)**
 
-<sub>The interactive scene runs on its own page. GitHub READMEs display images, not JavaScript or WebGL.</sub>
+<sub>The interactive scene runs on a separate page. This README's galaxy is SVG artwork, not embedded WebGL. The live version requires GitHub Pages to be enabled.</sub>
+
+<br />
 
 ## GitHub snapshot
 
+<p><samp>04 / OBSERVATORY</samp></p>
+
+**A signal from the work, not a score for the developer.**
+
 <p align="center">
-  <img src="./assets/github-metrics.svg" width="520" alt="GitHub snapshot: public original repositories, stars on those repositories, and followers. Values and the last successful UTC update appear in the image; source links follow." />
+  <img src="./assets/github-metrics.svg" width="560" alt="GitHub observatory: public original repositories, stars on those repositories, and followers. The image includes values and its last successful UTC update. Accessible snapshot and public sources follow." />
 </p>
 
-**Public data. Clear scope. No invented streaks.**
+| Reading | What it actually measures |
+| :--- | :--- |
+| **Original repositories** | Public repositories owned by this account, excluding forks; archived repositories included |
+| **Stars** | Stars received by those same repositories, not stars I've given other projects |
+| **Followers** | The account's public follower count |
 
-- **Original repositories:** public repositories owned by this account, excluding forks; archived repositories included.
-- **Stars:** total stars on those same repositories, not stars I've given other projects.
-- **Followers:** the account's public follower count.
+[Accessible snapshot](./assets/github-metrics.svg?raw=1) · [Repositories](https://github.com/duongthaitan?tab=repositories) · [Followers](https://github.com/duongthaitan?tab=followers) · [Renderer source](./scripts/render-metrics.mjs)
 
-[Open the accessible snapshot](./assets/github-metrics.svg?raw=1) · [Browse repositories](https://github.com/duongthaitan?tab=repositories) · [View followers](https://github.com/duongthaitan?tab=followers) · [Inspect the renderer](./scripts/render-metrics.mjs)
+<sub>Refreshed by GitHub Actions at 02:17 UTC / 09:17 Vietnam time each day. This is the last successful snapshot, not real-time activity. If an update fails, the previous data and timestamp remain intact.</sub>
 
-<sub>Generated locally in GitHub Actions each day at 02:17 UTC / 09:17 Vietnam time. The image shows the last successful snapshot, not real-time activity. If GitHub is unavailable, the previous snapshot stays intact.</sub>
+<br />
 
-<img src="./assets/section-divider.svg" width="100%" alt="" />
+<img src="./assets/galaxy/certificates.svg" width="100%" alt="" />
+
+## Learning coordinates
+
+**Every new skill starts with a little curiosity.**
 
 <details>
-<summary><strong>Learning & certificates</strong></summary>
+<summary><strong>Open the learning log / five course certificates</strong></summary>
 
-### F8 Fullstack
-- [IT Onboarding](https://fullstack.edu.vn/cert/4tv2o)
-- [JavaScript Basic](https://fullstack.edu.vn/cert/d0gj4)
-- [PHP Introduction](https://fullstack.edu.vn/cert/kj7vr)
-
-### SoloLearn
-- [PHP Course](https://www.sololearn.com/certificates/CT-11PGKZIX)
-- [Introduction to C](https://www.sololearn.com/certificates/CC-USOBZSX7)
+| Provider | Course |
+| :--- | :--- |
+| **F8 Fullstack** | [IT Onboarding](https://fullstack.edu.vn/cert/4tv2o) |
+| **F8 Fullstack** | [JavaScript Basic](https://fullstack.edu.vn/cert/d0gj4) |
+| **F8 Fullstack** | [PHP Introduction](https://fullstack.edu.vn/cert/kj7vr) |
+| **SoloLearn** | [PHP Course](https://www.sololearn.com/certificates/CT-11PGKZIX) |
+| **SoloLearn** | [Introduction to C](https://www.sololearn.com/certificates/CC-USOBZSX7) |
 
 </details>
 
-<details>
-<summary><strong>Under the hood / running this profile</strong></summary>
+<br />
 
-The artwork lives in this repository. Native SVG animation supplies the motion; a dependency-free Node.js script supplies the numbers. No external stats-image service, tracking counter, or borrowed contribution graph.
+<img src="./assets/galaxy/automation.svg" width="100%" alt="" />
+
+## Flight systems
+
+**A little automation keeps this observatory in orbit.**
+
+Local SVG artwork. Native JavaScript metrics. GitHub Actions on a daily schedule. No external stats-image service, tracking counter, or borrowed contribution graph.
+
+<details>
+<summary><strong>Inside the spacecraft / checks, updates & accessibility</strong></summary>
 
 ### Local checks
 
@@ -103,26 +146,46 @@ node --test scripts/render-metrics.test.mjs
 node scripts/render-metrics.mjs
 ```
 
-The second command fetches public GitHub data and updates the local SVG. No credentials are required for a local run; GitHub's unauthenticated rate limits apply.
+The first command checks the renderer, local artwork, and README links. The second fetches public GitHub data and updates the local snapshot. No credentials are required locally; unauthenticated API rate limits apply.
 
-### Enable automatic updates
+### Automatic updates
 
-1. Put these files in the public **`duongthaitan/duongthaitan`** repository on **`main`**. A profile README must live at the root of a repository matching the account name.
-2. Open **Actions → Update public profile metrics → Run workflow**. The workflow requests write access only to repository contents and uses GitHub's built-in token; no personal access token is needed.
-3. The workflow tests the renderer, generates the snapshot, then updates only **`assets/github-metrics.svg`**. Repository rules must permit that automated update. Nothing is force-pushed.
+1. Keep these files in the public **`duongthaitan/duongthaitan`** repository on **`main`**. Profile READMEs live at the root of a repository matching the account name.
+2. Open **Actions → Update public profile metrics → Run workflow** for a manual refresh. The workflow uses GitHub's built-in token; no personal access token is needed.
+3. Tests run before generation. Only **`assets/github-metrics.svg`** is updated automatically. Repository rules must permit the write; concurrent changes are checked, never force-pushed.
 
-The schedule runs on the default branch. GitHub may delay scheduled jobs or disable them after 60 days without repository activity; re-enable the workflow in Actions if necessary. Changes to the renderer or workflow also trigger an update on `main`.
+The daily schedule runs on the default branch. Changes to the README, galaxy artwork, renderer, or workflow also trigger checks and a refresh on `main`; the generated snapshot does not trigger a loop. GitHub may delay scheduled jobs or disable them after 60 days without repository activity — re-enable the workflow in Actions if needed.
 
-The 3D page requires a separate GitHub Pages deployment. Its source remains usable locally even when Pages is not enabled. Hero animations stop after their introduction and respect reduced-motion preferences; all essential information remains available as text.
+### Motion with a quiet mode
+
+The galaxy's depth comes from layered SVG geometry, lighting, and gradients. Decorative introductions finish within five seconds and respect reduced-motion preferences. Metrics stay still. When animation or images are unavailable, the profile's essential information and links remain in native text.
+
+The metrics card has light, dark, and forced-color treatments. The galaxy illustrations use self-contained dark panels on either GitHub theme. Nothing in the README executes JavaScript or loads external fonts.
+
+### The separate 3D experience
+
+The portfolio source remains in **[3d-portfolio/](./3d-portfolio/index.html)**. Its live page needs a separate GitHub Pages deployment; the metrics workflow does not deploy it.
 
 </details>
 
 <br />
 
+<img src="./assets/galaxy/connect.svg" width="100%" alt="" />
+
+<h2 align="center">Open a channel</h2>
+
 <p align="center">
-  <strong>Let's make the web a little more interesting.</strong><br />
+  <strong>Good ideas deserve somewhere to land.</strong><br />
+  Frontend, visual experiments, or a different way of seeing things — let's connect.
+</p>
+
+<p align="center">
   <a href="https://github.com/duongthaitan">GitHub</a> &nbsp; / &nbsp;
   <a href="https://www.linkedin.com/in/duongthaitan/">LinkedIn</a> &nbsp; / &nbsp;
-  <a href="https://www.instagram.com/thaitan.duong_">Instagram</a>
+  <a href="https://www.instagram.com/thaitan.duong_">Photography &amp; Instagram</a>
 </p>
-<p align="center"><sub>Designed with intent. Built one detail at a time.</sub></p>
+
+<img src="./assets/section-divider.svg" width="100%" alt="" />
+
+<p align="center"><samp>STAY CURIOUS. KEEP BUILDING. EXPLORE FURTHER.</samp></p>
+<p align="center"><sub>Duong Thai Tan · Designed with intent, down to the last detail.</sub></p>

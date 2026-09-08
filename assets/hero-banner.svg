@@ -1,67 +1,96 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="360" viewBox="0 0 900 360" role="img" aria-labelledby="title desc">
-  <title id="title">Duong Thai Tan — Frontend Developer and UI/UX Designer</title>
-  <desc id="desc">A neon terminal and orbital wireframe. Based in Vietnam. Building interfaces with code, care, and a creative eye.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="360" viewBox="0 0 900 360" role="img" aria-labelledby="hero-title hero-desc">
+  <title id="hero-title">Duong Thai Tan — Code meets cosmos</title>
+  <desc id="hero-desc">Frontend, UI-UX, Vietnam. A luminous violet ringed planet and a small moon float above a curved blue planetary horizon. Layered indigo and rose nebulae deepen a field of distant stars beside the profile name.</desc>
   <defs>
-    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
-      <stop stop-color="#38bdf8"/>
-      <stop offset=".52" stop-color="#a78bfa"/>
-      <stop offset="1" stop-color="#f472b6"/>
-    </linearGradient>
-    <radialGradient id="halo">
-      <stop stop-color="#8b5cf6" stop-opacity=".18"/>
-      <stop offset="1" stop-color="#8b5cf6" stop-opacity="0"/>
-    </radialGradient>
-    <pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse">
-      <path d="M36 0H0V36" fill="none" stroke="#aeb8c5" stroke-opacity=".06"/>
-    </pattern>
-    <clipPath id="frame"><rect x="1" y="1" width="898" height="358" rx="18"/></clipPath>
+    <clipPath id="hero-frame"><rect width="900" height="360" rx="20"/></clipPath>
+    <clipPath id="hero-globe"><circle cx="694" cy="155" r="94"/></clipPath>
+    <radialGradient id="hero-indigo"><stop stop-color="#5a48c5" stop-opacity=".48"/><stop offset=".5" stop-color="#392665" stop-opacity=".22"/><stop offset="1" stop-color="#070b19" stop-opacity="0"/></radialGradient>
+    <radialGradient id="hero-rose"><stop stop-color="#c2539b" stop-opacity=".28"/><stop offset=".48" stop-color="#703d8e" stop-opacity=".13"/><stop offset="1" stop-color="#070b19" stop-opacity="0"/></radialGradient>
+    <radialGradient id="hero-haze"><stop stop-color="#7894ef" stop-opacity=".2"/><stop offset="1" stop-color="#070b19" stop-opacity="0"/></radialGradient>
+    <radialGradient id="hero-atmosphere"><stop offset=".76" stop-color="#a3a4ff" stop-opacity="0"/><stop offset=".83" stop-color="#a3a4ff" stop-opacity=".2"/><stop offset="1" stop-color="#8683ee" stop-opacity="0"/></radialGradient>
+    <radialGradient id="hero-surface" cx=".29" cy=".23" r=".8"><stop stop-color="#f3e3e9"/><stop offset=".24" stop-color="#cbbce8"/><stop offset=".48" stop-color="#8b80bd"/><stop offset=".73" stop-color="#41456f"/><stop offset="1" stop-color="#10162c"/></radialGradient>
+    <radialGradient id="hero-night" cx=".19" cy=".18" r=".94"><stop offset=".34" stop-color="#060b1a" stop-opacity="0"/><stop offset=".69" stop-color="#060b1a" stop-opacity=".25"/><stop offset="1" stop-color="#060b1a" stop-opacity=".93"/></radialGradient>
+    <linearGradient id="hero-rings" x1="522" y1="112" x2="860" y2="212" gradientUnits="userSpaceOnUse"><stop stop-color="#9e9cdf"/><stop offset=".25" stop-color="#e6dbef"/><stop offset=".49" stop-color="#b49dd6"/><stop offset=".78" stop-color="#7f76b9"/><stop offset="1" stop-color="#d9c7e9"/></linearGradient>
+    <linearGradient id="hero-rim" x1="611" y1="86" x2="782" y2="211" gradientUnits="userSpaceOnUse"><stop stop-color="#f4e9fa"/><stop offset=".48" stop-color="#c5b9f7" stop-opacity=".45"/><stop offset="1" stop-color="#7588de" stop-opacity="0"/></linearGradient>
+    <radialGradient id="hero-moon" cx=".26" cy=".22" r=".8"><stop stop-color="#fff0de"/><stop offset=".4" stop-color="#c9aac2"/><stop offset=".73" stop-color="#61536f"/><stop offset="1" stop-color="#171b31"/></radialGradient>
+    <radialGradient id="hero-horizon" cx=".53" cy="0" r=".7"><stop stop-color="#395486"/><stop offset=".16" stop-color="#17263f"/><stop offset=".48" stop-color="#0a1326"/><stop offset="1" stop-color="#060a16"/></radialGradient>
+    <linearGradient id="hero-horizon-rim"><stop stop-color="#8185dd" stop-opacity="0"/><stop offset=".38" stop-color="#929de9" stop-opacity=".6"/><stop offset=".67" stop-color="#d4deff"/><stop offset="1" stop-color="#8f9cf1" stop-opacity=".2"/></linearGradient>
     <style>
-      .ink{fill:#e6edf3}.muted{fill:#aeb8c5}
-      .mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
-      .sans{font-family:Inter,'Segoe UI',Arial,sans-serif}
-      .orbit{transform-origin:708px 184px;animation:orbit 4s ease-in-out 1}
-      .cursor{animation:blink 1s step-end 4}
-      .trace{stroke-dasharray:1100;stroke-dashoffset:0;animation:trace 3s ease-out 1}
-      @keyframes orbit{0%{transform:rotate(-12deg);opacity:.3}100%{transform:rotate(0);opacity:1}}
-      @keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
-      @keyframes trace{from{stroke-dashoffset:1100}to{stroke-dashoffset:0}}
-      @media(prefers-reduced-motion:reduce){.orbit,.cursor,.trace{animation:none}}
+      text{font-family:'Segoe UI',Arial,sans-serif;fill:#e6edf3}.secondary{fill:#aeb8c5}.label{font-family:ui-monospace,Consolas,monospace;letter-spacing:1.7px}.planet-settle{transform-origin:694px 155px;animation:hero-settle 3.8s ease-out 1}.nebula-settle{animation:hero-nebula 4s ease-out 1}@keyframes hero-settle{from{transform:translate(5px,3px) rotate(2deg)}to{transform:translate(0,0) rotate(0)}}@keyframes hero-nebula{from{transform:translate(8px,0)}to{transform:translate(0,0)}}@media(prefers-reduced-motion:reduce){.planet-settle,.nebula-settle{animation:none}}@media(forced-colors:active){.decor{display:none}.background{fill:Canvas}.border{stroke:CanvasText}text,.secondary{fill:CanvasText}}
     </style>
   </defs>
-  <g clip-path="url(#frame)">
-    <rect width="900" height="360" fill="#0d1117"/>
-    <rect width="900" height="360" fill="url(#grid)"/>
-    <circle cx="710" cy="180" r="230" fill="url(#halo)"/>
-    <path d="M0 49H900M0 302H900" stroke="#283140"/>
-    <g fill="#6e7681">
-      <circle cx="28" cy="25" r="4"/><circle cx="44" cy="25" r="4"/><circle cx="60" cy="25" r="4"/>
+  <g clip-path="url(#hero-frame)">
+    <rect class="background" width="900" height="360" fill="#070b19"/>
+    <g class="decor">
+      <g class="nebula-settle">
+        <ellipse cx="650" cy="153" rx="390" ry="239" fill="url(#hero-indigo)" transform="rotate(-19 650 153)"/>
+        <ellipse cx="810" cy="191" rx="275" ry="120" fill="url(#hero-rose)" transform="rotate(-32 810 191)"/>
+        <ellipse cx="470" cy="44" rx="233" ry="108" fill="url(#hero-rose)" transform="rotate(-24 470 44)"/>
+        <ellipse cx="516" cy="302" rx="407" ry="92" fill="url(#hero-haze)"/>
+      </g>
+      <g fill="#b8c5e4" opacity=".42">
+        <circle cx="28" cy="91" r=".7"/><circle cx="61" cy="21" r=".8"/><circle cx="114" cy="72" r=".55"/><circle cx="151" cy="28" r=".7"/><circle cx="191" cy="83" r=".6"/><circle cx="232" cy="19" r="1"/><circle cx="278" cy="69" r=".65"/><circle cx="321" cy="28" r=".55"/><circle cx="357" cy="93" r=".8"/><circle cx="399" cy="17" r=".65"/><circle cx="447" cy="61" r=".85"/><circle cx="475" cy="119" r=".6"/>
+        <circle cx="21" cy="187" r=".6"/><circle cx="80" cy="165" r=".6"/><circle cx="157" cy="239" r=".55"/><circle cx="296" cy="234" r=".7"/><circle cx="343" cy="169" r=".55"/><circle cx="386" cy="244" r=".65"/><circle cx="423" cy="193" r=".9"/><circle cx="458" cy="270" r=".8"/><circle cx="483" cy="211" r=".55"/><circle cx="35" cy="277" r=".65"/><circle cx="102" cy="298" r=".75"/><circle cx="214" cy="284" r=".55"/><circle cx="328" cy="298" r=".65"/>
+        <circle cx="514" cy="28" r=".7"/><circle cx="540" cy="81" r=".65"/><circle cx="578" cy="14" r=".6"/><circle cx="614" cy="36" r=".95"/><circle cx="652" cy="20" r=".55"/><circle cx="730" cy="29" r=".8"/><circle cx="779" cy="18" r=".6"/><circle cx="851" cy="29" r=".85"/><circle cx="882" cy="67" r=".65"/><circle cx="856" cy="119" r=".7"/><circle cx="889" cy="174" r=".6"/>
+        <circle cx="526" cy="177" r=".75"/><circle cx="557" cy="123" r=".5"/><circle cx="594" cy="207" r=".7"/><circle cx="517" cy="258" r=".6"/><circle cx="556" cy="300" r=".65"/><circle cx="618" cy="277" r=".85"/><circle cx="656" cy="258" r=".55"/><circle cx="706" cy="274" r=".6"/><circle cx="763" cy="244" r=".8"/><circle cx="810" cy="272" r=".65"/><circle cx="866" cy="238" r=".8"/><circle cx="892" cy="295" r=".55"/>
+        <circle cx="495" cy="65" r=".5"/><circle cx="567" cy="57" r=".55"/><circle cx="789" cy="98" r=".55"/><circle cx="836" cy="194" r=".6"/><circle cx="448" cy="150" r=".5"/><circle cx="379" cy="282" r=".5"/><circle cx="57" cy="242" r=".5"/><circle cx="250" cy="262" r=".5"/><circle cx="754" cy="315" r=".7"/>
+      </g>
+      <g fill="#e6edf3">
+        <circle cx="408" cy="89" r="1.25" opacity=".8"/><circle cx="580" cy="91" r="1.1" opacity=".8"/><circle cx="768" cy="47" r="1.25"/><circle cx="874" cy="208" r="1.1" opacity=".7"/><circle cx="484" cy="304" r="1.2" opacity=".7"/><circle cx="348" cy="55" r="1" opacity=".65"/><circle cx="24" cy="145" r="1" opacity=".6"/><circle cx="670" cy="288" r="1.3"/><circle cx="838" cy="42" r=".95" opacity=".7"/>
+      </g>
+      <g fill="none" stroke="#cfdbff" stroke-linecap="round">
+        <path d="M545 37v8m-4-4h8" opacity=".68"/><path d="M861 153v6m-3-3h6" opacity=".55"/><path d="M409 275v6m-3-3h6" opacity=".48"/>
+      </g>
+      <ellipse cx="699" cy="163" rx="243" ry="110" transform="rotate(-24 699 163)" fill="none" stroke="#a9a6d9" stroke-opacity=".16" stroke-width=".8"/>
+      <path d="M442 241C532 138 729 59 890 68" fill="none" stroke="#c0a6e7" stroke-opacity=".13"/>
+      <g class="planet-settle">
+        <circle cx="694" cy="155" r="114" fill="url(#hero-atmosphere)"/>
+        <g transform="rotate(-24 694 155)" fill="none" stroke="url(#hero-rings)">
+          <ellipse cx="694" cy="155" rx="179" ry="51" stroke-width="1.3" opacity=".65"/>
+          <ellipse cx="694" cy="155" rx="168" ry="47" stroke-width="14" opacity=".6"/>
+          <ellipse cx="694" cy="155" rx="166" ry="46.5" stroke-width="2" opacity=".65"/>
+          <ellipse cx="694" cy="155" rx="157" ry="43" stroke-width="2.5" opacity=".62"/>
+          <ellipse cx="694" cy="155" rx="150" ry="40" stroke-width="4" opacity=".4"/>
+          <ellipse cx="694" cy="155" rx="142" ry="37" stroke-width="1.2" opacity=".5"/>
+        </g>
+        <circle cx="694" cy="155" r="94" fill="url(#hero-surface)"/>
+        <g clip-path="url(#hero-globe)" fill="none">
+          <path d="M583 124C631 96 678 151 731 131S793 130 804 146" stroke="#f8d7e2" stroke-width="12" stroke-opacity=".13"/>
+          <path d="M595 151C643 127 682 172 732 155S785 162 801 169" stroke="#554d8a" stroke-width="7" stroke-opacity=".25"/>
+          <path d="M592 177C637 151 680 194 734 178S782 185 797 190" stroke="#eac7dd" stroke-width="16" stroke-opacity=".13"/>
+          <path d="M610 198C650 180 701 211 751 201S793 209 800 214" stroke="#c3b7db" stroke-width="3" stroke-opacity=".2"/>
+          <path d="M602 111C650 88 699 133 760 112" stroke="#fff2ed" stroke-width="2" stroke-opacity=".19"/>
+          <path d="M590 180C659 221 733 193 800 133" stroke="#171b32" stroke-width="11" stroke-opacity=".34"/>
+          <circle cx="694" cy="155" r="94" fill="url(#hero-night)"/>
+        </g>
+        <circle cx="694" cy="155" r="93.6" fill="none" stroke="url(#hero-rim)" stroke-width="1.3"/>
+        <g transform="rotate(-24 694 155)" fill="none" stroke="url(#hero-rings)">
+          <path d="M515 155A179 51 0 0 0 873 155" stroke-width="1.3" opacity=".85"/>
+          <path d="M526 155A168 47 0 0 0 862 155" stroke-width="14" opacity=".9"/>
+          <path d="M528 155A166 46.5 0 0 0 860 155" stroke-width="2"/>
+          <path d="M537 155A157 43 0 0 0 851 155" stroke-width="2.5" opacity=".9"/>
+          <path d="M544 155A150 40 0 0 0 844 155" stroke-width="4" opacity=".6"/>
+          <path d="M552 155A142 37 0 0 0 836 155" stroke-width="1.2" opacity=".75"/>
+          <path d="M521 163C540 191 607 203 672 203" stroke="#f5e5f3" stroke-width="1" opacity=".75"/>
+        </g>
+      </g>
+      <circle cx="821" cy="52" r="13" fill="url(#hero-moon)"/>
+      <path d="M809 49A13 13 0 0 1 824 39" fill="none" stroke="#ffe9df" stroke-opacity=".6" stroke-width=".8"/>
+      <circle cx="817" cy="48" r="2.5" fill="#a68aab" opacity=".3"/>
+      <path d="M-100 400C164 267 510 246 1010 337" fill="none" stroke="#7d8dfa" stroke-opacity=".08" stroke-width="23"/>
+      <path d="M-100 400C164 267 510 246 1010 337" fill="none" stroke="#a5b8ff" stroke-opacity=".13" stroke-width="8"/>
+      <path d="M-100 400C164 267 510 246 1010 337L1010 520H-100Z" fill="url(#hero-horizon)"/>
+      <path d="M-100 400C164 267 510 246 1010 337" fill="none" stroke="url(#hero-horizon-rim)" stroke-width="1.6"/>
+      <path d="M302 325C477 304 688 311 805 331" fill="none" stroke="#8d9bc6" stroke-opacity=".12"/>
     </g>
-    <text x="86" y="30" class="mono muted" font-size="13">duongthaitan / creative workspace</text>
-    <text x="869" y="30" text-anchor="end" class="mono muted" font-size="12">PROFILE / 01</text>
-    <rect x="44" y="83" width="28" height="3" rx="1.5" fill="url(#accent)"/>
-    <text x="84" y="89" class="mono muted" font-size="14" letter-spacing="2">CODE MEETS CRAFT</text>
-    <g class="sans ink" font-size="67" font-weight="750" letter-spacing="-2">
-      <text x="41" y="166">DUONG</text>
-      <text x="41" y="239">THAI TAN<tspan fill="#a78bfa">.</tspan></text>
+    <text x="44" y="48" class="label secondary" font-size="11">FRONTEND / UI-UX / VIETNAM</text>
+    <g font-size="74" font-weight="750" letter-spacing="-2.8">
+      <text x="39" y="132">Duong</text>
+      <text x="39" y="209">Thai Tan<tspan fill="#c1b1f1">.</tspan></text>
     </g>
-    <text x="44" y="277" class="sans muted" font-size="18">Frontend developer. UI/UX mindset. Vietnam.</text>
-    <g class="orbit" fill="none" stroke="url(#accent)" stroke-width="1.3">
-      <ellipse cx="708" cy="184" rx="144" ry="54" transform="rotate(-30 708 184)" opacity=".7"/>
-      <ellipse cx="708" cy="184" rx="144" ry="54" transform="rotate(30 708 184)" opacity=".45"/>
-      <ellipse cx="708" cy="184" rx="144" ry="54" transform="rotate(90 708 184)" opacity=".55"/>
-      <path class="trace" d="M708 97 786 143 786 229 708 273 630 229 630 143ZM708 97V184L786 229M630 229 708 184 786 143M630 143 708 184V273"/>
-      <circle cx="708" cy="184" r="8" stroke-opacity=".4"/>
-    </g>
-    <g fill="#c4b5fd">
-      <circle cx="583" cy="256" r="3"/>
-      <circle cx="831" cy="111" r="3"/>
-      <circle cx="708" cy="41" r="2"/>
-    </g>
-    <path d="M554 82h14m-7-7v14M849 278h14m-7-7v14" stroke="#aeb8c5" stroke-opacity=".5"/>
-    <text x="28" y="336" class="mono" font-size="14"><tspan fill="#c4b5fd">~/studio $ </tspan><tspan class="ink">build something worth feeling</tspan></text>
-    <rect x="372" y="323" width="8" height="16" rx="1" fill="#38bdf8" class="cursor"/>
-    <text x="872" y="336" text-anchor="end" class="mono muted" font-size="12">DESIGN / DEVELOP / REFINE</text>
-    <path d="M18 359H882" stroke="url(#accent)" stroke-width="2"/>
+    <text x="44" y="253" font-size="23" font-weight="400">Code meets cosmos</text>
+    <path class="decor" d="M44 285H86" stroke="#b9a3ed" stroke-width="2"/>
+    <text x="44" y="330" class="label secondary" font-size="10">DESIGN / DEVELOP / EXPLORE</text>
   </g>
-  <rect x=".5" y=".5" width="899" height="359" rx="18" fill="none" stroke="#303a49"/>
+  <rect class="border" x=".5" y=".5" width="899" height="359" rx="19.5" fill="none" stroke="#8390b7" stroke-opacity=".25"/>
 </svg>
