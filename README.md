@@ -1,20 +1,24 @@
 <div align="center">
-  <img src="./assets/hero-banner.svg?v=ultimate-v2" width="100%" alt="Duong Thai Tan — Sekhmet's Solar Lion Developer (Leo 18/8)" />
+  <img src="./assets/hero-banner.svg?v=god-tier" width="100%" alt="V3 Kinetic Engine" />
 </div>
 
 <br/>
 
 <div align="center">
-  <img src="./assets/typing-anim.svg?v=ultimate-v2" width="600" alt="Sekhmet Solar Leo — Developer CLI" />
+  <img src="./assets/typing-anim.svg?v=god-tier" width="600" alt="Sekhmet Solar Leo — Developer CLI" />
+</div>
+
+<div align="center">
+  <img src="https://media.giphy.com/media/xT0xeiP4F3qH82h7NK/giphy.gif" width="100%" height="8" alt="fire line" />
 </div>
 
 <h1 align="center">
-  <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Animals/Lion.png" alt="Lion" width="55" height="55" /> DUONG THAI TAN <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Animals/Lion.png" alt="Lion" width="55" height="55" />
+  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbnZvZjkyNm1mbjQyNmQxa3E4MGEzbW83ZXA0bm84MnI0ZXA1OXBwNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7TKMt1VVNkHV2PaE/giphy.gif" alt="Fire" width="50" height="50" /> DUONG THAI TAN <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbnZvZjkyNm1mbjQyNmQxa3E4MGEzbW83ZXA0bm84MnI0ZXA1OXBwNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7TKMt1VVNkHV2PaE/giphy.gif" alt="Fire" width="50" height="50" />
 </h1>
 
 <p align="center">
-  <strong>👑 Vua Của Rừng Code — Lập Trình Viên Mang Hệ Lửa Của Nữ Thần Sekhmet</strong><br />
-  <em>Frontend Architect &amp; UI/UX Motion Artisan · Vietnam</em>
+  <strong>👑 KINETIC 3D ARCHITECT — SOLAR FIRE LEO</strong><br />
+  <em>Xây dựng các tiểu vũ trụ ngay trên trình duyệt của bạn.</em>
 </p>
 
 <p align="center">
@@ -23,165 +27,63 @@
   <img src="https://img.shields.io/badge/Three.js-r128-000000?style=for-the-badge&logo=three.js&logoColor=FFD700&labelColor=1e180a" alt="Three.js" />
   <img src="https://img.shields.io/badge/GSAP-3.12.5-88CE02?style=for-the-badge&logo=greensock&logoColor=FFFFFF&labelColor=1e180a" alt="GSAP" />
   <img src="https://img.shields.io/badge/Vue.js-4FC08D?style=for-the-badge&logo=vuedotjs&logoColor=FFFFFF&labelColor=1e180a" alt="Vue.js" />
-  <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=FFFFFF&labelColor=1e180a" alt="Node.js" />
   <img src="https://img.shields.io/badge/WebGL-2.0-990000?style=for-the-badge&logo=webgl&logoColor=FFFFFF&labelColor=1e180a" alt="WebGL" />
 </p>
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Fire.png" alt="Fire" width="25" /> <samp>TẦM NHÌN RỰC LỬA / CHUYỂN ĐỘNG 3D KHÔNG GIAN / KIẾN TRÚC PHẦN MỀM THẦN THOẠI</samp> <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Fire.png" alt="Fire" width="25" />
-</p>
-
-<p align="center">
-  <a href="#-sứ-mệnh--kiến-trúc-sư-hệ-mặt-trời">Thánh Điện (Sanctuary)</a> &nbsp; ⬢ &nbsp;
-  <a href="#-lò-rèn-công-nghệ--solar-forge">Lò Rèn (Forge)</a> &nbsp; ⬢ &nbsp;
-  <a href="#-tuyệt-tác-3d--orbital-playground">Tuyệt Tác (Works)</a> &nbsp; ⬢ &nbsp;
-  <a href="#-đài-quan-sát-github--isometric-metrics">Đài Quan Sát (Observatory)</a>
-</p>
-
 <div align="center">
-  <img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" width="100%" alt="divider" />
+  <img src="https://media.giphy.com/media/xT0xeiP4F3qH82h7NK/giphy.gif" width="100%" height="8" alt="fire line" />
 </div>
 
-<img src="./assets/galaxy/about.svg?v=ultimate-v2" width="100%" alt="Sector 01 — Sekhmet Solar Sanctuary" />
-
-## 🦁 Sứ Mệnh — Kiến Trúc Sư Hệ Mặt Trời
-
-<p align="justify">
-  Được bảo hộ bởi <strong>Sekhmet</strong> — Nữ thần của Lửa, Chiến tranh và Quyền lực trong thần thoại Ai Cập. Sinh ngày <strong>18 Tháng 8</strong>, ngay giữa đỉnh điểm chói lọi của chòm sao <strong>Sư Tử (Leo ♌)</strong>, tôi không chỉ viết code; tôi kiến tạo các không gian kỹ thuật số hùng vĩ. Mỗi dòng code là một tia lửa, mỗi function là một nhịp đập, và mỗi giao diện là một kỳ quan 3D xoay chuyển giữa không gian.
-</p>
+<br/>
 
 <table>
 <tr>
 <td width="55%">
-
-```javascript
-const developer = {
-  identity: {
-    name: "Dương Thái Tân",
-    handle: "duongthaitan",
-    zodiac: "Leo ♌ (18/08)",
-    deity: "Sekhmet (Goddess of Solar Fire)",
-    element: "Fire 🔥",
-  },
-  roles: [
-    "👑 Frontend Architect",
-    "🌌 3D Motion Developer (WebGL)",
-    "🎨 UI/UX Visual Artisan"
-  ],
-  status: "IGNITING_3D_PARALLAX_ENGINE"
-};
-```
+<h2>🦁 Sứ Mệnh — Kiến Trúc Sư Hệ Mặt Trời</h2>
+<p align="justify">
+  Được bảo hộ bởi <strong>Sekhmet</strong> — Nữ thần của Lửa, Chiến tranh và Quyền lực. Sinh ngày <strong>18 Tháng 8</strong> (Leo ♌), tôi biến Code thành Hạt Cơ Bản (Particles), biến Hàm số thành Quỹ đạo (Orbits), và biến Trình Duyệt thành Vũ Trụ (Universe).
+</p>
+<p align="justify">
+  Website không phải là trang giấy phẳng, nó là một thế giới 3D đa chiều cần được đánh thức.
+</p>
 </td>
 <td width="45%" align="center">
-  <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Travel%20and%20places/Star.png" alt="Star" width="80" />
-  <br/><br/>
-  <em>"Sự hoàn hảo không nằm ở chỗ không còn gì để thêm, mà là khi không còn gì để bớt. Trừ phi đó là hiệu ứng 3D siêu thực."</em>
+  <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Animals/Lion.png" alt="Lion" width="100" />
 </td>
 </tr>
 </table>
 
-### 🔱 4 Trụ Cột Kỹ Thuật Số (Core Pillars)
-
-| 🌟 Lĩnh Vực Cốt Lõi | 🛠️ Công Nghệ & Trọng Tâm | 🚀 Triển Khai Thực Tế |
-| :--- | :--- | :--- |
-| **Đồ Họa & Chuyển Động 3D** | Xử lý hạt WebGL, Shader ánh sáng, Parallax Đa tầng | Three.js (r128), GSAP (3.12), UnrealBloomPass |
-| **Kiến Trúc Frontend** | Component hóa siêu việt, quản lý state real-time | Vue.js, React, ES6+, Khung xương HTML5/CSS3 |
-| **Thẩm Mỹ UI/UX** | Glassmorphism 3D, Gradient Động, Micro-interactions | Figma thiết kế, CSS Tokens tự dựng |
-| **Điện Ảnh Thị Giác** | Cân bằng sáng tối, Color Grading, Storytelling | Lightroom, Photoshop, Nghệ thuật ánh sáng |
-
 <div align="center">
-  <img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" width="100%" alt="divider" />
+  <img src="https://media.giphy.com/media/xT0xeiP4F3qH82h7NK/giphy.gif" width="100%" height="8" alt="fire line" />
 </div>
 
-<img src="./assets/galaxy/toolkit.svg?v=ultimate-v2" width="100%" alt="Sector 02 — Technology Constellation" />
+## ⚔️ Kỹ Năng Động Lực Học (Kinetic Skills)
 
-## ⚔️ Lò Rèn Công Nghệ — Solar Forge
-
-<p align="justify">
-  <strong>Vũ khí được rèn trong lửa, tôi luyện bằng vàng nguyên chất.</strong> Đây không chỉ là một danh sách các ngôn ngữ lập trình, mà là một kho tàng vũ khí tối thượng giúp tôi chinh phục mọi giới hạn của giao diện người dùng.
-</p>
-
-<div align="center">
-  <br/>
+<p align="center">
   <a href="https://skillicons.dev">
     <img src="https://skillicons.dev/icons?i=js,ts,react,vue,nextjs,html,css,tailwind,nodejs,php,laravel,mysql,git,githubactions,figma,ps,pr,vscode,threejs&perline=10" alt="Tech Arsenal" />
   </a>
-  <br/>
-</div>
-
-<details>
-<summary><strong>✨ Mở khóa Toàn bộ Cây Kỹ Năng Kỹ Thuật (Tech Tree)</strong></summary>
-
-<br/>
-
-> **Frontend & Đồ Họa 3D:** JavaScript (ES6+), TypeScript, Vue.js, React.js, Next.js, Three.js, WebGL 2.0, GSAP, TailwindCSS, SASS/SCSS.
-> 
-> **Backend & Hệ Thống:** Node.js, Express, PHP, Laravel, MySQL, RESTful API.
-> 
-> **Công cụ Tự Động Hóa:** GitHub Actions, Git, NPM, Webpack, Vite.
-
-</details>
+</p>
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" width="100%" alt="divider" />
+  <img src="https://media.giphy.com/media/xT0xeiP4F3qH82h7NK/giphy.gif" width="100%" height="8" alt="fire line" />
 </div>
 
-<img src="./assets/galaxy/selected-work.svg?v=ultimate-v2" width="100%" alt="Sector 03 — Selected Work" />
-
-## 🚀 Tuyệt Tác 3D — Orbital Playground
+## 🔭 Đài Quan Sát Không Gian (HUD Telemetry)
 
 <p align="justify">
-  Không dừng lại ở những website phẳng nhàm chán, tôi xây dựng nên những vũ trụ tương tác trực tiếp trên trình duyệt.
-</p>
-
-<table>
-<tr>
-<td width="30%" align="center">
-  <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Travel%20and%20places/Milky%20Way.png" alt="Milky Way" width="120" />
-</td>
-<td width="70%">
-  <h3>🪐 3D WebGL Portfolio Universe</h3>
-  <p>Một vũ trụ WebGL tương tác hoàn toàn được xây dựng bằng <strong>Three.js</strong> và <strong>GSAP 3.12</strong>. Đặc trưng với:</p>
-  <ul>
-    <li>Con mắt của Ra (Eye of Ra) 3D làm lõi trung tâm.</li>
-    <li>Chòm sao Sư tử (Leo) quỹ đạo 3D xoay tròn.</li>
-    <li>Hiệu ứng Post-Processing Bloom phát sáng chói lọi.</li>
-    <li>Các vụ nổ hạt (Particle bursts) tương tác theo cú click chuột.</li>
-  </ul>
-  <strong>👉 <a href="./3d-portfolio/index.html">Khám phá Mã Nguồn</a> &nbsp; // &nbsp; 🌌 <a href="https://duongthaitan.github.io/duongthaitan/3d-portfolio/index.html">Trải nghiệm Vũ trụ 3D Live</a></strong>
-</td>
-</tr>
-</table>
-
-<div align="center">
-  <img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" width="100%" alt="divider" />
-</div>
-
-## 🔭 Đài Quan Sát GitHub — Isometric Metrics
-
-<p align="justify">
-  <strong>Radar đo lường sức mạnh — 100% tự động hóa qua GitHub Actions.</strong> Biểu đồ dưới đây không phải là ảnh tĩnh, nó được sinh ra hoàn toàn từ code JavaScript nội bộ chạy mỗi ngày, render ra định dạng SVG Isometric 3D với viền chớp sáng cực "chiến".
+  <strong>V3 God-Tier:</strong> Biểu đồ GitHub giờ đây không còn là số liệu khô khan, nó là một <strong>Giao diện HUD (Head-Up Display)</strong> của phi thuyền với các hệ thống con quay hồi chuyển 3D (Gyroscope) chuyển động liên tục, do chính file <code>render-metrics.mjs</code> của tôi vẽ ra bằng mã SVG nội tại!
 </p>
 
 <p align="center">
-  <img src="./assets/github-metrics.svg?v=ultimate-v2" width="650" alt="GitHub observatory: V2 3D Isometric Metrics" />
-</p>
-
-<p align="center">
-  <em>(Biểu đồ được cập nhật tự động bằng Node.js 24+ & GitHub Actions Cron Job)</em>
+  <img src="./assets/github-metrics.svg?v=god-tier" width="900" alt="GitHub HUD" />
 </p>
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" width="100%" alt="divider" />
+  <img src="https://media.giphy.com/media/xT0xeiP4F3qH82h7NK/giphy.gif" width="100%" height="8" alt="fire line" />
 </div>
 
-<img src="./assets/galaxy/connect.svg?v=ultimate-v2" width="100%" alt="Sector 07 — Connect Portal" />
-
-<h2 align="center">🛰️ Cổng Giao Tiếp Phóng Tia Lửa</h2>
-
-<p align="center">
-  Những ý tưởng vĩ đại luôn bắt đầu từ một đốm lửa nhỏ. Hãy kết nối nếu bạn muốn xây dựng những kiến trúc WebGL 3D, Frontend đỉnh cao hoặc đơn giản là muốn trò chuyện với một Developer mang dòng máu Sư Tử!
-</p>
+<h2 align="center">🛰️ Kết Nối Với Trung Tâm Điều Khiển</h2>
 
 <p align="center">
   <a href="https://github.com/duongthaitan">
@@ -199,7 +101,6 @@ const developer = {
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Fire.png" alt="Fire" width="30" />
-  <samp> LUÔN TÒ MÒ. LIÊN TỤC KIẾN TẠO. BỪNG SÁNG VỚI NGỌN LỬA CỦA SEKHMET </samp>
+  <samp> BẢO VỆ BỞI LỬA THIÊNG SEKHMET // 18/08 LEO </samp>
   <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Fire.png" alt="Fire" width="30" />
 </p>
-<p align="center"><sub>Dương Thái Tân · Leo Developer (18/08) · Protected by Sekhmet's Divine Fire</sub></p>

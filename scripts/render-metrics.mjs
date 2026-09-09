@@ -46,134 +46,144 @@ export async function fetchMetrics({ fetchImpl = fetch, timeoutMs = 30_000 } = {
 export function renderSvg(metrics = null, now = new Date()) {
   const labels = ['Public original repos', 'Stars on original repos', 'Followers'];
   const values = metrics === null ? null : [count(metrics.repos), count(metrics.stars), count(metrics.followers)];
-  const updated = values ? now.toISOString().replace('T', ' ').replace(/\.\d{3}Z$/, ' UTC') : 'Awaiting first successful update';
-  const summary = values ? labels.map((label, i) => `${label}: ${values[i]}`).join('; ') : 'Awaiting first successful update. Metrics not yet available.';
+  const updated = values ? now.toISOString().replace('T', ' ').replace(/\.\d{3}Z$/, ' UTC') : 'AWAITING_TELEMETRY';
   
-  // Create 3D Isometric Cards
   const tiles = labels.map((label, i) => {
-    const value = values ? values[i].toLocaleString('en-US') : 'Pending';
-    // Offset for isometric stacking
-    const yOffset = 180 + i * 160;
+    const value = values ? values[i].toLocaleString('en-US') : '000';
+    const yOffset = 180 + i * 170;
     return `
-    <g transform="translate(100 ${yOffset})">
-      <!-- 3D Card Base with Floating Animation -->
-      <g>
-        <animateTransform attributeName="transform" type="translate" values="0,0; 0,-8; 0,0" dur="4s" begin="${i * 1.5}s" repeatCount="indefinite" />
-        
-        <!-- Bottom Shadow -->
-        <path d="M 0 40 L 360 40 L 400 0 L 40 -0" fill="#000000" opacity="0.6" filter="url(#glow)"/>
-        
-        <!-- Left Side (3D Depth) -->
-        <path d="M -20 20 L 0 40 L 0 140 L -20 120 Z" fill="#1e180a" stroke="#ffd700" stroke-width="1" opacity="0.9" />
-        
-        <!-- Top Side (3D Depth) -->
-        <path d="M -20 20 L 340 20 L 360 40 L 0 40 Z" fill="#2d2210" stroke="#ffd700" stroke-width="1" opacity="0.9" />
-        
-        <!-- Front Face -->
-        <rect x="0" y="40" width="360" height="100" fill="#0a0d14" stroke="url(#card-sweep)" stroke-width="2"/>
-        
-        <!-- Glassmorphism overlay -->
-        <rect x="0" y="40" width="360" height="100" fill="url(#glass-grad)" opacity="0.5"/>
-        
-        <text class="secondary" x="25" y="75" font-size="22" filter="url(#glow)">${escapeXml(label)}</text>
-        <text class="primary" x="25" y="125" font-size="${Math.min(48, 840 / value.length)}" font-weight="800" filter="url(#glow)">${escapeXml(value)}</text>
+    <g transform="translate(40 ${yOffset})">
+      <animateTransform attributeName="transform" type="translate" values="40,${yOffset}; 45,${yOffset}; 40,${yOffset}" dur="${3 + i}s" repeatCount="indefinite" />
+      
+      <!-- Tech HUD Frame -->
+      <path d="M 0 30 L 20 0 L 320 0 L 340 30 L 320 60 L 20 60 Z" fill="#070a13" stroke="#ffd700" stroke-width="1.5" opacity="0.85" filter="url(#glow)"/>
+      <path d="M 2 30 L 20 3 L 318 3" fill="none" stroke="#ff7700" stroke-width="1.5" opacity="0.5">
+         <animate attributeName="opacity" values="0.2; 1; 0.2" dur="2s" begin="${i}s" repeatCount="indefinite" />
+      </path>
+
+      <!-- Sine Wave Animation inside the card -->
+      <g opacity="0.3" stroke="#ffd700" stroke-width="1.5" fill="none" stroke-linecap="round">
+        <animateTransform attributeName="transform" type="translate" values="0,0; -40,0" dur="2s" repeatCount="indefinite" />
+        <path d="M 20 45 Q 30 35, 40 45 T 60 45 T 80 45 T 100 45 T 120 45 T 140 45 T 160 45 T 180 45 T 200 45 T 220 45 T 240 45 T 260 45 T 280 45 T 300 45 T 320 45 T 340 45 T 360 45"/>
       </g>
+      
+      <text class="hud-label" x="40" y="22" filter="url(#glow)">${escapeXml(label).toUpperCase()}</text>
+      <text class="hud-value" x="40" y="48" font-size="28" font-weight="800" filter="url(#glow)">[ ${escapeXml(value)} ]</text>
     </g>`;
   }).join('\n  ');
   
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="740" viewBox="0 0 600 740" role="img" aria-labelledby="metrics-title metrics-desc" style="max-width:900px;width:100%;height:auto">
-  <title id="metrics-title">${escapeXml(`GitHub public snapshot — ${summary}. ${values ? 'Updated ' : ''}${updated}.`)}</title>
-  <desc id="metrics-desc">${escapeXml(`${HANDLE}. ${summary}. Public, owned, non-fork repositories including archived repositories; stars on those repositories; public follower count. ${values ? 'Updated ' : ''}${updated}.`)}</desc>
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="900" height="740" viewBox="0 0 900 740" role="img" aria-labelledby="metrics-title metrics-desc" style="max-width:100%;height:auto">
+  <title id="metrics-title">Sekhmet Solar HUD</title>
+  <desc id="metrics-desc">V3 Kinetic UI GitHub Metrics</desc>
   <defs>
-    <clipPath id="metrics-frame"><rect width="600" height="740" rx="24"/></clipPath>
-    <radialGradient id="metrics-nebula">
-      <stop stop-color="#d4a017" stop-opacity=".3"/><stop offset=".5" stop-color="#c4762b" stop-opacity=".15"/><stop offset="1" stop-color="#d4a017" stop-opacity="0"/>
+    <clipPath id="metrics-frame"><rect width="900" height="740" rx="30"/></clipPath>
+    <radialGradient id="nebula">
+      <stop stop-color="#ff7700" stop-opacity=".3"/><stop offset=".4" stop-color="#d4a017" stop-opacity=".15"/><stop offset="1" stop-color="#050712" stop-opacity="0"/>
     </radialGradient>
-    <radialGradient id="metrics-halo">
-      <stop stop-color="#ffd700" stop-opacity=".4"/><stop offset="1" stop-color="#ffd700" stop-opacity="0"/>
+    <radialGradient id="core-glow">
+      <stop stop-color="#ffffff" stop-opacity=".8"/><stop offset=".2" stop-color="#ffd700" stop-opacity=".6"/><stop offset="1" stop-color="#ffd700" stop-opacity="0"/>
     </radialGradient>
-    <radialGradient id="metrics-planet" cx="32%" cy="24%" r="76%">
-      <stop stop-color="#fff8e1"/><stop offset=".3" stop-color="#ffd700"/><stop offset=".6" stop-color="#8b6914"/><stop offset="1" stop-color="#10140a"/>
-    </radialGradient>
-    <linearGradient id="card-sweep" x1="0%" y1="0%" x2="200%" y2="0%">
-      <stop offset="0%" stop-color="#ffd700" />
-      <stop offset="50%" stop-color="#ff7700" />
-      <stop offset="100%" stop-color="#ffd700" />
-      <animate attributeName="x1" values="-100%;100%" dur="3s" repeatCount="indefinite" />
-      <animate attributeName="x2" values="0%;200%" dur="3s" repeatCount="indefinite" />
-    </linearGradient>
-    <linearGradient id="glass-grad" x1="0" y1="0" x2="0" y2="1">
-      <stop stop-color="#ffffff" stop-opacity="0.1"/>
-      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
-    </linearGradient>
-    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="3" result="blur" />
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feGaussianBlur stdDeviation="8" result="blur2" />
       <feMerge>
+        <feMergeNode in="blur2"/>
         <feMergeNode in="blur"/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
   </defs>
   <style>
-    .panel{fill:#050712}.primary{fill:#e6edf3}.secondary{fill:#ffd700}
-    .decoration{color:#c9a455}.orbit{fill:none;stroke:currentColor;stroke-width:1.5}.stars{fill:currentColor}
-    text{font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
-    @media(prefers-color-scheme:light){.panel{fill:#fffdf6}.primary{fill:#1f2328}.secondary{fill:#d4a017}.decoration{color:#8b7d3e;opacity:.4}}
+    .panel{fill:#02040a}.hud-label{fill:#c2b280;font-family:ui-monospace,monospace;font-size:12px;letter-spacing:2px}
+    .hud-value{fill:#e6edf3;font-family:system-ui,-apple-system,sans-serif}
+    .hud-title{fill:#ffd700;font-family:system-ui,-apple-system,sans-serif;letter-spacing:4px}
+    .orbit{fill:none;stroke:#ffd700;stroke-width:1.5}
     @media(prefers-reduced-motion: reduce){ * { animation: none !important; } }
   </style>
   
-  <!-- Outer Frame -->
-  <rect class="panel" width="600" height="740" rx="24"/>
-  <rect width="596" height="736" x="2" y="2" rx="22" fill="none" stroke="url(#card-sweep)" stroke-width="2" opacity="0.6"/>
+  <rect class="panel" width="900" height="740" rx="30"/>
   
-  <!-- Animated 3D Background Elements -->
-  <g class="decoration" aria-hidden="true" clip-path="url(#metrics-frame)">
-    <g>
-      <animateTransform attributeName="transform" type="translate" values="0,0; -15,-15; 0,0" dur="15s" repeatCount="indefinite" />
-      <ellipse cx="490" cy="132" rx="350" ry="250" fill="url(#metrics-nebula)"/>
-      <ellipse cx="46" cy="540" rx="300" ry="280" fill="url(#metrics-nebula)" opacity=".7"/>
+  <g clip-path="url(#metrics-frame)">
+    <!-- Deep Space Background & Grid -->
+    <g opacity="0.1" stroke="#ffffff" stroke-width="0.5">
+      <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+        <path d="M 40 0 L 0 0 0 40" fill="none"/>
+      </pattern>
+      <rect width="900" height="740" fill="url(#grid)"/>
     </g>
 
-    <!-- Pulsing Halo -->
-    <g>
-      <animateTransform attributeName="transform" type="scale" values="1; 1.1; 1" dur="5s" repeatCount="indefinite" transform-origin="580 24" />
-      <ellipse cx="580" cy="24" rx="200" ry="180" fill="url(#metrics-halo)"/>
-    </g>
+    <ellipse cx="650" cy="370" rx="450" ry="350" fill="url(#nebula)">
+      <animate attributeName="opacity" values="0.4;0.8;0.4" dur="6s" repeatCount="indefinite" />
+    </ellipse>
 
-    <!-- Floating 3D Planet & Orbits -->
-    <g>
-      <animateTransform attributeName="transform" type="translate" values="0,0; 0,-15; 0,0" dur="8s" repeatCount="indefinite" />
-      <circle cx="574" cy="30" r="90" fill="url(#metrics-planet)" stroke="#d4a017" stroke-opacity=".5" filter="url(#glow)"/>
+    <!-- Complex Gyroscope HUD Core -->
+    <g transform="translate(650, 370)">
+      <!-- Outer Data Ring -->
+      <g filter="url(#glow)">
+        <animateTransform attributeName="transform" type="rotate" values="0; 360" dur="60s" repeatCount="indefinite" />
+        <circle r="260" class="orbit" stroke-dasharray="10 40" opacity="0.6"/>
+        <circle r="240" class="orbit" stroke-dasharray="100 20 10 20" opacity="0.8"/>
+      </g>
+
+      <!-- Middle Gyro Ring -->
+      <g filter="url(#glow)">
+        <animateTransform attributeName="transform" type="rotate" values="360; 0" dur="30s" repeatCount="indefinite" />
+        <ellipse rx="210" ry="120" class="orbit" stroke-dasharray="40 10" opacity="0.9"/>
+        <ellipse rx="210" ry="120" class="orbit" transform="rotate(90)" stroke-dasharray="20 30" opacity="0.5"/>
+      </g>
+
+      <!-- Inner High-Speed Ring -->
+      <g filter="url(#glow)">
+        <animateTransform attributeName="transform" type="rotate" values="0; 360" dur="15s" repeatCount="indefinite" />
+        <circle r="140" class="orbit" stroke-width="2" stroke-dasharray="5 15" stroke-dashoffset="0">
+           <animate attributeName="stroke-dashoffset" values="0; 20" dur="1s" repeatCount="indefinite" />
+        </circle>
+        <circle r="120" class="orbit" stroke-width="1" stroke-dasharray="50 50" opacity="0.8"/>
+      </g>
       
-      <!-- Multi-axis 3D Orbits -->
-      <g>
-         <animateTransform attributeName="transform" type="rotate" values="-28 574 30; 332 574 30" dur="25s" repeatCount="indefinite" />
-         <ellipse class="orbit" cx="574" cy="30" rx="140" ry="30" opacity=".7"/>
-      </g>
-      <g>
-         <animateTransform attributeName="transform" type="rotate" values="45 574 30; -315 574 30" dur="35s" repeatCount="indefinite" />
-         <ellipse class="orbit" cx="574" cy="30" rx="160" ry="40" opacity=".4"/>
+      <!-- Pulsing Core -->
+      <circle r="80" fill="url(#core-glow)">
+        <animateTransform attributeName="transform" type="scale" values="0.9; 1.1; 0.9" dur="3s" repeatCount="indefinite" />
+      </circle>
+      <circle r="30" fill="#ffffff" filter="url(#glow)">
+        <animateTransform attributeName="transform" type="scale" values="1; 1.2; 1" dur="1.5s" repeatCount="indefinite" />
+      </circle>
+      
+      <!-- Particle Burst -->
+      <g fill="#ffd700" filter="url(#glow)">
+        <animateTransform attributeName="transform" type="rotate" values="0; -360" dur="20s" repeatCount="indefinite" />
+        <circle cx="0" cy="-180" r="4"/><circle cx="150" cy="100" r="3"/><circle cx="-150" cy="100" r="5"/>
+        <circle cx="230" cy="-50" r="2"/><circle cx="-200" cy="-120" r="4"/><circle cx="0" cy="250" r="3"/>
       </g>
     </g>
 
-    <!-- Deep Space Parallax Stars -->
-    <g class="stars" opacity=".9">
-      <animate attributeName="opacity" values="0.5;1;0.5" dur="4s" repeatCount="indefinite" />
-      <circle cx="362" cy="23" r="2"/><circle cx="432" cy="42" r="2.5"/><circle cx="473" cy="112" r="2"/><circle cx="550" cy="126" r="2.5"/>
-      <circle cx="18" cy="122" r="2"/><circle cx="206" cy="127" r="1.5"/><circle cx="582" cy="223" r="2"/><circle cx="14" cy="286" r="2.5"/>
-    </g>
+    <!-- Scanline Sweep Effect -->
+    <rect width="900" height="2" fill="#ffd700" opacity="0.3" filter="url(#glow)">
+      <animate attributeName="y" values="-10; 750" dur="4s" repeatCount="indefinite" />
+    </rect>
   </g>
 
-  <g transform="translate(10, 0)">
-    <text class="secondary" x="28" y="45" font-size="18" font-weight="700" letter-spacing="3" filter="url(#glow)">3D SOLAR METRICS ENGINE</text>
-    <text class="primary" x="28" y="90" font-size="36" font-weight="800" filter="url(#glow)">GitHub Live Telemetry</text>
-    <text class="secondary" x="28" y="125" font-size="24" fill="#ff7700">${HANDLE}</text>
+  <!-- HUD Text Overlay -->
+  <g transform="translate(40, 60)">
+    <rect x="0" y="0" width="12" height="12" fill="#ff7700" filter="url(#glow)">
+      <animate attributeName="opacity" values="1; 0; 1" dur="2s" repeatCount="indefinite" step="end"/>
+    </rect>
+    <text class="hud-title" x="25" y="12" font-size="20" font-weight="900" filter="url(#glow)">SEKHMET KINETIC TELEMETRY</text>
+    <text class="hud-label" x="25" y="32">SYSTEM_ID: ${HANDLE}</text>
+    <text class="hud-label" x="25" y="52">STATUS: ONLINE / 3D_ENGINE_ACTIVE</text>
   </g>
 
   ${tiles}
   
-  <text class="secondary" x="28" y="685" font-size="18" fill="#aeb8c5">${escapeXml(values ? `Updated ${updated}` : updated)}</text>
-  <text class="secondary" x="28" y="715" font-size="18" fill="#aeb8c5">Public only · Archived included</text>
+  <g transform="translate(40, 690)">
+    <text class="hud-label" x="0" y="0">LAST_SYNC: ${escapeXml(values ? updated : updated)}</text>
+    <text class="hud-label" x="0" y="20">DATA_SOURCE: PUBLIC_AND_ARCHIVED_REPOSITORIES</text>
+  </g>
+  
+  <!-- Outer HUD Frame Border -->
+  <rect width="896" height="736" x="2" y="2" rx="28" fill="none" stroke="#ffd700" stroke-width="3" opacity="0.4" filter="url(#glow)"/>
+  <path d="M 0 50 L 10 50 L 10 100 L 0 100" fill="none" stroke="#ffd700" stroke-width="4" filter="url(#glow)"/>
+  <path d="M 900 650 L 890 650 L 890 700 L 900 700" fill="none" stroke="#ffd700" stroke-width="4" filter="url(#glow)"/>
 </svg>
 `;
 }

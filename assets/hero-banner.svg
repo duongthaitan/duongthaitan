@@ -1,145 +1,166 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="360" viewBox="0 0 900 360" role="img" aria-labelledby="hero-title hero-desc">
-  <title id="hero-title">Duong Thai Tan — Sekhmet Solar Leo Developer</title>
-  <desc id="hero-desc">V2 Ultimate 3D Animated Hero Banner</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="400" viewBox="0 0 900 400" role="img">
+  <title id="hero-title">V3 God-Tier Sekhmet Solar Parallax Engine</title>
   <defs>
-    <clipPath id="hero-frame"><rect width="900" height="360" rx="20"/></clipPath>
+    <clipPath id="hero-frame"><rect width="900" height="400" rx="30"/></clipPath>
 
-    <!-- 3D Glow Filters -->
-    <filter id="hyper-glow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur1" />
-      <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur2" />
-      <feGaussianBlur in="SourceGraphic" stdDeviation="24" result="blur3" />
+    <!-- Extreme Glow Filters -->
+    <filter id="god-glow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="6" result="blur1" />
+      <feGaussianBlur stdDeviation="15" result="blur2" />
+      <feGaussianBlur stdDeviation="30" result="blur3" />
+      <feGaussianBlur stdDeviation="60" result="blur4" />
       <feMerge>
+        <feMergeNode in="blur4" />
         <feMergeNode in="blur3" />
         <feMergeNode in="blur2" />
         <feMergeNode in="blur1" />
         <feMergeNode in="SourceGraphic" />
       </feMerge>
     </filter>
-
-    <filter id="soft-glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur" />
+    
+    <filter id="neon" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur" />
       <feMerge>
         <feMergeNode in="blur" />
         <feMergeNode in="SourceGraphic" />
       </feMerge>
     </filter>
 
-    <!-- Deep Space Gradients -->
-    <radialGradient id="hero-gold" cx=".5" cy=".5" r=".5"><stop stop-color="#ffd700" stop-opacity=".6"/><stop offset=".45" stop-color="#d4a017" stop-opacity=".25"/><stop offset="1" stop-color="#050712" stop-opacity="0"/></radialGradient>
-    <radialGradient id="hero-sun" cx=".5" cy=".5" r=".5"><stop stop-color="#ffffff"/><stop offset=".2" stop-color="#ffd700"/><stop offset=".5" stop-color="#ff7700"/><stop offset=".8" stop-color="#b82800"/><stop offset="1" stop-color="#050712" stop-opacity="0"/></radialGradient>
-    <radialGradient id="hero-star" cx=".3" cy=".24" r=".76"><stop stop-color="#ffffff"/><stop offset=".3" stop-color="#ffd700"/><stop offset=".7" stop-color="#d4a017"/><stop offset="1" stop-color="#5c3a00"/></radialGradient>
-
-    <!-- Moving Light Ray Gradient -->
-    <linearGradient id="light-sweep" x1="0%" y1="0%" x2="200%" y2="0%">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0" />
-      <stop offset="50%" stop-color="#ffd700" stop-opacity="0.8" />
-      <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
-      <animate attributeName="x1" values="-100%;100%" dur="3s" repeatCount="indefinite" />
-      <animate attributeName="x2" values="0%;200%" dur="3s" repeatCount="indefinite" />
-    </linearGradient>
+    <radialGradient id="sun-core" cx=".5" cy=".5" r=".5">
+      <stop stop-color="#ffffff" stop-opacity="1"/>
+      <stop offset=".1" stop-color="#fff8e1" stop-opacity="1"/>
+      <stop offset=".4" stop-color="#ff7700" stop-opacity=".8"/>
+      <stop offset="1" stop-color="#b82800" stop-opacity="0"/>
+    </radialGradient>
+    
+    <!-- Path for AnimateMotion -->
+    <path id="comet-path" d="M -100 0 Q 450 -100 1000 400" fill="none"/>
+    <path id="comet-path-2" d="M 1000 0 Q 450 500 -100 300" fill="none"/>
   </defs>
 
   <g clip-path="url(#hero-frame)">
-    <!-- Deep Cosmic Background -->
-    <rect width="900" height="360" fill="#04060f"/>
-    <circle cx="675" cy="170" r="380" fill="url(#hero-gold)" opacity=".6">
-       <animate attributeName="opacity" values="0.4; 0.8; 0.4" dur="8s" repeatCount="indefinite" />
-       <animateTransform attributeName="transform" type="scale" values="0.95; 1.05; 0.95" dur="10s" repeatCount="indefinite" transform-origin="675 170" />
+    <!-- Absolute Dark Background -->
+    <rect width="900" height="400" fill="#010205"/>
+
+    <!-- Dynamic Pulsing Background Core -->
+    <circle cx="700" cy="200" r="450" fill="url(#sun-core)" opacity="0.3">
+      <animate attributeName="opacity" values="0.1;0.4;0.1" dur="4s" repeatCount="indefinite" />
+      <animateTransform attributeName="transform" type="scale" values="0.95;1.05;0.95" dur="12s" repeatCount="indefinite" transform-origin="700 200" />
     </circle>
 
-    <!-- Parallax Stars Background -->
-    <g fill="#ffe8b0" opacity=".6">
-       <animateTransform attributeName="transform" type="translate" values="-10, -5; 10, 5; -10, -5" dur="15s" repeatCount="indefinite" />
-       <circle cx="35" cy="45" r="1.2"/><circle cx="160" cy="80" r=".8"/><circle cx="280" cy="75" r="1.5"/><circle cx="530" cy="70" r="1"/>
-       <circle cx="120" cy="220" r="1.2"/><circle cx="260" cy="240" r="1"/><circle cx="470" cy="190" r="1.3"/>
-       <circle cx="110" cy="330" r="1"/><circle cx="360" cy="310" r="1.5"/><circle cx="490" cy="330" r=".8"/>
+    <!-- Parallax Background Stars (Slow) -->
+    <g fill="#ffffff" opacity="0.4">
+      <animateTransform attributeName="transform" type="translate" values="-15,0; 15,0; -15,0" dur="20s" repeatCount="indefinite" />
+      <circle cx="100" cy="50" r="1.5"/><circle cx="200" cy="150" r="1"/><circle cx="300" cy="80" r="2"/>
+      <circle cx="450" cy="300" r="1.5"/><circle cx="150" cy="350" r="2"/><circle cx="800" cy="80" r="1.5"/>
     </g>
 
-    <!-- Solar Flares 3D Rotation -->
-    <g opacity=".8" filter="url(#hyper-glow)">
-      <animateTransform attributeName="transform" type="rotate" values="0 675 170; 360 675 170" dur="20s" repeatCount="indefinite" />
-      <path d="M675 10 L685 150 L675 330 L665 150 Z" fill="#ffd700" opacity=".1" />
-      <path d="M515 170 L650 160 L835 170 L650 180 Z" fill="#ff7700" opacity=".1" />
-      <circle cx="675" cy="170" r="185" fill="none" stroke="#ffd700" stroke-width="1.5" stroke-dasharray="8 24" />
+    <!-- Middleground Constellations -->
+    <g stroke="#ffffff" stroke-width="0.5" stroke-dasharray="2 4" opacity="0.3">
+       <animateTransform attributeName="transform" type="rotate" values="0 700 200; 360 700 200" dur="120s" repeatCount="indefinite" />
+       <path d="M 500 100 L 550 50 L 600 80 L 650 30"/>
+       <circle cx="500" cy="100" r="2" fill="#fff" stroke="none"/><circle cx="550" cy="50" r="2" fill="#fff" stroke="none"/>
+       <circle cx="600" cy="80" r="2" fill="#fff" stroke="none"/><circle cx="650" cy="30" r="2" fill="#fff" stroke="none"/>
     </g>
 
-    <!-- Sekhmet Sun Disk (Heart of the profile) -->
+    <!-- Sun Core - The Heart of Leo -->
+    <g filter="url(#god-glow)">
+      <!-- V3 Solar Flares (Spiky shapes rotating) -->
+      <path d="M 700 0 L 710 170 L 850 100 L 720 190 L 900 200 L 720 210 L 850 300 L 710 230 L 700 400 L 690 230 L 550 300 L 680 210 L 500 200 L 680 190 L 550 100 L 690 170 Z" fill="#ff7700" opacity="0.15">
+        <animateTransform attributeName="transform" type="rotate" values="0 700 200; 360 700 200" dur="40s" repeatCount="indefinite" />
+      </path>
+      
+      <circle cx="700" cy="200" r="120" fill="url(#sun-core)">
+        <animateTransform attributeName="transform" type="scale" values="0.98;1.02;0.98" dur="2s" repeatCount="indefinite" transform-origin="700 200" />
+      </circle>
+
+      <!-- The Divine Eye of Ra (Cyberpunk Edition) -->
+      <g filter="url(#neon)">
+         <path d="M 640 180 Q 700 130 760 180" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round"/>
+         <path d="M 630 205 Q 700 150 770 205 Q 700 260 630 205" fill="none" stroke="#ffd700" stroke-width="8" stroke-linecap="round"/>
+         <circle cx="700" cy="200" r="22" fill="#ffffff"/>
+         <circle cx="700" cy="200" r="12" fill="#ff7700"/>
+         <circle cx="700" cy="200" r="5" fill="#000000"/>
+         <!-- Tech Tears -->
+         <path d="M 740 215 Q 755 250 740 280" fill="none" stroke="#ffd700" stroke-width="5" stroke-linecap="round"/>
+         <path d="M 660 215 L 670 240 L 650 260" fill="none" stroke="#ffd700" stroke-width="5" stroke-linecap="round"/>
+      </g>
+    </g>
+
+    <!-- Kinetic Rings (Astrolabe / Gyroscope) -->
+    <g filter="url(#neon)">
+      <!-- Ring X -->
+      <ellipse cx="700" cy="200" rx="260" ry="80" fill="none" stroke="#ffd700" stroke-width="2" stroke-dasharray="10 30" transform="rotate(-20 700 200)">
+        <animateTransform attributeName="transform" type="rotate" values="-20 700 200; 340 700 200" dur="20s" repeatCount="indefinite" />
+      </ellipse>
+      <!-- Ring Y -->
+      <ellipse cx="700" cy="200" rx="160" ry="320" fill="none" stroke="#ff7700" stroke-width="1.5" stroke-dasharray="50 50" transform="rotate(50 700 200)">
+        <animateTransform attributeName="transform" type="rotate" values="50 700 200; -310 700 200" dur="30s" repeatCount="indefinite" />
+      </ellipse>
+      <!-- Ring Z -->
+      <circle cx="700" cy="200" r="220" fill="none" stroke="#ffffff" stroke-width="1" stroke-dasharray="4 8" opacity="0.5">
+         <animateTransform attributeName="transform" type="scale" values="1; 1.05; 1" dur="1s" repeatCount="indefinite" transform-origin="700 200"/>
+      </circle>
+    </g>
+
+    <!-- Shooting Comets using AnimateMotion -->
     <g>
-       <animateTransform attributeName="transform" type="scale" values="0.97; 1.03; 0.97" dur="4s" repeatCount="indefinite" transform-origin="675 170" />
-       <circle cx="675" cy="170" r="120" fill="url(#hero-sun)" filter="url(#hyper-glow)"/>
-       
-       <!-- Eye of Ra -->
-       <g filter="url(#soft-glow)">
-          <path d="M625 155 Q675 120 725 155" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round"/>
-          <path d="M615 175 Q675 140 735 175 Q675 210 615 175" fill="none" stroke="#ffd700" stroke-width="6" stroke-linecap="round"/>
-          <circle cx="675" cy="170" r="18" fill="#ffffff"/>
-          <circle cx="675" cy="170" r="10" fill="#e67e22"/>
-          <circle cx="675" cy="170" r="4.5" fill="#050712"/>
-          <path d="M710 182 Q725 210 715 235 M712 205 Q735 208 745 198" fill="none" stroke="#ffd700" stroke-width="4" stroke-linecap="round"/>
-          <path d="M640 182 Q625 215 635 230" fill="none" stroke="#ffd700" stroke-width="3.5" stroke-linecap="round"/>
-       </g>
+      <circle r="3" fill="#ffffff" filter="url(#neon)">
+        <animateMotion dur="5s" repeatCount="indefinite">
+           <mpath href="#comet-path"/>
+        </animateMotion>
+      </circle>
+      <path d="M 0 0 L -40 -10 L -40 10 Z" fill="#ffd700" opacity="0.5">
+        <animateMotion dur="5s" repeatCount="indefinite" rotate="auto">
+           <mpath href="#comet-path"/>
+        </animateMotion>
+      </path>
+    </g>
+    <g>
+      <circle r="4" fill="#ff7700" filter="url(#neon)">
+        <animateMotion dur="8s" repeatCount="indefinite" begin="2s">
+           <mpath href="#comet-path-2"/>
+        </animateMotion>
+      </circle>
     </g>
 
-    <!-- Rotating Zodiac Nodes (3D Orbital Rings) -->
-    <g filter="url(#soft-glow)">
-       <!-- Ring 1 -->
-       <ellipse cx="675" cy="170" rx="200" ry="80" fill="none" stroke="url(#light-sweep)" stroke-width="2" transform="rotate(-15 675 170)"/>
-       <!-- Ring 2 -->
-       <ellipse cx="675" cy="170" rx="140" ry="240" fill="none" stroke="#ffd700" stroke-width="1" stroke-dasharray="4 16" transform="rotate(45 675 170)">
-         <animateTransform attributeName="transform" type="rotate" values="45 675 170; 405 675 170" dur="40s" repeatCount="indefinite" />
-       </ellipse>
-       <!-- Golden Nodes -->
-       <g fill="#ffd700">
-         <animateTransform attributeName="transform" type="rotate" values="0 675 170; -360 675 170" dur="30s" repeatCount="indefinite" />
-         <circle cx="485" cy="170" r="6"/><circle cx="865" cy="170" r="5"/>
-         <circle cx="675" cy="10" r="7"/><circle cx="675" cy="330" r="4"/>
-         <circle cx="530" cy="50" r="5"/><circle cx="820" cy="290" r="6"/>
-       </g>
-    </g>
-
-    <!-- Foreground Content Typography with Sweeping Glassmorphism -->
-    <g transform="translate(45, 0)">
-      <!-- Developer Glass Badge -->
-      <g filter="url(#soft-glow)">
-        <rect x="0" y="55" width="220" height="26" rx="8" fill="#161b22" stroke="url(#light-sweep)" stroke-width="1.5" opacity="0.9"/>
-        <circle cx="15" cy="68" r="4" fill="#ff5f56"/>
-        <circle cx="28" cy="68" r="4" fill="#ffbd2e"/>
-        <circle cx="41" cy="68" r="4" fill="#27c93f"/>
-        <text x="54" y="72" font-family="monospace" font-size="10.5" fill="#a0b0c0" font-weight="600">tan.js • WebGL 3D Dev</text>
+    <!-- Kinetic Typography -->
+    <g transform="translate(50, 0)">
+      <g filter="url(#neon)">
+        <!-- Animated Badge -->
+        <rect x="0" y="60" width="280" height="28" rx="8" fill="#1e180a" stroke="#ffd700" stroke-width="1.5"/>
+        <circle cx="15" cy="74" r="5" fill="#ff0000">
+           <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite" />
+        </circle>
+        <text x="30" y="79" font-family="monospace" font-size="12" font-weight="700" fill="#ffd700" letter-spacing="1">
+          SYS.BOOT(SEKHMET_V3_GOD_TIER)
+        </text>
       </g>
 
-      <text x="0" y="156" font-family="system-ui" font-size="52" font-weight="800" letter-spacing="-1.5" fill="#ffffff" filter="url(#soft-glow)">
-        Duong Thai Tan
+      <text x="0" y="170" font-family="system-ui" font-size="60" font-weight="900" letter-spacing="-2" fill="#ffffff" filter="url(#neon)">
+        DUONG THAI TAN
       </text>
 
-      <text x="0" y="196" font-family="system-ui" font-size="22" font-weight="600" fill="#ffd700" letter-spacing="1">
-        Sekhmet's Solar Lion Developer
-        <animate attributeName="opacity" values="0.7; 1; 0.7" dur="3s" repeatCount="indefinite" />
+      <text x="0" y="215" font-family="system-ui" font-size="28" font-weight="800" fill="#ff7700" letter-spacing="2">
+        <animate attributeName="opacity" values="0.8; 1; 0.8" dur="2s" repeatCount="indefinite" />
+        KINETIC 3D ARCHITECT
       </text>
 
-      <text x="0" y="222" font-family="system-ui" font-size="14.5" fill="#c2b280" font-weight="500">
-        Frontend Architect • Three.js &amp; GSAP 3D Motion • Fullstack Artisan
+      <text x="0" y="250" font-family="system-ui" font-size="16" fill="#c2b280" font-weight="600" letter-spacing="1">
+        WEBGL // SHADERS // GSAP // FRONTEND ENGINEERING
       </text>
-      <text x="0" y="244" font-family="monospace" font-size="11.5" fill="#7ee787" font-weight="600">
-        tan@solarlion:~# npm run ignite:3d-core [SUCCESS]
-      </text>
-
-      <!-- Animated Action Badges -->
-      <g transform="translate(0, 275)" font-family="monospace" font-weight="700" font-size="11" filter="url(#soft-glow)">
-        <rect x="0" y="0" width="115" height="30" rx="8" fill="#1e180a" stroke="#ffd700" stroke-width="1.5"/>
-        <text x="18" y="19" fill="#ffd700">LEO (18/8)</text>
-
-        <rect x="130" y="0" width="175" height="30" rx="8" fill="#1e180a" stroke="#ff7700" stroke-width="1.5"/>
-        <text x="145" y="19" fill="#ff9900">FULLSTACK ARCHITECT</text>
-
-        <rect x="320" y="0" width="160" height="30" rx="8" fill="#1e180a" stroke="#27c93f" stroke-width="1.5"/>
-        <text x="335" y="19" fill="#7ee787">THREE.JS / GSAP</text>
+      
+      <!-- Scanline / Typewriter Text -->
+      <g filter="url(#neon)">
+        <text x="0" y="280" font-family="monospace" font-size="13" fill="#7ee787" font-weight="700">
+          [+] INIT SOLAR FLARE OVERDRIVE...
+          <animate attributeName="opacity" values="1; 0; 1" dur="0.5s" repeatCount="indefinite" step="end"/>
+        </text>
       </g>
     </g>
-
-    <!-- Outer Cinematic Frame with Sweeping Light -->
-    <rect x="1" y="1" width="898" height="358" rx="20" fill="none" stroke="url(#light-sweep)" stroke-width="2"/>
-    <rect x="2" y="2" width="896" height="356" rx="19" fill="none" stroke="#ffd700" stroke-width="0.5" opacity="0.3"/>
+    
+    <!-- Heavy Cyber Border -->
+    <rect x="2" y="2" width="896" height="396" rx="28" fill="none" stroke="#ffd700" stroke-width="4" opacity="0.3" filter="url(#neon)"/>
+    <path d="M 0 50 L 20 50 L 20 100 L 0 100" fill="none" stroke="#ffd700" stroke-width="5" filter="url(#neon)"/>
   </g>
 </svg>
