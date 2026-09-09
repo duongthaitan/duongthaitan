@@ -1,24 +1,32 @@
 <div align="center">
-  <img src="./assets/hero-banner.svg?v=god-tier" width="100%" alt="V3 Kinetic Engine" />
+  <img src="https://media.giphy.com/media/26FPCXdkvDbKBbgOI/giphy.gif" width="100%" alt="Photorealistic NASA Solar Flare" />
 </div>
 
 <br/>
 
 <div align="center">
-  <img src="./assets/typing-anim.svg?v=god-tier" width="600" alt="Sekhmet Solar Leo — Developer CLI" />
+  <img src="./assets/hero-banner.svg?v=photorealistic" width="100%" alt="V3 Kinetic Engine" />
+</div>
+
+<br/>
+
+<div align="center">
+  <img src="./assets/typing-anim.svg?v=photorealistic" width="600" alt="Sekhmet Solar Leo — Developer CLI" />
 </div>
 
 <div align="center">
-  <img src="https://media.giphy.com/media/xT0xeiP4F3qH82h7NK/giphy.gif" width="100%" height="8" alt="fire line" />
+  <img src="https://media.giphy.com/media/xT0xeiP4F3qH82h7NK/giphy.gif" width="100%" height="15" alt="fire line" />
 </div>
 
 <h1 align="center">
-  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbnZvZjkyNm1mbjQyNmQxa3E4MGEzbW83ZXA0bm84MnI0ZXA1OXBwNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7TKMt1VVNkHV2PaE/giphy.gif" alt="Fire" width="50" height="50" /> DUONG THAI TAN <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbnZvZjkyNm1mbjQyNmQxa3E4MGEzbW83ZXA0bm84MnI0ZXA1OXBwNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7TKMt1VVNkHV2PaE/giphy.gif" alt="Fire" width="50" height="50" />
+  <img src="https://media.giphy.com/media/3o7aD0QILFVJFE9mCc/giphy.gif" alt="Realistic Lion" width="80" style="border-radius: 50%" /> 
+  DUONG THAI TAN 
+  <img src="https://media.giphy.com/media/3o7aD0QILFVJFE9mCc/giphy.gif" alt="Realistic Lion" width="80" style="border-radius: 50%" />
 </h1>
 
 <p align="center">
   <strong>👑 KINETIC 3D ARCHITECT — SOLAR FIRE LEO</strong><br />
-  <em>Xây dựng các tiểu vũ trụ ngay trên trình duyệt của bạn.</em>
+  <em>Xây dựng các tiểu vũ trụ ngay trên trình duyệt của bạn với độ chân thực tối đa.</em>
 </p>
 
 <p align="center">
@@ -31,7 +39,7 @@
 </p>
 
 <div align="center">
-  <img src="https://media.giphy.com/media/xT0xeiP4F3qH82h7NK/giphy.gif" width="100%" height="8" alt="fire line" />
+  <img src="https://media.giphy.com/media/xT0xeiP4F3qH82h7NK/giphy.gif" width="100%" height="15" alt="fire line" />
 </div>
 
 <br/>
@@ -44,17 +52,17 @@
   Được bảo hộ bởi <strong>Sekhmet</strong> — Nữ thần của Lửa, Chiến tranh và Quyền lực. Sinh ngày <strong>18 Tháng 8</strong> (Leo ♌), tôi biến Code thành Hạt Cơ Bản (Particles), biến Hàm số thành Quỹ đạo (Orbits), và biến Trình Duyệt thành Vũ Trụ (Universe).
 </p>
 <p align="justify">
-  Website không phải là trang giấy phẳng, nó là một thế giới 3D đa chiều cần được đánh thức.
+  Website không phải là trang giấy phẳng, nó là một thế giới 3D đa chiều cần được đánh thức với độ chân thực như ngoài đời thực.
 </p>
 </td>
 <td width="45%" align="center">
-  <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Animals/Lion.png" alt="Lion" width="100" />
+  <img src="https://media.giphy.com/media/26FPCXdkvDbKBbgOI/giphy.gif" alt="NASA Solar Flare" width="250" style="border-radius: 12px; border: 2px solid #ffd700;" />
 </td>
 </tr>
 </table>
 
 <div align="center">
-  <img src="https://media.giphy.com/media/xT0xeiP4F3qH82h7NK/giphy.gif" width="100%" height="8" alt="fire line" />
+  <img src="https://media.giphy.com/media/xT0xeiP4F3qH82h7NK/giphy.gif" width="100%" height="15" alt="fire line" />
 </div>
 
 ## ⚔️ Kỹ Năng Động Lực Học (Kinetic Skills)
@@ -66,21 +74,21 @@
 </p>
 
 <div align="center">
-  <img src="https://media.giphy.com/media/xT0xeiP4F3qH82h7NK/giphy.gif" width="100%" height="8" alt="fire line" />
+  <img src="https://media.giphy.com/media/xT0xeiP4F3qH82h7NK/giphy.gif" width="100%" height="15" alt="fire line" />
 </div>
 
 ## 🔭 Đài Quan Sát Không Gian (HUD Telemetry)
 
 <p align="justify">
-  <strong>V3 God-Tier:</strong> Biểu đồ GitHub giờ đây không còn là số liệu khô khan, nó là một <strong>Giao diện HUD (Head-Up Display)</strong> của phi thuyền với các hệ thống con quay hồi chuyển 3D (Gyroscope) chuyển động liên tục, do chính file <code>render-metrics.mjs</code> của tôi vẽ ra bằng mã SVG nội tại!
+  <strong>V4 Photorealistic:</strong> Tích hợp trạm không gian HUD 3D đa trục và theo dõi thời gian thực dữ liệu GitHub. Đồ thị không còn tĩnh, nó sống động và cuộn trào như năng lượng của chòm sao Sư Tử.
 </p>
 
 <p align="center">
-  <img src="./assets/github-metrics.svg?v=god-tier" width="900" alt="GitHub HUD" />
+  <img src="./assets/github-metrics.svg?v=photorealistic" width="900" alt="GitHub HUD" />
 </p>
 
 <div align="center">
-  <img src="https://media.giphy.com/media/xT0xeiP4F3qH82h7NK/giphy.gif" width="100%" height="8" alt="fire line" />
+  <img src="https://media.giphy.com/media/xT0xeiP4F3qH82h7NK/giphy.gif" width="100%" height="15" alt="fire line" />
 </div>
 
 <h2 align="center">🛰️ Kết Nối Với Trung Tâm Điều Khiển</h2>
@@ -100,7 +108,7 @@
 <br/>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Fire.png" alt="Fire" width="30" />
+  <img src="https://media.giphy.com/media/3o7aD0QILFVJFE9mCc/giphy.gif" alt="Roar" width="40" style="border-radius: 50%" />
   <samp> BẢO VỆ BỞI LỬA THIÊNG SEKHMET // 18/08 LEO </samp>
-  <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Fire.png" alt="Fire" width="30" />
+  <img src="https://media.giphy.com/media/3o7aD0QILFVJFE9mCc/giphy.gif" alt="Roar" width="40" style="border-radius: 50%" />
 </p>
