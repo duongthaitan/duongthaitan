@@ -12,13 +12,13 @@
     <radialGradient id="about-moon" cx=".25" cy=".19" r=".83"><stop stop-color="#ffe8c0"/><stop offset=".35" stop-color="#d4a86a"/><stop offset=".67" stop-color="#6b5a38"/><stop offset="1" stop-color="#12160e"/></radialGradient>
     <linearGradient id="about-rim" x1="649" y1="54" x2="744" y2="148" gradientUnits="userSpaceOnUse"><stop stop-color="#fff4d4"/><stop offset=".55" stop-color="#d4a017" stop-opacity=".5"/><stop offset="1" stop-color="#8b6914" stop-opacity="0"/></linearGradient>
     <style>
-      text{font-family:'Segoe UI',Arial,sans-serif;fill:#e6edf3}.secondary{fill:#aeb8c5}.label{font-family:ui-monospace,Consolas,monospace;letter-spacing:1.6px}.world{animation:about-settle 3.6s ease-out 1}.moon{transform-origin:696px 105px;animation:about-orbit 3.8s ease-out 1}@keyframes about-settle{from{transform:translate(0,4px)}to{transform:translate(0,0)}}@keyframes about-orbit{from{transform:rotate(-3deg)}to{transform:rotate(0)}}@media(prefers-reduced-motion:reduce){.world,.moon{animation:none}}@media(forced-colors:active){.decor{display:none}.background{fill:Canvas}.border{stroke:CanvasText}text,.secondary{fill:CanvasText}}
+      text{font-family:'Segoe UI',Arial,sans-serif;fill:#e6edf3}.secondary{fill:#aeb8c5}.label{font-family:ui-monospace,Consolas,monospace;letter-spacing:1.6px}.world{transform-origin:696px 105px;animation:about-pulse 7s ease-in-out 200}.moon{transform-origin:696px 105px;animation:about-orbit 25s linear 200}.neb{transform-origin:715px 94px;animation:about-drift 18s ease-in-out 200}.twk{transform-origin:584px 100px;animation:about-twk 3.5s ease-in-out 200}@keyframes about-pulse{0%,100%{transform:scale(.95);opacity:.9}50%{transform:scale(1.03);opacity:1}}@keyframes about-orbit{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}@keyframes about-drift{0%,100%{transform:rotate(-15deg) translate(0,0)}50%{transform:rotate(-15deg) translate(8px,-5px)}}@keyframes about-twk{0%,100%{opacity:.4;transform:scale(.9)}50%{opacity:1;transform:scale(1.25)}}@media(prefers-reduced-motion:reduce){.world,.moon,.neb,.twk{animation:none}}@media(forced-colors:active){.decor{display:none}.background{fill:Canvas}.border{stroke:CanvasText}text,.secondary{fill:CanvasText}}
     </style>
   </defs>
   <g clip-path="url(#about-frame)">
     <rect class="background" width="900" height="200" fill="#070b19"/>
     <g class="decor">
-      <ellipse cx="715" cy="94" rx="330" ry="191" fill="url(#about-nebula)" transform="rotate(-15 715 94)"/>
+      <ellipse class="neb" cx="715" cy="94" rx="330" ry="191" fill="url(#about-nebula)" transform="rotate(-15 715 94)"/>
       <ellipse cx="802" cy="164" rx="236" ry="110" fill="url(#about-fire)" transform="rotate(-28 802 164)"/>
       <ellipse cx="407" cy="-22" rx="209" ry="120" fill="url(#about-nebula)" opacity=".5"/>
       <g fill="#d4c5a0" opacity=".42">
@@ -27,7 +27,7 @@
         <circle cx="505" cy="32" r=".8"/><circle cx="547" cy="79" r=".6"/><circle cx="573" cy="14" r=".6"/><circle cx="623" cy="28" r=".7"/><circle cx="663" cy="16" r=".5"/><circle cx="738" cy="24" r=".65"/><circle cx="782" cy="47" r=".7"/><circle cx="838" cy="19" r=".6"/><circle cx="870" cy="59" r=".75"/>
         <circle cx="528" cy="124" r=".5"/><circle cx="558" cy="166" r=".75"/><circle cx="609" cy="129" r=".6"/><circle cx="640" cy="182" r=".65"/><circle cx="708" cy="188" r=".8"/><circle cx="766" cy="170" r=".55"/><circle cx="816" cy="116" r=".6"/><circle cx="856" cy="164" r=".7"/><circle cx="884" cy="125" r=".55"/><circle cx="800" cy="186" r=".55"/>
       </g>
-      <g fill="#ffe8b0"><circle cx="476" cy="54" r="1.1" opacity=".7"/><circle cx="824" cy="79" r="1.25"/><circle cx="584" cy="189" r="1" opacity=".7"/><circle cx="361" cy="142" r=".9" opacity=".6"/><circle cx="758" cy="15" r="1" opacity=".8"/></g>
+      <g class="twk" fill="#ffe8b0"><circle cx="476" cy="54" r="1.1" opacity=".7"/><circle cx="824" cy="79" r="1.25"/><circle cx="584" cy="189" r="1" opacity=".7"/><circle cx="361" cy="142" r=".9" opacity=".6"/><circle cx="758" cy="15" r="1" opacity=".8"/></g>
       <path d="M863 96v7m-3.5-3.5h7M591 30v5m-2.5-2.5h5" fill="none" stroke="#ffe8b0" stroke-opacity=".58" stroke-linecap="round"/>
       <ellipse cx="696" cy="105" rx="161" ry="52" transform="rotate(-17 696 105)" fill="none" stroke="#c9a455" stroke-opacity=".2" stroke-width=".8"/>
       <ellipse cx="696" cy="105" rx="116" ry="83" transform="rotate(22 696 105)" fill="none" stroke="#b89040" stroke-opacity=".12" stroke-width=".8"/>
@@ -57,9 +57,9 @@
       <path d="M855 220A102 102 0 0 1 942 134" fill="none" stroke="#8b7020" stroke-opacity=".1" stroke-width="12"/>
       <path d="M855 220A102 102 0 0 1 942 134L956 235Z" fill="#10130a" stroke="#a88a30" stroke-opacity=".3"/>
     </g>
-    <text x="40" y="39" class="label secondary" font-size="10">SECTOR 01 / ABOUT</text>
-    <text x="38" y="104" font-size="39" font-weight="650" letter-spacing="-1">Mission control</text>
-    <text x="40" y="137" class="secondary" font-size="15">The lion behind the pixels.</text>
+    <text x="40" y="39" class="label secondary" font-size="10">SECTOR 01 / SEKHMET SOLAR SANCTUARY 𓁛</text>
+    <text x="38" y="104" font-size="39" font-weight="650" letter-spacing="-1">Solar Lion Heart</text>
+    <text x="40" y="137" class="secondary" font-size="15">Born August 18 — Protected by Sekhmet's Divine Fire.</text>
     <path class="decor" d="M40 164H70" stroke="#d4a017" stroke-width="1.5"/>
   </g>
   <rect class="border" x=".5" y=".5" width="899" height="199" rx="15.5" fill="none" stroke="#8b7d3e" stroke-opacity=".23"/>
