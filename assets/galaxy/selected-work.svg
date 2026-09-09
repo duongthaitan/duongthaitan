@@ -10,13 +10,13 @@
     <radialGradient id="work-ruby" cx=".26" cy=".2" r=".82"><stop stop-color="#ffe0c0"/><stop offset=".28" stop-color="#e8884a"/><stop offset=".58" stop-color="#a04020"/><stop offset=".82" stop-color="#3a1810"/><stop offset="1" stop-color="#100808"/></radialGradient>
     <linearGradient id="work-ray" x1="660" y1="40" x2="780" y2="165" gradientUnits="userSpaceOnUse"><stop stop-color="#ffd700" stop-opacity=".5"/><stop offset=".5" stop-color="#e8c170" stop-opacity=".6"/><stop offset="1" stop-color="#c4762b" stop-opacity=".3"/></linearGradient>
     <style>
-      text{font-family:'Segoe UI',Arial,sans-serif;fill:#e6edf3}.secondary{fill:#aeb8c5}.label{font-family:ui-monospace,Consolas,monospace;letter-spacing:1.6px}.crown{transform-origin:720px 100px;animation:work-settle 3.6s ease-out 1}.ray{stroke-dasharray:300;stroke-dashoffset:0;animation:work-ray 3.4s ease-out 1}@keyframes work-settle{from{transform:translate(0,5px) scale(.95)}to{transform:translate(0,0) scale(1)}}@keyframes work-ray{from{stroke-dashoffset:300}to{stroke-dashoffset:0}}@media(prefers-reduced-motion:reduce){.crown,.ray{animation:none}}@media(forced-colors:active){.decor{display:none}.background{fill:Canvas}.border{stroke:CanvasText}text,.secondary{fill:CanvasText}}
+      text{font-family:'Segoe UI',Arial,sans-serif;fill:#e6edf3}.secondary{fill:#aeb8c5}.label{font-family:ui-monospace,Consolas,monospace;letter-spacing:1.6px}.crown{transform-origin:720px 100px;animation:work-pulse 6s ease-in-out 200}.ray{stroke-dasharray:300;stroke-dashoffset:0;animation:work-ray 7s ease-in-out 200}.neb{transform-origin:720px 100px;animation:work-drift 20s ease-in-out 200}.twk{transform-origin:508px 65px;animation:work-twk 3.5s ease-in-out 200}@keyframes work-pulse{0%,100%{transform:scale(.95);opacity:.9}50%{transform:scale(1.04);opacity:1}}@keyframes work-ray{0%,100%{stroke-dashoffset:0;opacity:.7}50%{stroke-dashoffset:140;opacity:1}}@keyframes work-drift{0%,100%{transform:rotate(-12deg) translate(0,0)}50%{transform:rotate(-12deg) translate(10px,-5px)}}@keyframes work-twk{0%,100%{opacity:.4;transform:scale(.9)}50%{opacity:1;transform:scale(1.25)}}@media(prefers-reduced-motion:reduce){.crown,.ray,.neb,.twk{animation:none}}@media(forced-colors:active){.decor{display:none}.background{fill:Canvas}.border{stroke:CanvasText}text,.secondary{fill:CanvasText}}
     </style>
   </defs>
   <g clip-path="url(#work-frame)">
     <rect class="background" width="900" height="200" fill="#070b19"/>
     <g class="decor">
-      <ellipse cx="720" cy="100" rx="310" ry="170" fill="url(#work-nebula)" transform="rotate(-12 720 100)"/>
+      <ellipse class="neb" cx="720" cy="100" rx="310" ry="170" fill="url(#work-nebula)" transform="rotate(-12 720 100)"/>
       <ellipse cx="810" cy="55" rx="200" ry="95" fill="url(#work-fire)" transform="rotate(-22 810 55)"/>
       <ellipse cx="450" cy="175" rx="240" ry="88" fill="url(#work-nebula)" opacity=".35"/>
       <g fill="#d4c5a0" opacity=".4">
@@ -25,7 +25,7 @@
         <circle cx="520" cy="30" r=".7"/><circle cx="558" cy="80" r=".55"/><circle cx="590" cy="15" r=".6"/><circle cx="630" cy="70" r=".5"/><circle cx="665" cy="18" r=".55"/><circle cx="710" cy="38" r=".6"/><circle cx="758" cy="20" r=".7"/><circle cx="805" cy="28" r=".55"/><circle cx="848" cy="60" r=".65"/><circle cx="878" cy="22" r=".55"/>
         <circle cx="530" cy="162" r=".6"/><circle cx="575" cy="185" r=".7"/><circle cx="648" cy="168" r=".5"/><circle cx="685" cy="186" r=".6"/><circle cx="728" cy="172" r=".5"/><circle cx="798" cy="188" r=".75"/><circle cx="845" cy="172" r=".55"/><circle cx="878" cy="138" r=".6"/>
       </g>
-      <g fill="#ffe8b0"><circle cx="508" cy="65" r="1.1" opacity=".75"/><circle cx="860" cy="45" r="1.15" opacity=".8"/><circle cx="700" cy="18" r="1" opacity=".7"/><circle cx="555" cy="130" r=".9" opacity=".6"/><circle cx="830" cy="155" r="1" opacity=".75"/></g>
+      <g class="twk" fill="#ffe8b0"><circle cx="508" cy="65" r="1.1" opacity=".75"/><circle cx="860" cy="45" r="1.15" opacity=".8"/><circle cx="700" cy="18" r="1" opacity=".7"/><circle cx="555" cy="130" r=".9" opacity=".6"/><circle cx="830" cy="155" r="1" opacity=".75"/></g>
       <path d="M868 175v6m-3-3h6M575 42v5m-2.5-2.5h5" fill="none" stroke="#ffe8b0" stroke-opacity=".55" stroke-linecap="round"/>
       <!-- Crown constellation -->
       <g class="crown">
@@ -60,13 +60,13 @@
         <circle cx="800" cy="140" r="16" fill="url(#work-glow)"/>
         <circle cx="800" cy="140" r="7" fill="url(#work-gem)"/>
         <path d="M794 137A7 7 0 0 1 803 134" fill="none" stroke="#fff4d4" stroke-opacity=".6" stroke-width=".6"/>
-        <!-- Small accent dots -->
-        <circle cx="690" cy="110" r="1.8" fill="#e8c870"/><circle cx="750" cy="110" r="1.8" fill="#e8c870"/><circle cx="720" cy="28" r="1.5" fill="#ffd700" opacity=".6"/>
+        <!-- Connection node sparks -->
+        <circle cx="690" cy="110" r="1.8" fill="#ffd700" opacity=".6"/><circle cx="750" cy="110" r="1.8" fill="#ffd700" opacity=".6"/>
       </g>
     </g>
-    <text x="40" y="39" class="label secondary" font-size="10">SECTOR 03 / PORTFOLIO</text>
-    <text x="38" y="104" font-size="39" font-weight="650" letter-spacing="-1">Selected work</text>
-    <text x="40" y="137" class="secondary" font-size="15">Crowned with intention.</text>
+    <text x="40" y="39" class="label secondary" font-size="10">SECTOR 03 / SEKHMET SOLAR CROWN 𓃬</text>
+    <text x="38" y="104" font-size="39" font-weight="650" letter-spacing="-1">Crowned in Fire</text>
+    <text x="40" y="137" class="secondary" font-size="15">Golden Pyramids &amp; 3D Orbital Canvas.</text>
     <path class="decor" d="M40 164H70" stroke="#d4a017" stroke-width="1.5"/>
   </g>
   <rect class="border" x=".5" y=".5" width="899" height="199" rx="15.5" fill="none" stroke="#8b7d3e" stroke-opacity=".23"/>

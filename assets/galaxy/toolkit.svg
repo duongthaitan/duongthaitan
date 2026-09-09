@@ -12,13 +12,13 @@
     <linearGradient id="toolkit-link" x1="557" y1="30" x2="842" y2="174" gradientUnits="userSpaceOnUse"><stop stop-color="#e8c170" stop-opacity=".25"/><stop offset=".48" stop-color="#ffd700" stop-opacity=".7"/><stop offset="1" stop-color="#c4762b" stop-opacity=".3"/></linearGradient>
     <linearGradient id="toolkit-ring"><stop stop-color="#ffe8b0"/><stop offset=".48" stop-color="#d4a017"/><stop offset="1" stop-color="#8b6914"/></linearGradient>
     <style>
-      text{font-family:'Segoe UI',Arial,sans-serif;fill:#e6edf3}.secondary{fill:#aeb8c5}.label{font-family:ui-monospace,Consolas,monospace;letter-spacing:1.6px}.constellation{transform-origin:699px 102px;animation:toolkit-settle 3.8s ease-out 1}.trace{stroke-dasharray:460;stroke-dashoffset:0;animation:toolkit-trace 3.2s ease-out 1}@keyframes toolkit-settle{from{transform:translate(3px,2px) rotate(1.5deg)}to{transform:translate(0,0) rotate(0)}}@keyframes toolkit-trace{from{stroke-dashoffset:80}to{stroke-dashoffset:0}}@media(prefers-reduced-motion:reduce){.constellation,.trace{animation:none}}@media(forced-colors:active){.decor{display:none}.background{fill:Canvas}.border{stroke:CanvasText}text,.secondary{fill:CanvasText}}
+      text{font-family:'Segoe UI',Arial,sans-serif;fill:#e6edf3}.secondary{fill:#aeb8c5}.label{font-family:ui-monospace,Consolas,monospace;letter-spacing:1.6px}.constellation{transform-origin:699px 102px;animation:toolkit-spin 35s linear 200}.trace{stroke-dasharray:460;stroke-dashoffset:0;animation:toolkit-trace 8s ease-in-out 200}.neb{transform-origin:693px 110px;animation:toolkit-drift 18s ease-in-out 200}.twk{transform-origin:511px 70px;animation:toolkit-twk 3.5s ease-in-out 200}@keyframes toolkit-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}@keyframes toolkit-trace{0%,100%{stroke-dashoffset:0;opacity:.7}50%{stroke-dashoffset:180;opacity:1}}@keyframes toolkit-drift{0%,100%{transform:rotate(16deg) translate(0,0)}50%{transform:rotate(16deg) translate(8px,-6px)}}@keyframes toolkit-twk{0%,100%{opacity:.4;transform:scale(.9)}50%{opacity:1;transform:scale(1.25)}}@media(prefers-reduced-motion:reduce){.constellation,.trace,.neb,.twk{animation:none}}@media(forced-colors:active){.decor{display:none}.background{fill:Canvas}.border{stroke:CanvasText}text,.secondary{fill:CanvasText}}
     </style>
   </defs>
   <g clip-path="url(#toolkit-frame)">
     <rect class="background" width="900" height="200" fill="#070b19"/>
     <g class="decor">
-      <ellipse cx="693" cy="110" rx="328" ry="165" fill="url(#toolkit-nebula)" transform="rotate(16 693 110)"/>
+      <ellipse class="neb" cx="693" cy="110" rx="328" ry="165" fill="url(#toolkit-nebula)" transform="rotate(16 693 110)"/>
       <ellipse cx="791" cy="41" rx="197" ry="103" fill="url(#toolkit-fire)" transform="rotate(-19 791 41)"/>
       <ellipse cx="432" cy="180" rx="231" ry="94" fill="url(#toolkit-nebula)" opacity=".4"/>
       <g fill="#d4c5a0" opacity=".4">
@@ -27,7 +27,7 @@
         <circle cx="525" cy="29" r=".75"/><circle cx="562" cy="83" r=".55"/><circle cx="594" cy="16" r=".65"/><circle cx="628" cy="76" r=".5"/><circle cx="660" cy="18" r=".6"/><circle cx="704" cy="41" r=".65"/><circle cx="755" cy="17" r=".7"/><circle cx="800" cy="30" r=".6"/><circle cx="849" cy="65" r=".7"/><circle cx="880" cy="24" r=".55"/>
         <circle cx="527" cy="166" r=".6"/><circle cx="573" cy="187" r=".7"/><circle cx="644" cy="165" r=".55"/><circle cx="679" cy="189" r=".65"/><circle cx="723" cy="169" r=".5"/><circle cx="793" cy="190" r=".8"/><circle cx="841" cy="176" r=".6"/><circle cx="880" cy="141" r=".6"/><circle cx="853" cy="111" r=".65"/><circle cx="754" cy="95" r=".55"/>
       </g>
-      <g fill="#ffe8b0"><circle cx="511" cy="70" r="1.1" opacity=".8"/><circle cx="863" cy="41" r="1.2" opacity=".8"/><circle cx="694" cy="16" r="1" opacity=".7"/><circle cx="557" cy="134" r=".9" opacity=".65"/><circle cx="411" cy="148" r=".95" opacity=".6"/><circle cx="828" cy="152" r="1" opacity=".8"/></g>
+      <g class="twk" fill="#ffe8b0"><circle cx="511" cy="70" r="1.1" opacity=".8"/><circle cx="863" cy="41" r="1.2" opacity=".8"/><circle cx="694" cy="16" r="1" opacity=".7"/><circle cx="557" cy="134" r=".9" opacity=".65"/><circle cx="411" cy="148" r=".95" opacity=".6"/><circle cx="828" cy="152" r="1" opacity=".8"/></g>
       <path d="M871 180v6m-3-3h6M571 46v6m-3-3h6" fill="none" stroke="#ffe8b0" stroke-opacity=".55" stroke-linecap="round"/>
       <ellipse cx="704" cy="105" rx="165" ry="64" transform="rotate(-11 704 105)" fill="none" stroke="#c9a455" stroke-opacity=".1" stroke-width=".8"/>
       <g class="constellation">
@@ -59,9 +59,9 @@
         <circle cx="648" cy="78" r="2" fill="#ffe8b0"/><circle cx="754" cy="105" r="1.8" fill="#d4a862"/><circle cx="662" cy="124" r="1.6" fill="#e8c870"/>
       </g>
     </g>
-    <text x="40" y="39" class="label secondary" font-size="10">SECTOR 02 / TOOLKIT</text>
-    <text x="38" y="104" font-size="36" font-weight="650" letter-spacing="-1.1">Technology constellation</text>
-    <text x="40" y="137" class="secondary" font-size="15">Tools forged in golden fire.</text>
+    <text x="40" y="39" class="label secondary" font-size="10">SECTOR 02 / SEKHMET SOLAR FORGE 𓆣</text>
+    <text x="38" y="104" font-size="39" font-weight="650" letter-spacing="-1">Forge of Tech</text>
+    <text x="40" y="137" class="secondary" font-size="15">Tempered in Fire — Refined in Gold.</text>
     <path class="decor" d="M40 164H70" stroke="#d4a017" stroke-width="1.5"/>
   </g>
   <rect class="border" x=".5" y=".5" width="899" height="199" rx="15.5" fill="none" stroke="#8b7d3e" stroke-opacity=".23"/>
