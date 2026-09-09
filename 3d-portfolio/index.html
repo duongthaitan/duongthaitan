@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Duong Thai Tan — Sekhmet Solar Sanctuary & 3D Interactive WebGL Experience built with Three.js and GSAP">
+<meta name="description" content="Duong Thai Tan — Sekhmet Solar Sanctuary & 3D Interactive WebGL Experience built with Three.js, GSAP 3.12, and Web Audio Synthesizer">
 <title>3D Solar Sanctuary — Duong Thai Tan (Leo 18/8)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -31,23 +31,23 @@
   #loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
 
   .loader-sun {
-    width: 80px; height: 80px;
-    border: 3px solid rgba(255, 215, 0, 0.2);
+    width: 90px; height: 90px;
+    border: 4px solid rgba(255, 215, 0, 0.25);
     border-top-color: #ffd700;
     border-right-color: #ff9900;
     border-radius: 50%;
-    animation: spin 1.2s linear infinite;
-    box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+    animation: spin 1s linear infinite;
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.5);
   }
   @keyframes spin { to { transform: rotate(360deg); } }
 
   .loader-text {
     margin-top: 24px;
     font-family: 'Cinzel', serif;
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: #ffd700;
     letter-spacing: 4px;
-    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
   }
   .loader-sub {
     margin-top: 8px;
@@ -67,7 +67,7 @@
 
   .brand h1 {
     font-family: 'Cinzel', serif;
-    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    font-size: clamp(1.2rem, 3vw, 1.9rem);
     font-weight: 900;
     color: #ffd700;
     letter-spacing: 2px;
@@ -81,26 +81,27 @@
     letter-spacing: 1px;
   }
 
-  .nav-status {
+  .camera-modes {
+    pointer-events: auto;
+    display: flex; gap: 8px;
+  }
+  .mode-btn {
     background: rgba(30, 24, 10, 0.75);
     backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 215, 0, 0.3);
-    padding: 8px 18px;
-    border-radius: 20px;
+    color: #ffd700;
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.75rem;
-    color: #ffd700;
-    display: flex; align-items: center; gap: 10px;
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.15);
+    padding: 8px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
   }
-  .status-dot {
-    width: 8px; height: 8px;
+  .mode-btn:hover, .mode-btn.active {
     background: #ffd700;
-    border-radius: 50%;
-    box-shadow: 0 0 10px #ffd700;
-    animation: pulse 2s infinite;
+    color: #050712;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
   }
-  @keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
 
   /* Bottom Controls / Info Cards */
   #bottom-overlay {
@@ -111,43 +112,43 @@
 
   .info-card {
     pointer-events: auto;
-    background: rgba(7, 11, 25, 0.85);
-    backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 215, 0, 0.25);
-    border-radius: 16px;
-    padding: 20px 24px;
-    max-width: 380px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 215, 0, 0.1);
+    background: rgba(5, 7, 18, 0.88);
+    backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-radius: 18px;
+    padding: 22px 26px;
+    max-width: 420px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 215, 0, 0.15);
   }
   .info-card h2 {
     font-family: 'Cinzel', serif;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     color: #ffd700;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
   .info-card p {
     font-size: 0.85rem;
     color: #aeb8c5;
-    line-height: 1.5;
+    line-height: 1.55;
   }
 
   .action-btn {
     pointer-events: auto;
     background: linear-gradient(135deg, #ffd700, #ff9900);
-    color: #070b19;
+    color: #050712;
     font-family: 'Cinzel', serif;
-    font-weight: 700;
-    font-size: 0.85rem;
-    padding: 12px 26px;
+    font-weight: 800;
+    font-size: 0.9rem;
+    padding: 14px 30px;
     border: none;
     border-radius: 30px;
     cursor: pointer;
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
     transition: transform 0.2s, box-shadow 0.2s;
   }
   .action-btn:hover {
-    transform: translateY(-2px) scale(1.03);
-    box-shadow: 0 0 30px rgba(255, 215, 0, 0.7);
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 0 35px rgba(255, 215, 0, 0.8);
   }
 </style>
 
@@ -168,7 +169,7 @@
 <div id="loader">
   <div class="loader-sun"></div>
   <div class="loader-text">𓁛 SEKHMET SOLAR SANCTUARY 𓁛</div>
-  <div class="loader-sub">INITIALIZING THREE.JS &amp; GSAP 3D ENGINE...</div>
+  <div class="loader-sub">INITIALIZING THREE.JS, GSAP 3.12 &amp; AUDIO SYNTH...</div>
 </div>
 
 <!-- Header Overlay -->
@@ -177,23 +178,49 @@
     <h1>𓁛 DUONG THAI TAN</h1>
     <p>SOLAR LEO DEVELOPER (AUGUST 18) • THREE.JS &amp; GSAP 3D PORTFOLIO</p>
   </div>
-  <div class="nav-status">
-    <div class="status-dot"></div>
-    <span>3D WEBGL LIVE CANVAS</span>
+  <div class="camera-modes">
+    <button class="mode-btn active" onclick="setCameraMode('orbit')">FREE ORBIT 🌌</button>
+    <button class="mode-btn" onclick="setCameraMode('core')">SEKHMET CORE 𓁛</button>
+    <button class="mode-btn" onclick="setCameraMode('leo')">LEO CONSTELLATION ♌</button>
   </div>
 </div>
 
 <!-- Bottom Overlay -->
 <div id="bottom-overlay">
   <div class="info-card" id="infoCard">
-    <h2>𓋹 Sekhmet &amp; Leo Constellation</h2>
-    <p>Interactive 3D WebGL Solar Shrine. Drag to orbit camera, hover over stars, click anywhere to unleash GSAP particle explosions!</p>
+    <h2>𓋹 Sekhmet Solar Temple &amp; Leo Orbit</h2>
+    <p>3D WebGL Shrine. Powered by Three.js, GSAP 3.12, UnrealBloomPass, and Web Audio API synthesizer. Click anywhere to trigger solar flares!</p>
   </div>
   <button class="action-btn" id="pulseBtn" onclick="triggerSolarBurst()">UNLEASH SOLAR BURST ⚡</button>
 </div>
 
-<!-- Three.js + GSAP Application Code -->
+<!-- Three.js + GSAP + Web Audio Synthesizer Code -->
 <script>
+// ─── Web Audio API Solar Chime Synthesizer ───
+let audioCtx = null;
+function playSolarChime(freq = 587.33) { // D5 solar note
+  try {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(freq * 1.5, audioCtx.currentTime + 0.6);
+
+    gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.8);
+
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+
+    osc.start();
+    osc.stop(audioCtx.currentTime + 0.8);
+  } catch(e) {}
+}
+
 // ─── Scene Setup ───
 const scene = new THREE.Scene();
 scene.fog = new THREE.FogExp2(0x050712, 0.015);
@@ -217,18 +244,18 @@ controls.minDistance = 5;
 // ─── Post-Processing (Bloom) ───
 const composer = new THREE.EffectComposer(renderer);
 composer.addPass(new THREE.RenderPass(scene, camera));
-const bloomPass = new THREE.UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.4, 0.5, 0.85);
+const bloomPass = new THREE.UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.5, 0.5, 0.85);
 composer.addPass(bloomPass);
 
 // ─── Lights ───
 const ambientLight = new THREE.AmbientLight(0xffd700, 0.4);
 scene.add(ambientLight);
 
-const sunLight = new THREE.PointLight(0xffd700, 3, 100);
+const sunLight = new THREE.PointLight(0xffd700, 3.5, 100);
 sunLight.position.set(0, 0, 0);
 scene.add(sunLight);
 
-const rimLight = new THREE.DirectionalLight(0xff9900, 1.5);
+const rimLight = new THREE.DirectionalLight(0xff9900, 1.8);
 rimLight.position.set(20, 20, -20);
 scene.add(rimLight);
 
@@ -237,37 +264,37 @@ const sunGroup = new THREE.Group();
 scene.add(sunGroup);
 
 // Solid Core
-const coreGeo = new THREE.IcosahedronGeometry(3.5, 4);
+const coreGeo = new THREE.IcosahedronGeometry(3.6, 4);
 const coreMat = new THREE.MeshStandardMaterial({
   color: 0xffd700,
   emissive: 0xff6600,
-  emissiveIntensity: 0.8,
-  roughness: 0.2,
-  metalness: 0.9,
+  emissiveIntensity: 0.9,
+  roughness: 0.15,
+  metalness: 0.95,
   wireframe: false
 });
 const coreMesh = new THREE.Mesh(coreGeo, coreMat);
 sunGroup.add(coreMesh);
 
 // Outer Wireframe Cage
-const cageGeo = new THREE.IcosahedronGeometry(4.2, 2);
+const cageGeo = new THREE.IcosahedronGeometry(4.3, 2);
 const cageMat = new THREE.MeshBasicMaterial({
   color: 0xffd700,
   wireframe: true,
   transparent: true,
-  opacity: 0.4
+  opacity: 0.45
 });
 const cageMesh = new THREE.Mesh(cageGeo, cageMat);
 sunGroup.add(cageMesh);
 
 // Solar Rings
-const ringGeo1 = new THREE.TorusGeometry(7, 0.06, 16, 100);
+const ringGeo1 = new THREE.TorusGeometry(7.2, 0.07, 16, 100);
 const ringMat1 = new THREE.MeshStandardMaterial({ color: 0xffd700, emissive: 0xff9900, metalness: 1 });
 const ring1 = new THREE.Mesh(ringGeo1, ringMat1);
 ring1.rotation.x = Math.PI / 3;
 sunGroup.add(ring1);
 
-const ringGeo2 = new THREE.TorusGeometry(9.5, 0.04, 16, 100);
+const ringGeo2 = new THREE.TorusGeometry(9.8, 0.05, 16, 100);
 const ringMat2 = new THREE.MeshStandardMaterial({ color: 0xff9900, emissive: 0xd4a017, metalness: 1 });
 const ring2 = new THREE.Mesh(ringGeo2, ringMat2);
 ring2.rotation.y = Math.PI / 4;
@@ -289,8 +316,8 @@ const leoStarCoords = [
 const starNodesGroup = new THREE.Group();
 scene.add(starNodesGroup);
 
-const starGeo = new THREE.SphereGeometry(0.4, 16, 16);
-const starMat = new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0xffd700, emissiveIntensity: 1 });
+const starGeo = new THREE.SphereGeometry(0.42, 16, 16);
+const starMat = new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0xffd700, emissiveIntensity: 1.2 });
 
 const starPositions = [];
 
@@ -302,18 +329,18 @@ leoStarCoords.forEach(star => {
 });
 
 // Connecting Line Traces
-const lineMat = new THREE.LineBasicMaterial({ color: 0xffd700, transparent: true, opacity: 0.7 });
+const lineMat = new THREE.LineBasicMaterial({ color: 0xffd700, transparent: true, opacity: 0.75 });
 const lineGeo = new THREE.BufferGeometry().setFromPoints(starPositions);
 const constLine = new THREE.LineLoop(lineGeo, lineMat);
 starNodesGroup.add(constLine);
 
 // ─── Floating Gold Particle Field ───
-const particlesCount = 1200;
+const particlesCount = 1400;
 const particlePositions = new Float32Array(particlesCount * 3);
 for (let i = 0; i < particlesCount * 3; i += 3) {
-  particlePositions[i] = (Math.random() - 0.5) * 80;
-  particlePositions[i + 1] = (Math.random() - 0.5) * 80;
-  particlePositions[i + 2] = (Math.random() - 0.5) * 80;
+  particlePositions[i] = (Math.random() - 0.5) * 85;
+  particlePositions[i + 1] = (Math.random() - 0.5) * 85;
+  particlePositions[i + 2] = (Math.random() - 0.5) * 85;
 }
 
 const particleGeo = new THREE.BufferGeometry();
@@ -321,34 +348,51 @@ particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions
 
 const particleMat = new THREE.PointsMaterial({
   color: 0xffd700,
-  size: 0.15,
+  size: 0.16,
   transparent: true,
-  opacity: 0.8,
+  opacity: 0.85,
   blending: THREE.AdditiveBlending
 });
 
 const particleSystem = new THREE.Points(particleGeo, particleMat);
 scene.add(particleSystem);
 
+// ─── Camera Focus Modes with GSAP ───
+function setCameraMode(mode) {
+  document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+
+  playSolarChime(mode === 'core' ? 659.25 : mode === 'leo' ? 440 : 587.33);
+
+  if (mode === 'core') {
+    gsap.to(camera.position, { x: 0, y: 1, z: 10, duration: 1.8, ease: 'power2.inOut' });
+  } else if (mode === 'leo') {
+    gsap.to(camera.position, { x: -8, y: 8, z: 20, duration: 1.8, ease: 'power2.inOut' });
+  } else {
+    gsap.to(camera.position, { x: 0, y: 5, z: 25, duration: 1.8, ease: 'power2.inOut' });
+  }
+}
+
 // ─── GSAP Entrance Animation Timeline ───
 gsap.timeline()
   .to('#loader', { opacity: 0, duration: 1, onComplete: () => document.getElementById('loader').classList.add('hidden') })
-  .from(camera.position, { z: 60, y: 30, duration: 2.5, ease: 'power3.out' })
+  .from(camera.position, { z: 65, y: 35, duration: 2.5, ease: 'power3.out' })
   .from(sunGroup.scale, { x: 0, y: 0, z: 0, duration: 2, ease: 'back.out(1.7)' }, '-=2')
   .from('#title-overlay', { y: -50, opacity: 0, duration: 1 }, '-=1')
   .from('#bottom-overlay', { y: 50, opacity: 0, duration: 1 }, '-=0.8');
 
 // ─── GSAP Interactive Click Burst ───
 function triggerSolarBurst() {
-  gsap.to(sunGroup.scale, { x: 1.4, y: 1.4, z: 1.4, duration: 0.3, yoyo: true, repeat: 1, ease: 'power2.out' });
-  gsap.to(bloomPass, { strength: 3.5, duration: 0.4, yoyo: true, repeat: 1 });
+  playSolarChime(880); // High solar A5 chime
 
-  // GSAP animation on particle system rotation
-  gsap.to(particleSystem.rotation, { y: particleSystem.rotation.y + Math.PI, duration: 1.5, ease: 'elastic.out(1, 0.3)' });
+  gsap.to(sunGroup.scale, { x: 1.45, y: 1.45, z: 1.45, duration: 0.35, yoyo: true, repeat: 1, ease: 'power2.out' });
+  gsap.to(bloomPass, { strength: 3.8, duration: 0.45, yoyo: true, repeat: 1 });
+
+  gsap.to(particleSystem.rotation, { y: particleSystem.rotation.y + Math.PI, duration: 1.6, ease: 'elastic.out(1, 0.3)' });
 }
 
 window.addEventListener('click', (e) => {
-  if (e.target.tagName !== 'BUTTON') {
+  if (!e.target.closest('button')) {
     triggerSolarBurst();
   }
 });
@@ -368,18 +412,18 @@ function animate() {
   requestAnimationFrame(animate);
   const elapsed = clock.getElapsedTime();
 
-  // Continuous Rotation
-  coreMesh.rotation.y = elapsed * 0.2;
-  coreMesh.rotation.x = elapsed * 0.1;
+  // Continuous Rotations
+  coreMesh.rotation.y = elapsed * 0.22;
+  coreMesh.rotation.x = elapsed * 0.12;
 
-  cageMesh.rotation.y = -elapsed * 0.15;
-  cageMesh.rotation.z = elapsed * 0.1;
+  cageMesh.rotation.y = -elapsed * 0.16;
+  cageMesh.rotation.z = elapsed * 0.11;
 
-  ring1.rotation.z = elapsed * 0.25;
-  ring2.rotation.x = elapsed * 0.2;
+  ring1.rotation.z = elapsed * 0.28;
+  ring2.rotation.x = elapsed * 0.22;
 
-  starNodesGroup.rotation.y = elapsed * 0.08;
-  particleSystem.rotation.y = elapsed * 0.03;
+  starNodesGroup.rotation.y = elapsed * 0.09;
+  particleSystem.rotation.y = elapsed * 0.035;
 
   controls.update();
   composer.render();
