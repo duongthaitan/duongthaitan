@@ -1,9 +1,9 @@
 <p align="center">
-  <img src="./assets/hero-banner.svg" width="100%" alt="Duong Thai Tan — code burns bright. Leo developer and UI/UX enthusiast from Vietnam, beneath the Leo constellation." />
+  <img src="./assets/hero-banner.svg?v=leo" width="100%" alt="Duong Thai Tan — code burns bright. Leo developer and UI/UX enthusiast from Vietnam, beneath the Leo constellation." />
 </p>
 
 <p align="center">
-  <img src="./assets/typing-anim.svg" width="500" alt="Leo Developer — Born August 18 — Frontend Engineer — UI/UX Enthusiast — Code burns bright" />
+  <img src="./assets/typing-anim.svg?v=leo" width="500" alt="Leo Developer — Born August 18 — Frontend Engineer — UI/UX Enthusiast — Code burns bright" />
 </p>
 
 <h1 align="center">Duong Thai Tan</h1>
@@ -26,7 +26,7 @@
 
 <br />
 
-<img src="./assets/galaxy/about.svg" width="100%" alt="" />
+<img src="./assets/galaxy/about.svg?v=leo" width="100%" alt="" />
 
 ## Mission control
 
@@ -46,7 +46,7 @@ Beyond the editor, **photography and video editing** shape the way I see light, 
 
 <br />
 
-<img src="./assets/galaxy/toolkit.svg" width="100%" alt="" />
+<img src="./assets/galaxy/toolkit.svg?v=leo" width="100%" alt="" />
 
 ## Technology constellation
 
@@ -69,7 +69,7 @@ Tools I've worked with along the way — a toolkit, not a proficiency ranking.
 
 <br />
 
-<img src="./assets/galaxy/selected-work.svg" width="100%" alt="" />
+<img src="./assets/galaxy/selected-work.svg?v=leo" width="100%" alt="" />
 
 ## Selected work
 
@@ -94,7 +94,7 @@ Tools I've worked with along the way — a toolkit, not a proficiency ranking.
 **A signal from the work, not a score for the developer.**
 
 <p align="center">
-  <img src="./assets/github-metrics.svg" width="560" alt="GitHub observatory: public original repositories, stars on those repositories, and followers. The image includes values and its last successful UTC update. Accessible snapshot and public sources follow." />
+  <img src="./assets/github-metrics.svg?v=leo" width="560" alt="GitHub observatory: public original repositories, stars on those repositories, and followers. The image includes values and its last successful UTC update. Accessible snapshot and public sources follow." />
 </p>
 
 | Reading | What it actually measures |
@@ -109,7 +109,7 @@ Tools I've worked with along the way — a toolkit, not a proficiency ranking.
 
 <br />
 
-<img src="./assets/galaxy/certificates.svg" width="100%" alt="" />
+<img src="./assets/galaxy/certificates.svg?v=leo" width="100%" alt="" />
 
 ## Learning coordinates
 
@@ -130,7 +130,7 @@ Tools I've worked with along the way — a toolkit, not a proficiency ranking.
 
 <br />
 
-<img src="./assets/galaxy/automation.svg" width="100%" alt="" />
+<img src="./assets/galaxy/automation.svg?v=leo" width="100%" alt="" />
 
 ## Flight systems
 
@@ -174,7 +174,7 @@ The portfolio source remains in **[3d-portfolio/](./3d-portfolio/index.html)**. 
 
 <br />
 
-<img src="./assets/galaxy/connect.svg" width="100%" alt="" />
+<img src="./assets/galaxy/connect.svg?v=leo" width="100%" alt="" />
 
 <h2 align="center">Open a channel</h2>
 
@@ -189,7 +189,7 @@ The portfolio source remains in **[3d-portfolio/](./3d-portfolio/index.html)**. 
   <a href="https://www.instagram.com/thaitan.duong_">Photography &amp; Instagram</a>
 </p>
 
-<img src="./assets/section-divider.svg" width="100%" alt="" />
+<img src="./assets/section-divider.svg?v=leo" width="100%" alt="" />
 
 <p align="center"><samp>STAY CURIOUS. KEEP BUILDING. EXPLORE FURTHER.</samp></p>
 <p align="center"><sub>Duong Thai Tan · ♌ Leo Developer — designed with intent, down to the last detail.</sub></p>
