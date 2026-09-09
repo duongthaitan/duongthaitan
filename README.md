@@ -7,15 +7,15 @@
 </div>
 
 <div align="center">
-  <img src="./assets/hero-banner.svg?v=V10-MAX" width="100%" style="max-width: 900px;" alt="V10 Hyperspace Engine" />
+  <img src="./assets/hero-banner.svg?v=V11-Reality" width="100%" style="max-width: 900px;" alt="V11 Hyperspace Engine" />
 </div>
 
 <div align="center">
-  <img src="./assets/typing-anim.svg?v=V10-MAX" width="100%" style="max-width: 800px;" alt="Sekhmet Solar Leo — V10 Terminal" />
+  <img src="./assets/typing-anim.svg?v=V11-Reality" width="100%" style="max-width: 800px;" alt="Sekhmet Solar Leo — V11 Terminal" />
 </div>
 
 <div align="center">
-  <img src="./assets/divider.svg?v=V10" width="100%" alt="Cyber Laser Divider" />
+  <img src="./assets/divider.svg?v=V11" width="100%" alt="Cyber Laser Divider" />
 </div>
 
 <br/>
@@ -25,16 +25,16 @@
     <img src="https://media.giphy.com/media/3o7aD0QILFVJFE9mCc/giphy.gif" alt="Roaring Lion" width="120" style="border-radius: 50%; box-shadow: 0 0 20px #ff7700; margin-bottom: 10px;" />
   </a>
   <h1 style="color: #ffd700; margin-bottom: 0;">DUONG THAI TAN</h1>
-  <h3 style="color: #ff7700; letter-spacing: 2px; margin-top: 5px;">V10 MAX KINETIC ARCHITECT</h3>
+  <h3 style="color: #ff7700; letter-spacing: 2px; margin-top: 5px;">V11 REALITY AUTOMATION ARCHITECT</h3>
   <p style="font-size: 1.1em; line-height: 1.6; max-width: 800px; margin: 0 auto;">
-    Chào mừng đến với điểm giới hạn cuối cùng của lập trình giao diện tĩnh. Lấy năng lượng từ chòm sao <strong>Sư Tử (Leo)</strong> và <strong>Sekhmet</strong>, tôi kiến tạo những Trạm Không Gian 3D thực thụ trên trình duyệt. Bố cục Cinematic này đảm bảo hiển thị hoàn mỹ (Flawless) 100% trên mọi nền tảng di động và Desktop.
+    Chào mừng đến với điểm giới hạn cuối cùng của lập trình giao diện tĩnh. Lấy năng lượng từ chòm sao <strong>Sư Tử (Leo)</strong> và <strong>Sekhmet</strong>, tôi kiến tạo những Trạm Không Gian 3D thực thụ trên trình duyệt. Tự động hóa hoàn toàn bằng <strong>GitHub Actions</strong>. Bố cục Cinematic này đảm bảo hiển thị hoàn mỹ (Flawless) 100% trên mọi nền tảng di động và Desktop.
   </p>
 </div>
 
 <br/>
 
 <div align="center">
-  <img src="./assets/divider.svg?v=V10" width="100%" alt="Cyber Laser Divider" />
+  <img src="./assets/divider.svg?v=V11" width="100%" alt="Cyber Laser Divider" />
 </div>
 
 <br/>
@@ -44,29 +44,29 @@
   <p style="max-width: 800px; margin: 0 auto; margin-bottom: 15px;">
     Không chỉ dừng lại ở giao diện phẳng (Flat Design). Tôi khai thác sức mạnh của <strong>GPU</strong> thông qua <strong>WebGL</strong>, hệ thống Hạt (Particle System) và các bộ lọc Post-Processing để biến Code thành Hạt Cơ Bản. Dưới đây là hệ thống lõi năng lượng của tôi:
   </p>
-  <img src="./assets/tech-stack.svg?v=V10-MAX" width="100%" style="max-width: 600px;" alt="V10 Cyberpunk Tech Stack" />
+  <img src="./assets/tech-stack.svg?v=V11-Reality" width="100%" style="max-width: 600px;" alt="V11 Cyberpunk Tech Stack" />
 </div>
 
 <br/>
 
 <div align="center">
-  <img src="./assets/divider.svg?v=V10" width="100%" alt="Cyber Laser Divider" />
+  <img src="./assets/divider.svg?v=V11" width="100%" alt="Cyber Laser Divider" />
 </div>
 
 <br/>
 
 <div align="center">
-  <h2>🛰️ TRẠM VŨ TRỤ WIREFRAME: HUD TELEMETRY</h2>
+  <h2>🛰️ TRẠM VŨ TRỤ 3D: HUD TELEMETRY</h2>
   <p style="max-width: 800px; margin: 0 auto; margin-bottom: 15px;">
-    <strong>Tương tác thời gian thực:</strong> Rê chuột qua biểu đồ dưới đây để kích hoạt Lõi Năng Lượng và hệ thống Radar đa chiều. Bố cục được tối ưu tuyệt đối chống tràn viền (100% Anti-Clipping).
+    <strong>Mô Phỏng Không Gian Thực (Z-Axis Depth):</strong> Hệ mặt trời 3D bên dưới không dùng bất kỳ thư viện WebGL nào. Nó được vẽ hoàn toàn bằng toán học SVG nguyên thủy kết hợp với hệ thống <code>animateMotion</code> tạo hiệu ứng chiều sâu 3D (Optical Illusion). Dữ liệu được cập nhật tự động mỗi 12 giờ bởi GitHub Actions.
   </p>
-  <img src="./assets/github-metrics.svg?v=V10-MAX" width="100%" style="max-width: 900px;" alt="V10 Interactive HUD" />
+  <img src="./assets/github-metrics.svg?v=V11-Reality" width="100%" style="max-width: 900px;" alt="V11 Interactive HUD" />
 </div>
 
 <br/>
 
 <div align="center">
-  <img src="./assets/divider.svg?v=V10" width="100%" alt="Cyber Laser Divider" />
+  <img src="./assets/divider.svg?v=V11" width="100%" alt="Cyber Laser Divider" />
 </div>
 
 <div align="center">
@@ -85,7 +85,7 @@
   <br/>
   <p>
     <img src="https://media.giphy.com/media/3o7aD0QILFVJFE9mCc/giphy.gif" alt="Roar" width="40" style="border-radius: 50%" />
-    <samp style="color: #ffd700;"> SEKHMET V10_MAX MAXIMUM_OVERDRIVE </samp>
+    <samp style="color: #ffd700;"> SEKHMET V11_REALITY AUTOMATION_ONLINE </samp>
     <img src="https://media.giphy.com/media/3o7aD0QILFVJFE9mCc/giphy.gif" alt="Roar" width="40" style="border-radius: 50%" />
   </p>
 </div>

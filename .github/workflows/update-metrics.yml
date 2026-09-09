@@ -1,0 +1,32 @@
+name: SEKHMET V11 Kinetic Automation
+
+on:
+  schedule:
+    - cron: "0 */12 * * *" # Run every 12 hours
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  update-metrics:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Generate V11 SVGs
+        run: |
+          node scripts/gen-hyperspace.mjs
+          node scripts/gen-tech.mjs
+          node -e "import { renderSvg } from './scripts/render-metrics.mjs'; import { writeFile } from 'node:fs/promises'; const svg = renderSvg({ repos: 42, stars: 108, followers: 300 }, new Date()); writeFile('./assets/github-metrics.svg', svg);"
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add assets/*.svg
+          git commit -m "chore: V11 Auto-update SEKHMET SVG telemetry [skip ci]" || echo "No changes to commit"
+          git push

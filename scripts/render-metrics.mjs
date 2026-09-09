@@ -69,27 +69,64 @@ export function renderSvg(metrics = null, now = new Date()) {
     </g>`;
   }).join('\n  ');
 
-  // Math-generated 3D Wireframe Globe (Faked via overlapping SVG ellipses with delays)
-  const globeLines = [];
-  const numLines = 12;
-  for(let i=0; i<numLines; i++) {
-    const delay = (i / numLines) * -10;
-    globeLines.push(`
-      <ellipse cx="0" cy="0" rx="200" ry="200" fill="none" stroke="#ff7700" stroke-width="1.5" opacity="0.4">
-        <animateTransform attributeName="transform" type="rotate" values="0; 180" dur="10s" begin="${delay}s" repeatCount="indefinite" />
-        <animateTransform attributeName="transform" type="scale" values="1,1; 0,1; -1,1; 0,1; 1,1" dur="10s" begin="${delay}s" repeatCount="indefinite" additive="sum"/>
-      </ellipse>
+  // V11 REALITY: 3D Solar System
+  const solarSystem = [];
+  
+  // The Sun (Sekhmet Core)
+  solarSystem.push(`
+    <circle cx="0" cy="0" r="40" fill="url(#sun-glow)" filter="url(#glow)">
+      <animate attributeName="r" values="38;42;38" dur="3s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="0" cy="0" r="50" fill="none" stroke="#ff7700" stroke-width="2" stroke-dasharray="4 8" opacity="0.8">
+      <animateTransform attributeName="transform" type="rotate" values="0; 360" dur="10s" repeatCount="indefinite" />
+    </circle>
+  `);
+
+  // Planets (3D Depth faked using scale/opacity across elliptical paths)
+  const orbits = [
+    { rx: 120, ry: 40, dur: 8, r: 8, color: '#3178C6', delay: 0 },
+    { rx: 180, ry: 60, dur: 12, r: 12, color: '#4FC08D', delay: -4 },
+    { rx: 250, ry: 80, dur: 20, r: 10, color: '#ffd700', delay: -10 }
+  ];
+
+  orbits.forEach(o => {
+    solarSystem.push(`
+      <!-- Orbit Ring -->
+      <ellipse cx="0" cy="0" rx="${o.rx}" ry="${o.ry}" fill="none" stroke="${o.color}" stroke-width="1" opacity="0.3"/>
+      
+      <!-- Planet -->
+      <g>
+        <animateMotion dur="${o.dur}s" repeatCount="indefinite" begin="${o.delay}s">
+          <mpath href="#orbit-path-${o.rx}"/>
+        </animateMotion>
+        <circle cx="0" cy="0" r="${o.r}" fill="${o.color}" filter="url(#glow)">
+           <!-- Z-axis depth illusion: scale down and fade opacity when going 'behind' (t=0.5) -->
+           <animate attributeName="r" values="${o.r}; ${o.r * 0.4}; ${o.r}" dur="${o.dur}s" keyTimes="0; 0.5; 1" repeatCount="indefinite" />
+           <animate attributeName="opacity" values="1; 0.2; 1" dur="${o.dur}s" keyTimes="0; 0.5; 1" repeatCount="indefinite" />
+        </circle>
+      </g>
     `);
-  }
-  const globeSvg = globeLines.join('\n');
+  });
+
+  const globeSvg = solarSystem.join('\n');
   
   return `<svg xmlns="http://www.w3.org/2000/svg" width="900" height="740" viewBox="0 0 900 740" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="metrics-title metrics-desc" style="max-width:100%;height:auto">
-  <title id="metrics-title">Sekhmet Solar 3D HUD V6</title>
-  <desc id="metrics-desc">V6 Hover-Interactive Wireframe Planet Engine</desc>
+  <title id="metrics-title">Sekhmet Solar 3D HUD V11 REALITY</title>
+  <desc id="metrics-desc">V11 Realistic Solar System Engine</desc>
   <defs>
+    <!-- Orbit Paths for animateMotion -->
+    <path id="orbit-path-120" d="M 0,40 A 120,40 0 1,1 0,-40 A 120,40 0 1,1 0,40" />
+    <path id="orbit-path-180" d="M 0,60 A 180,60 0 1,1 0,-60 A 180,60 0 1,1 0,60" />
+    <path id="orbit-path-250" d="M 0,80 A 250,80 0 1,1 0,-80 A 250,80 0 1,1 0,80" />
+    
     <clipPath id="metrics-frame"><rect width="900" height="740" rx="40"/></clipPath>
     <radialGradient id="nebula">
       <stop stop-color="#ff7700" stop-opacity=".4"/><stop offset=".4" stop-color="#d4a017" stop-opacity=".2"/><stop offset="1" stop-color="#010205" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="sun-glow">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="50%" stop-color="#ffdd00" />
+      <stop offset="100%" stop-color="#ff3300" />
     </radialGradient>
     <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
       <feGaussianBlur stdDeviation="3" result="blur1" />
