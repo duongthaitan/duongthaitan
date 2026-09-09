@@ -25,6 +25,15 @@
       
       <!-- Tech Badge Core -->
       <rect class="core-box" x="10" y="10" width="105" height="55" rx="6" fill="#0d1117" stroke="#F7DF1E" stroke-width="1.5" filter="url(#glow)"/>
+      
+      <!-- V10 Orbital Ring -->
+      <circle cx="62.5" cy="35.5" r="15" fill="none" stroke="#F7DF1E" stroke-width="0.5" stroke-dasharray="4 4" opacity="0.4">
+        <animateTransform attributeName="transform" type="rotate" values="0; 360" dur="4s" repeatCount="indefinite" transform-origin="62.5 35.5"/>
+      </circle>
+      <circle cx="62.5" cy="35.5" r="12" fill="none" stroke="#F7DF1E" stroke-width="0.5" stroke-dasharray="2 6" opacity="0.6">
+        <animateTransform attributeName="transform" type="rotate" values="360; 0" dur="3s" repeatCount="indefinite" transform-origin="62.5 35.5"/>
+      </circle>
+
       <rect class="core-fill" x="10" y="10" width="105" height="55" rx="6" fill="#F7DF1E" opacity="0.1"/>
       
       <!-- Tech Label -->
@@ -40,6 +49,15 @@
       
       <!-- Tech Badge Core -->
       <rect class="core-box" x="10" y="10" width="105" height="55" rx="6" fill="#0d1117" stroke="#3178C6" stroke-width="1.5" filter="url(#glow)"/>
+      
+      <!-- V10 Orbital Ring -->
+      <circle cx="62.5" cy="35.5" r="15" fill="none" stroke="#3178C6" stroke-width="0.5" stroke-dasharray="4 4" opacity="0.4">
+        <animateTransform attributeName="transform" type="rotate" values="0; 360" dur="4s" repeatCount="indefinite" transform-origin="62.5 35.5"/>
+      </circle>
+      <circle cx="62.5" cy="35.5" r="12" fill="none" stroke="#3178C6" stroke-width="0.5" stroke-dasharray="2 6" opacity="0.6">
+        <animateTransform attributeName="transform" type="rotate" values="360; 0" dur="3s" repeatCount="indefinite" transform-origin="62.5 35.5"/>
+      </circle>
+
       <rect class="core-fill" x="10" y="10" width="105" height="55" rx="6" fill="#3178C6" opacity="0.1"/>
       
       <!-- Tech Label -->
@@ -55,6 +73,15 @@
       
       <!-- Tech Badge Core -->
       <rect class="core-box" x="10" y="10" width="105" height="55" rx="6" fill="#0d1117" stroke="#ffd700" stroke-width="1.5" filter="url(#glow)"/>
+      
+      <!-- V10 Orbital Ring -->
+      <circle cx="62.5" cy="35.5" r="15" fill="none" stroke="#000000" stroke-width="0.5" stroke-dasharray="4 4" opacity="0.4">
+        <animateTransform attributeName="transform" type="rotate" values="0; 360" dur="4s" repeatCount="indefinite" transform-origin="62.5 35.5"/>
+      </circle>
+      <circle cx="62.5" cy="35.5" r="12" fill="none" stroke="#000000" stroke-width="0.5" stroke-dasharray="2 6" opacity="0.6">
+        <animateTransform attributeName="transform" type="rotate" values="360; 0" dur="3s" repeatCount="indefinite" transform-origin="62.5 35.5"/>
+      </circle>
+
       <rect class="core-fill" x="10" y="10" width="105" height="55" rx="6" fill="#000000" opacity="0.1"/>
       
       <!-- Tech Label -->
@@ -70,6 +97,15 @@
       
       <!-- Tech Badge Core -->
       <rect class="core-box" x="10" y="10" width="105" height="55" rx="6" fill="#0d1117" stroke="#61DAFB" stroke-width="1.5" filter="url(#glow)"/>
+      
+      <!-- V10 Orbital Ring -->
+      <circle cx="62.5" cy="35.5" r="15" fill="none" stroke="#61DAFB" stroke-width="0.5" stroke-dasharray="4 4" opacity="0.4">
+        <animateTransform attributeName="transform" type="rotate" values="0; 360" dur="4s" repeatCount="indefinite" transform-origin="62.5 35.5"/>
+      </circle>
+      <circle cx="62.5" cy="35.5" r="12" fill="none" stroke="#61DAFB" stroke-width="0.5" stroke-dasharray="2 6" opacity="0.6">
+        <animateTransform attributeName="transform" type="rotate" values="360; 0" dur="3s" repeatCount="indefinite" transform-origin="62.5 35.5"/>
+      </circle>
+
       <rect class="core-fill" x="10" y="10" width="105" height="55" rx="6" fill="#61DAFB" opacity="0.1"/>
       
       <!-- Tech Label -->
@@ -85,6 +121,15 @@
       
       <!-- Tech Badge Core -->
       <rect class="core-box" x="10" y="10" width="105" height="55" rx="6" fill="#0d1117" stroke="#4FC08D" stroke-width="1.5" filter="url(#glow)"/>
+      
+      <!-- V10 Orbital Ring -->
+      <circle cx="62.5" cy="35.5" r="15" fill="none" stroke="#4FC08D" stroke-width="0.5" stroke-dasharray="4 4" opacity="0.4">
+        <animateTransform attributeName="transform" type="rotate" values="0; 360" dur="4s" repeatCount="indefinite" transform-origin="62.5 35.5"/>
+      </circle>
+      <circle cx="62.5" cy="35.5" r="12" fill="none" stroke="#4FC08D" stroke-width="0.5" stroke-dasharray="2 6" opacity="0.6">
+        <animateTransform attributeName="transform" type="rotate" values="360; 0" dur="3s" repeatCount="indefinite" transform-origin="62.5 35.5"/>
+      </circle>
+
       <rect class="core-fill" x="10" y="10" width="105" height="55" rx="6" fill="#4FC08D" opacity="0.1"/>
       
       <!-- Tech Label -->
@@ -100,6 +145,15 @@
       
       <!-- Tech Badge Core -->
       <rect class="core-box" x="10" y="10" width="105" height="55" rx="6" fill="#0d1117" stroke="#990000" stroke-width="1.5" filter="url(#glow)"/>
+      
+      <!-- V10 Orbital Ring -->
+      <circle cx="62.5" cy="35.5" r="15" fill="none" stroke="#990000" stroke-width="0.5" stroke-dasharray="4 4" opacity="0.4">
+        <animateTransform attributeName="transform" type="rotate" values="0; 360" dur="4s" repeatCount="indefinite" transform-origin="62.5 35.5"/>
+      </circle>
+      <circle cx="62.5" cy="35.5" r="12" fill="none" stroke="#990000" stroke-width="0.5" stroke-dasharray="2 6" opacity="0.6">
+        <animateTransform attributeName="transform" type="rotate" values="360; 0" dur="3s" repeatCount="indefinite" transform-origin="62.5 35.5"/>
+      </circle>
+
       <rect class="core-fill" x="10" y="10" width="105" height="55" rx="6" fill="#990000" opacity="0.1"/>
       
       <!-- Tech Label -->
@@ -115,6 +169,15 @@
       
       <!-- Tech Badge Core -->
       <rect class="core-box" x="10" y="10" width="105" height="55" rx="6" fill="#0d1117" stroke="#88CE02" stroke-width="1.5" filter="url(#glow)"/>
+      
+      <!-- V10 Orbital Ring -->
+      <circle cx="62.5" cy="35.5" r="15" fill="none" stroke="#88CE02" stroke-width="0.5" stroke-dasharray="4 4" opacity="0.4">
+        <animateTransform attributeName="transform" type="rotate" values="0; 360" dur="4s" repeatCount="indefinite" transform-origin="62.5 35.5"/>
+      </circle>
+      <circle cx="62.5" cy="35.5" r="12" fill="none" stroke="#88CE02" stroke-width="0.5" stroke-dasharray="2 6" opacity="0.6">
+        <animateTransform attributeName="transform" type="rotate" values="360; 0" dur="3s" repeatCount="indefinite" transform-origin="62.5 35.5"/>
+      </circle>
+
       <rect class="core-fill" x="10" y="10" width="105" height="55" rx="6" fill="#88CE02" opacity="0.1"/>
       
       <!-- Tech Label -->
@@ -130,6 +193,15 @@
       
       <!-- Tech Badge Core -->
       <rect class="core-box" x="10" y="10" width="105" height="55" rx="6" fill="#0d1117" stroke="#339933" stroke-width="1.5" filter="url(#glow)"/>
+      
+      <!-- V10 Orbital Ring -->
+      <circle cx="62.5" cy="35.5" r="15" fill="none" stroke="#339933" stroke-width="0.5" stroke-dasharray="4 4" opacity="0.4">
+        <animateTransform attributeName="transform" type="rotate" values="0; 360" dur="4s" repeatCount="indefinite" transform-origin="62.5 35.5"/>
+      </circle>
+      <circle cx="62.5" cy="35.5" r="12" fill="none" stroke="#339933" stroke-width="0.5" stroke-dasharray="2 6" opacity="0.6">
+        <animateTransform attributeName="transform" type="rotate" values="360; 0" dur="3s" repeatCount="indefinite" transform-origin="62.5 35.5"/>
+      </circle>
+
       <rect class="core-fill" x="10" y="10" width="105" height="55" rx="6" fill="#339933" opacity="0.1"/>
       
       <!-- Tech Label -->

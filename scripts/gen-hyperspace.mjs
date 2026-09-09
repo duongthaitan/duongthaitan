@@ -76,7 +76,7 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="900" height="400" vi
            <animate attributeName="opacity" values="1;0;1" dur="0.5s" repeatCount="indefinite" />
         </circle>
         <text x="30" y="79" font-family="monospace" font-size="12" font-weight="700" fill="#ffd700" letter-spacing="1">
-          SYS.BOOT(SEKHMET_V6_SINGULARITY)
+          SYS.BOOT(SEKHMET_V10_MAX_OMNIVERSE)
         </text>
       </g>
 
@@ -85,7 +85,7 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="900" height="400" vi
       </text>
 
       <text x="0" y="360" font-family="system-ui" font-size="28" font-weight="800" fill="#ff7700" letter-spacing="2">
-        V6 SINGULARITY ARCHITECT
+        V10 MAX OMNIVERSE ARCHITECT
       </text>
     </g>
   </g>

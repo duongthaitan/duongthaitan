@@ -136,8 +136,18 @@ export function renderSvg(metrics = null, now = new Date()) {
       <animate attributeName="opacity" values="0.3;0.7;0.3" dur="4s" repeatCount="indefinite" />
     </ellipse>
 
-    <!-- 3D Wireframe Globe Core (Interactive V6) -->
+    <!-- 3D Wireframe Globe Core (Interactive V6/V10) -->
     <g transform="translate(650, 370)" filter="url(#glow)" class="planet-core">
+      <!-- V10 Matrix Backing -->
+      <g opacity="0.3">
+        <polygon points="0,-250 216,-125 216,125 0,250 -216,125 -216,-125" fill="none" stroke="#ff7700" stroke-width="1" stroke-dasharray="10 20">
+          <animateTransform attributeName="transform" type="rotate" values="0; 360" dur="20s" repeatCount="indefinite"/>
+        </polygon>
+        <polygon points="0,-270 233,-135 233,135 0,270 -233,135 -233,-135" fill="none" stroke="#ffd700" stroke-width="0.5" stroke-dasharray="5 15">
+          <animateTransform attributeName="transform" type="rotate" values="360; 0" dur="15s" repeatCount="indefinite"/>
+        </polygon>
+      </g>
+
       <!-- Outer Latitude/Longitude Static Rings -->
       <circle r="200" fill="none" stroke="#ffffff" stroke-width="2" stroke-dasharray="4 8" opacity="0.6"/>
       <ellipse rx="200" ry="60" fill="none" stroke="#ffd700" stroke-width="2" opacity="0.8">
@@ -175,15 +185,15 @@ export function renderSvg(metrics = null, now = new Date()) {
     <rect x="-15" y="-15" width="20" height="20" fill="#ff7700" filter="url(#glow)">
       <animate attributeName="opacity" values="1; 0; 1" dur="1s" repeatCount="indefinite" step="end"/>
     </rect>
-    <text class="hud-title" x="20" y="2" font-size="24" font-weight="900" filter="url(#glow)">SEKHMET KINETIC V6</text>
-    <text class="hud-label" x="20" y="26">TARGET: ${HANDLE} // HOVER_SYSTEM_ACTIVE</text>
+    <text class="hud-title" x="20" y="2" font-size="24" font-weight="900" filter="url(#glow)">SEKHMET KINETIC V10 MAX</text>
+    <text class="hud-label" x="20" y="26">TARGET: ${HANDLE} // OMNIVERSE_ONLINE</text>
   </g>
 
   ${tiles}
   
   <g transform="translate(60, 690)">
     <text class="hud-label" x="0" y="0">LAST_SYNC: ${escapeXml(values ? updated : updated)}</text>
-    <text class="hud-label" x="0" y="24">ENCRYPTION: LEVEL_6_HYPERSPACE</text>
+    <text class="hud-label" x="0" y="24">ENCRYPTION: LEVEL_10_MAXIMUM_OVERDRIVE</text>
   </g>
   
   <!-- Outer Frame Border -->

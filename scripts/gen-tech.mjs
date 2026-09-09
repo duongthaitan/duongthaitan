@@ -37,6 +37,15 @@ tech.forEach((t, i) => {
       
       <!-- Tech Badge Core -->
       <rect class="core-box" x="10" y="10" width="${w-20}" height="${h-20}" rx="6" fill="#0d1117" stroke="${t.stroke || t.color}" stroke-width="1.5" filter="url(#glow)"/>
+      
+      <!-- V10 Orbital Ring -->
+      <circle cx="${w/2}" cy="${h/2 - 2}" r="15" fill="none" stroke="${t.color}" stroke-width="0.5" stroke-dasharray="4 4" opacity="0.4">
+        <animateTransform attributeName="transform" type="rotate" values="0; 360" dur="4s" repeatCount="indefinite" transform-origin="${w/2} ${h/2 - 2}"/>
+      </circle>
+      <circle cx="${w/2}" cy="${h/2 - 2}" r="12" fill="none" stroke="${t.color}" stroke-width="0.5" stroke-dasharray="2 6" opacity="0.6">
+        <animateTransform attributeName="transform" type="rotate" values="360; 0" dur="3s" repeatCount="indefinite" transform-origin="${w/2} ${h/2 - 2}"/>
+      </circle>
+
       <rect class="core-fill" x="10" y="10" width="${w-20}" height="${h-20}" rx="6" fill="${t.color}" opacity="0.1"/>
       
       <!-- Tech Label -->
