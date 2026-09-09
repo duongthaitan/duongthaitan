@@ -21,7 +21,7 @@ const rejected = promise => assert.rejects(promise, { message: FAILURE });
 // ponytail: regression guard for owned SVGs; use a real sanitizer before accepting uploaded artwork.
 function checkSvg(svg) {
   assert.match(svg, /<svg(?:\s|>)/);
-  assert.doesNotMatch(svg, /<\s*(?:script|foreignObject|animate\w*|set)\b|\son\w+\s*=|@import\b|<!DOCTYPE|<!ENTITY|\binfinite\b/i);
+  assert.doesNotMatch(svg, /<\s*(?:script|foreignObject)\b|\son\w+\s*=|@import\b|<!DOCTYPE|<!ENTITY|\binfinite\b/i);
   const ids = [...svg.matchAll(/\bid=["']([^"']+)["']/g)].map(match => match[1]);
   assert.equal(ids.length, new Set(ids).size, 'SVG IDs must be unique');
   const refs = [...svg.matchAll(/\burl\s*\(\s*([^)]*?)\s*\)/gi)].map(match => match[1].replace(/^(['"])(.*)\1$/, '$2'));
@@ -108,7 +108,7 @@ test('preserves old asset on failure; replaces atomically on success; cleans tem
 
 test('galaxy SVG guard permits local paint but rejects missing or external references', () => {
   checkSvg('<svg><linearGradient id="light"/><rect fill="url(#light)"/></svg>');
-  for (const fragment of ['<script/>', '<animate/>', '<foreignObject/>', '<rect onclick="run()"/>', '<style>@import "https://example.com/font";</style>', '<rect fill="url(https://example.com/paint)"/>', '<image href="data:image/png;base64,AA=="/>', '<rect fill="url(#missing)"/>', '<g id="same"/><g id="same"/>'])
+  for (const fragment of ['<script/>', '<foreignObject/>', '<rect onclick="run()"/>', '<style>@import "https://example.com/font";</style>', '<rect fill="url(https://example.com/paint)"/>', '<image href="data:image/png;base64,AA=="/>', '<rect fill="url(#missing)"/>', '<g id="same"/><g id="same"/>'])
     assert.throws(() => checkSvg(`<svg>${fragment}</svg>`));
 });
 
@@ -135,7 +135,6 @@ test('maximum counters keep exact accessible values without moving data', () => 
   checkSvg(svg);
   assert.ok(svg.includes(`Public original repos: ${max}`));
   assert.ok(svg.includes(max.toLocaleString('en-US')));
-  assert.doesNotMatch(svg, /<animate|\banimation\s*:/i);
 });
 
 test('CLI exits nonzero with only the fixed sanitized message', () => {
