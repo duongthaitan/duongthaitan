@@ -10,13 +10,13 @@
     <radialGradient id="connect-flare" cx=".3" cy=".25" r=".78"><stop stop-color="#fff8e1" stop-opacity=".9"/><stop offset=".2" stop-color="#ffd700" stop-opacity=".5"/><stop offset=".5" stop-color="#d4a017" stop-opacity=".15"/><stop offset="1" stop-color="#d4a017" stop-opacity="0"/></radialGradient>
     <linearGradient id="connect-rim"><stop stop-color="#ffd700" stop-opacity=".8"/><stop offset=".3" stop-color="#e8c170" stop-opacity=".9"/><stop offset=".6" stop-color="#c4762b" stop-opacity=".7"/><stop offset="1" stop-color="#ffd700" stop-opacity=".5"/></linearGradient>
     <style>
-      text{font-family:'Segoe UI',Arial,sans-serif;fill:#e6edf3}.secondary{fill:#aeb8c5}.label{font-family:ui-monospace,Consolas,monospace;letter-spacing:1.6px}.portal{transform-origin:715px 100px;animation:connect-settle 3.6s ease-out 1}.halo{animation:connect-pulse 4s ease-out 1}@keyframes connect-settle{from{transform:scale(.88);opacity:.5}to{transform:scale(1);opacity:1}}@keyframes connect-pulse{from{transform:scale(.92);opacity:.3}to{transform:scale(1);opacity:1}}@media(prefers-reduced-motion:reduce){.portal,.halo{animation:none}}@media(forced-colors:active){.decor{display:none}.background{fill:Canvas}.border{stroke:CanvasText}text,.secondary{fill:CanvasText}}
+      text{font-family:'Segoe UI',Arial,sans-serif;fill:#e6edf3}.secondary{fill:#aeb8c5}.label{font-family:ui-monospace,Consolas,monospace;letter-spacing:1.6px}.portal{transform-origin:715px 100px;animation:connect-pulse 6s ease-in-out 200}.halo{transform-origin:715px 100px;animation:connect-halo 4s ease-in-out 200}.neb{transform-origin:715px 95px;animation:connect-drift 18s ease-in-out 200}.twk{transform-origin:692px 60px;animation:connect-twk 3.5s ease-in-out 200}@keyframes connect-pulse{0%,100%{transform:scale(.94);opacity:.85}50%{transform:scale(1.04);opacity:1}}@keyframes connect-halo{0%,100%{transform:scale(.9);opacity:.3}50%{transform:scale(1.15);opacity:.7}}@keyframes connect-drift{0%,100%{transform:rotate(-12deg) translate(0,0)}50%{transform:rotate(-12deg) translate(10px,-6px)}}@keyframes connect-twk{0%,100%{opacity:.4;transform:scale(.9)}50%{opacity:1;transform:scale(1.25)}}@media(prefers-reduced-motion:reduce){.portal,.halo,.neb,.twk{animation:none}}@media(forced-colors:active){.decor{display:none}.background{fill:Canvas}.border{stroke:CanvasText}text,.secondary{fill:CanvasText}}
     </style>
   </defs>
   <g clip-path="url(#connect-frame)">
     <rect class="background" width="900" height="200" fill="#070b19"/>
     <g class="decor">
-      <ellipse cx="715" cy="95" rx="320" ry="175" fill="url(#connect-nebula)" transform="rotate(-12 715 95)"/>
+      <ellipse class="neb" cx="715" cy="95" rx="320" ry="175" fill="url(#connect-nebula)" transform="rotate(-12 715 95)"/>
       <ellipse cx="810" cy="160" rx="210" ry="95" fill="url(#connect-fire)" transform="rotate(-26 810 160)"/>
       <ellipse cx="420" cy="-15" rx="200" ry="108" fill="url(#connect-nebula)" opacity=".4"/>
       <g fill="#d4c5a0" opacity=".4">
@@ -25,7 +25,7 @@
         <circle cx="516" cy="26" r=".7"/><circle cx="552" cy="76" r=".55"/><circle cx="586" cy="14" r=".6"/><circle cx="622" cy="68" r=".5"/><circle cx="656" cy="16" r=".55"/><circle cx="702" cy="34" r=".6"/><circle cx="750" cy="16" r=".7"/><circle cx="796" cy="28" r=".55"/><circle cx="842" cy="56" r=".6"/><circle cx="874" cy="20" r=".55"/>
         <circle cx="522" cy="158" r=".55"/><circle cx="568" cy="180" r=".65"/><circle cx="640" cy="164" r=".5"/><circle cx="676" cy="182" r=".6"/><circle cx="722" cy="166" r=".5"/><circle cx="790" cy="184" r=".7"/><circle cx="838" cy="168" r=".55"/><circle cx="874" cy="134" r=".6"/>
       </g>
-      <g fill="#ffe8b0"><circle cx="502" cy="60" r="1.1" opacity=".7"/><circle cx="852" cy="40" r="1.15" opacity=".8"/><circle cx="692" cy="14" r="1" opacity=".65"/><circle cx="548" cy="126" r=".9" opacity=".6"/><circle cx="822" cy="148" r="1" opacity=".7"/></g>
+      <g class="twk" fill="#ffe8b0"><circle cx="502" cy="60" r="1.1" opacity=".7"/><circle cx="852" cy="40" r="1.15" opacity=".8"/><circle cx="692" cy="14" r="1" opacity=".65"/><circle cx="548" cy="126" r=".9" opacity=".6"/><circle cx="822" cy="148" r="1" opacity=".7"/></g>
       <path d="M862 168v6m-3-3h6M566 36v5m-2.5-2.5h5" fill="none" stroke="#ffe8b0" stroke-opacity=".5" stroke-linecap="round"/>
       <!-- Portal gateway -->
       <g class="portal">
