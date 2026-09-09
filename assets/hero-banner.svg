@@ -159,17 +159,9 @@
       <g class="ember-float" fill="#ffd700">
         <circle cx="590" cy="280" r="2" opacity=".7"/>
         <circle cx="630" cy="240" r="1.4" opacity=".85"/>
-        <circle cx="710" cy="290" r="2.5" opacity=".65"/>
-        <circle cx="760" cy="230" r="1.6" opacity=".8"/>
-        <circle cx="820" cy="270" r="2.2" opacity=".7"/>
       </g>
 
-      <!-- Vector Hieroglyphic Glyphs (Clean Geometric Paths) -->
-      <g fill="none" stroke="#ffd700" stroke-opacity=".7" stroke-width="1.5" stroke-linecap="round">
-        <!-- Ankh Key of Life -->
-        <path d="M42 42v14M35 48h14M42 42a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"/>
-        <path d="M42 308v14M35 314h14M42 308a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"/>
-      </g>
+
     </g>
 
     <!-- Content Typography & Badges -->
