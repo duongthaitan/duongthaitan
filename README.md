@@ -1,114 +1,98 @@
 <div align="center">
-  <img src="https://media.giphy.com/media/26FPCXdkvDbKBbgOI/giphy.gif" width="100%" alt="Photorealistic NASA Solar Flare" />
-</div>
-
-<br/>
-
-<div align="center">
-  <img src="./assets/hero-banner.svg?v=photorealistic" width="100%" alt="V3 Kinetic Engine" />
-</div>
-
-<br/>
-
-<div align="center">
-  <img src="./assets/typing-anim.svg?v=photorealistic" width="600" alt="Sekhmet Solar Leo — Developer CLI" />
+  <img src="https://media.giphy.com/media/26FPCXdkvDbKBbgOI/giphy.gif" width="100%" height="20" alt="Photorealistic NASA Solar Flare" style="object-fit: cover;" />
 </div>
 
 <div align="center">
-  <img src="https://media.giphy.com/media/xT0xeiP4F3qH82h7NK/giphy.gif" width="100%" height="15" alt="fire line" />
+  <img src="./assets/hero-banner.svg?v=V5-Pinnacle" width="100%" alt="V5 3D Parallax Engine" />
 </div>
-
-<h1 align="center">
-  <img src="https://media.giphy.com/media/3o7aD0QILFVJFE9mCc/giphy.gif" alt="Realistic Lion" width="80" style="border-radius: 50%" /> 
-  DUONG THAI TAN 
-  <img src="https://media.giphy.com/media/3o7aD0QILFVJFE9mCc/giphy.gif" alt="Realistic Lion" width="80" style="border-radius: 50%" />
-</h1>
-
-<p align="center">
-  <strong>👑 KINETIC 3D ARCHITECT — SOLAR FIRE LEO</strong><br />
-  <em>Xây dựng các tiểu vũ trụ ngay trên trình duyệt của bạn với độ chân thực tối đa.</em>
-</p>
-
-<p align="center">
-  <img src="https://img.shields.io/badge/ZODIAC-LEO%20(SƯ_TỬ)-FFD700?style=for-the-badge&logo=sun&logoColor=1e180a&labelColor=1e180a" alt="Leo 18/8" />
-  <img src="https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=000000&labelColor=1e180a" alt="JavaScript" />
-  <img src="https://img.shields.io/badge/Three.js-r128-000000?style=for-the-badge&logo=three.js&logoColor=FFD700&labelColor=1e180a" alt="Three.js" />
-  <img src="https://img.shields.io/badge/GSAP-3.12.5-88CE02?style=for-the-badge&logo=greensock&logoColor=FFFFFF&labelColor=1e180a" alt="GSAP" />
-  <img src="https://img.shields.io/badge/Vue.js-4FC08D?style=for-the-badge&logo=vuedotjs&logoColor=FFFFFF&labelColor=1e180a" alt="Vue.js" />
-  <img src="https://img.shields.io/badge/WebGL-2.0-990000?style=for-the-badge&logo=webgl&logoColor=FFFFFF&labelColor=1e180a" alt="WebGL" />
-</p>
 
 <div align="center">
-  <img src="https://media.giphy.com/media/xT0xeiP4F3qH82h7NK/giphy.gif" width="100%" height="15" alt="fire line" />
+  <img src="./assets/typing-anim.svg?v=V5-Pinnacle" width="800" alt="Sekhmet Solar Leo — V5 Terminal" />
 </div>
 
-<br/>
+<div align="center">
+  <img src="https://media.giphy.com/media/xT0xeiP4F3qH82h7NK/giphy.gif" width="100%" height="8" alt="Cyber Fire Sweep" />
+</div>
 
-<table>
-<tr>
-<td width="55%">
-<h2>🦁 Sứ Mệnh — Kiến Trúc Sư Hệ Mặt Trời</h2>
-<p align="justify">
-  Được bảo hộ bởi <strong>Sekhmet</strong> — Nữ thần của Lửa, Chiến tranh và Quyền lực. Sinh ngày <strong>18 Tháng 8</strong> (Leo ♌), tôi biến Code thành Hạt Cơ Bản (Particles), biến Hàm số thành Quỹ đạo (Orbits), và biến Trình Duyệt thành Vũ Trụ (Universe).
-</p>
-<p align="justify">
-  Website không phải là trang giấy phẳng, nó là một thế giới 3D đa chiều cần được đánh thức với độ chân thực như ngoài đời thực.
-</p>
-</td>
-<td width="45%" align="center">
-  <img src="https://media.giphy.com/media/26FPCXdkvDbKBbgOI/giphy.gif" alt="NASA Solar Flare" width="250" style="border-radius: 12px; border: 2px solid #ffd700;" />
-</td>
-</tr>
+<table width="100%" style="border: none; background-color: transparent;">
+  <tr>
+    <td width="30%" align="center" valign="middle">
+      <img src="https://media.giphy.com/media/3o7aD0QILFVJFE9mCc/giphy.gif" alt="Roaring Lion" width="200" style="border-radius: 50%; box-shadow: 0 0 20px #ff7700;" />
+    </td>
+    <td width="70%" valign="middle">
+      <h1 align="left" style="font-size: 3em; color: #ffd700;">DUONG THAI TAN</h1>
+      <h3 align="left" style="color: #ff7700; letter-spacing: 2px;">V5 GOD-TIER KINETIC ARCHITECT</h3>
+      <p align="justify" style="font-size: 1.1em; line-height: 1.6;">
+        Chào mừng đến với điểm giới hạn của lập trình giao diện tĩnh. Bằng việc bẻ cong mọi rào cản của Markdown và SVG, tôi kiến tạo những <strong>Trạm Không Gian 3D</strong> thực thụ chạy thẳng trên trình duyệt. Lấy năng lượng từ chòm sao <strong>Sư Tử (Leo)</strong> và nữ thần lửa <strong>Sekhmet</strong>, mỗi dòng code đều bùng nổ sức mạnh nguyên thuỷ.
+      </p>
+      <p>
+        <img src="https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=000000" alt="JS" />
+        <img src="https://img.shields.io/badge/Three.js-r128-000000?style=for-the-badge&logo=three.js&logoColor=FFD700" alt="Three.js" />
+        <img src="https://img.shields.io/badge/GSAP-3.12-88CE02?style=for-the-badge&logo=greensock&logoColor=FFFFFF" alt="GSAP" />
+        <img src="https://img.shields.io/badge/WebGL-Engine-990000?style=for-the-badge&logo=webgl&logoColor=FFFFFF" alt="WebGL" />
+      </p>
+    </td>
+  </tr>
 </table>
 
 <div align="center">
-  <img src="https://media.giphy.com/media/xT0xeiP4F3qH82h7NK/giphy.gif" width="100%" height="15" alt="fire line" />
+  <img src="https://media.giphy.com/media/xT0xeiP4F3qH82h7NK/giphy.gif" width="100%" height="8" alt="Cyber Fire Sweep" />
 </div>
 
-## ⚔️ Kỹ Năng Động Lực Học (Kinetic Skills)
-
-<p align="center">
-  <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=js,ts,react,vue,nextjs,html,css,tailwind,nodejs,php,laravel,mysql,git,githubactions,figma,ps,pr,vscode,threejs&perline=10" alt="Tech Arsenal" />
-  </a>
-</p>
+<table width="100%">
+  <tr>
+    <td width="50%" valign="top">
+      <h2>🔥 The Solar Core: WebGL & Motion</h2>
+      <p align="justify">
+        Không chỉ dừng lại ở giao diện phẳng (Flat Design). Tôi khai thác sức mạnh của <strong>GPU</strong> thông qua <strong>WebGL</strong>, đổ bóng thời gian thực (Real-time Shading), hệ thống Hạt (Particle System) và các bộ lọc Post-Processing Bloom.
+      </p>
+      <a href="https://skillicons.dev">
+        <img src="https://skillicons.dev/icons?i=js,ts,threejs,react,vue,nodejs&perline=6" alt="Tech" />
+      </a>
+    </td>
+    <td width="50%" align="center" valign="middle">
+      <img src="https://media.giphy.com/media/5wWf7HapUvlMAU01V9O/giphy.gif" alt="Hyper Space" width="100%" style="border-radius: 16px; border: 2px solid #ffd700;" />
+    </td>
+  </tr>
+</table>
 
 <div align="center">
-  <img src="https://media.giphy.com/media/xT0xeiP4F3qH82h7NK/giphy.gif" width="100%" height="15" alt="fire line" />
+  <img src="https://media.giphy.com/media/xT0xeiP4F3qH82h7NK/giphy.gif" width="100%" height="8" alt="Cyber Fire Sweep" />
 </div>
 
-## 🔭 Đài Quan Sát Không Gian (HUD Telemetry)
+<h2 align="center">🛰️ TRẠM VŨ TRỤ WIREFRAME: HUD TELEMETRY</h2>
 
 <p align="justify">
-  <strong>V4 Photorealistic:</strong> Tích hợp trạm không gian HUD 3D đa trục và theo dõi thời gian thực dữ liệu GitHub. Đồ thị không còn tĩnh, nó sống động và cuộn trào như năng lượng của chòm sao Sư Tử.
+  <strong>(Tính Năng Độc Quyền V5):</strong> Biểu đồ dưới đây không dùng thư viện ngoài. Bằng thuật toán toán học Lượng Giác (Trigonometry) tích hợp thẳng vào <code>render-metrics.mjs</code>, nó tạo ra một **Hành tinh Lưới 3D (Wireframe Globe)** thực sự, tự quay 360 độ và bắt Radar quyét liên tục.
 </p>
 
 <p align="center">
-  <img src="./assets/github-metrics.svg?v=photorealistic" width="900" alt="GitHub HUD" />
+  <img src="./assets/github-metrics.svg?v=V5-Pinnacle" width="100%" style="max-width: 900px;" alt="V5 3D Wireframe HUD" />
 </p>
 
 <div align="center">
-  <img src="https://media.giphy.com/media/xT0xeiP4F3qH82h7NK/giphy.gif" width="100%" height="15" alt="fire line" />
+  <img src="https://media.giphy.com/media/xT0xeiP4F3qH82h7NK/giphy.gif" width="100%" height="8" alt="Cyber Fire Sweep" />
 </div>
 
-<h2 align="center">🛰️ Kết Nối Với Trung Tâm Điều Khiển</h2>
-
-<p align="center">
-  <a href="https://github.com/duongthaitan">
-    <img src="https://img.shields.io/badge/GitHub-Trụ_Sở_Chính-181717?style=for-the-badge&amp;logo=github&amp;logoColor=FFD700" alt="GitHub" />
-  </a> &nbsp;
-  <a href="https://www.linkedin.com/in/duongthaitan/">
-    <img src="https://img.shields.io/badge/LinkedIn-Mạng_Lưới-0A66C2?style=for-the-badge&amp;logo=linkedin&amp;logoColor=FFFFFF" alt="LinkedIn" />
-  </a> &nbsp;
-  <a href="https://www.instagram.com/thaitan.duong_">
-    <img src="https://img.shields.io/badge/Instagram-Thư_Viện_Ảnh-E4405F?style=for-the-badge&amp;logo=instagram&amp;logoColor=FFFFFF" alt="Instagram" />
-  </a>
-</p>
-
-<br/>
-
-<p align="center">
-  <img src="https://media.giphy.com/media/3o7aD0QILFVJFE9mCc/giphy.gif" alt="Roar" width="40" style="border-radius: 50%" />
-  <samp> BẢO VỆ BỞI LỬA THIÊNG SEKHMET // 18/08 LEO </samp>
-  <img src="https://media.giphy.com/media/3o7aD0QILFVJFE9mCc/giphy.gif" alt="Roar" width="40" style="border-radius: 50%" />
-</p>
+<table width="100%">
+  <tr>
+    <td width="100%" align="center">
+      <h2>🚀 KẾT NỐI MẠNG LƯỚI KHÔNG GIAN</h2>
+      <p>
+        <a href="https://github.com/duongthaitan">
+          <img src="https://img.shields.io/badge/GitHub-Trụ_Sở_Chính-181717?style=for-the-badge&amp;logo=github&amp;logoColor=FFD700" alt="GitHub" />
+        </a> &nbsp;
+        <a href="https://www.linkedin.com/in/duongthaitan/">
+          <img src="https://img.shields.io/badge/LinkedIn-Mạng_Lưới-0A66C2?style=for-the-badge&amp;logo=linkedin&amp;logoColor=FFFFFF" alt="LinkedIn" />
+        </a> &nbsp;
+        <a href="https://www.instagram.com/thaitan.duong_">
+          <img src="https://img.shields.io/badge/Instagram-Thư_Viện_Ảnh-E4405F?style=for-the-badge&amp;logo=instagram&amp;logoColor=FFFFFF" alt="Instagram" />
+        </a>
+      </p>
+      <br/>
+      <img src="https://media.giphy.com/media/3o7aD0QILFVJFE9mCc/giphy.gif" alt="Roar" width="40" style="border-radius: 50%" />
+      <samp style="color: #ffd700;"> SEKHMET V5_GOD_TIER CORE_ONLINE </samp>
+      <img src="https://media.giphy.com/media/3o7aD0QILFVJFE9mCc/giphy.gif" alt="Roar" width="40" style="border-radius: 50%" />
+    </td>
+  </tr>
+</table>

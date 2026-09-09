@@ -50,140 +50,131 @@ export function renderSvg(metrics = null, now = new Date()) {
   
   const tiles = labels.map((label, i) => {
     const value = values ? values[i].toLocaleString('en-US') : '000';
-    const yOffset = 180 + i * 170;
+    const yOffset = 150 + i * 160;
     return `
-    <g transform="translate(40 ${yOffset})">
-      <animateTransform attributeName="transform" type="translate" values="40,${yOffset}; 45,${yOffset}; 40,${yOffset}" dur="${3 + i}s" repeatCount="indefinite" />
-      
-      <!-- Tech HUD Frame -->
-      <path d="M 0 30 L 20 0 L 320 0 L 340 30 L 320 60 L 20 60 Z" fill="#070a13" stroke="#ffd700" stroke-width="1.5" opacity="0.85" filter="url(#glow)"/>
-      <path d="M 2 30 L 20 3 L 318 3" fill="none" stroke="#ff7700" stroke-width="1.5" opacity="0.5">
-         <animate attributeName="opacity" values="0.2; 1; 0.2" dur="2s" begin="${i}s" repeatCount="indefinite" />
+    <g transform="translate(60 ${yOffset})">
+      <animateTransform attributeName="transform" type="translate" values="60,${yOffset}; 65,${yOffset}; 60,${yOffset}" dur="${3 + i}s" repeatCount="indefinite" />
+      <!-- Cyber Frame -->
+      <path d="M 0 30 L 20 0 L 320 0 L 340 30 L 320 60 L 20 60 Z" fill="#010205" stroke="#ff7700" stroke-width="1.5" opacity="0.9" filter="url(#glow)"/>
+      <path d="M 5 30 L 20 5 L 315 5" fill="none" stroke="#ffd700" stroke-width="2" opacity="0.6">
+         <animate attributeName="opacity" values="0.1; 1; 0.1" dur="1.5s" begin="${i}s" repeatCount="indefinite" />
       </path>
-
-      <!-- Sine Wave Animation inside the card -->
-      <g opacity="0.3" stroke="#ffd700" stroke-width="1.5" fill="none" stroke-linecap="round">
-        <animateTransform attributeName="transform" type="translate" values="0,0; -40,0" dur="2s" repeatCount="indefinite" />
-        <path d="M 20 45 Q 30 35, 40 45 T 60 45 T 80 45 T 100 45 T 120 45 T 140 45 T 160 45 T 180 45 T 200 45 T 220 45 T 240 45 T 260 45 T 280 45 T 300 45 T 320 45 T 340 45 T 360 45"/>
+      <!-- Tech Bar Graph Simulator -->
+      <g opacity="0.6" stroke="#ffd700" stroke-width="2" fill="none">
+        <animateTransform attributeName="transform" type="translate" values="0,0; -40,0" dur="1s" repeatCount="indefinite" />
+        <path d="M 20 40 L 30 30 L 40 45 L 50 20 L 60 40 L 70 35 L 80 50 L 90 25 L 100 45 L 110 30 L 120 45 L 130 20 L 140 40 L 150 35 L 160 50 L 170 25 L 180 45 L 190 30 L 200 45 L 210 20 L 220 40 L 230 35 L 240 50 L 250 25 L 260 45 L 270 30 L 280 45 L 290 20 L 300 40 L 310 35 L 320 50 L 330 25 L 340 45 L 350 30"/>
       </g>
-      
       <text class="hud-label" x="40" y="22" filter="url(#glow)">${escapeXml(label).toUpperCase()}</text>
-      <text class="hud-value" x="40" y="48" font-size="28" font-weight="800" filter="url(#glow)">[ ${escapeXml(value)} ]</text>
+      <text class="hud-value" x="40" y="50" font-size="32" font-weight="900" filter="url(#glow)">${escapeXml(value)}</text>
     </g>`;
   }).join('\n  ');
+
+  // Math-generated 3D Wireframe Globe (Faked via overlapping SVG ellipses with delays)
+  const globeLines = [];
+  const numLines = 12;
+  for(let i=0; i<numLines; i++) {
+    const delay = (i / numLines) * -10;
+    globeLines.push(`
+      <ellipse cx="0" cy="0" rx="200" ry="200" fill="none" stroke="#ff7700" stroke-width="1.5" opacity="0.4">
+        <animateTransform attributeName="transform" type="rotate" values="0; 180" dur="10s" begin="${delay}s" repeatCount="indefinite" />
+        <animateTransform attributeName="transform" type="scale" values="1,1; 0,1; -1,1; 0,1; 1,1" dur="10s" begin="${delay}s" repeatCount="indefinite" additive="sum"/>
+      </ellipse>
+    `);
+  }
+  const globeSvg = globeLines.join('\n');
   
   return `<svg xmlns="http://www.w3.org/2000/svg" width="900" height="740" viewBox="0 0 900 740" role="img" aria-labelledby="metrics-title metrics-desc" style="max-width:100%;height:auto">
-  <title id="metrics-title">Sekhmet Solar HUD</title>
-  <desc id="metrics-desc">V3 Kinetic UI GitHub Metrics</desc>
+  <title id="metrics-title">Sekhmet Solar 3D HUD</title>
+  <desc id="metrics-desc">V5 Wireframe Planet Engine</desc>
   <defs>
-    <clipPath id="metrics-frame"><rect width="900" height="740" rx="30"/></clipPath>
+    <clipPath id="metrics-frame"><rect width="900" height="740" rx="40"/></clipPath>
     <radialGradient id="nebula">
-      <stop stop-color="#ff7700" stop-opacity=".3"/><stop offset=".4" stop-color="#d4a017" stop-opacity=".15"/><stop offset="1" stop-color="#050712" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="core-glow">
-      <stop stop-color="#ffffff" stop-opacity=".8"/><stop offset=".2" stop-color="#ffd700" stop-opacity=".6"/><stop offset="1" stop-color="#ffd700" stop-opacity="0"/>
+      <stop stop-color="#ff7700" stop-opacity=".4"/><stop offset=".4" stop-color="#d4a017" stop-opacity=".2"/><stop offset="1" stop-color="#010205" stop-opacity="0"/>
     </radialGradient>
     <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="4" result="blur" />
-      <feGaussianBlur stdDeviation="8" result="blur2" />
+      <feGaussianBlur stdDeviation="3" result="blur1" />
+      <feGaussianBlur stdDeviation="12" result="blur2" />
       <feMerge>
         <feMergeNode in="blur2"/>
-        <feMergeNode in="blur"/>
+        <feMergeNode in="blur1"/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
   </defs>
   <style>
-    .panel{fill:#02040a}.hud-label{fill:#c2b280;font-family:ui-monospace,monospace;font-size:12px;letter-spacing:2px}
-    .hud-value{fill:#e6edf3;font-family:system-ui,-apple-system,sans-serif}
-    .hud-title{fill:#ffd700;font-family:system-ui,-apple-system,sans-serif;letter-spacing:4px}
-    .orbit{fill:none;stroke:#ffd700;stroke-width:1.5}
+    .panel{fill:#010205}.hud-label{fill:#c2b280;font-family:ui-monospace,monospace;font-size:13px;letter-spacing:3px}
+    .hud-value{fill:#ffffff;font-family:system-ui,-apple-system,sans-serif}
+    .hud-title{fill:#ffd700;font-family:system-ui,-apple-system,sans-serif;letter-spacing:5px}
+    .glitch{animation:glitch-anim 3s infinite}
+    @keyframes glitch-anim { 0%,95%{transform:translate(0,0)} 96%{transform:translate(3px,-2px)} 97%{transform:translate(-3px,2px)} 98%{transform:translate(3px,2px)} 99%{transform:translate(-3px,-2px)} 100%{transform:translate(0,0)} }
     @media(prefers-reduced-motion: reduce){ * { animation: none !important; } }
   </style>
   
-  <rect class="panel" width="900" height="740" rx="30"/>
+  <rect class="panel" width="900" height="740" rx="40"/>
   
   <g clip-path="url(#metrics-frame)">
-    <!-- Deep Space Background & Grid -->
-    <g opacity="0.1" stroke="#ffffff" stroke-width="0.5">
-      <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-        <path d="M 40 0 L 0 0 0 40" fill="none"/>
+    <!-- 3D Tech Grid -->
+    <g stroke="#ffd700" stroke-width="0.3" opacity="0.3" filter="url(#glow)">
+      <pattern id="grid3d" width="30" height="30" patternUnits="userSpaceOnUse">
+        <path d="M 30 0 L 0 0 0 30" fill="none"/>
       </pattern>
-      <rect width="900" height="740" fill="url(#grid)"/>
+      <rect width="900" height="740" fill="url(#grid3d)"/>
     </g>
 
-    <ellipse cx="650" cy="370" rx="450" ry="350" fill="url(#nebula)">
-      <animate attributeName="opacity" values="0.4;0.8;0.4" dur="6s" repeatCount="indefinite" />
+    <ellipse cx="650" cy="370" rx="500" ry="400" fill="url(#nebula)">
+      <animate attributeName="opacity" values="0.3;0.7;0.3" dur="4s" repeatCount="indefinite" />
     </ellipse>
 
-    <!-- Complex Gyroscope HUD Core -->
-    <g transform="translate(650, 370)">
-      <!-- Outer Data Ring -->
-      <g filter="url(#glow)">
-        <animateTransform attributeName="transform" type="rotate" values="0; 360" dur="60s" repeatCount="indefinite" />
-        <circle r="260" class="orbit" stroke-dasharray="10 40" opacity="0.6"/>
-        <circle r="240" class="orbit" stroke-dasharray="100 20 10 20" opacity="0.8"/>
-      </g>
-
-      <!-- Middle Gyro Ring -->
-      <g filter="url(#glow)">
-        <animateTransform attributeName="transform" type="rotate" values="360; 0" dur="30s" repeatCount="indefinite" />
-        <ellipse rx="210" ry="120" class="orbit" stroke-dasharray="40 10" opacity="0.9"/>
-        <ellipse rx="210" ry="120" class="orbit" transform="rotate(90)" stroke-dasharray="20 30" opacity="0.5"/>
-      </g>
-
-      <!-- Inner High-Speed Ring -->
-      <g filter="url(#glow)">
-        <animateTransform attributeName="transform" type="rotate" values="0; 360" dur="15s" repeatCount="indefinite" />
-        <circle r="140" class="orbit" stroke-width="2" stroke-dasharray="5 15" stroke-dashoffset="0">
-           <animate attributeName="stroke-dashoffset" values="0; 20" dur="1s" repeatCount="indefinite" />
-        </circle>
-        <circle r="120" class="orbit" stroke-width="1" stroke-dasharray="50 50" opacity="0.8"/>
-      </g>
+    <!-- 3D Wireframe Globe Core -->
+    <g transform="translate(650, 370)" filter="url(#glow)">
+      <!-- Outer Latitude/Longitude Static Rings -->
+      <circle r="200" fill="none" stroke="#ffffff" stroke-width="2" stroke-dasharray="4 8" opacity="0.6"/>
+      <ellipse rx="200" ry="60" fill="none" stroke="#ffd700" stroke-width="2" opacity="0.8">
+         <animateTransform attributeName="transform" type="rotate" values="-15; 15; -15" dur="10s" repeatCount="indefinite"/>
+      </ellipse>
       
-      <!-- Pulsing Core -->
-      <circle r="80" fill="url(#core-glow)">
-        <animateTransform attributeName="transform" type="scale" values="0.9; 1.1; 0.9" dur="3s" repeatCount="indefinite" />
-      </circle>
-      <circle r="30" fill="#ffffff" filter="url(#glow)">
-        <animateTransform attributeName="transform" type="scale" values="1; 1.2; 1" dur="1.5s" repeatCount="indefinite" />
-      </circle>
+      <!-- Faked 3D Rotating Sphere -->
+      ${globeSvg}
       
-      <!-- Particle Burst -->
-      <g fill="#ffd700" filter="url(#glow)">
-        <animateTransform attributeName="transform" type="rotate" values="0; -360" dur="20s" repeatCount="indefinite" />
-        <circle cx="0" cy="-180" r="4"/><circle cx="150" cy="100" r="3"/><circle cx="-150" cy="100" r="5"/>
-        <circle cx="230" cy="-50" r="2"/><circle cx="-200" cy="-120" r="4"/><circle cx="0" cy="250" r="3"/>
+      <!-- Planet Core -->
+      <circle r="50" fill="#ffffff" filter="url(#glow)">
+        <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite" />
+      </circle>
+
+      <!-- Sweeping Radar Line -->
+      <g>
+        <animateTransform attributeName="transform" type="rotate" values="0; 360" dur="4s" repeatCount="indefinite" />
+        <path d="M 0 0 L 0 -240" stroke="#ff7700" stroke-width="3" filter="url(#glow)"/>
+        <path d="M 0 0 L 0 -240 A 240 240 0 0 1 120 -207 Z" fill="#ff7700" opacity="0.15"/>
       </g>
     </g>
-
-    <!-- Scanline Sweep Effect -->
-    <rect width="900" height="2" fill="#ffd700" opacity="0.3" filter="url(#glow)">
-      <animate attributeName="y" values="-10; 750" dur="4s" repeatCount="indefinite" />
+    
+    <!-- Heavy Scanline -->
+    <rect width="900" height="4" fill="#ffffff" opacity="0.4" filter="url(#glow)">
+      <animate attributeName="y" values="-10; 750" dur="3s" repeatCount="indefinite" />
     </rect>
   </g>
 
-  <!-- HUD Text Overlay -->
-  <g transform="translate(40, 60)">
-    <rect x="0" y="0" width="12" height="12" fill="#ff7700" filter="url(#glow)">
-      <animate attributeName="opacity" values="1; 0; 1" dur="2s" repeatCount="indefinite" step="end"/>
+  <!-- HUD Overlay -->
+  <g transform="translate(60, 50)" class="glitch">
+    <rect x="-15" y="-15" width="20" height="20" fill="#ff7700" filter="url(#glow)">
+      <animate attributeName="opacity" values="1; 0; 1" dur="1s" repeatCount="indefinite" step="end"/>
     </rect>
-    <text class="hud-title" x="25" y="12" font-size="20" font-weight="900" filter="url(#glow)">SEKHMET KINETIC TELEMETRY</text>
-    <text class="hud-label" x="25" y="32">SYSTEM_ID: ${HANDLE}</text>
-    <text class="hud-label" x="25" y="52">STATUS: ONLINE / 3D_ENGINE_ACTIVE</text>
+    <text class="hud-title" x="20" y="2" font-size="24" font-weight="900" filter="url(#glow)">SEKHMET KINETIC V5</text>
+    <text class="hud-label" x="20" y="26">TARGET: ${HANDLE} // WIREFRAME_HUD_ACTIVE</text>
   </g>
 
   ${tiles}
   
-  <g transform="translate(40, 690)">
+  <g transform="translate(60, 690)">
     <text class="hud-label" x="0" y="0">LAST_SYNC: ${escapeXml(values ? updated : updated)}</text>
-    <text class="hud-label" x="0" y="20">DATA_SOURCE: PUBLIC_AND_ARCHIVED_REPOSITORIES</text>
+    <text class="hud-label" x="0" y="24">ENCRYPTION: LEVEL_5_SOLAR_FLARE</text>
   </g>
   
-  <!-- Outer HUD Frame Border -->
-  <rect width="896" height="736" x="2" y="2" rx="28" fill="none" stroke="#ffd700" stroke-width="3" opacity="0.4" filter="url(#glow)"/>
-  <path d="M 0 50 L 10 50 L 10 100 L 0 100" fill="none" stroke="#ffd700" stroke-width="4" filter="url(#glow)"/>
-  <path d="M 900 650 L 890 650 L 890 700 L 900 700" fill="none" stroke="#ffd700" stroke-width="4" filter="url(#glow)"/>
+  <!-- Outer Frame Border -->
+  <rect width="894" height="734" x="3" y="3" rx="37" fill="none" stroke="#ffd700" stroke-width="4" opacity="0.5" filter="url(#glow)"/>
+  <path d="M 0 100 L 20 100 L 20 200 L 0 200" fill="none" stroke="#ffffff" stroke-width="6" filter="url(#glow)"/>
+  <path d="M 900 500 L 880 500 L 880 600 L 900 600" fill="none" stroke="#ffffff" stroke-width="6" filter="url(#glow)"/>
 </svg>
 `;
 }
