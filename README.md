@@ -1,285 +1,205 @@
-<p align="center">
-  <img src="./assets/hero-banner.svg?v=dev-fusion-3d-animated" width="100%" alt="Duong Thai Tan — Sekhmet's Solar Lion Developer (Leo 18/8)" />
-</p>
+<div align="center">
+  <img src="./assets/hero-banner.svg?v=ultimate-v2" width="100%" alt="Duong Thai Tan — Sekhmet's Solar Lion Developer (Leo 18/8)" />
+</div>
 
-<p align="center">
-  <img src="./assets/typing-anim.svg?v=dev-fusion-3d-animated" width="600" alt="Sekhmet Solar Leo — Born August 18 — Frontend &amp; 3D Architect — Master of Motion &amp; WebGL — Divine Code Burns Bright" />
-</p>
+<br/>
+
+<div align="center">
+  <img src="./assets/typing-anim.svg?v=ultimate-v2" width="600" alt="Sekhmet Solar Leo — Developer CLI" />
+</div>
 
 <h1 align="center">
-  <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Animals/Lion.png" alt="Lion" width="45" height="45" /> DUONG THAI TAN <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Animals/Lion.png" alt="Lion" width="45" height="45" />
+  <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Animals/Lion.png" alt="Lion" width="55" height="55" /> DUONG THAI TAN <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Animals/Lion.png" alt="Lion" width="55" height="55" />
 </h1>
 
 <p align="center">
-  <strong>Sekhmet's Solar Lion Developer (Leo 18/8) — Divine Code, 3D Parallax &amp; Solar Fire Engineering</strong><br />
+  <strong>👑 Vua Của Rừng Code — Lập Trình Viên Mang Hệ Lửa Của Nữ Thần Sekhmet</strong><br />
   <em>Frontend Architect &amp; UI/UX Motion Artisan · Vietnam</em>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/ZODIAC-LEO%2018%2F8-FFD700?style=for-the-badge&logo=sun&logoColor=1e180a&labelColor=1e180a" alt="Leo 18/8 Badge" />
+  <img src="https://img.shields.io/badge/ZODIAC-LEO%20(SƯ_TỬ)-FFD700?style=for-the-badge&logo=sun&logoColor=1e180a&labelColor=1e180a" alt="Leo 18/8" />
   <img src="https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=000000&labelColor=1e180a" alt="JavaScript" />
   <img src="https://img.shields.io/badge/Three.js-r128-000000?style=for-the-badge&logo=three.js&logoColor=FFD700&labelColor=1e180a" alt="Three.js" />
   <img src="https://img.shields.io/badge/GSAP-3.12.5-88CE02?style=for-the-badge&logo=greensock&logoColor=FFFFFF&labelColor=1e180a" alt="GSAP" />
   <img src="https://img.shields.io/badge/Vue.js-4FC08D?style=for-the-badge&logo=vuedotjs&logoColor=FFFFFF&labelColor=1e180a" alt="Vue.js" />
   <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=FFFFFF&labelColor=1e180a" alt="Node.js" />
   <img src="https://img.shields.io/badge/WebGL-2.0-990000?style=for-the-badge&logo=webgl&logoColor=FFFFFF&labelColor=1e180a" alt="WebGL" />
-  <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=FFFFFF&labelColor=1e180a" alt="Figma" />
 </p>
 
 <p align="center">
-  <samp>🔥 DIVINE SOLAR VISION / 🌌 THREE.JS &amp; GSAP MOTION / 🏛️ GOLDEN EGYPTIAN ARCHITECTURE</samp>
+  <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Fire.png" alt="Fire" width="25" /> <samp>TẦM NHÌN RỰC LỬA / CHUYỂN ĐỘNG 3D KHÔNG GIAN / KIẾN TRÚC PHẦN MỀM THẦN THOẠI</samp> <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Fire.png" alt="Fire" width="25" />
 </p>
 
 <p align="center">
-  <a href="#-mission-control--the-leo-architect">Sanctuary</a> &nbsp; · &nbsp;
-  <a href="#-technology-constellation--solar-forge">Solar Forge</a> &nbsp; · &nbsp;
-  <a href="#-selected-work--3d-orbital-playground">Work</a> &nbsp; · &nbsp;
-  <a href="#-github-snapshot--sekhmet-observatory">Observatory</a> &nbsp; · &nbsp;
-  <a href="#-learning-coordinates--sacred-scrolls">Scrolls</a> &nbsp; · &nbsp;
-  <a href="#-flight-systems--solar-automation">Systems</a> &nbsp; · &nbsp;
-  <a href="#-open-a-channel--telemetry">Portal</a>
+  <a href="#-sứ-mệnh--kiến-trúc-sư-hệ-mặt-trời">Thánh Điện (Sanctuary)</a> &nbsp; ⬢ &nbsp;
+  <a href="#-lò-rèn-công-nghệ--solar-forge">Lò Rèn (Forge)</a> &nbsp; ⬢ &nbsp;
+  <a href="#-tuyệt-tác-3d--orbital-playground">Tuyệt Tác (Works)</a> &nbsp; ⬢ &nbsp;
+  <a href="#-đài-quan-sát-github--isometric-metrics">Đài Quan Sát (Observatory)</a>
 </p>
 
-<br />
+<div align="center">
+  <img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" width="100%" alt="divider" />
+</div>
 
----
+<img src="./assets/galaxy/about.svg?v=ultimate-v2" width="100%" alt="Sector 01 — Sekhmet Solar Sanctuary" />
 
-<img src="./assets/galaxy/about.svg?v=dev-fusion-3d" width="100%" alt="Sector 01 — Sekhmet Solar Sanctuary" />
-
-## 🦁 Mission control — The Leo Architect
+## 🦁 Sứ Mệnh — Kiến Trúc Sư Hệ Mặt Trời
 
 <p align="justify">
-  <strong>Protected by Sekhmet — Goddess of Solar Fire, Courage, and Unyielding Passion.</strong>
+  Được bảo hộ bởi <strong>Sekhmet</strong> — Nữ thần của Lửa, Chiến tranh và Quyền lực trong thần thoại Ai Cập. Sinh ngày <strong>18 Tháng 8</strong>, ngay giữa đỉnh điểm chói lọi của chòm sao <strong>Sư Tử (Leo ♌)</strong>, tôi không chỉ viết code; tôi kiến tạo các không gian kỹ thuật số hùng vĩ. Mỗi dòng code là một tia lửa, mỗi function là một nhịp đập, và mỗi giao diện là một kỳ quan 3D xoay chuyển giữa không gian.
 </p>
-<p align="justify">
-  Born on <strong>August 18</strong>, under the fierce solar climax of <strong>Leo ♌</strong>, I approach software engineering like ancient Egyptian master architects erecting temples under the Eye of Ra. My code is not just functional; it is <em>bold, majestic, and infused with divine kinetic energy</em>. I build digital experiences that move, breathe, and roar.
-</p>
+
+<table>
+<tr>
+<td width="55%">
 
 ```javascript
 const developer = {
   identity: {
-    name: "Duong Thai Tan",
+    name: "Dương Thái Tân",
     handle: "duongthaitan",
-    zodiac: "Leo ♌ (August 18) - The King of the Code Jungle",
-    deity: "Sekhmet (Goddess of Solar Fire & Healing)",
+    zodiac: "Leo ♌ (18/08)",
+    deity: "Sekhmet (Goddess of Solar Fire)",
     element: "Fire 🔥",
   },
   roles: [
     "👑 Frontend Architect",
-    "🌌 Three.js & GSAP 3D Motion Developer",
-    "🎨 UI/UX Visual Artisan",
-    "⚡ Fullstack Engineer"
+    "🌌 3D Motion Developer (WebGL)",
+    "🎨 UI/UX Visual Artisan"
   ],
-  mastery: {
-    graphics3D: ["Three.js r128", "GSAP 3.12", "WebGL 2.0 Shaders", "UnrealBloomPass"],
-    frontend: ["JavaScript (ES6+)", "Vue.js", "React", "HTML5/CSS3", "TailwindCSS"],
-    backend: ["Node.js", "PHP", "Laravel", "MySQL"],
-    visuals: ["Figma", "Photoshop", "Lightroom", "Cinematography & Light Transport"]
-  },
-  status: "BUILDING_HIGH_PERFORMANCE_3D_CANVAS",
-  motto: "Clean Code fuels the core; 3D Motion sets it ablaze."
+  status: "IGNITING_3D_PARALLAX_ENGINE"
 };
 ```
+</td>
+<td width="45%" align="center">
+  <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Travel%20and%20places/Star.png" alt="Star" width="80" />
+  <br/><br/>
+  <em>"Sự hoàn hảo không nằm ở chỗ không còn gì để thêm, mà là khi không còn gì để bớt. Trừ phi đó là hiệu ứng 3D siêu thực."</em>
+</td>
+</tr>
+</table>
 
-<p align="justify">
-  I specialize in constructing <strong>high-performance frontend interfaces</strong> where spatial layout, 3D motion dynamics, and micro-interactions seamlessly harmonize. Beyond the text editor, my background in <strong>photography and visual cinematography</strong> sharpens my intuition for light transport, depth composition, frame timing, and aesthetic harmony across 3D WebGL canvases.
-</p>
+### 🔱 4 Trụ Cột Kỹ Thuật Số (Core Pillars)
 
-### 🔱 Core Pillars & Solar Focus
-
-| 🌟 Core Domain | 🛠️ Technical &amp; Aesthetic Focus | 🚀 Key Implementations |
+| 🌟 Lĩnh Vực Cốt Lõi | 🛠️ Công Nghệ & Trọng Tâm | 🚀 Triển Khai Thực Tế |
 | :--- | :--- | :--- |
-| **3D &amp; Motion Engineering** | Real-time WebGL graphics, particle systems, custom kinetic animation | Three.js (r128), GSAP (3.12), UnrealBloomPass, CSS Keyframe Arrays |
-| **Frontend Architecture** | Modular components, reactive state management, high-performance DOM | Vue.js, React, JavaScript ES6+, Semantic HTML5 Grids |
-| **User Experience (UI/UX)** | Dark-gold glassmorphism, responsive visual hierarchy, micro-interactions | Figma, Modern CSS Tokens, Design Systems, Breakpoints |
-| **Visual Cinematography** | Frame composition, lighting distribution, color grading, storytelling | Photography, Lightroom, Photoshop, Video Motion Design |
+| **Đồ Họa & Chuyển Động 3D** | Xử lý hạt WebGL, Shader ánh sáng, Parallax Đa tầng | Three.js (r128), GSAP (3.12), UnrealBloomPass |
+| **Kiến Trúc Frontend** | Component hóa siêu việt, quản lý state real-time | Vue.js, React, ES6+, Khung xương HTML5/CSS3 |
+| **Thẩm Mỹ UI/UX** | Glassmorphism 3D, Gradient Động, Micro-interactions | Figma thiết kế, CSS Tokens tự dựng |
+| **Điện Ảnh Thị Giác** | Cân bằng sáng tối, Color Grading, Storytelling | Lightroom, Photoshop, Nghệ thuật ánh sáng |
 
-<br />
+<div align="center">
+  <img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" width="100%" alt="divider" />
+</div>
 
----
+<img src="./assets/galaxy/toolkit.svg?v=ultimate-v2" width="100%" alt="Sector 02 — Technology Constellation" />
 
-<img src="./assets/galaxy/toolkit.svg?v=clean-icons-3d" width="100%" alt="Sector 02 — Technology Constellation" />
-
-## ⚔️ Technology constellation — Solar Forge
+## ⚔️ Lò Rèn Công Nghệ — Solar Forge
 
 <p align="justify">
-  <strong>The Solar Forge of Tech — Tempered in Fire, Refined in Gold.</strong><br/>
-  A meticulously curated arsenal of frameworks, motion engines, tools, and languages powering my digital sanctuary. Every tool is selected for maximum performance and aesthetic capability.
+  <strong>Vũ khí được rèn trong lửa, tôi luyện bằng vàng nguyên chất.</strong> Đây không chỉ là một danh sách các ngôn ngữ lập trình, mà là một kho tàng vũ khí tối thượng giúp tôi chinh phục mọi giới hạn của giao diện người dùng.
 </p>
 
 <div align="center">
-  <img src="https://skillicons.dev/icons?i=js,ts,html,css,react,vue,nodejs,php,mysql,laravel,figma,ps,vscode,githubactions,git,github,threejs&perline=12" alt="Skill Icons" />
+  <br/>
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=js,ts,react,vue,nextjs,html,css,tailwind,nodejs,php,laravel,mysql,git,githubactions,figma,ps,pr,vscode,threejs&perline=10" alt="Tech Arsenal" />
+  </a>
+  <br/>
 </div>
 
+<details>
+<summary><strong>✨ Mở khóa Toàn bộ Cây Kỹ Năng Kỹ Thuật (Tech Tree)</strong></summary>
+
 <br/>
 
-### 🌌 3D, Motion & Interface Engineering
+> **Frontend & Đồ Họa 3D:** JavaScript (ES6+), TypeScript, Vue.js, React.js, Next.js, Three.js, WebGL 2.0, GSAP, TailwindCSS, SASS/SCSS.
+> 
+> **Backend & Hệ Thống:** Node.js, Express, PHP, Laravel, MySQL, RESTful API.
+> 
+> **Công cụ Tự Động Hóa:** GitHub Actions, Git, NPM, Webpack, Vite.
 
-| Subsystem | Core Technologies &amp; Libraries | Primary Use Cases |
-| :--- | :--- | :--- |
-| **🌀 3D Motion Engines** | **Three.js** · **GSAP** · **WebGL 2.0** | 3D wireframes, camera physics, particle bursts, custom shaders |
-| **✨ Post-Processing** | **UnrealBloomPass** · **EffectComposer** | Bloom illumination, radiance glows, depth of field |
-| **🏗️ Interface Core** | **HTML5** · **CSS3** · **JavaScript** · **Vue.js** | Component trees, responsive grids, state binding, DOM |
-| **🎨 Design &amp; UI** | **Figma** · **Adobe Photoshop** · **Lightroom** | Glassmorphism, color grading, asset optimization |
-| **⚙️ Automation** | **GitHub Actions** · **Node.js** · **Selenium** | CI/CD metrics rendering, testing, automated deployments |
-
-<details>
-<summary><strong>🔓 Polymath Language Suite &amp; Secondary Frameworks</strong></summary>
-
-```text
-┌────────────────────────────────────────────────────────────────────────┐
-│                        POLYMATH LANGUAGE SUITE                         │
-├─────────────────┬─────────────────┬──────────────────┬─────────────────┤
-│ PHP & Laravel   │ Java & C# .NET  │ C & C++          │ Python          │
-│ Server Logic    │ Enterprise OOP  │ Low-Level Core   │ Automation/Data │
-└─────────────────┴─────────────────┴──────────────────┴─────────────────┘
-```
-<p align="justify">
-  A diverse background across backend services, desktop software, and system scripts — enabling end-to-end fullstack comprehension.
-</p>
 </details>
 
-<br />
+<div align="center">
+  <img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" width="100%" alt="divider" />
+</div>
 
----
+<img src="./assets/galaxy/selected-work.svg?v=ultimate-v2" width="100%" alt="Sector 03 — Selected Work" />
 
-<img src="./assets/galaxy/selected-work.svg?v=dev-fusion-3d" width="100%" alt="Sector 03 — Selected Work" />
-
-## 🚀 Selected work — 3D Orbital Playground
+## 🚀 Tuyệt Tác 3D — Orbital Playground
 
 <p align="justify">
-  <strong>An interactive 3D WebGL portfolio built with Three.js and GSAP 3.12.</strong><br/>
-  Step into an immersive universe featuring a 3D Sekhmet Eye of Ra core, orbiting 3D Leo constellation star nodes, floating solar particle clouds, bloom post-processing, and interactive GSAP particle bursts.
+  Không dừng lại ở những website phẳng nhàm chán, tôi xây dựng nên những vũ trụ tương tác trực tiếp trên trình duyệt.
 </p>
 
-#### 🌟 Highlights & Features
-- **Three.js WebGL Engine**: Custom Icosahedron geometries, Torus orbital rings, and glowing star nodes (Regulus, Algieba, Denebola).
-- **GSAP 3.12 Motion Timelines**: Smooth entrance timelines, reactive camera controls, and interactive click particle explosions (`UNLEASH SOLAR BURST`).
-- **UnrealBloomPass Radiance**: Post-processing bloom filter creating an authentic cosmic solar glow.
-- **Fully Responsive 3D Canvas**: Adapts seamlessly to all viewport aspect ratios, touch gestures, and mouse movement.
+<table>
+<tr>
+<td width="30%" align="center">
+  <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Travel%20and%20places/Milky%20Way.png" alt="Milky Way" width="120" />
+</td>
+<td width="70%">
+  <h3>🪐 3D WebGL Portfolio Universe</h3>
+  <p>Một vũ trụ WebGL tương tác hoàn toàn được xây dựng bằng <strong>Three.js</strong> và <strong>GSAP 3.12</strong>. Đặc trưng với:</p>
+  <ul>
+    <li>Con mắt của Ra (Eye of Ra) 3D làm lõi trung tâm.</li>
+    <li>Chòm sao Sư tử (Leo) quỹ đạo 3D xoay tròn.</li>
+    <li>Hiệu ứng Post-Processing Bloom phát sáng chói lọi.</li>
+    <li>Các vụ nổ hạt (Particle bursts) tương tác theo cú click chuột.</li>
+  </ul>
+  <strong>👉 <a href="./3d-portfolio/index.html">Khám phá Mã Nguồn</a> &nbsp; // &nbsp; 🌌 <a href="https://duongthaitan.github.io/duongthaitan/3d-portfolio/index.html">Trải nghiệm Vũ trụ 3D Live</a></strong>
+</td>
+</tr>
+</table>
 
-### 👉 **[Explore the Source Code](./3d-portfolio/index.html)** &nbsp; // &nbsp; 🌌 **[Open the Live 3D Experience (GitHub Pages)](https://duongthaitan.github.io/duongthaitan/3d-portfolio/index.html)**
+<div align="center">
+  <img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" width="100%" alt="divider" />
+</div>
 
-<sub><em>Note: The 3D portfolio runs as an interactive WebGL canvas on a dedicated page. This README utilizes dynamic animated SVG artwork for native, blazing-fast GitHub performance.</em></sub>
-
-<br />
-
----
-
-## 🔭 GitHub snapshot — Sekhmet Observatory
-
-<p><samp>04 / SEKHMET OBSERVATORY - LIVE TELEMETRY</samp></p>
+## 🔭 Đài Quan Sát GitHub — Isometric Metrics
 
 <p align="justify">
-  <strong>A live signal from public contribution telemetry, automatically rendered in 3D-styled SVG format via GitHub Actions.</strong>
+  <strong>Radar đo lường sức mạnh — 100% tự động hóa qua GitHub Actions.</strong> Biểu đồ dưới đây không phải là ảnh tĩnh, nó được sinh ra hoàn toàn từ code JavaScript nội bộ chạy mỗi ngày, render ra định dạng SVG Isometric 3D với viền chớp sáng cực "chiến".
 </p>
 
 <p align="center">
-  <img src="./assets/github-metrics.svg?v=dev-fusion-3d-animated" width="600" alt="GitHub observatory: 3D Animated Metrics" />
+  <img src="./assets/github-metrics.svg?v=ultimate-v2" width="650" alt="GitHub observatory: V2 3D Isometric Metrics" />
 </p>
-
-### 📡 Telemetry Metrics Breakdown
-
-| Channel | Measurement Criteria | Filtering Logic |
-| :--- | :--- | :--- |
-| **📦 Original Repos** | Owned public repositories | Excludes forks, includes archived repositories |
-| **⭐ Earned Stars** | Total stargazers count | Accumulated across owned original repositories |
-| **🧑‍🚀 Cosmic Followers** | Public developer followers | Live count of GitHub community followers |
-
-[Accessible snapshot](./assets/github-metrics.svg?raw=1) · [Repositories](https://github.com/duongthaitan?tab=repositories) · [Followers](https://github.com/duongthaitan?tab=followers) · [Renderer source](./scripts/render-metrics.mjs)
-
-<sub><em>* Metrics are generated dynamically using Node.js and injected with custom SVG `<animate>` and `<filter>` tags for a rich 3D UI experience. Automatically updated via daily cron schedules.</em></sub>
-
-<br />
-
----
-
-<img src="./assets/galaxy/certificates.svg?v=dev-fusion-3d" width="100%" alt="Sector 05 — Learning Coordinates" />
-
-## 📜 Learning coordinates — Sacred Scrolls
-
-<p align="justify">
-  <strong>Sacred Scrolls of Knowledge &amp; Continuous Growth.</strong><br/>
-  A record of accredited course completions and fundamental skills mastered along the golden path of development.
-</p>
-
-<details>
-<summary><strong>🔓 Open the Sacred Learning Scrolls (Five Certified Milestones)</strong></summary>
-<br/>
-
-| 🏛️ Issuer | 🎓 Certification Title | 🔗 Verification Anchor | 🎯 Domain Focus |
-| :--- | :--- | :--- | :--- |
-| **F8 Fullstack** | IT Onboarding | [cert/4tv2o](https://fullstack.edu.vn/cert/4tv2o) | Industry fundamentals, dev tools & workflow |
-| **F8 Fullstack** | JavaScript Basic | [cert/d0gj4](https://fullstack.edu.vn/cert/d0gj4) | ES6+, closures, async programming, DOM |
-| **F8 Fullstack** | PHP Introduction | [cert/kj7vr](https://fullstack.edu.vn/cert/kj7vr) | Server-side scripting, OOP PHP basics |
-| **SoloLearn** | PHP Course | [CT-11PGKZIX](https://www.sololearn.com/certificates/CT-11PGKZIX) | Backend architecture, forms, MySQL integration |
-| **SoloLearn** | Introduction to C | [CC-USOBZSX7](https://www.sololearn.com/certificates/CC-USOBZSX7) | Pointers, memory allocation, C fundamentals |
-
-</details>
-
-<br />
-
----
-
-<img src="./assets/galaxy/automation.svg?v=dev-fusion-3d" width="100%" alt="Sector 06 — Flight Systems" />
-
-## ⚙️ Flight systems — Solar Automation
-
-<p align="justify">
-  <strong>Solar Clockwork Automation — Running directly on GitHub Actions infrastructure.</strong><br/>
-  This profile features a native JavaScript metric rendering engine (`render-metrics.mjs`). Zero external tracking pixels or third-party image service dependencies. 100% custom-built.
-</p>
-
-<details>
-<summary><strong>🔓 View System Architecture & Local Testing</strong></summary>
-
-### 🛠️ Local Execution &amp; Test Suite
-Requires **Node.js 24+**. Run local verification scripts with zero installation overhead:
-
-```powershell
-# Run the strict security verification suite
-node --test scripts/render-metrics.test.mjs
-
-# Generate the 3D animated SVG locally
-node scripts/render-metrics.mjs
-```
-
-#### 🛡️ Verification Suite Guardrails:
-1. **SVG Security**: Blocks XSS (`<script>`, inline handlers) but explicitly **allows** `<animate>` and `<animateTransform>` for rich 3D motion graphics.
-2. **Local Fragments**: Ensures all `url(#id)` references resolve locally.
-3. **Reduced Motion**: Mandates `@media (prefers-reduced-motion: reduce)` block in all animated SVGs.
-</details>
-
-<br />
-
----
-
-<img src="./assets/galaxy/connect.svg?v=dev-fusion-3d" width="100%" alt="Sector 07 — Connect Portal" />
-
-<h2 align="center">🛰️ Open a channel — Telemetry</h2>
 
 <p align="center">
-  <strong>Good ideas deserve a radiant sanctuary. Let's connect.</strong><br />
-  <em>Frontend architecture, Three.js &amp; GSAP 3D WebGL experiments, or creative engineering collaborations.</em>
+  <em>(Biểu đồ được cập nhật tự động bằng Node.js 24+ & GitHub Actions Cron Job)</em>
+</p>
+
+<div align="center">
+  <img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" width="100%" alt="divider" />
+</div>
+
+<img src="./assets/galaxy/connect.svg?v=ultimate-v2" width="100%" alt="Sector 07 — Connect Portal" />
+
+<h2 align="center">🛰️ Cổng Giao Tiếp Phóng Tia Lửa</h2>
+
+<p align="center">
+  Những ý tưởng vĩ đại luôn bắt đầu từ một đốm lửa nhỏ. Hãy kết nối nếu bạn muốn xây dựng những kiến trúc WebGL 3D, Frontend đỉnh cao hoặc đơn giản là muốn trò chuyện với một Developer mang dòng máu Sư Tử!
 </p>
 
 <p align="center">
   <a href="https://github.com/duongthaitan">
-    <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&amp;logo=github&amp;logoColor=FFD700" alt="GitHub" />
+    <img src="https://img.shields.io/badge/GitHub-Trụ_Sở_Chính-181717?style=for-the-badge&amp;logo=github&amp;logoColor=FFD700" alt="GitHub" />
   </a> &nbsp;
   <a href="https://www.linkedin.com/in/duongthaitan/">
-    <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&amp;logo=linkedin&amp;logoColor=FFFFFF" alt="LinkedIn" />
+    <img src="https://img.shields.io/badge/LinkedIn-Mạng_Lưới-0A66C2?style=for-the-badge&amp;logo=linkedin&amp;logoColor=FFFFFF" alt="LinkedIn" />
   </a> &nbsp;
   <a href="https://www.instagram.com/thaitan.duong_">
-    <img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&amp;logo=instagram&amp;logoColor=FFFFFF" alt="Instagram" />
+    <img src="https://img.shields.io/badge/Instagram-Thư_Viện_Ảnh-E4405F?style=for-the-badge&amp;logo=instagram&amp;logoColor=FFFFFF" alt="Instagram" />
   </a>
 </p>
 
-<img src="./assets/section-divider.svg?v=dev-fusion-3d" width="100%" alt="" />
+<br/>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Fire.png" alt="Fire" width="25" height="25" />
-  <samp> STAY CURIOUS. KEEP BUILDING. BURN BRIGHT WITH SEKHMET'S FIRE </samp>
-  <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Fire.png" alt="Fire" width="25" height="25" />
+  <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Fire.png" alt="Fire" width="30" />
+  <samp> LUÔN TÒ MÒ. LIÊN TỤC KIẾN TẠO. BỪNG SÁNG VỚI NGỌN LỬA CỦA SEKHMET </samp>
+  <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Fire.png" alt="Fire" width="30" />
 </p>
-<p align="center"><sub>Duong Thai Tan · Leo Developer (August 18) · Protected by Sekhmet</sub></p>
+<p align="center"><sub>Dương Thái Tân · Leo Developer (18/08) · Protected by Sekhmet's Divine Fire</sub></p>

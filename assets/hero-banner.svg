@@ -1,204 +1,145 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="360" viewBox="0 0 900 360" role="img" aria-labelledby="hero-title hero-desc">
-  <title id="hero-title">Duong Thai Tan — Sekhmet Solar Leo Developer (August 18)</title>
-  <desc id="hero-desc">Prismatic golden vector artwork featuring the Eye of Ra, Sekhmet Sun Disk, central 9-star Leo Constellation, and 11 orbiting zodiac star nodes in 3D cosmic perspective.</desc>
+  <title id="hero-title">Duong Thai Tan — Sekhmet Solar Leo Developer</title>
+  <desc id="hero-desc">V2 Ultimate 3D Animated Hero Banner</desc>
   <defs>
     <clipPath id="hero-frame"><rect width="900" height="360" rx="20"/></clipPath>
 
-    <!-- 3D Vector Gradients (Golden / Amber / Solar Red) -->
-    <radialGradient id="hero-gold" cx=".5" cy=".5" r=".5"><stop stop-color="#ffd700" stop-opacity=".5"/><stop offset=".45" stop-color="#d4a017" stop-opacity=".2"/><stop offset="1" stop-color="#050712" stop-opacity="0"/></radialGradient>
+    <!-- 3D Glow Filters -->
+    <filter id="hyper-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur1" />
+      <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur2" />
+      <feGaussianBlur in="SourceGraphic" stdDeviation="24" result="blur3" />
+      <feMerge>
+        <feMergeNode in="blur3" />
+        <feMergeNode in="blur2" />
+        <feMergeNode in="blur1" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="soft-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Deep Space Gradients -->
+    <radialGradient id="hero-gold" cx=".5" cy=".5" r=".5"><stop stop-color="#ffd700" stop-opacity=".6"/><stop offset=".45" stop-color="#d4a017" stop-opacity=".25"/><stop offset="1" stop-color="#050712" stop-opacity="0"/></radialGradient>
     <radialGradient id="hero-sun" cx=".5" cy=".5" r=".5"><stop stop-color="#ffffff"/><stop offset=".2" stop-color="#ffd700"/><stop offset=".5" stop-color="#ff7700"/><stop offset=".8" stop-color="#b82800"/><stop offset="1" stop-color="#050712" stop-opacity="0"/></radialGradient>
-    <radialGradient id="hero-amber" cx=".5" cy=".5" r=".5"><stop stop-color="#ff9900" stop-opacity=".35"/><stop offset=".6" stop-color="#b85d00" stop-opacity=".15"/><stop offset="1" stop-color="#050712" stop-opacity="0"/></radialGradient>
     <radialGradient id="hero-star" cx=".3" cy=".24" r=".76"><stop stop-color="#ffffff"/><stop offset=".3" stop-color="#ffd700"/><stop offset=".7" stop-color="#d4a017"/><stop offset="1" stop-color="#5c3a00"/></radialGradient>
-    <radialGradient id="hero-glow-node" cx=".5" cy=".5" r=".5"><stop stop-color="#ffd700" stop-opacity=".95"/><stop offset=".4" stop-color="#ff9900" stop-opacity=".4"/><stop offset="1" stop-color="#ffd700" stop-opacity="0"/></radialGradient>
 
-    <linearGradient id="hero-trace" x1="570" y1="60" x2="790" y2="240" gradientUnits="userSpaceOnUse"><stop stop-color="#ffffff"/><stop offset=".25" stop-color="#ffd700"/><stop offset=".65" stop-color="#ff9900"/><stop offset="1" stop-color="#e67e22"/></linearGradient>
-    <linearGradient id="hero-border-grad" x1="0" y1="0" x2="900" y2="360" gradientUnits="userSpaceOnUse"><stop stop-color="#ffd700" stop-opacity=".9"/><stop offset=".3" stop-color="#ff9900" stop-opacity=".4"/><stop offset=".7" stop-color="#d4a017" stop-opacity=".6"/><stop offset="1" stop-color="#ffd700" stop-opacity=".9"/></linearGradient>
-    <linearGradient id="gold-crown-grad" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff8e1"/><stop offset=".5" stop-color="#ffd700"/><stop offset="1" stop-color="#b8860b"/></linearGradient>
-
-    <style>
-      text{font-family:'Segoe UI',system-ui,-apple-system,Arial,sans-serif;fill:#e6edf3}
-      .secondary{fill:#c2b280}
-      .label{font-family:ui-monospace,Consolas,monospace;letter-spacing:1.8px}
-      
-      /* Continuous 3D Keyframe Animations */
-      .sekhmet-sun { transform-origin: 675px 170px; animation: sekhmet-pulse 7s ease-in-out 200; }
-      .eye-ra { transform-origin: 675px 170px; animation: eye-glow 5s ease-in-out 200; }
-      .zodiac-wheel-3d { transform-origin: 675px 170px; animation: zodiac-orbit 50s linear 200; }
-      .leo-center { transform-origin: 675px 170px; animation: leo-float 9s ease-in-out 200; }
-      .leo-trace { stroke-dasharray: 600; stroke-dashoffset: 0; animation: leo-trace-pulse 6s ease-in-out 200; }
-      .solar-flare { transform-origin: 675px 170px; animation: flare-spin 30s linear 200; }
-      .star-twinkle { transform-origin: 675px 170px; animation: twk-pulse 3.5s ease-in-out 200; }
-      .ember-float { animation: embers-up 8s ease-in-out 200; }
-
-      @keyframes sekhmet-pulse { 0%,100%{ transform: scale(.94); opacity: .88; } 50%{ transform: scale(1.08); opacity: 1; } }
-      @keyframes eye-glow { 0%,100%{ opacity: .8; transform: scale(.95); } 50%{ opacity: 1; transform: scale(1.05); } }
-      @keyframes zodiac-orbit { from{ transform: rotate(0deg); } to{ transform: rotate(360deg); } }
-      @keyframes leo-float { 0%,100%{ transform: translate(0,0) scale(1); } 50%{ transform: translate(-6px, -10px) scale(1.03); } }
-      @keyframes leo-trace-pulse { 0%,100%{ stroke-opacity: .7; stroke-width: 1.8px; } 50%{ stroke-opacity: 1; stroke-width: 2.8px; } }
-      @keyframes flare-spin { from{ transform: rotate(0deg); } to{ transform: rotate(360deg); } }
-      @keyframes twk-pulse { 0%,100%{ opacity: .3; } 50%{ opacity: 1; } }
-      @keyframes embers-up { 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-20px); } }
-
-      @media(prefers-reduced-motion:reduce){
-        .sekhmet-sun, .eye-ra, .zodiac-wheel-3d, .leo-center, .leo-trace, .solar-flare, .star-twinkle, .ember-float { animation: none; }
-      }
-      @media(forced-colors:active){
-        .decor{display:none}.background{fill:Canvas}.border{stroke:CanvasText}text,.secondary{fill:CanvasText}
-      }
-    </style>
+    <!-- Moving Light Ray Gradient -->
+    <linearGradient id="light-sweep" x1="0%" y1="0%" x2="200%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0" />
+      <stop offset="50%" stop-color="#ffd700" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+      <animate attributeName="x1" values="-100%;100%" dur="3s" repeatCount="indefinite" />
+      <animate attributeName="x2" values="0%;200%" dur="3s" repeatCount="indefinite" />
+    </linearGradient>
   </defs>
 
   <g clip-path="url(#hero-frame)">
-    <!-- Deep Indigo Space Background -->
-    <rect class="background" width="900" height="360" fill="#050712"/>
+    <!-- Deep Cosmic Background -->
+    <rect width="900" height="360" fill="#04060f"/>
+    <circle cx="675" cy="170" r="380" fill="url(#hero-gold)" opacity=".6">
+       <animate attributeName="opacity" values="0.4; 0.8; 0.4" dur="8s" repeatCount="indefinite" />
+       <animateTransform attributeName="transform" type="scale" values="0.95; 1.05; 0.95" dur="10s" repeatCount="indefinite" transform-origin="675 170" />
+    </circle>
 
-    <g class="decor">
-      <!-- Ambient Solar Nebulae -->
-      <ellipse cx="675" cy="170" rx="380" ry="240" fill="url(#hero-gold)" opacity=".7"/>
-      <ellipse cx="790" cy="200" rx="270" ry="150" fill="url(#hero-amber)" opacity=".6"/>
-
-      <!-- Ambient Twinkling Stars -->
-      <g class="star-twinkle" fill="#ffe8b0" opacity=".5">
-        <circle cx="35" cy="45" r=".7"/><circle cx="95" cy="25" r=".9"/><circle cx="160" cy="80" r=".6"/><circle cx="210" cy="30" r=".8"/><circle cx="280" cy="75" r=".7"/>
-        <circle cx="340" cy="20" r=".6"/><circle cx="410" cy="85" r=".9"/><circle cx="480" cy="35" r=".7"/><circle cx="530" cy="70" r=".8"/>
-        <circle cx="50" cy="170" r=".6"/><circle cx="120" cy="220" r=".8"/><circle cx="190" cy="160" r=".7"/><circle cx="260" cy="240" r=".9"/><circle cx="330" cy="180" r=".6"/>
-        <circle cx="400" cy="250" r=".8"/><circle cx="470" cy="190" r=".7"/><circle cx="520" cy="270" r=".9"/>
-        <circle cx="40" cy="310" r=".8"/><circle cx="110" cy="330" r=".6"/><circle cx="230" cy="320" r=".7"/><circle cx="360" cy="310" r=".9"/><circle cx="490" cy="330" r=".6"/>
-      </g>
-
-      <!-- DIVINE SEKHMET CROWN & SUN DISK AT CENTER -->
-      <g class="sekhmet-sun">
-        <!-- Outer Solar Flares / Rays -->
-        <g class="solar-flare" stroke="#ffd700" stroke-opacity=".3" stroke-width="2" stroke-dasharray="6 12">
-          <circle cx="675" cy="170" r="145" fill="none"/>
-          <circle cx="675" cy="170" r="175" fill="none" stroke="#e67e22" stroke-opacity=".2"/>
-        </g>
-        
-        <!-- Divine Sun Disk Core -->
-        <circle cx="675" cy="170" r="115" fill="url(#hero-sun)" opacity=".8"/>
-        <circle cx="675" cy="170" r="88" fill="url(#hero-sun)"/>
-
-        <!-- Egyptian Crown / Horns Motif (Pure SVG Vector Paths - No Text Font Bugs) -->
-        <path d="M620 90 Q675 62 730 90 Q700 75 675 75 Q650 75 620 90 Z" fill="url(#gold-crown-grad)" opacity=".9"/>
-        <circle cx="675" cy="62" r="9" fill="#e67e22"/>
-        <circle cx="675" cy="62" r="4.5" fill="#ffffff"/>
-      </g>
-
-      <!-- EYE OF RA GUARDIAN SYMBOL (VECTOR PATHS) -->
-      <g class="eye-ra">
-        <!-- Eyebrow -->
-        <path d="M638 143 Q675 125 712 143" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" opacity=".95"/>
-        <!-- Upper Lid -->
-        <path d="M630 160 Q675 137 720 160" fill="none" stroke="#ffd700" stroke-width="5" stroke-linecap="round"/>
-        <!-- Lower Lid -->
-        <path d="M630 160 Q675 183 720 160" fill="none" stroke="#ffd700" stroke-width="4" stroke-linecap="round"/>
-        <!-- Iris & Pupil -->
-        <circle cx="675" cy="160" r="16" fill="#ffffff"/>
-        <circle cx="675" cy="160" r="10" fill="#e67e22"/>
-        <circle cx="675" cy="160" r="4.8" fill="#050712"/>
-        <!-- Falcon Markings -->
-        <path d="M702 165 Q713 189 707 210 M705 183 Q724 187 730 179" fill="none" stroke="#ffd700" stroke-width="3.5" stroke-linecap="round"/>
-        <path d="M648 165 Q637 193 643 205" fill="none" stroke="#ffd700" stroke-width="3" stroke-linecap="round"/>
-      </g>
-
-      <!-- CENTRAL LEO CONSTELLATION (9 GOLDEN STARS) -->
-      <g class="leo-center">
-        <!-- Connecting Constellation Trace Lines -->
-        <path class="leo-trace" d="M575 75 L610 55 L655 67 L690 100 L675 135 L645 175" fill="none" stroke="url(#hero-trace)" stroke-width="2.5"/>
-        <path class="leo-trace" d="M690 100 L770 110 L855 145 L785 180 L690 100" fill="none" stroke="url(#hero-trace)" stroke-width="2.2"/>
-        <path class="leo-trace" d="M645 175 L785 180" fill="none" stroke="url(#hero-trace)" stroke-width="2"/>
-
-        <!-- 9 Golden Constellation Spheres -->
-        <!-- Regulus (Heart Star) -->
-        <g transform="translate(645, 175)">
-          <circle r="26" fill="url(#hero-glow-node)"/>
-          <circle r="22" fill="url(#hero-sun)" opacity=".7"/>
-          <circle r="9" fill="url(#hero-star)"/>
-          <path d="M-16 0 H16 M0 -16 V16" stroke="#ffffff" stroke-width="2.2" opacity=".95"/>
-        </g>
-        <!-- Denebola -->
-        <g transform="translate(855, 145)">
-          <circle r="17" fill="url(#hero-glow-node)"/>
-          <circle r="7" fill="url(#hero-star)"/>
-        </g>
-        <!-- Algieba -->
-        <g transform="translate(690, 100)">
-          <circle r="15" fill="url(#hero-glow-node)"/>
-          <circle r="6.5" fill="url(#hero-star)"/>
-        </g>
-        <g transform="translate(770, 110)"><circle r="5.2" fill="url(#hero-star)"/></g>
-        <g transform="translate(785, 180)"><circle r="5.2" fill="url(#hero-star)"/></g>
-        <g transform="translate(655, 67)"><circle r="5" fill="url(#hero-star)"/></g>
-        <g transform="translate(610, 55)"><circle r="5" fill="url(#hero-star)"/></g>
-        <g transform="translate(575, 75)"><circle r="5" fill="url(#hero-star)"/></g>
-        <g transform="translate(675, 135)"><circle r="4.5" fill="url(#hero-star)"/></g>
-      </g>
-
-      <!-- 3D ORBITING ZODIAC NODES (PURE VECTOR SHAPES & STYLED LABELS - NO UNRENDERED TOFU EMOJI BOXES) -->
-      <g class="zodiac-wheel-3d">
-        <!-- Tilted Elliptical Orbit Track -->
-        <ellipse cx="675" cy="170" rx="175" ry="140" fill="none" stroke="#ffd700" stroke-opacity=".3" stroke-width="1.5" stroke-dasharray="6 8"/>
-        
-        <!-- 11 Golden Star Orbs Orbiting Around Central Leo -->
-        <g fill="#ffd700" font-size="10" font-weight="700">
-          <g transform="translate(675, 25)"><circle r="8" fill="#10140a" stroke="#ffd700" stroke-width="1.5"/><circle r="3" fill="#ffffff"/></g>
-          <g transform="translate(765, 50)"><circle r="8" fill="#10140a" stroke="#ffd700" stroke-width="1.5"/><circle r="3" fill="#ffffff"/></g>
-          <g transform="translate(830, 115)"><circle r="8" fill="#10140a" stroke="#ffd700" stroke-width="1.5"/><circle r="3" fill="#ffffff"/></g>
-          <g transform="translate(850, 195)"><circle r="8" fill="#10140a" stroke="#ffd700" stroke-width="1.5"/><circle r="3" fill="#ffffff"/></g>
-          <g transform="translate(805, 270)"><circle r="8" fill="#10140a" stroke="#ffd700" stroke-width="1.5"/><circle r="3" fill="#ffffff"/></g>
-          <g transform="translate(720, 310)"><circle r="8" fill="#10140a" stroke="#ffd700" stroke-width="1.5"/><circle r="3" fill="#ffffff"/></g>
-          <g transform="translate(630, 310)"><circle r="8" fill="#10140a" stroke="#ffd700" stroke-width="1.5"/><circle r="3" fill="#ffffff"/></g>
-          <g transform="translate(545, 270)"><circle r="8" fill="#10140a" stroke="#ffd700" stroke-width="1.5"/><circle r="3" fill="#ffffff"/></g>
-          <g transform="translate(500, 195)"><circle r="8" fill="#10140a" stroke="#ffd700" stroke-width="1.5"/><circle r="3" fill="#ffffff"/></g>
-          <g transform="translate(520, 115)"><circle r="8" fill="#10140a" stroke="#ffd700" stroke-width="1.5"/><circle r="3" fill="#ffffff"/></g>
-          <g transform="translate(585, 50)"><circle r="8" fill="#10140a" stroke="#ffd700" stroke-width="1.5"/><circle r="3" fill="#ffffff"/></g>
-        </g>
-      </g>
-
-      <!-- Floating Solar Embers -->
-      <g class="ember-float" fill="#ffd700">
-        <circle cx="590" cy="280" r="2" opacity=".7"/>
-        <circle cx="630" cy="240" r="1.4" opacity=".85"/>
-      </g>
-
-
+    <!-- Parallax Stars Background -->
+    <g fill="#ffe8b0" opacity=".6">
+       <animateTransform attributeName="transform" type="translate" values="-10, -5; 10, 5; -10, -5" dur="15s" repeatCount="indefinite" />
+       <circle cx="35" cy="45" r="1.2"/><circle cx="160" cy="80" r=".8"/><circle cx="280" cy="75" r="1.5"/><circle cx="530" cy="70" r="1"/>
+       <circle cx="120" cy="220" r="1.2"/><circle cx="260" cy="240" r="1"/><circle cx="470" cy="190" r="1.3"/>
+       <circle cx="110" cy="330" r="1"/><circle cx="360" cy="310" r="1.5"/><circle cx="490" cy="330" r=".8"/>
     </g>
 
-    <!-- Content Typography & Badges -->
-    <g transform="translate(40, 0)">
-      <!-- Developer IDE Code Tab -->
-      <rect x="0" y="55" width="220" height="24" rx="6" fill="#161b22" stroke="#30363d" stroke-width="1"/>
-      <circle cx="14" cy="67" r="3.5" fill="#ff5f56"/>
-      <circle cx="25" cy="67" r="3.5" fill="#ffbd2e"/>
-      <circle cx="36" cy="67" r="3.5" fill="#27c93f"/>
-      <text x="48" y="71" class="label" font-size="10" fill="#a0b0c0">duongthaitan.js • 3D Dev</text>
+    <!-- Solar Flares 3D Rotation -->
+    <g opacity=".8" filter="url(#hyper-glow)">
+      <animateTransform attributeName="transform" type="rotate" values="0 675 170; 360 675 170" dur="20s" repeatCount="indefinite" />
+      <path d="M675 10 L685 150 L675 330 L665 150 Z" fill="#ffd700" opacity=".1" />
+      <path d="M515 170 L650 160 L835 170 L650 180 Z" fill="#ff7700" opacity=".1" />
+      <circle cx="675" cy="170" r="185" fill="none" stroke="#ffd700" stroke-width="1.5" stroke-dasharray="8 24" />
+    </g>
 
-      <!-- Sector Badge -->
-      <rect x="0" y="88" width="230" height="24" rx="12" fill="#ffd700" fill-opacity=".15" stroke="#ffd700" stroke-opacity=".4"/>
-      <text x="14" y="104" class="label" font-size="10.5" font-weight="700" fill="#ffd700">SOLAR LEO 18/8 • 3D WEBGL ENGINE</text>
+    <!-- Sekhmet Sun Disk (Heart of the profile) -->
+    <g>
+       <animateTransform attributeName="transform" type="scale" values="0.97; 1.03; 0.97" dur="4s" repeatCount="indefinite" transform-origin="675 170" />
+       <circle cx="675" cy="170" r="120" fill="url(#hero-sun)" filter="url(#hyper-glow)"/>
+       
+       <!-- Eye of Ra -->
+       <g filter="url(#soft-glow)">
+          <path d="M625 155 Q675 120 725 155" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round"/>
+          <path d="M615 175 Q675 140 735 175 Q675 210 615 175" fill="none" stroke="#ffd700" stroke-width="6" stroke-linecap="round"/>
+          <circle cx="675" cy="170" r="18" fill="#ffffff"/>
+          <circle cx="675" cy="170" r="10" fill="#e67e22"/>
+          <circle cx="675" cy="170" r="4.5" fill="#050712"/>
+          <path d="M710 182 Q725 210 715 235 M712 205 Q735 208 745 198" fill="none" stroke="#ffd700" stroke-width="4" stroke-linecap="round"/>
+          <path d="M640 182 Q625 215 635 230" fill="none" stroke="#ffd700" stroke-width="3.5" stroke-linecap="round"/>
+       </g>
+    </g>
 
-      <!-- Main Developer Title -->
-      <text x="0" y="156" font-size="46" font-weight="800" letter-spacing="-1.4" fill="#ffffff">Duong Thai Tan</text>
+    <!-- Rotating Zodiac Nodes (3D Orbital Rings) -->
+    <g filter="url(#soft-glow)">
+       <!-- Ring 1 -->
+       <ellipse cx="675" cy="170" rx="200" ry="80" fill="none" stroke="url(#light-sweep)" stroke-width="2" transform="rotate(-15 675 170)"/>
+       <!-- Ring 2 -->
+       <ellipse cx="675" cy="170" rx="140" ry="240" fill="none" stroke="#ffd700" stroke-width="1" stroke-dasharray="4 16" transform="rotate(45 675 170)">
+         <animateTransform attributeName="transform" type="rotate" values="45 675 170; 405 675 170" dur="40s" repeatCount="indefinite" />
+       </ellipse>
+       <!-- Golden Nodes -->
+       <g fill="#ffd700">
+         <animateTransform attributeName="transform" type="rotate" values="0 675 170; -360 675 170" dur="30s" repeatCount="indefinite" />
+         <circle cx="485" cy="170" r="6"/><circle cx="865" cy="170" r="5"/>
+         <circle cx="675" cy="10" r="7"/><circle cx="675" cy="330" r="4"/>
+         <circle cx="530" cy="50" r="5"/><circle cx="820" cy="290" r="6"/>
+       </g>
+    </g>
 
-      <!-- Subtitle & Role -->
-      <text x="0" y="192" font-size="20" font-weight="600" fill="#ffd700" letter-spacing="0.5">Sekhmet's Solar Lion Developer</text>
-      <text x="0" y="218" class="secondary" font-size="14">Frontend Architect • Three.js &amp; GSAP 3D Motion • Fullstack Artisan</text>
-      <text x="0" y="238" class="label" font-size="11" fill="#7ee787">tan@solarlion:~# npm run build:3d-canvas [SUCCESS]</text>
+    <!-- Foreground Content Typography with Sweeping Glassmorphism -->
+    <g transform="translate(45, 0)">
+      <!-- Developer Glass Badge -->
+      <g filter="url(#soft-glow)">
+        <rect x="0" y="55" width="220" height="26" rx="8" fill="#161b22" stroke="url(#light-sweep)" stroke-width="1.5" opacity="0.9"/>
+        <circle cx="15" cy="68" r="4" fill="#ff5f56"/>
+        <circle cx="28" cy="68" r="4" fill="#ffbd2e"/>
+        <circle cx="41" cy="68" r="4" fill="#27c93f"/>
+        <text x="54" y="72" font-family="monospace" font-size="10.5" fill="#a0b0c0" font-weight="600">tan.js • WebGL 3D Dev</text>
+      </g>
 
-      <!-- Quick Action Badges -->
-      <g transform="translate(0, 268)">
-        <rect x="0" y="0" width="110" height="28" rx="6" fill="#1e180a" stroke="#ffd700" stroke-opacity=".4"/>
-        <text x="12" y="18" class="label" font-size="10.5" fill="#ffd700">BORN 18/8</text>
+      <text x="0" y="156" font-family="system-ui" font-size="52" font-weight="800" letter-spacing="-1.5" fill="#ffffff" filter="url(#soft-glow)">
+        Duong Thai Tan
+      </text>
 
-        <rect x="120" y="0" width="165" height="28" rx="6" fill="#1e180a" stroke="#e67e22" stroke-opacity=".4"/>
-        <text x="132" y="18" class="label" font-size="10.5" fill="#ff9900">FULLSTACK ARCHITECT</text>
+      <text x="0" y="196" font-family="system-ui" font-size="22" font-weight="600" fill="#ffd700" letter-spacing="1">
+        Sekhmet's Solar Lion Developer
+        <animate attributeName="opacity" values="0.7; 1; 0.7" dur="3s" repeatCount="indefinite" />
+      </text>
 
-        <rect x="295" y="0" width="145" height="28" rx="6" fill="#1e180a" stroke="#27c93f" stroke-opacity=".4"/>
-        <text x="307" y="18" class="label" font-size="10.5" fill="#7ee787">THREE.JS / GSAP</text>
+      <text x="0" y="222" font-family="system-ui" font-size="14.5" fill="#c2b280" font-weight="500">
+        Frontend Architect • Three.js &amp; GSAP 3D Motion • Fullstack Artisan
+      </text>
+      <text x="0" y="244" font-family="monospace" font-size="11.5" fill="#7ee787" font-weight="600">
+        tan@solarlion:~# npm run ignite:3d-core [SUCCESS]
+      </text>
+
+      <!-- Animated Action Badges -->
+      <g transform="translate(0, 275)" font-family="monospace" font-weight="700" font-size="11" filter="url(#soft-glow)">
+        <rect x="0" y="0" width="115" height="30" rx="8" fill="#1e180a" stroke="#ffd700" stroke-width="1.5"/>
+        <text x="18" y="19" fill="#ffd700">LEO (18/8)</text>
+
+        <rect x="130" y="0" width="175" height="30" rx="8" fill="#1e180a" stroke="#ff7700" stroke-width="1.5"/>
+        <text x="145" y="19" fill="#ff9900">FULLSTACK ARCHITECT</text>
+
+        <rect x="320" y="0" width="160" height="30" rx="8" fill="#1e180a" stroke="#27c93f" stroke-width="1.5"/>
+        <text x="335" y="19" fill="#7ee787">THREE.JS / GSAP</text>
       </g>
     </g>
 
-    <!-- Outer Decorative Border -->
-    <rect class="border" x=".5" y=".5" width="899" height="359" rx="19.5" fill="none" stroke="url(#hero-border-grad)" stroke-width="2"/>
+    <!-- Outer Cinematic Frame with Sweeping Light -->
+    <rect x="1" y="1" width="898" height="358" rx="20" fill="none" stroke="url(#light-sweep)" stroke-width="2"/>
+    <rect x="2" y="2" width="896" height="356" rx="19" fill="none" stroke="#ffd700" stroke-width="0.5" opacity="0.3"/>
   </g>
 </svg>
