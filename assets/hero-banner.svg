@@ -1,17 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="360" viewBox="0 0 900 360" role="img" aria-labelledby="hero-title hero-desc">
-  <title id="hero-title">Duong Thai Tan — Sekhmet's Divine Solar Lion Developer (Leo 18/8)</title>
-  <desc id="hero-desc">The ancient Egyptian Goddess Sekhmet and the Eye of Ra radiant in 3D gold and solar fire, while the 9 stars of the Leo constellation float in 3D orbit across the cosmic Egyptian sanctuary.</desc>
+  <title id="hero-title">Duong Thai Tan — Leo King in Center Orbit (August 18)</title>
+  <desc id="hero-desc">The Leo Constellation and Sekhmet Sun Disk reign in the center while all 11 other zodiac signs orbit around Leo in a 3D cosmic ellipse.</desc>
   <defs>
     <clipPath id="hero-frame"><rect width="900" height="360" rx="20"/></clipPath>
 
-    <!-- 3D Radial & Linear Solar Gradients -->
+    <!-- Radial & Linear Gradients -->
     <radialGradient id="hero-gold" cx=".5" cy=".5" r=".5"><stop stop-color="#ffd700" stop-opacity=".45"/><stop offset=".4" stop-color="#d4a017" stop-opacity=".22"/><stop offset="1" stop-color="#050712" stop-opacity="0"/></radialGradient>
     <radialGradient id="hero-sun" cx=".5" cy=".5" r=".5"><stop stop-color="#ffffff"/><stop offset=".18" stop-color="#ffe8a0"/><stop offset=".4" stop-color="#ffd700"/><stop offset=".65" stop-color="#ff7700"/><stop offset=".85" stop-color="#b82800"/><stop offset="1" stop-color="#050712" stop-opacity="0"/></radialGradient>
     <radialGradient id="hero-amber" cx=".5" cy=".5" r=".5"><stop stop-color="#ff9900" stop-opacity=".35"/><stop offset=".6" stop-color="#b85d00" stop-opacity=".15"/><stop offset="1" stop-color="#050712" stop-opacity="0"/></radialGradient>
     <radialGradient id="hero-star" cx=".3" cy=".24" r=".76"><stop stop-color="#ffffff"/><stop offset=".25" stop-color="#fff4d4"/><stop offset=".5" stop-color="#ffd700"/><stop offset=".8" stop-color="#d4a017"/><stop offset="1" stop-color="#5c3a00"/></radialGradient>
     <radialGradient id="hero-glow-node" cx=".5" cy=".5" r=".5"><stop stop-color="#ffd700" stop-opacity=".9"/><stop offset=".4" stop-color="#ff9900" stop-opacity=".4"/><stop offset="1" stop-color="#ffd700" stop-opacity="0"/></radialGradient>
 
-    <linearGradient id="hero-trace" x1="560" y1="50" x2="850" y2="180" gradientUnits="userSpaceOnUse"><stop stop-color="#ffffff"/><stop offset=".2" stop-color="#ffd700"/><stop offset=".6" stop-color="#ff9900"/><stop offset="1" stop-color="#e67e22"/></linearGradient>
+    <linearGradient id="hero-trace" x1="570" y1="60" x2="790" y2="240" gradientUnits="userSpaceOnUse"><stop stop-color="#ffffff"/><stop offset=".2" stop-color="#ffd700"/><stop offset=".6" stop-color="#ff9900"/><stop offset="1" stop-color="#e67e22"/></linearGradient>
     <linearGradient id="hero-border-grad" x1="0" y1="0" x2="900" y2="360" gradientUnits="userSpaceOnUse"><stop stop-color="#ffd700" stop-opacity=".9"/><stop offset=".25" stop-color="#ff9900" stop-opacity=".4"/><stop offset=".75" stop-color="#d4a017" stop-opacity=".7"/><stop offset="1" stop-color="#ffd700" stop-opacity=".95"/></linearGradient>
 
     <style>
@@ -19,31 +19,29 @@
       .secondary{fill:#c2b280}
       .label{font-family:ui-monospace,Consolas,monospace;letter-spacing:1.8px}
       
-      /* Continuous 3D Animations (200 iterations for GitHub compatibility) */
-      .sekhmet-sun { transform-origin: 675px 165px; animation: sekhmet-pulse 7s ease-in-out 200; }
-      .eye-ra { transform-origin: 675px 165px; animation: eye-glow 5s ease-in-out 200; }
-      .glyph-wheel { transform-origin: 675px 165px; animation: wheel-spin 50s linear 200; }
-      .glyph-wheel-reverse { transform-origin: 675px 165px; animation: wheel-spin-rev 75s linear 200; }
-      .leo-orbit { transform-origin: 675px 165px; animation: leo-float 10s ease-in-out 200; }
+      /* Continuous 3D Animations (200 iterations) */
+      .sekhmet-sun { transform-origin: 675px 170px; animation: sekhmet-pulse 7s ease-in-out 200; }
+      .eye-ra { transform-origin: 675px 170px; animation: eye-glow 5s ease-in-out 200; }
+      .zodiac-wheel-3d { transform-origin: 675px 170px; animation: zodiac-orbit 55s linear 200; }
+      .leo-center { transform-origin: 675px 170px; animation: leo-float 9s ease-in-out 200; }
       .leo-trace { stroke-dasharray: 600; stroke-dashoffset: 0; animation: leo-trace-pulse 6s ease-in-out 200; }
-      .solar-flare { transform-origin: 675px 165px; animation: flare-spin 30s linear 200; }
-      .star-twinkle { transform-origin: 675px 165px; animation: twk-pulse 3.5s ease-in-out 200; }
+      .solar-flare { transform-origin: 675px 170px; animation: flare-spin 30s linear 200; }
+      .star-twinkle { transform-origin: 675px 170px; animation: twk-pulse 3.5s ease-in-out 200; }
       .ember-float { animation: embers-up 8s ease-in-out 200; }
       .hieroglyph { animation: glyph-glow 4s ease-in-out 200; }
 
-      @keyframes sekhmet-pulse { 0%,100%{ transform: scale(.93); opacity: .88; } 50%{ transform: scale(1.09); opacity: 1; } }
+      @keyframes sekhmet-pulse { 0%,100%{ transform: scale(.94); opacity: .88; } 50%{ transform: scale(1.08); opacity: 1; } }
       @keyframes eye-glow { 0%,100%{ opacity: .8; transform: scale(.95); } 50%{ opacity: 1; transform: scale(1.05); } }
-      @keyframes wheel-spin { from{ transform: rotate(0deg); } to{ transform: rotate(360deg); } }
-      @keyframes wheel-spin-rev { from{ transform: rotate(360deg); } to{ transform: rotate(0deg); } }
-      @keyframes leo-float { 0%,100%{ transform: translate(0,0) rotate(0deg); } 50%{ transform: translate(-12px, -15px) rotate(3.5deg); } }
-      @keyframes leo-trace-pulse { 0%,100%{ stroke-opacity: .65; stroke-width: 1.4px; } 50%{ stroke-opacity: 1; stroke-width: 2.5px; } }
+      @keyframes zodiac-orbit { from{ transform: rotate(0deg); } to{ transform: rotate(360deg); } }
+      @keyframes leo-float { 0%,100%{ transform: translate(0,0) scale(1); } 50%{ transform: translate(-6px, -10px) scale(1.03); } }
+      @keyframes leo-trace-pulse { 0%,100%{ stroke-opacity: .7; stroke-width: 1.6px; } 50%{ stroke-opacity: 1; stroke-width: 2.8px; } }
       @keyframes flare-spin { from{ transform: rotate(0deg); } to{ transform: rotate(360deg); } }
       @keyframes twk-pulse { 0%,100%{ opacity: .3; } 50%{ opacity: 1; } }
-      @keyframes embers-up { 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-22px); } }
+      @keyframes embers-up { 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-20px); } }
       @keyframes glyph-glow { 0%,100%{ opacity: .45; } 50%{ opacity: 1; } }
 
       @media(prefers-reduced-motion:reduce){
-        .sekhmet-sun, .eye-ra, .glyph-wheel, .glyph-wheel-reverse, .leo-orbit, .leo-trace, .solar-flare, .star-twinkle, .ember-float, .hieroglyph { animation: none; }
+        .sekhmet-sun, .eye-ra, .zodiac-wheel-3d, .leo-center, .leo-trace, .solar-flare, .star-twinkle, .ember-float, .hieroglyph { animation: none; }
       }
       @media(forced-colors:active){
         .decor{display:none}.background{fill:Canvas}.border{stroke:CanvasText}text,.secondary{fill:CanvasText}
@@ -52,13 +50,13 @@
   </defs>
 
   <g clip-path="url(#hero-frame)">
-    <!-- Deep Indigo Cosmic Space Background -->
+    <!-- Deep Indigo Cosmic Background -->
     <rect class="background" width="900" height="360" fill="#050712"/>
 
     <g class="decor">
       <!-- Background Solar Nebulae -->
-      <ellipse cx="675" cy="165" rx="380" ry="240" fill="url(#hero-gold)" opacity=".7"/>
-      <ellipse cx="790" cy="195" rx="270" ry="150" fill="url(#hero-amber)" opacity=".6"/>
+      <ellipse cx="675" cy="170" rx="380" ry="240" fill="url(#hero-gold)" opacity=".7"/>
+      <ellipse cx="790" cy="200" rx="270" ry="150" fill="url(#hero-amber)" opacity=".6"/>
 
       <!-- Ambient Star Field -->
       <g class="star-twinkle" fill="#ffe8b0" opacity=".5">
@@ -69,96 +67,99 @@
         <circle cx="40" cy="310" r=".8"/><circle cx="110" cy="330" r=".6"/><circle cx="230" cy="320" r=".7"/><circle cx="360" cy="310" r=".9"/><circle cx="490" cy="330" r=".6"/>
       </g>
 
-      <!-- SEKHMET SOLAR DISK & EYE OF RA DEITY -->
+      <!-- SEKHMET SOLAR DISK IN CENTER -->
       <g class="sekhmet-sun">
         <!-- Outer Solar Flares / Rays -->
         <g class="solar-flare" stroke="#ffd700" stroke-opacity=".3" stroke-width="2" stroke-dasharray="6 12">
-          <circle cx="675" cy="165" r="150" fill="none"/>
-          <circle cx="675" cy="165" r="180" fill="none" stroke="#e67e22" stroke-opacity=".2"/>
+          <circle cx="675" cy="170" r="145" fill="none"/>
+          <circle cx="675" cy="170" r="175" fill="none" stroke="#e67e22" stroke-opacity=".2"/>
         </g>
         
         <!-- Divine Sekhmet Sun Disk Core -->
-        <circle cx="675" cy="165" r="120" fill="url(#hero-sun)" opacity=".8"/>
-        <circle cx="675" cy="165" r="92" fill="url(#hero-sun)"/>
+        <circle cx="675" cy="170" r="115" fill="url(#hero-sun)" opacity=".8"/>
+        <circle cx="675" cy="170" r="88" fill="url(#hero-sun)"/>
 
         <!-- Egyptian Sun Disk Uraeus Cobra Horns & Crown Motif -->
-        <path d="M618 82 C640 58, 710 58, 732 82 C702 66, 648 66, 618 82 Z" fill="#ffd700" opacity=".8"/>
-        <circle cx="675" cy="56" r="9" fill="#e67e22"/>
-        <circle cx="675" cy="56" r="4" fill="#ffffff"/>
+        <path d="M618 88 C640 64, 710 64, 732 88 C702 72, 648 72, 618 88 Z" fill="#ffd700" opacity=".8"/>
+        <circle cx="675" cy="62" r="9" fill="#e67e22"/>
+        <circle cx="675" cy="62" r="4" fill="#ffffff"/>
       </g>
 
-      <!-- INNER ROTATING HIEROGLYPHIC RING WHEEL -->
-      <g class="glyph-wheel" fill="#ffd700" opacity=".6" font-size="15" font-family="'Segoe UI Historic', 'Noto Sans Egyptian Hieroglyphs', sans-serif">
-        <circle cx="675" cy="165" r="136" fill="none" stroke="#ffd700" stroke-opacity=".25" stroke-width="1.2" stroke-dasharray="4 8"/>
-        <text x="667" y="24">𓋹</text>
-        <text x="805" y="170">𓁛</text>
-        <text x="667" y="310">𓆣</text>
-        <text x="528" y="170">𓍝</text>
-        <text x="765" y="65">𓃬</text>
-        <text x="765" y="270">𓇳</text>
-        <text x="568" y="270">𓄿</text>
-        <text x="568" y="65">𓅓</text>
-      </g>
-
-      <!-- OUTER REVERSE ROTATING HIEROGLYPHIC RING WHEEL -->
-      <g class="glyph-wheel-reverse" fill="#ff9900" opacity=".45" font-size="13" font-family="'Segoe UI Historic', 'Noto Sans Egyptian Hieroglyphs', sans-serif">
-        <circle cx="675" cy="165" r="162" fill="none" stroke="#ff9900" stroke-opacity=".18" stroke-width=".9"/>
-        <text x="668" y="-2">𓀀</text>
-        <text x="832" y="170">𓁀</text>
-        <text x="668" y="336">𓃭</text>
-        <text x="502" y="170">𓈖</text>
-      </g>
-
-      <!-- EYE OF RA (𓁛) GUARDIAN SYMBOL EMBEDDED IN SOLAR CORE -->
+      <!-- EYE OF RA (𓁛) GUARDIAN SYMBOL EMBEDDED IN CENTER SOLAR CORE -->
       <g class="eye-ra">
-        <!-- Eyebrow -->
-        <path d="M638 138 Q675 120 712 138" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" opacity=".95"/>
-        <!-- Upper Lid -->
-        <path d="M630 155 Q675 132 720 155" fill="none" stroke="#ffd700" stroke-width="5" stroke-linecap="round"/>
-        <!-- Lower Lid -->
-        <path d="M630 155 Q675 178 720 155" fill="none" stroke="#ffd700" stroke-width="4" stroke-linecap="round"/>
-        <!-- Iris & Pupil (Solar Fire) -->
-        <circle cx="675" cy="155" r="16" fill="#ffffff"/>
-        <circle cx="675" cy="155" r="10" fill="#e67e22"/>
-        <circle cx="675" cy="155" r="4.8" fill="#050712"/>
-        <!-- Falcon Marking Tail -->
-        <path d="M702 160 Q713 184 707 205 M705 178 Q724 182 730 174" fill="none" stroke="#ffd700" stroke-width="3.5" stroke-linecap="round"/>
-        <path d="M648 160 Q637 188 643 200" fill="none" stroke="#ffd700" stroke-width="3" stroke-linecap="round"/>
+        <path d="M638 143 Q675 125 712 143" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" opacity=".95"/>
+        <path d="M630 160 Q675 137 720 160" fill="none" stroke="#ffd700" stroke-width="5" stroke-linecap="round"/>
+        <path d="M630 160 Q675 183 720 160" fill="none" stroke="#ffd700" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="675" cy="160" r="16" fill="#ffffff"/>
+        <circle cx="675" cy="160" r="10" fill="#e67e22"/>
+        <circle cx="675" cy="160" r="4.8" fill="#050712"/>
+        <path d="M702 165 Q713 189 707 210 M705 183 Q724 187 730 179" fill="none" stroke="#ffd700" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M648 165 Q637 193 643 205" fill="none" stroke="#ffd700" stroke-width="3" stroke-linecap="round"/>
       </g>
 
-      <!-- 3D LEO CONSTELLATION FLOATING IN FRONT OF SEKHMET -->
-      <g class="leo-orbit">
-        <!-- Connecting Constellation Traces -->
-        <path class="leo-trace" d="M575 70 L610 50 L655 62 L690 95 L675 130 L645 170" fill="none" stroke="url(#hero-trace)" stroke-width="2.2"/>
-        <path class="leo-trace" d="M690 95 L770 105 L855 140 L785 175 L690 95" fill="none" stroke="url(#hero-trace)" stroke-width="2"/>
-        <path class="leo-trace" d="M645 170 L785 175" fill="none" stroke="url(#hero-trace)" stroke-width="1.8"/>
+      <!-- LEO KING CONSTELLATION REIGNING IN THE CENTER -->
+      <g class="leo-center">
+        <!-- Connecting Constellation Traces (Sickle & Tail) -->
+        <path class="leo-trace" d="M575 75 L610 55 L655 67 L690 100 L675 135 L645 175" fill="none" stroke="url(#hero-trace)" stroke-width="2.5"/>
+        <path class="leo-trace" d="M690 100 L770 110 L855 145 L785 180 L690 100" fill="none" stroke="url(#hero-trace)" stroke-width="2.2"/>
+        <path class="leo-trace" d="M645 175 L785 180" fill="none" stroke="url(#hero-trace)" stroke-width="2"/>
 
         <!-- 9 Golden Constellation Stars -->
-        <!-- Regulus (Heart of the Lion) -->
-        <g transform="translate(645, 170)">
-          <circle r="24" fill="url(#hero-glow-node)"/>
-          <circle r="22" fill="url(#hero-sun)" opacity=".6"/>
-          <circle r="8" fill="url(#hero-star)"/>
-          <path d="M-15 0 H15 M0 -15 V15" stroke="#ffffff" stroke-width="2" opacity=".95"/>
+        <!-- Regulus (Heart of the Lion - Centerpiece) -->
+        <g transform="translate(645, 175)">
+          <circle r="26" fill="url(#hero-glow-node)"/>
+          <circle r="23" fill="url(#hero-sun)" opacity=".7"/>
+          <circle r="9" fill="url(#hero-star)"/>
+          <path d="M-16 0 H16 M0 -16 V16" stroke="#ffffff" stroke-width="2.2" opacity=".95"/>
         </g>
         <!-- Denebola (Tail) -->
-        <g transform="translate(855, 140)">
-          <circle r="16" fill="url(#hero-glow-node)"/>
-          <circle r="14" fill="url(#hero-sun)" opacity=".5"/>
+        <g transform="translate(855, 145)">
+          <circle r="17" fill="url(#hero-glow-node)"/>
+          <circle r="7" fill="url(#hero-star)"/>
+        </g>
+        <!-- Algieba (Neck) -->
+        <g transform="translate(690, 100)">
+          <circle r="15" fill="url(#hero-glow-node)"/>
           <circle r="6.5" fill="url(#hero-star)"/>
         </g>
-        <!-- Algieba (Neck/Mane) -->
-        <g transform="translate(690, 95)">
-          <circle r="14" fill="url(#hero-glow-node)"/>
-          <circle r="12" fill="url(#hero-sun)" opacity=".5"/>
-          <circle r="6" fill="url(#hero-star)"/>
+        <g transform="translate(770, 110)"><circle r="5.2" fill="url(#hero-star)"/></g>
+        <g transform="translate(785, 180)"><circle r="5.2" fill="url(#hero-star)"/></g>
+        <g transform="translate(655, 67)"><circle r="5" fill="url(#hero-star)"/></g>
+        <g transform="translate(610, 55)"><circle r="5" fill="url(#hero-star)"/></g>
+        <g transform="translate(575, 75)"><circle r="5" fill="url(#hero-star)"/></g>
+        <g transform="translate(675, 135)"><circle r="4.5" fill="url(#hero-star)"/></g>
+      </g>
+
+      <!-- 3D ORBITING ZODIAC WHEEL — ALL 11 OTHER ZODIAC SIGNS ORBITING AROUND LEO -->
+      <g class="zodiac-wheel-3d">
+        <!-- Tilted 3D Orbit Track -->
+        <ellipse cx="675" cy="170" rx="175" ry="140" fill="none" stroke="#ffd700" stroke-opacity=".3" stroke-width="1.5" stroke-dasharray="6 8"/>
+        
+        <!-- 11 Orbiting Zodiac Signs around Leo in 3D -->
+        <g fill="#ffd700" font-size="17" font-family="'Segoe UI Symbol', sans-serif" font-weight="bold">
+          <!-- 1. Aries ♈ -->
+          <g transform="translate(675, 25)"><circle r="11" fill="#1e180a" stroke="#ffd700" stroke-width="1"/><text x="-7" y="6" fill="#ffd700">♈</text></g>
+          <!-- 2. Taurus ♉ -->
+          <g transform="translate(765, 50)"><circle r="11" fill="#1e180a" stroke="#ffd700" stroke-width="1"/><text x="-7" y="6" fill="#ffd700">♉</text></g>
+          <!-- 3. Gemini ♊ -->
+          <g transform="translate(830, 115)"><circle r="11" fill="#1e180a" stroke="#ffd700" stroke-width="1"/><text x="-7" y="6" fill="#ffd700">♊</text></g>
+          <!-- 4. Cancer ♋ -->
+          <g transform="translate(850, 195)"><circle r="11" fill="#1e180a" stroke="#ffd700" stroke-width="1"/><text x="-7" y="6" fill="#ffd700">♋</text></g>
+          <!-- 5. Virgo ♍ -->
+          <g transform="translate(805, 270)"><circle r="11" fill="#1e180a" stroke="#ffd700" stroke-width="1"/><text x="-7" y="6" fill="#ffd700">♍</text></g>
+          <!-- 6. Libra ♎ -->
+          <g transform="translate(720, 310)"><circle r="11" fill="#1e180a" stroke="#ffd700" stroke-width="1"/><text x="-7" y="6" fill="#ffd700">♎</text></g>
+          <!-- 7. Scorpio ♏ -->
+          <g transform="translate(630, 310)"><circle r="11" fill="#1e180a" stroke="#ffd700" stroke-width="1"/><text x="-7" y="6" fill="#ffd700">♏</text></g>
+          <!-- 8. Sagittarius ♐ -->
+          <g transform="translate(545, 270)"><circle r="11" fill="#1e180a" stroke="#ffd700" stroke-width="1"/><text x="-7" y="6" fill="#ffd700">♐</text></g>
+          <!-- 9. Capricorn ♑ -->
+          <g transform="translate(500, 195)"><circle r="11" fill="#1e180a" stroke="#ffd700" stroke-width="1"/><text x="-7" y="6" fill="#ffd700">♑</text></g>
+          <!-- 10. Aquarius ♒ -->
+          <g transform="translate(520, 115)"><circle r="11" fill="#1e180a" stroke="#ffd700" stroke-width="1"/><text x="-7" y="6" fill="#ffd700">♒</text></g>
+          <!-- 11. Pisces ♓ -->
+          <g transform="translate(585, 50)"><circle r="11" fill="#1e180a" stroke="#ffd700" stroke-width="1"/><text x="-7" y="6" fill="#ffd700">♓</text></g>
         </g>
-        <g transform="translate(770, 105)"><circle r="5" fill="url(#hero-star)"/></g>
-        <g transform="translate(785, 175)"><circle r="5" fill="url(#hero-star)"/></g>
-        <g transform="translate(655, 62)"><circle r="4.8" fill="url(#hero-star)"/></g>
-        <g transform="translate(610, 50)"><circle r="4.8" fill="url(#hero-star)"/></g>
-        <g transform="translate(575, 70)"><circle r="4.8" fill="url(#hero-star)"/></g>
-        <g transform="translate(675, 130)"><circle r="4.2" fill="url(#hero-star)"/></g>
       </g>
 
       <!-- Floating Solar Embers -->
@@ -180,15 +181,15 @@
     <!-- Content Typography & Badges -->
     <g transform="translate(40, 0)">
       <!-- Sector Badge -->
-      <rect x="0" y="75" width="205" height="26" rx="13" fill="#ffd700" fill-opacity=".15" stroke="#ffd700" stroke-opacity=".4"/>
-      <text x="14" y="92" class="label" font-size="11" font-weight="700" fill="#ffd700">SOLAR LEO 18/8 𓁛 ♌</text>
+      <rect x="0" y="75" width="220" height="26" rx="13" fill="#ffd700" fill-opacity=".15" stroke="#ffd700" stroke-opacity=".4"/>
+      <text x="14" y="92" class="label" font-size="11" font-weight="700" fill="#ffd700">LEO KING IN CENTER ♌ 𓁛</text>
 
       <!-- Main Developer Title -->
       <text x="0" y="152" font-size="46" font-weight="800" letter-spacing="-1.4" fill="#ffffff">Duong Thai Tan</text>
 
       <!-- Subtitle & Role -->
       <text x="0" y="190" font-size="20.5" font-weight="600" fill="#ffd700" letter-spacing="0.5">Sekhmet's Solar Lion Developer ♌</text>
-      <text x="0" y="218" class="secondary" font-size="14.5">Protected by the Egyptian Goddess of Solar Fire &amp; Courage.</text>
+      <text x="0" y="218" class="secondary" font-size="14.5">11 Zodiac Signs Orbiting Central Leo King in 3D Orbit.</text>
       <text x="0" y="240" class="secondary" font-size="14.5">Frontend Architect • Three.js &amp; GSAP 3D Motion • Fullstack Artisan</text>
 
       <!-- Quick Action Badges -->
