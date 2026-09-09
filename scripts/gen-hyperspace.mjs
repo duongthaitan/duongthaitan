@@ -10,25 +10,27 @@ let starsSvg = '';
 
 for (let i = 0; i < numStars; i++) {
   const angle = Math.random() * Math.PI * 2;
-  // Start from inner circle to avoid overlapping the center completely
   const startRadius = 20 + Math.random() * 50; 
-  const endRadius = startRadius + 200 + Math.random() * 400;
+  // Reduce endRadius significantly to ensure lines fade out WELL BEFORE hitting the edge of the SVG (900x400)
+  // Distance to nearest edge from center (450,200) is 200 (top/bottom)
+  const endRadius = startRadius + 100 + Math.random() * 80;
   
   const x1 = cx + Math.cos(angle) * startRadius;
   const y1 = cy + Math.sin(angle) * startRadius;
   const x2 = cx + Math.cos(angle) * endRadius;
   const y2 = cy + Math.sin(angle) * endRadius;
   
-  const dur = 0.5 + Math.random() * 2;
+  const dur = 0.5 + Math.random() * 1.5;
   const delay = Math.random() * 3;
+  // Fade opacity smoothly from 0 -> peak -> 0 to prevent harsh cutoffs
   const opacity = 0.3 + Math.random() * 0.7;
-  const thickness = 0.5 + Math.random() * 2;
+  const thickness = 0.5 + Math.random() * 1.5;
   const color = Math.random() > 0.8 ? '#ffd700' : (Math.random() > 0.5 ? '#ffffff' : '#ff7700');
 
   starsSvg += `
     <line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${color}" stroke-width="${thickness}" opacity="0" stroke-linecap="round">
       <animate attributeName="opacity" values="0;${opacity};0" dur="${dur}s" begin="${delay}s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,1000; 1000,0" dur="${dur}s" begin="${delay}s" repeatCount="indefinite" />
+      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="${dur}s" begin="${delay}s" repeatCount="indefinite" />
     </line>
   `;
 }
