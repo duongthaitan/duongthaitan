@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="150" viewBox="0 0 500 150" preserveAspectRatio="xMidYMid meet" role="img">
+  <defs>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+  <style>
+    .tech-item { cursor: pointer; transition: all 0.3s; }
+    .tech-item:hover .core-box { stroke: #ffffff; fill: #1a0a00; }
+    .tech-item:hover .core-fill { opacity: 0.3; }
+    .tech-item:hover text { fill: #ffffff; }
+  </style>
+  <rect width="500" height="150" fill="none"/>
+  
+    <g class="tech-item" transform="translate(0, 0)">
+      <!-- Glow Ripple -->
+      <rect x="5" y="5" width="115" height="65" rx="10" fill="none" stroke="#F7DF1E" stroke-width="2" opacity="0">
+        <animate attributeName="opacity" values="0; 0.5; 0" dur="2s" begin="0s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="scale" values="1; 1.1; 1" dur="2s" begin="0s" repeatCount="indefinite" transform-origin="62.5 37.5"/>
+      </rect>
+      
+      <!-- Tech Badge Core -->
+      <rect class="core-box" x="10" y="10" width="105" height="55" rx="6" fill="#0d1117" stroke="#F7DF1E" stroke-width="1.5" filter="url(#glow)"/>
+      <rect class="core-fill" x="10" y="10" width="105" height="55" rx="6" fill="#F7DF1E" opacity="0.1"/>
+      
+      <!-- Tech Label -->
+      <text x="62.5" y="42.5" fill="#F7DF1E" text-anchor="middle" font-family="system-ui" font-size="12" font-weight="800" filter="url(#glow)">JavaScript</text>
+    </g>
+  
+    <g class="tech-item" transform="translate(125, 0)">
+      <!-- Glow Ripple -->
+      <rect x="5" y="5" width="115" height="65" rx="10" fill="none" stroke="#3178C6" stroke-width="2" opacity="0">
+        <animate attributeName="opacity" values="0; 0.5; 0" dur="2s" begin="0.1s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="scale" values="1; 1.1; 1" dur="2s" begin="0.1s" repeatCount="indefinite" transform-origin="62.5 37.5"/>
+      </rect>
+      
+      <!-- Tech Badge Core -->
+      <rect class="core-box" x="10" y="10" width="105" height="55" rx="6" fill="#0d1117" stroke="#3178C6" stroke-width="1.5" filter="url(#glow)"/>
+      <rect class="core-fill" x="10" y="10" width="105" height="55" rx="6" fill="#3178C6" opacity="0.1"/>
+      
+      <!-- Tech Label -->
+      <text x="62.5" y="42.5" fill="#3178C6" text-anchor="middle" font-family="system-ui" font-size="12" font-weight="800" filter="url(#glow)">TypeScript</text>
+    </g>
+  
+    <g class="tech-item" transform="translate(250, 0)">
+      <!-- Glow Ripple -->
+      <rect x="5" y="5" width="115" height="65" rx="10" fill="none" stroke="#000000" stroke-width="2" opacity="0">
+        <animate attributeName="opacity" values="0; 0.5; 0" dur="2s" begin="0.2s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="scale" values="1; 1.1; 1" dur="2s" begin="0.2s" repeatCount="indefinite" transform-origin="62.5 37.5"/>
+      </rect>
+      
+      <!-- Tech Badge Core -->
+      <rect class="core-box" x="10" y="10" width="105" height="55" rx="6" fill="#0d1117" stroke="#ffd700" stroke-width="1.5" filter="url(#glow)"/>
+      <rect class="core-fill" x="10" y="10" width="105" height="55" rx="6" fill="#000000" opacity="0.1"/>
+      
+      <!-- Tech Label -->
+      <text x="62.5" y="42.5" fill="#000000" text-anchor="middle" font-family="system-ui" font-size="12" font-weight="800" filter="url(#glow)">Three.js</text>
+    </g>
+  
+    <g class="tech-item" transform="translate(375, 0)">
+      <!-- Glow Ripple -->
+      <rect x="5" y="5" width="115" height="65" rx="10" fill="none" stroke="#61DAFB" stroke-width="2" opacity="0">
+        <animate attributeName="opacity" values="0; 0.5; 0" dur="2s" begin="0.30000000000000004s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="scale" values="1; 1.1; 1" dur="2s" begin="0.30000000000000004s" repeatCount="indefinite" transform-origin="62.5 37.5"/>
+      </rect>
+      
+      <!-- Tech Badge Core -->
+      <rect class="core-box" x="10" y="10" width="105" height="55" rx="6" fill="#0d1117" stroke="#61DAFB" stroke-width="1.5" filter="url(#glow)"/>
+      <rect class="core-fill" x="10" y="10" width="105" height="55" rx="6" fill="#61DAFB" opacity="0.1"/>
+      
+      <!-- Tech Label -->
+      <text x="62.5" y="42.5" fill="#61DAFB" text-anchor="middle" font-family="system-ui" font-size="12" font-weight="800" filter="url(#glow)">React</text>
+    </g>
+  
+    <g class="tech-item" transform="translate(0, 75)">
+      <!-- Glow Ripple -->
+      <rect x="5" y="5" width="115" height="65" rx="10" fill="none" stroke="#4FC08D" stroke-width="2" opacity="0">
+        <animate attributeName="opacity" values="0; 0.5; 0" dur="2s" begin="0.4s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="scale" values="1; 1.1; 1" dur="2s" begin="0.4s" repeatCount="indefinite" transform-origin="62.5 37.5"/>
+      </rect>
+      
+      <!-- Tech Badge Core -->
+      <rect class="core-box" x="10" y="10" width="105" height="55" rx="6" fill="#0d1117" stroke="#4FC08D" stroke-width="1.5" filter="url(#glow)"/>
+      <rect class="core-fill" x="10" y="10" width="105" height="55" rx="6" fill="#4FC08D" opacity="0.1"/>
+      
+      <!-- Tech Label -->
+      <text x="62.5" y="42.5" fill="#4FC08D" text-anchor="middle" font-family="system-ui" font-size="12" font-weight="800" filter="url(#glow)">Vue</text>
+    </g>
+  
+    <g class="tech-item" transform="translate(125, 75)">
+      <!-- Glow Ripple -->
+      <rect x="5" y="5" width="115" height="65" rx="10" fill="none" stroke="#990000" stroke-width="2" opacity="0">
+        <animate attributeName="opacity" values="0; 0.5; 0" dur="2s" begin="0.5s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="scale" values="1; 1.1; 1" dur="2s" begin="0.5s" repeatCount="indefinite" transform-origin="62.5 37.5"/>
+      </rect>
+      
+      <!-- Tech Badge Core -->
+      <rect class="core-box" x="10" y="10" width="105" height="55" rx="6" fill="#0d1117" stroke="#990000" stroke-width="1.5" filter="url(#glow)"/>
+      <rect class="core-fill" x="10" y="10" width="105" height="55" rx="6" fill="#990000" opacity="0.1"/>
+      
+      <!-- Tech Label -->
+      <text x="62.5" y="42.5" fill="#990000" text-anchor="middle" font-family="system-ui" font-size="12" font-weight="800" filter="url(#glow)">WebGL</text>
+    </g>
+  
+    <g class="tech-item" transform="translate(250, 75)">
+      <!-- Glow Ripple -->
+      <rect x="5" y="5" width="115" height="65" rx="10" fill="none" stroke="#88CE02" stroke-width="2" opacity="0">
+        <animate attributeName="opacity" values="0; 0.5; 0" dur="2s" begin="0.6000000000000001s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="scale" values="1; 1.1; 1" dur="2s" begin="0.6000000000000001s" repeatCount="indefinite" transform-origin="62.5 37.5"/>
+      </rect>
+      
+      <!-- Tech Badge Core -->
+      <rect class="core-box" x="10" y="10" width="105" height="55" rx="6" fill="#0d1117" stroke="#88CE02" stroke-width="1.5" filter="url(#glow)"/>
+      <rect class="core-fill" x="10" y="10" width="105" height="55" rx="6" fill="#88CE02" opacity="0.1"/>
+      
+      <!-- Tech Label -->
+      <text x="62.5" y="42.5" fill="#88CE02" text-anchor="middle" font-family="system-ui" font-size="12" font-weight="800" filter="url(#glow)">GSAP</text>
+    </g>
+  
+    <g class="tech-item" transform="translate(375, 75)">
+      <!-- Glow Ripple -->
+      <rect x="5" y="5" width="115" height="65" rx="10" fill="none" stroke="#339933" stroke-width="2" opacity="0">
+        <animate attributeName="opacity" values="0; 0.5; 0" dur="2s" begin="0.7000000000000001s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="scale" values="1; 1.1; 1" dur="2s" begin="0.7000000000000001s" repeatCount="indefinite" transform-origin="62.5 37.5"/>
+      </rect>
+      
+      <!-- Tech Badge Core -->
+      <rect class="core-box" x="10" y="10" width="105" height="55" rx="6" fill="#0d1117" stroke="#339933" stroke-width="1.5" filter="url(#glow)"/>
+      <rect class="core-fill" x="10" y="10" width="105" height="55" rx="6" fill="#339933" opacity="0.1"/>
+      
+      <!-- Tech Label -->
+      <text x="62.5" y="42.5" fill="#339933" text-anchor="middle" font-family="system-ui" font-size="12" font-weight="800" filter="url(#glow)">Node.js</text>
+    </g>
+  
+</svg>

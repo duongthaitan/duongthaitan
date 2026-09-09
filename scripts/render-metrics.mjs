@@ -83,7 +83,7 @@ export function renderSvg(metrics = null, now = new Date()) {
   }
   const globeSvg = globeLines.join('\n');
   
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="900" height="740" viewBox="0 0 900 740" role="img" aria-labelledby="metrics-title metrics-desc" style="max-width:100%;height:auto">
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="900" height="740" viewBox="0 0 900 740" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="metrics-title metrics-desc" style="max-width:100%;height:auto">
   <title id="metrics-title">Sekhmet Solar 3D HUD V6</title>
   <desc id="metrics-desc">V6 Hover-Interactive Wireframe Planet Engine</desc>
   <defs>

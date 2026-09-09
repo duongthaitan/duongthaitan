@@ -33,7 +33,7 @@ for (let i = 0; i < numStars; i++) {
   `;
 }
 
-const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="900" height="400" viewBox="0 0 900 400" role="img">
+const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="900" height="400" viewBox="0 0 900 400" preserveAspectRatio="xMidYMid meet" role="img" style="max-width:100%;height:auto">
   <title>V6 Hyperspace Jump</title>
   <defs>
     <clipPath id="hero-frame"><rect width="900" height="400" rx="30"/></clipPath>
