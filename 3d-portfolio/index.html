@@ -3,514 +3,385 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Duong Thai Tan — Interactive 3D Portfolio showcasing frontend development skills with Three.js">
-<title>3D Portfolio — Duong Thai Tan</title>
+<meta name="description" content="Duong Thai Tan — Sekhmet Solar Sanctuary & 3D Interactive WebGL Experience built with Three.js and GSAP">
+<title>3D Solar Sanctuary — Duong Thai Tan (Leo 18/8)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
     overflow: hidden;
-    background: #0a0a0f;
+    background: #050712;
     font-family: 'Inter', system-ui, sans-serif;
     color: #e6edf3;
+    user-select: none;
   }
 
-  canvas { display: block; }
+  canvas { display: block; width: 100vw; height: 100vh; }
 
   /* Loading Screen */
   #loader {
     position: fixed; inset: 0; z-index: 100;
-    background: #0a0a0f;
+    background: #050712;
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
     transition: opacity 0.8s ease, visibility 0.8s ease;
   }
   #loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
 
-  .loader-ring {
-    width: 60px; height: 60px;
-    border: 2px solid transparent;
-    border-top-color: #0ea5e9;
-    border-right-color: #8b5cf6;
+  .loader-sun {
+    width: 80px; height: 80px;
+    border: 3px solid rgba(255, 215, 0, 0.2);
+    border-top-color: #ffd700;
+    border-right-color: #ff9900;
     border-radius: 50%;
-    animation: spin 1s linear infinite;
+    animation: spin 1.2s linear infinite;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
   }
   @keyframes spin { to { transform: rotate(360deg); } }
 
   .loader-text {
-    margin-top: 20px;
+    margin-top: 24px;
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    color: #ffd700;
+    letter-spacing: 4px;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+  }
+  .loader-sub {
+    margin-top: 8px;
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.75rem;
-    color: #8b949e;
-    letter-spacing: 3px;
+    color: #aeb8c5;
+    letter-spacing: 2px;
   }
 
-  /* Title Overlay */
+  /* Overlay UI */
   #title-overlay {
     position: fixed; top: 0; left: 0; right: 0;
-    padding: 30px 40px;
+    padding: 35px 45px;
     pointer-events: none; z-index: 10;
     display: flex; justify-content: space-between; align-items: flex-start;
   }
 
   .brand h1 {
-    font-size: clamp(1rem, 2.5vw, 1.4rem);
-    font-weight: 700;
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    font-weight: 900;
+    color: #ffd700;
     letter-spacing: 2px;
-    background: linear-gradient(135deg, #0ea5e9, #8b5cf6, #ec4899);
-    background-size: 200% 200%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: gradientShift 4s ease infinite;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
   }
-
   .brand p {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    color: #6e7681;
-    letter-spacing: 4px;
+    font-size: 0.8rem;
+    color: #c2b280;
     margin-top: 4px;
-  }
-
-  .nav-links {
-    display: flex; gap: 20px;
-    pointer-events: auto;
-  }
-  .nav-links a {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    color: #8b949e;
-    text-decoration: none;
     letter-spacing: 1px;
-    padding: 6px 14px;
-    border: 1px solid #21262d;
-    border-radius: 6px;
-    transition: all 0.3s ease;
-  }
-  .nav-links a:hover {
-    color: #0ea5e9;
-    border-color: #0ea5e9;
-    background: rgba(14, 165, 233, 0.05);
   }
 
-  @keyframes gradientShift {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-  }
-
-  /* Bottom info bar */
-  #bottom-bar {
-    position: fixed; bottom: 0; left: 0; right: 0;
-    padding: 20px 40px;
-    display: flex; justify-content: space-between; align-items: flex-end;
-    pointer-events: none; z-index: 10;
-  }
-
-  .hint {
+  .nav-status {
+    background: rgba(30, 24, 10, 0.75);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    padding: 8px 18px;
+    border-radius: 20px;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    color: #6e7681;
-    letter-spacing: 2px;
+    font-size: 0.75rem;
+    color: #ffd700;
+    display: flex; align-items: center; gap: 10px;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.15);
   }
-
-  .status {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    color: #6e7681;
-    text-align: right;
-  }
-  .status .dot {
-    display: inline-block;
-    width: 6px; height: 6px;
-    background: #3fb950;
+  .status-dot {
+    width: 8px; height: 8px;
+    background: #ffd700;
     border-radius: 50%;
-    margin-right: 6px;
-    animation: pulse 2s ease-in-out infinite;
+    box-shadow: 0 0 10px #ffd700;
+    animation: pulse 2s infinite;
   }
-  @keyframes pulse { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
+  @keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
 
-  /* Center info card */
-  #info-card {
-    position: fixed;
-    bottom: 80px;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    pointer-events: none;
-    z-index: 10;
-    opacity: 0;
-    animation: fadeInUp 1s ease 1.5s forwards;
-  }
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateX(-50%) translateY(20px); }
-    to { opacity: 1; transform: translateX(-50%) translateY(0); }
+  /* Bottom Controls / Info Cards */
+  #bottom-overlay {
+    position: fixed; bottom: 35px; left: 45px; right: 45px;
+    pointer-events: none; z-index: 10;
+    display: flex; justify-content: space-between; align-items: flex-end;
   }
 
-  #info-card h2 {
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
-    font-weight: 300;
-    letter-spacing: 6px;
-    color: #e6edf3;
-    margin-bottom: 8px;
+  .info-card {
+    pointer-events: auto;
+    background: rgba(7, 11, 25, 0.85);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 215, 0, 0.25);
+    border-radius: 16px;
+    padding: 20px 24px;
+    max-width: 380px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 215, 0, 0.1);
   }
-  #info-card h2 strong {
+  .info-card h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    color: #ffd700;
+    margin-bottom: 6px;
+  }
+  .info-card p {
+    font-size: 0.85rem;
+    color: #aeb8c5;
+    line-height: 1.5;
+  }
+
+  .action-btn {
+    pointer-events: auto;
+    background: linear-gradient(135deg, #ffd700, #ff9900);
+    color: #070b19;
+    font-family: 'Cinzel', serif;
     font-weight: 700;
-    background: linear-gradient(135deg, #0ea5e9, #ec4899);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-size: 0.85rem;
+    padding: 12px 26px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
   }
-  #info-card p {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    color: #8b949e;
-    letter-spacing: 3px;
-  }
-
-  @media (max-width: 640px) {
-    .nav-links { display: none; }
-    #title-overlay, #bottom-bar { padding: 16px 20px; }
+  .action-btn:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.7);
   }
 </style>
+
+<!-- Three.js + GSAP + OrbitControls + EffectComposer CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/ShaderPass.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/CopyShader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js"></script>
 </head>
 <body>
 
-<!-- Loading Screen -->
+<!-- Loader -->
 <div id="loader">
-  <div class="loader-ring"></div>
-  <div class="loader-text">INITIALIZING</div>
+  <div class="loader-sun"></div>
+  <div class="loader-text">𓁛 SEKHMET SOLAR SANCTUARY 𓁛</div>
+  <div class="loader-sub">INITIALIZING THREE.JS &amp; GSAP 3D ENGINE...</div>
 </div>
 
-<!-- Title Overlay -->
+<!-- Header Overlay -->
 <div id="title-overlay">
   <div class="brand">
-    <h1>DUONG THAI TAN</h1>
-    <p>FRONTEND DEVELOPER</p>
+    <h1>𓁛 DUONG THAI TAN</h1>
+    <p>SOLAR LEO DEVELOPER (AUGUST 18) • THREE.JS &amp; GSAP 3D PORTFOLIO</p>
   </div>
-  <div class="nav-links">
-    <a href="https://github.com/duongthaitan">GitHub</a>
-    <a href="https://www.linkedin.com/in/duongthaitan/">LinkedIn</a>
-  </div>
-</div>
-
-<!-- Center Info -->
-<div id="info-card">
-  <h2>CREATIVE <strong>DEVELOPER</strong></h2>
-  <p>VIETNAM · FRONTEND · UI/UX</p>
-</div>
-
-<!-- Bottom Bar -->
-<div id="bottom-bar">
-  <div class="hint">↔ MOVE MOUSE TO INTERACT</div>
-  <div class="status">
-    <span class="dot"></span>AVAILABLE FOR WORK
+  <div class="nav-status">
+    <div class="status-dot"></div>
+    <span>3D WEBGL LIVE CANVAS</span>
   </div>
 </div>
 
-<script type="importmap">
-{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.164.1/examples/jsm/"}}
-</script>
-<script type="module">
-import * as THREE from 'three';
-import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
-import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
-import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+<!-- Bottom Overlay -->
+<div id="bottom-overlay">
+  <div class="info-card" id="infoCard">
+    <h2>𓋹 Sekhmet &amp; Leo Constellation</h2>
+    <p>Interactive 3D WebGL Solar Shrine. Drag to orbit camera, hover over stars, click anywhere to unleash GSAP particle explosions!</p>
+  </div>
+  <button class="action-btn" id="pulseBtn" onclick="triggerSolarBurst()">UNLEASH SOLAR BURST ⚡</button>
+</div>
 
+<!-- Three.js + GSAP Application Code -->
+<script>
 // ─── Scene Setup ───
 const scene = new THREE.Scene();
-scene.fog = new THREE.FogExp2(0x0a0a0f, 0.035);
+scene.fog = new THREE.FogExp2(0x050712, 0.015);
 
-const camera = new THREE.PerspectiveCamera(55, innerWidth / innerHeight, 0.1, 500);
-camera.position.set(0, 0, 6);
+const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+camera.position.set(0, 5, 25);
 
-const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
-renderer.setSize(innerWidth, innerHeight);
-renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 1.2;
 document.body.appendChild(renderer.domElement);
 
-// ─── Post-processing ───
-const composer = new EffectComposer(renderer);
-composer.addPass(new RenderPass(scene, camera));
+// ─── OrbitControls ───
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.05;
+controls.maxDistance = 60;
+controls.minDistance = 5;
 
-const bloomPass = new UnrealBloomPass(
-  new THREE.Vector2(innerWidth, innerHeight), 1.5, 0.4, 0.85
-);
-bloomPass.threshold = 0.3;
-bloomPass.strength = 0.6;
-bloomPass.radius = 0.5;
+// ─── Post-Processing (Bloom) ───
+const composer = new THREE.EffectComposer(renderer);
+composer.addPass(new THREE.RenderPass(scene, camera));
+const bloomPass = new THREE.UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.4, 0.5, 0.85);
 composer.addPass(bloomPass);
 
-// ─── Color Palette ───
-const COLORS = {
-  cyan: new THREE.Color(0x0ea5e9),
-  violet: new THREE.Color(0x8b5cf6),
-  pink: new THREE.Color(0xec4899),
-  gold: new THREE.Color(0xfbbf24),
-  white: new THREE.Color(0xe6edf3),
-};
+// ─── Lights ───
+const ambientLight = new THREE.AmbientLight(0xffd700, 0.4);
+scene.add(ambientLight);
 
-// ─── Central Geometry ───
-const icoGeometry = new THREE.IcosahedronGeometry(1.6, 1);
-const icoWireframe = new THREE.LineSegments(
-  new THREE.WireframeGeometry(icoGeometry),
-  new THREE.ShaderMaterial({
-    uniforms: {
-      uTime: { value: 0 },
-      uColor1: { value: COLORS.cyan },
-      uColor2: { value: COLORS.violet },
-      uColor3: { value: COLORS.pink },
-    },
-    vertexShader: `
-      varying vec3 vPos;
-      uniform float uTime;
-      void main() {
-        vPos = position;
-        vec3 p = position;
-        float wave = sin(p.x * 2.0 + uTime) * cos(p.y * 2.0 + uTime * 0.7) * 0.05;
-        p += normal * wave;
-        gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.0);
-      }
-    `,
-    fragmentShader: `
-      uniform vec3 uColor1, uColor2, uColor3;
-      uniform float uTime;
-      varying vec3 vPos;
-      void main() {
-        float t = sin(vPos.y * 1.5 + uTime * 0.5) * 0.5 + 0.5;
-        vec3 col = mix(uColor1, uColor2, t);
-        col = mix(col, uColor3, sin(vPos.x * 2.0 + uTime * 0.3) * 0.5 + 0.5);
-        gl_FragColor = vec4(col, 0.6);
-      }
-    `,
-    transparent: true,
-    depthWrite: false,
-  })
-);
-scene.add(icoWireframe);
+const sunLight = new THREE.PointLight(0xffd700, 3, 100);
+sunLight.position.set(0, 0, 0);
+scene.add(sunLight);
 
-// Inner solid with glow
-const icoSolid = new THREE.Mesh(
-  new THREE.IcosahedronGeometry(1.2, 2),
-  new THREE.ShaderMaterial({
-    uniforms: {
-      uTime: { value: 0 },
-      uColor1: { value: COLORS.cyan },
-      uColor2: { value: COLORS.pink },
-    },
-    vertexShader: `
-      varying vec3 vNormal;
-      varying vec3 vPos;
-      void main() {
-        vNormal = normalize(normalMatrix * normal);
-        vPos = position;
-        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-      }
-    `,
-    fragmentShader: `
-      uniform float uTime;
-      uniform vec3 uColor1, uColor2;
-      varying vec3 vNormal;
-      varying vec3 vPos;
-      void main() {
-        float fresnel = pow(1.0 - abs(dot(vNormal, vec3(0.0, 0.0, 1.0))), 3.0);
-        vec3 col = mix(uColor1, uColor2, sin(uTime * 0.3 + vPos.y) * 0.5 + 0.5);
-        gl_FragColor = vec4(col * fresnel * 0.4, fresnel * 0.3);
-      }
-    `,
-    transparent: true,
-    depthWrite: false,
-    side: THREE.DoubleSide,
-  })
-);
-scene.add(icoSolid);
+const rimLight = new THREE.DirectionalLight(0xff9900, 1.5);
+rimLight.position.set(20, 20, -20);
+scene.add(rimLight);
 
-// ─── Orbiting Particles (rings) ───
-function createOrbitRing(count, radius, color, speed, sizeRange) {
-  const positions = new Float32Array(count * 3);
-  const sizes = new Float32Array(count);
-  const phases = new Float32Array(count);
+// ─── Central Sekhmet Solar Eye / Core ───
+const sunGroup = new THREE.Group();
+scene.add(sunGroup);
 
-  for (let i = 0; i < count; i++) {
-    const angle = (i / count) * Math.PI * 2;
-    const r = radius + (Math.random() - 0.5) * 0.3;
-    positions[i * 3] = Math.cos(angle) * r;
-    positions[i * 3 + 1] = (Math.random() - 0.5) * 0.4;
-    positions[i * 3 + 2] = Math.sin(angle) * r;
-    sizes[i] = Math.random() * sizeRange[1] + sizeRange[0];
-    phases[i] = Math.random() * Math.PI * 2;
-  }
+// Solid Core
+const coreGeo = new THREE.IcosahedronGeometry(3.5, 4);
+const coreMat = new THREE.MeshStandardMaterial({
+  color: 0xffd700,
+  emissive: 0xff6600,
+  emissiveIntensity: 0.8,
+  roughness: 0.2,
+  metalness: 0.9,
+  wireframe: false
+});
+const coreMesh = new THREE.Mesh(coreGeo, coreMat);
+sunGroup.add(coreMesh);
 
-  const geo = new THREE.BufferGeometry();
-  geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-  geo.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
-  geo.setAttribute('phase', new THREE.BufferAttribute(phases, 1));
-
-  const mat = new THREE.ShaderMaterial({
-    uniforms: {
-      uTime: { value: 0 },
-      uColor: { value: color },
-    },
-    vertexShader: `
-      attribute float size;
-      attribute float phase;
-      varying float vAlpha;
-      uniform float uTime;
-      void main() {
-        vAlpha = sin(uTime * 2.0 + phase) * 0.3 + 0.7;
-        vec4 mv = modelViewMatrix * vec4(position, 1.0);
-        gl_PointSize = size * (150.0 / -mv.z);
-        gl_Position = projectionMatrix * mv;
-      }
-    `,
-    fragmentShader: `
-      uniform vec3 uColor;
-      varying float vAlpha;
-      void main() {
-        float d = length(gl_PointCoord - 0.5) * 2.0;
-        if (d > 1.0) discard;
-        float a = (1.0 - d * d) * vAlpha * 0.7;
-        gl_FragColor = vec4(uColor, a);
-      }
-    `,
-    transparent: true,
-    depthWrite: false,
-    blending: THREE.AdditiveBlending,
-  });
-
-  const points = new THREE.Points(geo, mat);
-  points.userData = { speed, radius };
-  scene.add(points);
-  return points;
-}
-
-const ring1 = createOrbitRing(80, 2.5, COLORS.cyan, 0.15, [0.5, 1.5]);
-const ring2 = createOrbitRing(60, 3.2, COLORS.violet, -0.1, [0.3, 1.0]);
-const ring3 = createOrbitRing(40, 3.8, COLORS.pink, 0.08, [0.2, 0.8]);
-
-// Tilt the rings
-ring1.rotation.x = 0.3;
-ring2.rotation.x = -0.5;
-ring2.rotation.z = 0.4;
-ring3.rotation.x = 0.8;
-ring3.rotation.z = -0.3;
-
-// ─── Ambient Floating Particles ───
-const ambientCount = 600;
-const ambientGeo = new THREE.BufferGeometry();
-const ambientPos = new Float32Array(ambientCount * 3);
-const ambientSizes = new Float32Array(ambientCount);
-
-for (let i = 0; i < ambientCount; i++) {
-  const r = 5 + Math.random() * 40;
-  const theta = Math.random() * Math.PI * 2;
-  const phi = Math.acos(2 * Math.random() - 1);
-  ambientPos[i * 3] = r * Math.sin(phi) * Math.cos(theta);
-  ambientPos[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
-  ambientPos[i * 3 + 2] = r * Math.cos(phi);
-  ambientSizes[i] = Math.random() * 1.5 + 0.2;
-}
-
-ambientGeo.setAttribute('position', new THREE.BufferAttribute(ambientPos, 3));
-ambientGeo.setAttribute('size', new THREE.BufferAttribute(ambientSizes, 1));
-
-const ambientMat = new THREE.ShaderMaterial({
-  uniforms: { uTime: { value: 0 } },
-  vertexShader: `
-    attribute float size;
-    varying float vDist;
-    void main() {
-      vec4 mv = modelViewMatrix * vec4(position, 1.0);
-      vDist = -mv.z;
-      gl_PointSize = size * (80.0 / -mv.z);
-      gl_Position = projectionMatrix * mv;
-    }
-  `,
-  fragmentShader: `
-    varying float vDist;
-    void main() {
-      float d = length(gl_PointCoord - 0.5) * 2.0;
-      if (d > 1.0) discard;
-      float fade = clamp(1.0 - vDist / 50.0, 0.0, 1.0);
-      float a = (1.0 - d * d) * fade * 0.3;
-      gl_FragColor = vec4(0.9, 0.92, 0.95, a);
-    }
-  `,
+// Outer Wireframe Cage
+const cageGeo = new THREE.IcosahedronGeometry(4.2, 2);
+const cageMat = new THREE.MeshBasicMaterial({
+  color: 0xffd700,
+  wireframe: true,
   transparent: true,
-  depthWrite: false,
-  blending: THREE.AdditiveBlending,
+  opacity: 0.4
+});
+const cageMesh = new THREE.Mesh(cageGeo, cageMat);
+sunGroup.add(cageMesh);
+
+// Solar Rings
+const ringGeo1 = new THREE.TorusGeometry(7, 0.06, 16, 100);
+const ringMat1 = new THREE.MeshStandardMaterial({ color: 0xffd700, emissive: 0xff9900, metalness: 1 });
+const ring1 = new THREE.Mesh(ringGeo1, ringMat1);
+ring1.rotation.x = Math.PI / 3;
+sunGroup.add(ring1);
+
+const ringGeo2 = new THREE.TorusGeometry(9.5, 0.04, 16, 100);
+const ringMat2 = new THREE.MeshStandardMaterial({ color: 0xff9900, emissive: 0xd4a017, metalness: 1 });
+const ring2 = new THREE.Mesh(ringGeo2, ringMat2);
+ring2.rotation.y = Math.PI / 4;
+sunGroup.add(ring2);
+
+// ─── 3D Leo Constellation Star Nodes ───
+const leoStarCoords = [
+  { name: 'Regulus', pos: [-6, 3, 4] },
+  { name: 'Algieba', pos: [-1, 7, 2] },
+  { name: 'Denebola', pos: [9, 1, -3] },
+  { name: 'Zosma', pos: [5, 6, -1] },
+  { name: 'Chertan', pos: [6, -2, 0] },
+  { name: 'Adhafera', pos: [-4, 9, 1] },
+  { name: 'Rasalas', pos: [-8, 8, 3] },
+  { name: 'Alterf', pos: [-11, 5, 5] },
+  { name: 'Subra', pos: [-3, 1, 3] }
+];
+
+const starNodesGroup = new THREE.Group();
+scene.add(starNodesGroup);
+
+const starGeo = new THREE.SphereGeometry(0.4, 16, 16);
+const starMat = new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0xffd700, emissiveIntensity: 1 });
+
+const starPositions = [];
+
+leoStarCoords.forEach(star => {
+  const starMesh = new THREE.Mesh(starGeo, starMat);
+  starMesh.position.set(...star.pos);
+  starNodesGroup.add(starMesh);
+  starPositions.push(starMesh.position);
 });
 
-scene.add(new THREE.Points(ambientGeo, ambientMat));
+// Connecting Line Traces
+const lineMat = new THREE.LineBasicMaterial({ color: 0xffd700, transparent: true, opacity: 0.7 });
+const lineGeo = new THREE.BufferGeometry().setFromPoints(starPositions);
+const constLine = new THREE.LineLoop(lineGeo, lineMat);
+starNodesGroup.add(constLine);
 
-// ─── Mouse Tracking ───
-let mouseX = 0, mouseY = 0;
-let targetMouseX = 0, targetMouseY = 0;
+// ─── Floating Gold Particle Field ───
+const particlesCount = 1200;
+const particlePositions = new Float32Array(particlesCount * 3);
+for (let i = 0; i < particlesCount * 3; i += 3) {
+  particlePositions[i] = (Math.random() - 0.5) * 80;
+  particlePositions[i + 1] = (Math.random() - 0.5) * 80;
+  particlePositions[i + 2] = (Math.random() - 0.5) * 80;
+}
 
-document.addEventListener('mousemove', (e) => {
-  targetMouseX = (e.clientX / innerWidth - 0.5) * 2;
-  targetMouseY = (e.clientY / innerHeight - 0.5) * 2;
+const particleGeo = new THREE.BufferGeometry();
+particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+
+const particleMat = new THREE.PointsMaterial({
+  color: 0xffd700,
+  size: 0.15,
+  transparent: true,
+  opacity: 0.8,
+  blending: THREE.AdditiveBlending
 });
 
-document.addEventListener('touchmove', (e) => {
-  const touch = e.touches[0];
-  targetMouseX = (touch.clientX / innerWidth - 0.5) * 2;
-  targetMouseY = (touch.clientY / innerHeight - 0.5) * 2;
+const particleSystem = new THREE.Points(particleGeo, particleMat);
+scene.add(particleSystem);
+
+// ─── GSAP Entrance Animation Timeline ───
+gsap.timeline()
+  .to('#loader', { opacity: 0, duration: 1, onComplete: () => document.getElementById('loader').classList.add('hidden') })
+  .from(camera.position, { z: 60, y: 30, duration: 2.5, ease: 'power3.out' })
+  .from(sunGroup.scale, { x: 0, y: 0, z: 0, duration: 2, ease: 'back.out(1.7)' }, '-=2')
+  .from('#title-overlay', { y: -50, opacity: 0, duration: 1 }, '-=1')
+  .from('#bottom-overlay', { y: 50, opacity: 0, duration: 1 }, '-=0.8');
+
+// ─── GSAP Interactive Click Burst ───
+function triggerSolarBurst() {
+  gsap.to(sunGroup.scale, { x: 1.4, y: 1.4, z: 1.4, duration: 0.3, yoyo: true, repeat: 1, ease: 'power2.out' });
+  gsap.to(bloomPass, { strength: 3.5, duration: 0.4, yoyo: true, repeat: 1 });
+
+  // GSAP animation on particle system rotation
+  gsap.to(particleSystem.rotation, { y: particleSystem.rotation.y + Math.PI, duration: 1.5, ease: 'elastic.out(1, 0.3)' });
+}
+
+window.addEventListener('click', (e) => {
+  if (e.target.tagName !== 'BUTTON') {
+    triggerSolarBurst();
+  }
 });
 
 // ─── Resize Handler ───
 window.addEventListener('resize', () => {
-  camera.aspect = innerWidth / innerHeight;
+  camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
-  renderer.setSize(innerWidth, innerHeight);
-  composer.setSize(innerWidth, innerHeight);
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  composer.setSize(window.innerWidth, window.innerHeight);
 });
 
-// ─── Hide Loader ───
-setTimeout(() => {
-  document.getElementById('loader').classList.add('hidden');
-}, 1200);
-
-// ─── Animation Loop ───
+// ─── Render Loop ───
 const clock = new THREE.Clock();
 
 function animate() {
   requestAnimationFrame(animate);
   const elapsed = clock.getElapsedTime();
 
-  // Smooth mouse interpolation
-  mouseX += (targetMouseX - mouseX) * 0.03;
-  mouseY += (targetMouseY - mouseY) * 0.03;
+  // Continuous Rotation
+  coreMesh.rotation.y = elapsed * 0.2;
+  coreMesh.rotation.x = elapsed * 0.1;
 
-  // Rotate central geometry
-  icoWireframe.rotation.y = elapsed * 0.12 + mouseX * 0.3;
-  icoWireframe.rotation.x = elapsed * 0.08 + mouseY * 0.2;
-  icoSolid.rotation.y = elapsed * 0.1 + mouseX * 0.2;
-  icoSolid.rotation.x = elapsed * 0.06 + mouseY * 0.15;
+  cageMesh.rotation.y = -elapsed * 0.15;
+  cageMesh.rotation.z = elapsed * 0.1;
 
-  // Update shader uniforms
-  icoWireframe.material.uniforms.uTime.value = elapsed;
-  icoSolid.material.uniforms.uTime.value = elapsed;
+  ring1.rotation.z = elapsed * 0.25;
+  ring2.rotation.x = elapsed * 0.2;
 
-  // Rotate orbit rings
-  ring1.rotation.y = elapsed * ring1.userData.speed;
-  ring2.rotation.y = elapsed * ring2.userData.speed;
-  ring3.rotation.y = elapsed * ring3.userData.speed;
+  starNodesGroup.rotation.y = elapsed * 0.08;
+  particleSystem.rotation.y = elapsed * 0.03;
 
-  ring1.material.uniforms.uTime.value = elapsed;
-  ring2.material.uniforms.uTime.value = elapsed;
-  ring3.material.uniforms.uTime.value = elapsed;
-
-  // Ambient particles
-  ambientMat.uniforms.uTime.value = elapsed;
-
-  // Camera subtle movement
-  camera.position.x += (mouseX * 0.8 - camera.position.x) * 0.02;
-  camera.position.y += (-mouseY * 0.5 - camera.position.y) * 0.02;
-  camera.lookAt(0, 0, 0);
-
+  controls.update();
   composer.render();
 }
 

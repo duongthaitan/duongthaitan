@@ -16,11 +16,12 @@
 <p align="center">
   <img src="https://img.shields.io/badge/ZODIAC-LEO%2018%2F8%20%E2%99%8C-FFD700?style=for-the-badge&amp;logo=leo&amp;logoColor=070B19&amp;labelColor=1e180a" alt="Leo 18/8 Badge" />
   <img src="https://img.shields.io/badge/DEITY-SEKHMET%20SOLAR%20FIRE%20%F0%93%81%9B-FF9900?style=for-the-badge&amp;logo=egypt&amp;logoColor=070B19&amp;labelColor=1e180a" alt="Sekhmet Deity Badge" />
-  <img src="https://img.shields.io/badge/STACK-THREE.JS%20%7C%20REACT%20%7C%20JS-FFC107?style=for-the-badge&amp;logo=threejs&amp;logoColor=070B19&amp;labelColor=1e180a" alt="Tech Stack Badge" />
-  <img src="https://img.shields.io/badge/LOCATION-VIETNAM%20%F0%9F%87%B5%F0%9F%87%B3-FF5722?style=for-the-badge&amp;logo=vietnam&amp;logoColor=FFFFFF&amp;labelColor=1e180a" alt="Vietnam Location Badge" />
+  <img src="https://img.shields.io/badge/THREE.JS-r128%203D%20ENGINE-000000?style=for-the-badge&amp;logo=three.js&amp;logoColor=FFD700&amp;labelColor=1e180a" alt="Three.js Badge" />
+  <img src="https://img.shields.io/badge/GSAP-3.12.5%20MOTION-88CE02?style=for-the-badge&amp;logo=greensock&amp;logoColor=FFFFFF&amp;labelColor=1e180a" alt="GSAP Badge" />
+  <img src="https://img.shields.io/badge/WEBGL-2.0%20SHADERS-990000?style=for-the-badge&amp;logo=webgl&amp;logoColor=FFFFFF&amp;labelColor=1e180a" alt="WebGL Badge" />
 </p>
 
-<p align="center"><samp>𓋹 DIVINE SOLAR VISION / FEARLESS MOTION / GOLDEN EGYPTIAN ARCHITECTURE 𓁛</samp></p>
+<p align="center"><samp>𓋹 DIVINE SOLAR VISION / THREE.JS &amp; GSAP MOTION / GOLDEN EGYPTIAN ARCHITECTURE 𓁛</samp></p>
 
 <p align="center">
   <a href="#mission-control">Sanctuary</a> &nbsp; · &nbsp;
@@ -42,7 +43,7 @@
 
 Born on **August 18**, under the fiery solar peak of **Leo (♌)**, I approach code like ancient Egyptian master architects building temples under the Eye of Ra — bold, enduring, and infused with radiant energy.
 
-I craft responsive web experiences where layout, 3D motion, and meticulous visual details converge. Clean maintainable code fuels the interface, ensuring every pixel burns with purpose.
+I craft responsive web experiences where layout, 3D motion, and meticulous visual details converge. Powered by **Three.js**, **GSAP (GreenSock)**, and **WebGL shaders**, every interface burns with majesty.
 
 Beyond code, my background in **photography and visual editing** shapes how I structure light, depth, composition, and kinetic timing across 3D scenes and modern web apps.
 
@@ -50,8 +51,9 @@ Beyond code, my background in **photography and visual editing** shapes how I st
 
 | Area of Mastery | Solar Focus &amp; Innovation |
 | :--- | :--- |
-| **Vue.js &amp; React Architectures** | Reactive component hierarchies, state management, and high-performance frontend patterns |
 | **Three.js &amp; WebGL Motion** | 3D wireframe geometries, particle systems, custom shaders, and camera light dynamics |
+| **GSAP Motion &amp; Timelines** | Complex keyframe sequences, reactive hover physics, and kinetic scroll animations |
+| **Vue.js &amp; React Architectures** | Reactive component hierarchies, state management, and high-performance frontend patterns |
 | **Design Systems &amp; UX** | Micro-interactions, accessible UI components, dark-gold glassmorphism design tokens |
 
 <br />
@@ -64,8 +66,9 @@ Beyond code, my background in **photography and visual editing** shapes how I st
 
 | Craft Category | Technologies &amp; Tools |
 | :--- | :--- |
+| **3D &amp; Motion Libraries** | **Three.js (r128)** · **GSAP (3.12)** · **WebGL 2.0** · **UnrealBloomPass** · **CSS Keyframes** |
 | **Interface &amp; Core** | HTML5 · CSS3 · JavaScript (ES6+) · Vue.js · Bootstrap |
-| **3D &amp; Creative Motion** | Three.js · WebGL Canvas · Figma · Photoshop · Lightroom |
+| **Creative Design** | Figma · Photoshop · Lightroom |
 | **Workflow &amp; Automation** | GitHub Actions · VS Code · MySQL · Selenium · Node.js |
 
 <details>
@@ -85,11 +88,11 @@ Tools and languages mastered across various software domains — constantly expa
 
 ### An orbital playground
 
-**An interactive 3D portfolio built with Three.js.** A universe of wireframe geometry, orbiting solar particles, bloom effects, and dynamic pointer interaction — where frontend engineering meets divine motion design.
+**An interactive 3D portfolio built with Three.js and GSAP 3.12.** A universe of wireframe geometry, orbiting solar particles, bloom effects, and dynamic pointer interaction — where frontend engineering meets divine motion design.
 
-- 🌌 **Explore:** A 3D canvas scene that responds in real-time to pointer movement.
-- ⚡ **Built with:** HTML5 · CSS3 · JavaScript · Three.js.
-- 💎 **The Concept:** Experimenting with 3D depth, atmospheric fog, and smooth kinetic web interactions.
+- 🌌 **Explore:** A 3D WebGL canvas scene with **GSAP Timeline Animations** and **Three.js UnrealBloomPass**.
+- ⚡ **Built with:** HTML5 · CSS3 · JavaScript · **Three.js** · **GSAP 3.12**.
+- 💎 **The Concept:** Experimenting with 3D depth, atmospheric fog, and kinetic solar particle explosions.
 
 👉 **[Explore the source](./3d-portfolio/index.html)** &nbsp; / &nbsp; 🚀 **[Open the GitHub Pages version](https://duongthaitan.github.io/duongthaitan/3d-portfolio/index.html)**
 
@@ -176,7 +179,7 @@ All animated SVG artwork respects `prefers-reduced-motion: reduce`. Standard CSS
 
 <p align="center">
   <strong>𓁛 Good ideas deserve a radiant home. Let's connect.</strong><br />
-  Frontend architecture, 3D WebGL experiments, or creative collaborations.
+  Frontend architecture, Three.js &amp; GSAP 3D WebGL experiments, or creative collaborations.
 </p>
 
 <p align="center">
