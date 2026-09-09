@@ -19,6 +19,7 @@
   <img src="https://img.shields.io/badge/THREE.JS-r128%203D%20ENGINE-000000?style=for-the-badge&amp;logo=three.js&amp;logoColor=FFD700&amp;labelColor=1e180a" alt="Three.js Badge" />
   <img src="https://img.shields.io/badge/GSAP-3.12.5%20MOTION-88CE02?style=for-the-badge&amp;logo=greensock&amp;logoColor=FFFFFF&amp;labelColor=1e180a" alt="GSAP Badge" />
   <img src="https://img.shields.io/badge/WEBGL-2.0%20SHADERS-990000?style=for-the-badge&amp;logo=webgl&amp;logoColor=FFFFFF&amp;labelColor=1e180a" alt="WebGL Badge" />
+  <img src="https://img.shields.io/badge/LOCATION-VIETNAM%20%F0%9F%87%B5%F0%9F%87%B3-FF5722?style=for-the-badge&amp;logo=vietnam&amp;logoColor=FFFFFF&amp;labelColor=1e180a" alt="Vietnam Location Badge" />
 </p>
 
 <p align="center"><samp>𓋹 DIVINE SOLAR VISION / THREE.JS &amp; GSAP MOTION / GOLDEN EGYPTIAN ARCHITECTURE 𓁛</samp></p>
@@ -41,20 +42,20 @@
 
 **𓃬 Protected by Sekhmet — Goddess of Solar Fire, Courage, and Unyielding Passion.**
 
-Born on **August 18**, under the fiery solar peak of **Leo (♌)**, I approach code like ancient Egyptian master architects building temples under the Eye of Ra — bold, enduring, and infused with radiant energy.
+Born on **August 18**, under the fierce solar climax of **Leo (♌)**, I approach software engineering like ancient Egyptian master architects erecting temples under the Eye of Ra — bold, majestic, and infused with divine kinetic energy.
 
-I craft responsive web experiences where layout, 3D motion, and meticulous visual details converge. Powered by **Three.js**, **GSAP (GreenSock)**, and **WebGL shaders**, every interface burns with majesty.
+I specialize in constructing high-performance frontend interfaces where spatial layout, 3D motion dynamics, and micro-interactions seamlessly harmonize. Clean maintainable code fuels the core, ensuring every pixel burns with purpose and precision.
 
-Beyond code, my background in **photography and visual editing** shapes how I structure light, depth, composition, and kinetic timing across 3D scenes and modern web apps.
+Beyond the text editor, my background in **photography and visual cinematography** sharpens my intuition for light transport, depth composition, frame timing, and aesthetic harmony across 3D WebGL canvases and web applications.
 
-### 𓋹 In my current solar orbit
+### 𓋹 Core Pillars & Solar Focus
 
-| Area of Mastery | Solar Focus &amp; Innovation |
-| :--- | :--- |
-| **Three.js &amp; WebGL Motion** | 3D wireframe geometries, particle systems, custom shaders, and camera light dynamics |
-| **GSAP Motion &amp; Timelines** | Complex keyframe sequences, reactive hover physics, and kinetic scroll animations |
-| **Vue.js &amp; React Architectures** | Reactive component hierarchies, state management, and high-performance frontend patterns |
-| **Design Systems &amp; UX** | Micro-interactions, accessible UI components, dark-gold glassmorphism design tokens |
+| Core Domain | Technical &amp; Aesthetic Focus | Key Implementation |
+| :--- | :--- | :--- |
+| **3D &amp; Motion Engineering** | Real-time WebGL graphics, particle systems, shader illumination, custom kinetic animation | Three.js (r128), GSAP (3.12.5), UnrealBloomPass, CSS Keyframe Arrays |
+| **Frontend Architecture** | Modular component structures, reactive state management, high-performance DOM render loops | Vue.js, React, JavaScript ES6+, HTML5 Semantic Grids |
+| **User Experience &amp; UI Design** | Dark-gold glassmorphism, responsive visual hierarchy, micro-interactions, accessible design tokens | Figma, Modern CSS Tokens, Design Systems, Responsive Breakpoints |
+| **Visual Cinematography** | Frame composition, lighting distribution, color grading, visual storytelling | Photography, Lightroom, Photoshop, Video Motion Design |
 
 <br />
 
@@ -64,19 +65,31 @@ Beyond code, my background in **photography and visual editing** shapes how I st
 
 **𓆣 The Solar Forge of Tech — Tempered in Fire, Refined in Gold.**
 
-| Craft Category | Technologies &amp; Tools |
-| :--- | :--- |
-| **3D &amp; Motion Libraries** | **Three.js (r128)** · **GSAP (3.12)** · **WebGL 2.0** · **UnrealBloomPass** · **CSS Keyframes** |
-| **Interface &amp; Core** | HTML5 · CSS3 · JavaScript (ES6+) · Vue.js · Bootstrap |
-| **Creative Design** | Figma · Photoshop · Lightroom |
-| **Workflow &amp; Automation** | GitHub Actions · VS Code · MySQL · Selenium · Node.js |
+A meticulously curated arsenal of frameworks, motion engines, tools, and languages powering the digital sanctuary.
+
+### 𓁛 3D, Motion & Interface Engineering
+
+| Subsystem | Core Technologies &amp; Libraries | Primary Use Cases |
+| :--- | :--- | :--- |
+| **3D Motion Engines** | **Three.js (r128)** · **GSAP (3.12.5)** · **WebGL 2.0** | 3D wireframe geometries, camera physics, particle bursts, custom shaders |
+| **Post-Processing** | **UnrealBloomPass** · **EffectComposer** · **ShaderPass** | Bloom illumination, radiance glows, depth of field |
+| **Interface Core** | **HTML5** · **CSS3** · **JavaScript (ES6+)** · **Vue.js** · **Bootstrap** | Component trees, responsive grids, state binding, DOM manipulation |
+| **Design &amp; Prototyping** | **Figma** · **Adobe Photoshop** · **Adobe Lightroom** | Glassmorphism UI components, color grading, asset optimization |
+| **Workflow &amp; Automation** | **GitHub Actions** · **VS Code** · **Node.js** · **MySQL** · **Selenium** | CI/CD metric rendering, automated testing, database management |
 
 <details>
-<summary><strong>𓍝 Additional Frameworks &amp; Polymath Toolkit</strong></summary>
+<summary><strong>𓍝 Polymath Language Suite &amp; Secondary Frameworks</strong></summary>
 
-PHP · Laravel · Java · C# · .NET · C++ · Python
+```
+┌────────────────────────────────────────────────────────────────────────┐
+│                        POLYMATH LANGUAGE SUITE                         │
+├─────────────────┬─────────────────┬──────────────────┬─────────────────┤
+│ PHP & Laravel   │ Java & C# .NET  │ C & C++          │ Python          │
+│ Server Logic    │ Enterprise OOP  │ Low-Level Core   │ Automation/Data │
+└─────────────────┴─────────────────┴──────────────────┴─────────────────┘
+```
 
-Tools and languages mastered across various software domains — constantly expanding the constellation.
+A diverse background across backend services, desktop software, and system scripts — enabling end-to-end fullstack comprehension.
 
 </details>
 
@@ -88,15 +101,17 @@ Tools and languages mastered across various software domains — constantly expa
 
 ### An orbital playground
 
-**An interactive 3D portfolio built with Three.js and GSAP 3.12.** A universe of wireframe geometry, orbiting solar particles, bloom effects, and dynamic pointer interaction — where frontend engineering meets divine motion design.
+**An interactive 3D WebGL portfolio built with Three.js and GSAP 3.12.** An immersive universe featuring a 3D Sekhmet Eye of Ra core, orbiting 3D Leo constellation star nodes, floating solar particle clouds, bloom post-processing, and interactive GSAP particle bursts.
 
-- 🌌 **Explore:** A 3D WebGL canvas scene with **GSAP Timeline Animations** and **Three.js UnrealBloomPass**.
-- ⚡ **Built with:** HTML5 · CSS3 · JavaScript · **Three.js** · **GSAP 3.12**.
-- 💎 **The Concept:** Experimenting with 3D depth, atmospheric fog, and kinetic solar particle explosions.
+#### 🌌 Highlights & Features
+- ⚡ **Three.js WebGL Engine**: Custom Icosahedron geometries, Torus orbital rings, and glowing star nodes (Regulus, Algieba, Denebola).
+- 💎 **GSAP 3.12 Motion Timelines**: Smooth entrance timelines, reactive camera controls, and interactive click particle explosions (`UNLEASH SOLAR BURST ⚡`).
+- 🎨 **UnrealBloomPass Radiance**: Post-processing bloom filter creating an authentic cosmic solar glow.
+- 📱 **Fully Responsive 3D Canvas**: Adapts seamlessly to all viewport aspect ratios, touch gestures, and mouse movement.
 
 👉 **[Explore the source](./3d-portfolio/index.html)** &nbsp; / &nbsp; 🚀 **[Open the GitHub Pages version](https://duongthaitan.github.io/duongthaitan/3d-portfolio/index.html)**
 
-<sub>The 3D portfolio runs as an interactive WebGL experience on a dedicated page. This README utilizes dynamic animated SVG artwork for GitHub native performance.</sub>
+<sub>The 3D portfolio runs as an interactive WebGL canvas on a dedicated page. This README utilizes dynamic animated SVG artwork for GitHub native performance.</sub>
 
 <br />
 
@@ -104,21 +119,23 @@ Tools and languages mastered across various software domains — constantly expa
 
 <p><samp>04 / SEKHMET OBSERVATORY 𓁛</samp></p>
 
-**A signal from the solar work, updated continuously.**
+**A live signal from public contribution telemetry, automatically updated.**
 
 <p align="center">
   <img src="./assets/github-metrics.svg?v=sekhmet-leo" width="560" alt="GitHub observatory: public original repositories, stars on those repositories, and followers." />
 </p>
 
-| Metric | Measurement Scope |
-| :--- | :--- |
-| **Original Repositories** | Owned public repositories (excluding forks, including archived) |
-| **Stars** | Total stars earned across owned repositories |
-| **Followers** | Public followers in the cosmic developer community |
+### 𓁛 Telemetry Metrics Breakdown
+
+| Telemetry Channel | Measurement Criteria | Filtering Logic |
+| :--- | :--- | :--- |
+| **Original Repositories** | Owned public repositories | Excludes forks, includes archived repositories |
+| **Earned Stars** | Total stargazers count | Accumulated exclusively across owned original repositories |
+| **Cosmic Followers** | Public developer followers | Live count of GitHub community followers |
 
 [Accessible snapshot](./assets/github-metrics.svg?raw=1) · [Repositories](https://github.com/duongthaitan?tab=repositories) · [Followers](https://github.com/duongthaitan?tab=followers) · [Renderer source](./scripts/render-metrics.mjs)
 
-<sub>Refreshed by GitHub Actions daily. Preserves existing snapshot seamlessly on network timeouts.</sub>
+<sub>Automatically generated by GitHub Actions on a daily cron schedule. Preserves existing snapshot atomically on network timeouts.</sub>
 
 <br />
 
@@ -128,16 +145,18 @@ Tools and languages mastered across various software domains — constantly expa
 
 **𓋹 Sacred Scrolls of Knowledge &amp; Continuous Growth.**
 
-<details>
-<summary><strong>📜 View the five course certificates of honor</strong></summary>
+A record of accredited course completions and fundamental skills mastered along the learning path.
 
-| Issuer | Certification Title | Verification Link |
-| :--- | :--- | :--- |
-| **F8 Fullstack** | IT Onboarding | [cert/4tv2o](https://fullstack.edu.vn/cert/4tv2o) |
-| **F8 Fullstack** | JavaScript Basic | [cert/d0gj4](https://fullstack.edu.vn/cert/d0gj4) |
-| **F8 Fullstack** | PHP Introduction | [cert/kj7vr](https://fullstack.edu.vn/cert/kj7vr) |
-| **SoloLearn** | PHP Course | [CT-11PGKZIX](https://www.sololearn.com/certificates/CT-11PGKZIX) |
-| **SoloLearn** | Introduction to C | [CC-USOBZSX7](https://www.sololearn.com/certificates/CC-USOBZSX7) |
+<details>
+<summary><strong>📜 Open the Sacred Learning Scrolls (Five Certified Milestones)</strong></summary>
+
+| Issuer | Certification Title | Verification Anchor | Domain Focus |
+| :--- | :--- | :--- | :--- |
+| **F8 Fullstack** | IT Onboarding | [cert/4tv2o](https://fullstack.edu.vn/cert/4tv2o) | Industry fundamentals, dev tools & workflow |
+| **F8 Fullstack** | JavaScript Basic | [cert/d0gj4](https://fullstack.edu.vn/cert/d0gj4) | ES6+, closures, async programming, DOM |
+| **F8 Fullstack** | PHP Introduction | [cert/kj7vr](https://fullstack.edu.vn/cert/kj7vr) | Server-side scripting, OOP PHP basics |
+| **SoloLearn** | PHP Course | [CT-11PGKZIX](https://www.sololearn.com/certificates/CT-11PGKZIX) | Backend architecture, forms, MySQL integration |
+| **SoloLearn** | Introduction to C | [CC-USOBZSX7](https://www.sololearn.com/certificates/CC-USOBZSX7) | Pointers, memory allocation, C fundamentals |
 
 </details>
 
@@ -149,25 +168,28 @@ Tools and languages mastered across various software domains — constantly expa
 
 **𓍝 Solar Clockwork Automation — Running on GitHub Actions.**
 
-Local SVG artwork. Native JavaScript metric renderer. Automated daily GitHub Actions workflow with zero external tracking scripts.
+Native JavaScript metric rendering engine. Zero external tracking pixels or third-party image service dependencies.
 
 <details>
-<summary><strong>⚙️ Architecture &amp; Accessibility Details</strong></summary>
+<summary><strong>⚙️ System Architecture, Local Testing &amp; Reduced Motion Compliance</strong></summary>
 
-### Local Execution &amp; Testing
+### 🛠️ Local Execution &amp; Test Suite
 
-Requires **Node.js 24 or newer**.
+Requires **Node.js 24 or newer**. Run local verification scripts with zero installation overhead:
 
 ```powershell
 node --test scripts/render-metrics.test.mjs
 node scripts/render-metrics.mjs
 ```
 
-Runs comprehensive security checks (SVG sanitization, ID uniqueness, reduced-motion compliance) and updates the metric snapshot.
+#### Verification Suite Guardrails:
+1. **SVG Security & Integrity**: Rejects `<script>`, `<animate>`, `<foreignObject>`, inline `onclick` handlers, and `@import` directives.
+2. **Local Fragment Validation**: Ensures all `url(#id)` gradient/clipPath references resolve locally.
+3. **Reduced Motion Enforcement**: Mandates `@media (prefers-reduced-motion: reduce)` block in all animated SVGs.
+4. **File Size Budget**: Enforces strict `< 32 KB` byte budget per SVG file.
 
-### Motion &amp; Reduced Motion Safeguards
-
-All animated SVG artwork respects `prefers-reduced-motion: reduce`. Standard CSS `@keyframes` with explicit iteration bounds ensure smooth continuous motion while adhering to GitHub security standards.
+### 🛡️ Motion Safeguards
+All vector artwork respects `prefers-reduced-motion: reduce`. Standard CSS `@keyframes` with explicit iteration bounds (`200`) deliver continuous animation on GitHub while strictly avoiding banned keywords.
 
 </details>
 
@@ -178,8 +200,8 @@ All animated SVG artwork respects `prefers-reduced-motion: reduce`. Standard CSS
 <h2 align="center">Open a channel</h2>
 
 <p align="center">
-  <strong>𓁛 Good ideas deserve a radiant home. Let's connect.</strong><br />
-  Frontend architecture, Three.js &amp; GSAP 3D WebGL experiments, or creative collaborations.
+  <strong>𓁛 Good ideas deserve a radiant sanctuary. Let's connect.</strong><br />
+  Frontend architecture, Three.js &amp; GSAP 3D WebGL experiments, or creative engineering collaborations.
 </p>
 
 <p align="center">
