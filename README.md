@@ -1,9 +1,9 @@
 <p align="center">
-  <img src="./assets/hero-banner.svg?v=v3-no-icons" width="100%" alt="Duong Thai Tan — Sekhmet's Solar Lion Developer (Leo 18/8)" />
+  <img src="./assets/hero-banner.svg?v=dev-fusion-3d" width="100%" alt="Duong Thai Tan — Sekhmet's Solar Lion Developer (Leo 18/8)" />
 </p>
 
 <p align="center">
-  <img src="./assets/typing-anim.svg?v=v3-no-icons" width="600" alt="Sekhmet Solar Leo — Born August 18 — Frontend &amp; 3D Architect — Master of Motion &amp; WebGL — Divine Code Burns Bright" />
+  <img src="./assets/typing-anim.svg?v=dev-fusion-3d" width="600" alt="Sekhmet Solar Leo — Born August 18 — Frontend &amp; 3D Architect — Master of Motion &amp; WebGL — Divine Code Burns Bright" />
 </p>
 
 <h1 align="center">DUONG THAI TAN</h1>
@@ -15,11 +15,13 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/ZODIAC-LEO%2018%2F8-FFD700?style=for-the-badge&amp;labelColor=1e180a" alt="Leo 18/8 Badge" />
-  <img src="https://img.shields.io/badge/DEITY-SEKHMET%20SOLAR%20FIRE-FF9900?style=for-the-badge&amp;labelColor=1e180a" alt="Sekhmet Deity Badge" />
-  <img src="https://img.shields.io/badge/THREE.JS-r128%203D%20ENGINE-000000?style=for-the-badge&amp;logo=three.js&amp;logoColor=FFD700&amp;labelColor=1e180a" alt="Three.js Badge" />
-  <img src="https://img.shields.io/badge/GSAP-3.12.5%20MOTION-88CE02?style=for-the-badge&amp;logo=greensock&amp;logoColor=FFFFFF&amp;labelColor=1e180a" alt="GSAP Badge" />
-  <img src="https://img.shields.io/badge/WEBGL-2.0%20SHADERS-990000?style=for-the-badge&amp;logo=webgl&amp;logoColor=FFFFFF&amp;labelColor=1e180a" alt="WebGL Badge" />
-  <img src="https://img.shields.io/badge/LOCATION-VIETNAM-FF5722?style=for-the-badge&amp;labelColor=1e180a" alt="Vietnam Location Badge" />
+  <img src="https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&amp;logo=javascript&amp;logoColor=000000&amp;labelColor=1e180a" alt="JavaScript" />
+  <img src="https://img.shields.io/badge/Three.js-r128-000000?style=for-the-badge&amp;logo=three.js&amp;logoColor=FFD700&amp;labelColor=1e180a" alt="Three.js" />
+  <img src="https://img.shields.io/badge/GSAP-3.12.5-88CE02?style=for-the-badge&amp;logo=greensock&amp;logoColor=FFFFFF&amp;labelColor=1e180a" alt="GSAP" />
+  <img src="https://img.shields.io/badge/Vue.js-4FC08D?style=for-the-badge&amp;logo=vuedotjs&amp;logoColor=FFFFFF&amp;labelColor=1e180a" alt="Vue.js" />
+  <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&amp;logo=nodedotjs&amp;logoColor=FFFFFF&amp;labelColor=1e180a" alt="Node.js" />
+  <img src="https://img.shields.io/badge/WebGL-2.0-990000?style=for-the-badge&amp;logo=webgl&amp;logoColor=FFFFFF&amp;labelColor=1e180a" alt="WebGL" />
+  <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&amp;logo=figma&amp;logoColor=FFFFFF&amp;labelColor=1e180a" alt="Figma" />
 </p>
 
 <p align="center"><samp>DIVINE SOLAR VISION / THREE.JS &amp; GSAP MOTION / GOLDEN EGYPTIAN ARCHITECTURE</samp></p>
@@ -36,13 +38,35 @@
 
 <br />
 
-<img src="./assets/galaxy/about.svg?v=v3-no-icons" width="100%" alt="Sector 01 — Sekhmet Solar Sanctuary" />
+<img src="./assets/galaxy/about.svg?v=dev-fusion-3d" width="100%" alt="Sector 01 — Sekhmet Solar Sanctuary" />
 
 ## Mission control
 
 **Protected by Sekhmet — Goddess of Solar Fire, Courage, and Unyielding Passion.**
 
-Born on **August 18**, under the fierce solar climax of **Leo (♌)**, I approach software engineering like ancient Egyptian master architects erecting temples under the Eye of Ra — bold, majestic, and infused with divine kinetic energy.
+Born on **August 18**, under the fierce solar climax of **Leo**, I approach software engineering like ancient Egyptian master architects erecting temples under the Eye of Ra — bold, majestic, and infused with divine kinetic energy.
+
+```javascript
+const developer = {
+  name: "Duong Thai Tan",
+  handle: "duongthaitan",
+  zodiac: "Leo (August 18)",
+  deity: "Sekhmet (Solar Fire)",
+  roles: [
+    "Frontend Architect",
+    "Three.js & GSAP 3D Motion Developer",
+    "UI/UX Visual Artisan",
+    "Fullstack Engineer"
+  ],
+  stack: {
+    graphics3D: ["Three.js r128", "GSAP 3.12", "WebGL 2.0 Shaders", "UnrealBloomPass"],
+    frontend: ["JavaScript (ES6+)", "Vue.js", "React", "HTML5/CSS3"],
+    backend: ["Node.js", "PHP", "Laravel", "MySQL"],
+    design: ["Figma", "Photoshop", "Lightroom", "Visual Cinematography"]
+  },
+  status: "BUILDING_HIGH_PERFORMANCE_3D_CANVAS"
+};
+```
 
 I specialize in constructing high-performance frontend interfaces where spatial layout, 3D motion dynamics, and micro-interactions seamlessly harmonize. Clean maintainable code fuels the core, ensuring every pixel burns with purpose and precision.
 
@@ -95,7 +119,7 @@ A diverse background across backend services, desktop software, and system scrip
 
 <br />
 
-<img src="./assets/galaxy/selected-work.svg?v=v3-no-icons" width="100%" alt="Sector 03 — Selected Work" />
+<img src="./assets/galaxy/selected-work.svg?v=dev-fusion-3d" width="100%" alt="Sector 03 — Selected Work" />
 
 ## Selected work
 
@@ -122,7 +146,7 @@ A diverse background across backend services, desktop software, and system scrip
 **A live signal from public contribution telemetry, automatically updated.**
 
 <p align="center">
-  <img src="./assets/github-metrics.svg?v=v3-no-icons" width="560" alt="GitHub observatory: public original repositories, stars on those repositories, and followers." />
+  <img src="./assets/github-metrics.svg?v=dev-fusion-3d" width="560" alt="GitHub observatory: public original repositories, stars on those repositories, and followers." />
 </p>
 
 ### Telemetry Metrics Breakdown
@@ -139,7 +163,7 @@ A diverse background across backend services, desktop software, and system scrip
 
 <br />
 
-<img src="./assets/galaxy/certificates.svg?v=v3-no-icons" width="100%" alt="Sector 05 — Learning Coordinates" />
+<img src="./assets/galaxy/certificates.svg?v=dev-fusion-3d" width="100%" alt="Sector 05 — Learning Coordinates" />
 
 ## Learning coordinates
 
@@ -162,7 +186,7 @@ A record of accredited course completions and fundamental skills mastered along 
 
 <br />
 
-<img src="./assets/galaxy/automation.svg?v=v3-no-icons" width="100%" alt="Sector 06 — Flight Systems" />
+<img src="./assets/galaxy/automation.svg?v=dev-fusion-3d" width="100%" alt="Sector 06 — Flight Systems" />
 
 ## Flight systems
 
@@ -195,7 +219,7 @@ All vector artwork respects `prefers-reduced-motion: reduce`. Standard CSS `@key
 
 <br />
 
-<img src="./assets/galaxy/connect.svg?v=v3-no-icons" width="100%" alt="Sector 07 — Connect Portal" />
+<img src="./assets/galaxy/connect.svg?v=dev-fusion-3d" width="100%" alt="Sector 07 — Connect Portal" />
 
 <h2 align="center">Open a channel</h2>
 
@@ -216,7 +240,7 @@ All vector artwork respects `prefers-reduced-motion: reduce`. Standard CSS `@key
   </a>
 </p>
 
-<img src="./assets/section-divider.svg?v=v3-no-icons" width="100%" alt="" />
+<img src="./assets/section-divider.svg?v=dev-fusion-3d" width="100%" alt="" />
 
 <p align="center"><samp>STAY CURIOUS. KEEP BUILDING. BURN BRIGHT WITH SEKHMET'S FIRE</samp></p>
 <p align="center"><sub>Duong Thai Tan · Leo Developer (August 18) · Protected by Sekhmet</sub></p>
