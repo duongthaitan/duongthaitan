@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="600" height="38" viewBox="0 0 600 38" role="img" aria-labelledby="typing-title">
-  <title id="typing-title">Sekhmet Solar Leo — Born August 18 — Frontend &amp; 3D Architect — Master of Motion &amp; WebGL — Divine Code Burns Bright</title>
+  <title id="typing-title">Sekhmet Solar Leo — Born August 18 — Frontend Architect — Three.js 3D Motion &amp; WebGL — Divine Solar Code Burns Bright</title>
   <defs>
     <style>
       text{font-family:ui-monospace,Consolas,'Courier New',monospace;font-size:14px;font-weight:600;fill:#ffd700}
@@ -23,10 +23,10 @@
       @media(forced-colors:active){text{fill:CanvasText}.typing-cur-r{fill:CanvasText}}
     </style>
   </defs>
-  <text class="typing-line typing-l1" x="10" y="24">&gt; Sekhmet Solar Leo ♌ (August 18)</text>
-  <text class="typing-line typing-l2" x="10" y="24">&gt; Protected by Eye of Ra 𓁛</text>
-  <text class="typing-line typing-l3" x="10" y="24">&gt; Frontend Architect &amp; UI/UX Master ⚔️</text>
-  <text class="typing-line typing-l4" x="10" y="24">&gt; 3D Motion &amp; Interactive WebGL 💎</text>
-  <text class="typing-line typing-l5" x="10" y="24">&gt; Divine Solar Code Burns Bright 𓋹</text>
+  <text class="typing-line typing-l1" x="10" y="24">&gt; Sekhmet Solar Leo (August 18)</text>
+  <text class="typing-line typing-l2" x="10" y="24">&gt; Protected by Eye of Ra</text>
+  <text class="typing-line typing-l3" x="10" y="24">&gt; Frontend Architect &amp; UI/UX Master</text>
+  <text class="typing-line typing-l4" x="10" y="24">&gt; Three.js 3D Motion &amp; WebGL Canvas</text>
+  <text class="typing-line typing-l5" x="10" y="24">&gt; Divine Solar Code Burns Bright</text>
   <rect class="typing-cur typing-cur-r" x="340" y="9" width="9" height="19" rx="1" fill="#ffd700" opacity=".85"/>
 </svg>

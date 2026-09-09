@@ -59,7 +59,7 @@
         <circle cx="648" cy="78" r="2" fill="#ffe8b0"/><circle cx="754" cy="105" r="1.8" fill="#d4a862"/><circle cx="662" cy="124" r="1.6" fill="#e8c870"/>
       </g>
     </g>
-    <text x="40" y="39" class="label secondary" font-size="10">SECTOR 02 / SEKHMET SOLAR FORGE 𓆣</text>
+    <text x="40" y="39" class="label secondary" font-size="10">SECTOR 02 / SEKHMET SOLAR FORGE</text>
     <text x="38" y="104" font-size="39" font-weight="650" letter-spacing="-1">Forge of Tech</text>
     <text x="40" y="137" class="secondary" font-size="15">Tempered in Fire — Refined in Gold.</text>
     <path class="decor" d="M40 164H70" stroke="#d4a017" stroke-width="1.5"/>

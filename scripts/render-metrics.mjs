@@ -98,7 +98,7 @@ export function renderSvg(metrics = null, now = new Date()) {
     </g>
     <path d="M449 91h8m-4-4v8M583 310h6m-3-3v6" stroke="#c9a455" stroke-linecap="round" opacity=".5"/>
   </g>
-  <text class="secondary" x="28" y="38" font-size="17" letter-spacing="2.6">SEKHMET SOLAR OBSERVATORY 𓁛</text>
+  <text class="secondary" x="28" y="38" font-size="17" letter-spacing="2.6">SEKHMET SOLAR OBSERVATORY</text>
   <text class="primary" x="28" y="78" font-size="30" font-weight="650">GitHub public snapshot</text>
   <text class="secondary" x="28" y="111" font-size="23">${HANDLE}</text>
   ${tiles}

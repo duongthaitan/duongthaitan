@@ -1,28 +1,28 @@
 <p align="center">
-  <img src="./assets/hero-banner.svg?v=zeus-sekhmet-3d-detail" width="100%" alt="Duong Thai Tan — Sekhmet's Solar Lion Developer (Leo 18/8)" />
+  <img src="./assets/hero-banner.svg?v=clean-icons-3d" width="100%" alt="Duong Thai Tan — Sekhmet's Solar Lion Developer (Leo 18/8)" />
 </p>
 
 <p align="center">
-  <img src="./assets/typing-anim.svg?v=zeus-sekhmet-3d-detail" width="600" alt="Sekhmet Solar Leo — Born August 18 — Frontend &amp; 3D Architect — Master of Motion &amp; WebGL — Divine Code Burns Bright" />
+  <img src="./assets/typing-anim.svg?v=clean-icons-3d" width="600" alt="Sekhmet Solar Leo — Born August 18 — Frontend &amp; 3D Architect — Master of Motion &amp; WebGL — Divine Code Burns Bright" />
 </p>
 
-<h1 align="center">𓁛 DUONG THAI TAN 𓁛</h1>
+<h1 align="center">DUONG THAI TAN</h1>
 
 <p align="center">
-  <strong>𓋹 Sekhmet's Solar Lion Developer (Leo 18/8) — Divine Code, 3D Parallax &amp; Solar Fire Engineering ♌</strong><br />
+  <strong>Sekhmet's Solar Lion Developer (Leo 18/8) — Divine Code, 3D Parallax &amp; Solar Fire Engineering ♌</strong><br />
   Frontend Architect &amp; UI/UX Motion Artisan · Vietnam
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/ZODIAC-LEO%2018%2F8%20%E2%99%8C-FFD700?style=for-the-badge&amp;logo=leo&amp;logoColor=070B19&amp;labelColor=1e180a" alt="Leo 18/8 Badge" />
-  <img src="https://img.shields.io/badge/DEITY-SEKHMET%20SOLAR%20FIRE%20%F0%93%81%9B-FF9900?style=for-the-badge&amp;logo=egypt&amp;logoColor=070B19&amp;labelColor=1e180a" alt="Sekhmet Deity Badge" />
+  <img src="https://img.shields.io/badge/DEITY-SEKHMET%20SOLAR%20FIRE-FF9900?style=for-the-badge&amp;logo=egypt&amp;logoColor=070B19&amp;labelColor=1e180a" alt="Sekhmet Deity Badge" />
   <img src="https://img.shields.io/badge/THREE.JS-r128%203D%20ENGINE-000000?style=for-the-badge&amp;logo=three.js&amp;logoColor=FFD700&amp;labelColor=1e180a" alt="Three.js Badge" />
   <img src="https://img.shields.io/badge/GSAP-3.12.5%20MOTION-88CE02?style=for-the-badge&amp;logo=greensock&amp;logoColor=FFFFFF&amp;labelColor=1e180a" alt="GSAP Badge" />
   <img src="https://img.shields.io/badge/WEBGL-2.0%20SHADERS-990000?style=for-the-badge&amp;logo=webgl&amp;logoColor=FFFFFF&amp;labelColor=1e180a" alt="WebGL Badge" />
   <img src="https://img.shields.io/badge/LOCATION-VIETNAM%20%F0%9F%87%B5%F0%9F%87%B3-FF5722?style=for-the-badge&amp;logo=vietnam&amp;logoColor=FFFFFF&amp;labelColor=1e180a" alt="Vietnam Location Badge" />
 </p>
 
-<p align="center"><samp>𓋹 DIVINE SOLAR VISION / THREE.JS &amp; GSAP MOTION / GOLDEN EGYPTIAN ARCHITECTURE 𓁛</samp></p>
+<p align="center"><samp>DIVINE SOLAR VISION / THREE.JS &amp; GSAP MOTION / GOLDEN EGYPTIAN ARCHITECTURE</samp></p>
 
 <p align="center">
   <a href="#mission-control">Sanctuary</a> &nbsp; · &nbsp;
@@ -36,11 +36,11 @@
 
 <br />
 
-<img src="./assets/galaxy/about.svg?v=zeus-sekhmet-3d-detail" width="100%" alt="Sector 01 — Sekhmet Solar Sanctuary" />
+<img src="./assets/galaxy/about.svg?v=clean-icons-3d" width="100%" alt="Sector 01 — Sekhmet Solar Sanctuary" />
 
 ## Mission control
 
-**𓃬 Protected by Sekhmet — Goddess of Solar Fire, Courage, and Unyielding Passion.**
+**Protected by Sekhmet — Goddess of Solar Fire, Courage, and Unyielding Passion.**
 
 Born on **August 18**, under the fierce solar climax of **Leo (♌)**, I approach software engineering like ancient Egyptian master architects erecting temples under the Eye of Ra — bold, majestic, and infused with divine kinetic energy.
 
@@ -48,7 +48,7 @@ I specialize in constructing high-performance frontend interfaces where spatial 
 
 Beyond the text editor, my background in **photography and visual cinematography** sharpens my intuition for light transport, depth composition, frame timing, and aesthetic harmony across 3D WebGL canvases and web applications.
 
-### 𓋹 Core Pillars & Solar Focus
+### Core Pillars & Solar Focus
 
 | Core Domain | Technical &amp; Aesthetic Focus | Key Implementation |
 | :--- | :--- | :--- |
@@ -59,15 +59,15 @@ Beyond the text editor, my background in **photography and visual cinematography
 
 <br />
 
-<img src="./assets/galaxy/toolkit.svg?v=zeus-sekhmet-3d-detail" width="100%" alt="Sector 02 — Technology Constellation" />
+<img src="./assets/galaxy/toolkit.svg?v=clean-icons-3d" width="100%" alt="Sector 02 — Technology Constellation" />
 
 ## Technology constellation
 
-**𓆣 The Solar Forge of Tech — Tempered in Fire, Refined in Gold.**
+**The Solar Forge of Tech — Tempered in Fire, Refined in Gold.**
 
 A meticulously curated arsenal of frameworks, motion engines, tools, and languages powering the digital sanctuary.
 
-### 𓁛 3D, Motion & Interface Engineering
+### 3D, Motion & Interface Engineering
 
 | Subsystem | Core Technologies &amp; Libraries | Primary Use Cases |
 | :--- | :--- | :--- |
@@ -78,7 +78,7 @@ A meticulously curated arsenal of frameworks, motion engines, tools, and languag
 | **Workflow &amp; Automation** | **GitHub Actions** · **VS Code** · **Node.js** · **MySQL** · **Selenium** | CI/CD metric rendering, automated testing, database management |
 
 <details>
-<summary><strong>𓍝 Polymath Language Suite &amp; Secondary Frameworks</strong></summary>
+<summary><strong>Polymath Language Suite &amp; Secondary Frameworks</strong></summary>
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
@@ -95,7 +95,7 @@ A diverse background across backend services, desktop software, and system scrip
 
 <br />
 
-<img src="./assets/galaxy/selected-work.svg?v=zeus-sekhmet-3d-detail" width="100%" alt="Sector 03 — Selected Work" />
+<img src="./assets/galaxy/selected-work.svg?v=clean-icons-3d" width="100%" alt="Sector 03 — Selected Work" />
 
 ## Selected work
 
@@ -117,15 +117,15 @@ A diverse background across backend services, desktop software, and system scrip
 
 ## GitHub snapshot
 
-<p><samp>04 / SEKHMET OBSERVATORY 𓁛</samp></p>
+<p><samp>04 / SEKHMET OBSERVATORY</samp></p>
 
 **A live signal from public contribution telemetry, automatically updated.**
 
 <p align="center">
-  <img src="./assets/github-metrics.svg?v=zeus-sekhmet-3d-detail" width="560" alt="GitHub observatory: public original repositories, stars on those repositories, and followers." />
+  <img src="./assets/github-metrics.svg?v=clean-icons-3d" width="560" alt="GitHub observatory: public original repositories, stars on those repositories, and followers." />
 </p>
 
-### 𓁛 Telemetry Metrics Breakdown
+### Telemetry Metrics Breakdown
 
 | Telemetry Channel | Measurement Criteria | Filtering Logic |
 | :--- | :--- | :--- |
@@ -139,16 +139,16 @@ A diverse background across backend services, desktop software, and system scrip
 
 <br />
 
-<img src="./assets/galaxy/certificates.svg?v=zeus-sekhmet-3d-detail" width="100%" alt="Sector 05 — Learning Coordinates" />
+<img src="./assets/galaxy/certificates.svg?v=clean-icons-3d" width="100%" alt="Sector 05 — Learning Coordinates" />
 
 ## Learning coordinates
 
-**𓋹 Sacred Scrolls of Knowledge &amp; Continuous Growth.**
+**Sacred Scrolls of Knowledge &amp; Continuous Growth.**
 
 A record of accredited course completions and fundamental skills mastered along the learning path.
 
 <details>
-<summary><strong>📜 Open the Sacred Learning Scrolls (Five Certified Milestones)</strong></summary>
+<summary><strong>Open the Sacred Learning Scrolls (Five Certified Milestones)</strong></summary>
 
 | Issuer | Certification Title | Verification Anchor | Domain Focus |
 | :--- | :--- | :--- | :--- |
@@ -162,11 +162,11 @@ A record of accredited course completions and fundamental skills mastered along 
 
 <br />
 
-<img src="./assets/galaxy/automation.svg?v=zeus-sekhmet-3d-detail" width="100%" alt="Sector 06 — Flight Systems" />
+<img src="./assets/galaxy/automation.svg?v=clean-icons-3d" width="100%" alt="Sector 06 — Flight Systems" />
 
 ## Flight systems
 
-**𓍝 Solar Clockwork Automation — Running on GitHub Actions.**
+**Solar Clockwork Automation — Running on GitHub Actions.**
 
 Native JavaScript metric rendering engine. Zero external tracking pixels or third-party image service dependencies.
 
@@ -195,12 +195,12 @@ All vector artwork respects `prefers-reduced-motion: reduce`. Standard CSS `@key
 
 <br />
 
-<img src="./assets/galaxy/connect.svg?v=zeus-sekhmet-3d-detail" width="100%" alt="Sector 07 — Connect Portal" />
+<img src="./assets/galaxy/connect.svg?v=clean-icons-3d" width="100%" alt="Sector 07 — Connect Portal" />
 
 <h2 align="center">Open a channel</h2>
 
 <p align="center">
-  <strong>𓁛 Good ideas deserve a radiant sanctuary. Let's connect.</strong><br />
+  <strong>Good ideas deserve a radiant sanctuary. Let's connect.</strong><br />
   Frontend architecture, Three.js &amp; GSAP 3D WebGL experiments, or creative engineering collaborations.
 </p>
 
@@ -216,7 +216,7 @@ All vector artwork respects `prefers-reduced-motion: reduce`. Standard CSS `@key
   </a>
 </p>
 
-<img src="./assets/section-divider.svg?v=zeus-sekhmet-3d-detail" width="100%" alt="" />
+<img src="./assets/section-divider.svg?v=clean-icons-3d" width="100%" alt="" />
 
-<p align="center"><samp>𓋹 STAY CURIOUS. KEEP BUILDING. BURN BRIGHT WITH SEKHMET'S FIRE 𓁛</samp></p>
+<p align="center"><samp>STAY CURIOUS. KEEP BUILDING. BURN BRIGHT WITH SEKHMET'S FIRE</samp></p>
 <p align="center"><sub>Duong Thai Tan · ♌ Leo Developer (August 18) · Protected by Sekhmet</sub></p>

@@ -52,7 +52,7 @@
       <path d="M855 220A100 100 0 0 1 940 135" fill="none" stroke="#8b7020" stroke-opacity=".08" stroke-width="10"/>
       <path d="M855 220A100 100 0 0 1 940 135L955 230Z" fill="#100e08" stroke="#a88a30" stroke-opacity=".25"/>
     </g>
-    <text x="40" y="39" class="label secondary" font-size="10">SECTOR 05 / SEKHMET PAPYRUS SCROLLS 𓋹</text>
+    <text x="40" y="39" class="label secondary" font-size="10">SECTOR 05 / SEKHMET PAPYRUS SCROLLS</text>
     <text x="38" y="104" font-size="39" font-weight="650" letter-spacing="-1">Scrolls of Ra</text>
     <text x="40" y="137" class="secondary" font-size="15">Sacred Knowledge &amp; Continuous Growth.</text>
     <path class="decor" d="M40 164H70" stroke="#d4a017" stroke-width="1.5"/>

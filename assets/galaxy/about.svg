@@ -57,7 +57,7 @@
       <path d="M855 220A102 102 0 0 1 942 134" fill="none" stroke="#8b7020" stroke-opacity=".1" stroke-width="12"/>
       <path d="M855 220A102 102 0 0 1 942 134L956 235Z" fill="#10130a" stroke="#a88a30" stroke-opacity=".3"/>
     </g>
-    <text x="40" y="39" class="label secondary" font-size="10">SECTOR 01 / SEKHMET SOLAR SANCTUARY 𓁛</text>
+    <text x="40" y="39" class="label secondary" font-size="10">SECTOR 01 / SEKHMET SOLAR SANCTUARY</text>
     <text x="38" y="104" font-size="39" font-weight="650" letter-spacing="-1">Solar Lion Heart</text>
     <text x="40" y="137" class="secondary" font-size="15">Born August 18 — Protected by Sekhmet's Divine Fire.</text>
     <path class="decor" d="M40 164H70" stroke="#d4a017" stroke-width="1.5"/>
