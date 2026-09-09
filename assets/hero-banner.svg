@@ -148,8 +148,9 @@
       </g>
 
       <!-- Golden Egyptian Hieroglyphs along Left Border & Header -->
-      <g class="hieroglyph" fill="#ffd700" opacity=".65" font-size="16" font-family="'Segoe UI Historic', 'Noto Sans Egyptian Hieroglyphs', sans-serif">
-        <text x="40" y="50">𓋹 𓁛 𓆣 𓍝 𓃬</text>
+      <g class="hieroglyph" fill="#ffd700" opacity=".75" font-size="16" font-family="'Segoe UI Historic', 'Noto Sans Egyptian Hieroglyphs', sans-serif">
+        <text x="40" y="48">𓋹 𓁛 𓆣 𓍝 𓃬 𓀀 𓁀 𓃭 𓄿 𓅓 𓆓 𓇳</text>
+        <text x="40" y="325" font-size="14" opacity=".6">𓁹 𓂁 𓃠 𓄂 𓆃 𓇋 𓈖 𓉔 𓋴 b 𓍯 𓎛</text>
       </g>
     </g>
 
