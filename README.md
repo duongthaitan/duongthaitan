@@ -3,11 +3,11 @@
 </div>
 
 <div align="center">
-  <img src="./assets/hero-banner.svg?v=V5-Pinnacle" width="100%" alt="V5 3D Parallax Engine" />
+  <img src="./assets/hero-banner.svg?v=V6-Singularity" width="100%" alt="V6 Hyperspace Engine" />
 </div>
 
 <div align="center">
-  <img src="./assets/typing-anim.svg?v=V5-Pinnacle" width="800" alt="Sekhmet Solar Leo — V5 Terminal" />
+  <img src="./assets/typing-anim.svg?v=V6-Singularity" width="800" alt="Sekhmet Solar Leo — V6 Terminal" />
 </div>
 
 <div align="center">
@@ -21,7 +21,7 @@
     </td>
     <td width="70%" valign="middle">
       <h1 align="left" style="font-size: 3em; color: #ffd700;">DUONG THAI TAN</h1>
-      <h3 align="left" style="color: #ff7700; letter-spacing: 2px;">V5 GOD-TIER KINETIC ARCHITECT</h3>
+      <h3 align="left" style="color: #ff7700; letter-spacing: 2px;">V6 SINGULARITY ARCHITECT</h3>
       <p align="justify" style="font-size: 1.1em; line-height: 1.6;">
         Chào mừng đến với điểm giới hạn của lập trình giao diện tĩnh. Bằng việc bẻ cong mọi rào cản của Markdown và SVG, tôi kiến tạo những <strong>Trạm Không Gian 3D</strong> thực thụ chạy thẳng trên trình duyệt. Lấy năng lượng từ chòm sao <strong>Sư Tử (Leo)</strong> và nữ thần lửa <strong>Sekhmet</strong>, mỗi dòng code đều bùng nổ sức mạnh nguyên thuỷ.
       </p>
@@ -63,11 +63,11 @@
 <h2 align="center">🛰️ TRẠM VŨ TRỤ WIREFRAME: HUD TELEMETRY</h2>
 
 <p align="justify">
-  <strong>(Tính Năng Độc Quyền V5):</strong> Biểu đồ dưới đây không dùng thư viện ngoài. Bằng thuật toán toán học Lượng Giác (Trigonometry) tích hợp thẳng vào <code>render-metrics.mjs</code>, nó tạo ra một **Hành tinh Lưới 3D (Wireframe Globe)** thực sự, tự quay 360 độ và bắt Radar quyét liên tục.
+  <strong>(Tính Năng Độc Quyền V6 Singularity):</strong> Tương tác thời gian thực! Thử rê chuột qua biểu đồ dưới đây để kích hoạt Lõi Năng Lượng và tăng tốc hệ thống Radar đa chiều.
 </p>
 
 <p align="center">
-  <img src="./assets/github-metrics.svg?v=V5-Pinnacle" width="100%" style="max-width: 900px;" alt="V5 3D Wireframe HUD" />
+  <img src="./assets/github-metrics.svg?v=V6-Singularity" width="100%" style="max-width: 900px;" alt="V6 Interactive HUD" />
 </p>
 
 <div align="center">
@@ -91,7 +91,7 @@
       </p>
       <br/>
       <img src="https://media.giphy.com/media/3o7aD0QILFVJFE9mCc/giphy.gif" alt="Roar" width="40" style="border-radius: 50%" />
-      <samp style="color: #ffd700;"> SEKHMET V5_GOD_TIER CORE_ONLINE </samp>
+      <samp style="color: #ffd700;"> SEKHMET V6_SINGULARITY HOVER_ONLINE </samp>
       <img src="https://media.giphy.com/media/3o7aD0QILFVJFE9mCc/giphy.gif" alt="Roar" width="40" style="border-radius: 50%" />
     </td>
   </tr>
