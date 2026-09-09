@@ -1,9 +1,9 @@
 <p align="center">
-  <img src="./assets/hero-banner.svg?v=sekhmet-3d-god" width="100%" alt="Duong Thai Tan — Sekhmet's Solar Lion Developer (Leo 18/8)" />
+  <img src="./assets/hero-banner.svg?v=zeus-sekhmet-3d" width="100%" alt="Duong Thai Tan — Sekhmet's Solar Lion Developer (Leo 18/8)" />
 </p>
 
 <p align="center">
-  <img src="./assets/typing-anim.svg?v=sekhmet-3d-god" width="600" alt="Sekhmet Solar Leo — Born August 18 — Frontend &amp; 3D Architect — Master of Motion &amp; WebGL — Divine Code Burns Bright" />
+  <img src="./assets/typing-anim.svg?v=zeus-sekhmet-3d" width="600" alt="Sekhmet Solar Leo — Born August 18 — Frontend &amp; 3D Architect — Master of Motion &amp; WebGL — Divine Code Burns Bright" />
 </p>
 
 <h1 align="center">𓁛 DUONG THAI TAN 𓁛</h1>
@@ -36,7 +36,7 @@
 
 <br />
 
-<img src="./assets/galaxy/about.svg?v=sekhmet-3d-god" width="100%" alt="Sector 01 — Sekhmet Solar Sanctuary" />
+<img src="./assets/galaxy/about.svg?v=zeus-sekhmet-3d" width="100%" alt="Sector 01 — Sekhmet Solar Sanctuary" />
 
 ## Mission control
 
@@ -59,7 +59,7 @@ Beyond the text editor, my background in **photography and visual cinematography
 
 <br />
 
-<img src="./assets/galaxy/toolkit.svg?v=sekhmet-3d-god" width="100%" alt="Sector 02 — Technology Constellation" />
+<img src="./assets/galaxy/toolkit.svg?v=zeus-sekhmet-3d" width="100%" alt="Sector 02 — Technology Constellation" />
 
 ## Technology constellation
 
@@ -95,7 +95,7 @@ A diverse background across backend services, desktop software, and system scrip
 
 <br />
 
-<img src="./assets/galaxy/selected-work.svg?v=sekhmet-3d-god" width="100%" alt="Sector 03 — Selected Work" />
+<img src="./assets/galaxy/selected-work.svg?v=zeus-sekhmet-3d" width="100%" alt="Sector 03 — Selected Work" />
 
 ## Selected work
 
@@ -122,7 +122,7 @@ A diverse background across backend services, desktop software, and system scrip
 **A live signal from public contribution telemetry, automatically updated.**
 
 <p align="center">
-  <img src="./assets/github-metrics.svg?v=sekhmet-3d-god" width="560" alt="GitHub observatory: public original repositories, stars on those repositories, and followers." />
+  <img src="./assets/github-metrics.svg?v=zeus-sekhmet-3d" width="560" alt="GitHub observatory: public original repositories, stars on those repositories, and followers." />
 </p>
 
 ### 𓁛 Telemetry Metrics Breakdown
@@ -139,7 +139,7 @@ A diverse background across backend services, desktop software, and system scrip
 
 <br />
 
-<img src="./assets/galaxy/certificates.svg?v=sekhmet-3d-god" width="100%" alt="Sector 05 — Learning Coordinates" />
+<img src="./assets/galaxy/certificates.svg?v=zeus-sekhmet-3d" width="100%" alt="Sector 05 — Learning Coordinates" />
 
 ## Learning coordinates
 
@@ -162,7 +162,7 @@ A record of accredited course completions and fundamental skills mastered along 
 
 <br />
 
-<img src="./assets/galaxy/automation.svg?v=sekhmet-3d-god" width="100%" alt="Sector 06 — Flight Systems" />
+<img src="./assets/galaxy/automation.svg?v=zeus-sekhmet-3d" width="100%" alt="Sector 06 — Flight Systems" />
 
 ## Flight systems
 
@@ -195,7 +195,7 @@ All vector artwork respects `prefers-reduced-motion: reduce`. Standard CSS `@key
 
 <br />
 
-<img src="./assets/galaxy/connect.svg?v=sekhmet-3d-god" width="100%" alt="Sector 07 — Connect Portal" />
+<img src="./assets/galaxy/connect.svg?v=zeus-sekhmet-3d" width="100%" alt="Sector 07 — Connect Portal" />
 
 <h2 align="center">Open a channel</h2>
 
@@ -216,7 +216,7 @@ All vector artwork respects `prefers-reduced-motion: reduce`. Standard CSS `@key
   </a>
 </p>
 
-<img src="./assets/section-divider.svg?v=sekhmet-3d-god" width="100%" alt="" />
+<img src="./assets/section-divider.svg?v=zeus-sekhmet-3d" width="100%" alt="" />
 
 <p align="center"><samp>𓋹 STAY CURIOUS. KEEP BUILDING. BURN BRIGHT WITH SEKHMET'S FIRE 𓁛</samp></p>
 <p align="center"><sub>Duong Thai Tan · ♌ Leo Developer (August 18) · Protected by Sekhmet</sub></p>
