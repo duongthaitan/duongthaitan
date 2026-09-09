@@ -1,85 +1,65 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="200" viewBox="0 0 900 200" role="img" aria-labelledby="auto-title auto-desc">
   <title id="auto-title">Flight systems — Automation</title>
-  <desc id="auto-desc">A dimensional satellite with blue photovoltaic wings, a metallic instrument body and a silver dish transmits gentle curved signals across space. A shaded blue planet rises beneath its orbit through indigo and rose nebulae.</desc>
+  <desc id="auto-desc">Interlocking golden gear rings and orbital mechanisms turn in deep space. Satellite nodes ride fixed positions on circular tracks while golden sparks mark the mesh points of the clockwork constellation.</desc>
   <defs>
     <clipPath id="auto-frame"><rect width="900" height="200" rx="16"/></clipPath>
-    <clipPath id="auto-globe"><circle cx="805" cy="239" r="93"/></clipPath>
-    <radialGradient id="auto-nebula"><stop stop-color="#5652b9" stop-opacity=".37"/><stop offset=".52" stop-color="#382c73" stop-opacity=".16"/><stop offset="1" stop-color="#070b19" stop-opacity="0"/></radialGradient>
-    <radialGradient id="auto-rose"><stop stop-color="#b957a0" stop-opacity=".24"/><stop offset="1" stop-color="#070b19" stop-opacity="0"/></radialGradient>
-    <radialGradient id="auto-air"><stop offset=".79" stop-color="#98baf7" stop-opacity="0"/><stop offset=".84" stop-color="#98baf7" stop-opacity=".22"/><stop offset="1" stop-color="#98baf7" stop-opacity="0"/></radialGradient>
-    <radialGradient id="auto-planet" cx=".3" cy=".13" r=".88"><stop stop-color="#b5cddd"/><stop offset=".23" stop-color="#658baa"/><stop offset=".48" stop-color="#324e76"/><stop offset=".76" stop-color="#131e39"/><stop offset="1" stop-color="#070c1c"/></radialGradient>
-    <radialGradient id="auto-night" cx=".16" cy=".05" r=".94"><stop offset=".3" stop-color="#070b19" stop-opacity="0"/><stop offset=".63" stop-color="#070b19" stop-opacity=".35"/><stop offset="1" stop-color="#070b19" stop-opacity=".97"/></radialGradient>
-    <linearGradient id="auto-cells" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#6487b0"/><stop offset=".2" stop-color="#334f81"/><stop offset=".62" stop-color="#223557"/><stop offset="1" stop-color="#141e3a"/></linearGradient>
-    <linearGradient id="auto-gold" x1="675" y1="80" x2="721" y2="134" gradientUnits="userSpaceOnUse"><stop stop-color="#e3d6c9"/><stop offset=".28" stop-color="#b9a594"/><stop offset=".58" stop-color="#897581"/><stop offset="1" stop-color="#544a66"/></linearGradient>
-    <linearGradient id="auto-side"><stop stop-color="#77788f"/><stop offset="1" stop-color="#2b3049"/></linearGradient>
-    <linearGradient id="auto-silver" x1="0" y1="0" x2=".8" y2="1"><stop stop-color="#eef0f5"/><stop offset=".35" stop-color="#b1c0d6"/><stop offset=".67" stop-color="#687891"/><stop offset="1" stop-color="#353e58"/></linearGradient>
-    <radialGradient id="auto-dish" cx=".32" cy=".28" r=".85"><stop stop-color="#65728d"/><stop offset=".4" stop-color="#98a8c1"/><stop offset=".73" stop-color="#c6d0e2"/><stop offset="1" stop-color="#727b99"/></radialGradient>
-    <radialGradient id="auto-moon" cx=".25" cy=".2" r=".82"><stop stop-color="#f1e5ed"/><stop offset=".32" stop-color="#b7a7c2"/><stop offset=".66" stop-color="#68607f"/><stop offset="1" stop-color="#11182c"/></radialGradient>
+    <radialGradient id="auto-nebula"><stop stop-color="#c9a020" stop-opacity=".28"/><stop offset=".5" stop-color="#6b4f14" stop-opacity=".12"/><stop offset="1" stop-color="#070b19" stop-opacity="0"/></radialGradient>
+    <radialGradient id="auto-fire"><stop stop-color="#b86830" stop-opacity=".16"/><stop offset="1" stop-color="#070b19" stop-opacity="0"/></radialGradient>
+    <radialGradient id="auto-glow"><stop stop-color="#ffd700" stop-opacity=".2"/><stop offset=".4" stop-color="#d4a017" stop-opacity=".08"/><stop offset="1" stop-color="#d4a017" stop-opacity="0"/></radialGradient>
+    <radialGradient id="auto-core" cx=".3" cy=".24" r=".78"><stop stop-color="#fff8e1"/><stop offset=".25" stop-color="#ffd700"/><stop offset=".55" stop-color="#b8860b"/><stop offset=".8" stop-color="#4a3810"/><stop offset="1" stop-color="#0e0e08"/></radialGradient>
+    <radialGradient id="auto-node" cx=".28" cy=".22" r=".8"><stop stop-color="#ffe8c0"/><stop offset=".3" stop-color="#d4a862"/><stop offset=".65" stop-color="#6b5530"/><stop offset="1" stop-color="#100e08"/></radialGradient>
+    <linearGradient id="auto-track"><stop stop-color="#ffd700" stop-opacity=".3"/><stop offset=".5" stop-color="#d4a017" stop-opacity=".5"/><stop offset="1" stop-color="#c4762b" stop-opacity=".2"/></linearGradient>
     <style>
-      text{font-family:'Segoe UI',Arial,sans-serif;fill:#e6edf3}.secondary{fill:#aeb8c5}.label{font-family:ui-monospace,Consolas,monospace;letter-spacing:1.6px}.satellite{transform-origin:706px 102px;animation:auto-settle 3.8s ease-out 1}.transmission{stroke-dasharray:160;stroke-dashoffset:0;animation:auto-trace 3.2s ease-out 1}@keyframes auto-settle{from{transform:translate(-4px,3px) rotate(-1.5deg)}to{transform:translate(0,0) rotate(0)}}@keyframes auto-trace{from{stroke-dashoffset:48}to{stroke-dashoffset:0}}@media(prefers-reduced-motion:reduce){.satellite,.transmission{animation:none}}@media(forced-colors:active){.decor{display:none}.background{fill:Canvas}.border{stroke:CanvasText}text,.secondary{fill:CanvasText}}
+      text{font-family:'Segoe UI',Arial,sans-serif;fill:#e6edf3}.secondary{fill:#aeb8c5}.label{font-family:ui-monospace,Consolas,monospace;letter-spacing:1.6px}.clockwork{transform-origin:710px 100px;animation:auto-settle 3.8s ease-out 1}.gear{stroke-dasharray:400;stroke-dashoffset:0;animation:auto-trace 3.5s ease-out 1}@keyframes auto-settle{from{transform:rotate(-4deg) scale(.94)}to{transform:rotate(0) scale(1)}}@keyframes auto-trace{from{stroke-dashoffset:400}to{stroke-dashoffset:0}}@media(prefers-reduced-motion:reduce){.clockwork,.gear{animation:none}}@media(forced-colors:active){.decor{display:none}.background{fill:Canvas}.border{stroke:CanvasText}text,.secondary{fill:CanvasText}}
     </style>
   </defs>
   <g clip-path="url(#auto-frame)">
     <rect class="background" width="900" height="200" fill="#070b19"/>
     <g class="decor">
-      <ellipse cx="718" cy="102" rx="320" ry="170" fill="url(#auto-nebula)" transform="rotate(-17 718 102)"/>
-      <ellipse cx="592" cy="171" rx="221" ry="97" fill="url(#auto-rose)" transform="rotate(-22 592 171)"/>
-      <ellipse cx="811" cy="33" rx="155" ry="107" fill="url(#auto-rose)" opacity=".65"/>
-      <g fill="#b8c6e4" opacity=".44">
-        <circle cx="21" cy="89" r=".6"/><circle cx="76" cy="20" r=".7"/><circle cx="130" cy="61" r=".5"/><circle cx="178" cy="17" r=".6"/><circle cx="242" cy="62" r=".55"/><circle cx="301" cy="24" r=".75"/><circle cx="353" cy="69" r=".6"/><circle cx="414" cy="21" r=".65"/><circle cx="463" cy="85" r=".7"/>
-        <circle cx="23" cy="155" r=".65"/><circle cx="94" cy="181" r=".55"/><circle cx="162" cy="158" r=".5"/><circle cx="234" cy="185" r=".7"/><circle cx="309" cy="162" r=".6"/><circle cx="377" cy="180" r=".65"/><circle cx="435" cy="146" r=".65"/><circle cx="491" cy="174" r=".55"/>
-        <circle cx="508" cy="30" r=".75"/><circle cx="544" cy="76" r=".55"/><circle cx="573" cy="16" r=".65"/><circle cx="621" cy="36" r=".55"/><circle cx="667" cy="19" r=".7"/><circle cx="719" cy="26" r=".55"/><circle cx="773" cy="17" r=".6"/><circle cx="829" cy="31" r=".65"/><circle cx="876" cy="18" r=".55"/>
-        <circle cx="524" cy="135" r=".6"/><circle cx="556" cy="180" r=".7"/><circle cx="598" cy="145" r=".55"/><circle cx="648" cy="180" r=".7"/><circle cx="684" cy="149" r=".6"/><circle cx="720" cy="178" r=".55"/><circle cx="766" cy="131" r=".65"/><circle cx="846" cy="119" r=".55"/><circle cx="880" cy="155" r=".7"/><circle cx="887" cy="86" r=".6"/>
+      <ellipse cx="700" cy="100" rx="310" ry="168" fill="url(#auto-nebula)" transform="rotate(-10 700 100)"/>
+      <ellipse cx="830" cy="50" rx="190" ry="90" fill="url(#auto-fire)" transform="rotate(-20 830 50)"/>
+      <ellipse cx="430" cy="175" rx="220" ry="85" fill="url(#auto-nebula)" opacity=".35"/>
+      <g fill="#d4c5a0" opacity=".4">
+        <circle cx="22" cy="80" r=".6"/><circle cx="68" cy="16" r=".7"/><circle cx="128" cy="66" r=".5"/><circle cx="172" cy="20" r=".6"/><circle cx="224" cy="56" r=".55"/><circle cx="270" cy="16" r=".7"/><circle cx="328" cy="60" r=".55"/><circle cx="380" cy="24" r=".65"/><circle cx="434" cy="66" r=".55"/><circle cx="476" cy="18" r=".6"/>
+        <circle cx="22" cy="162" r=".6"/><circle cx="96" cy="178" r=".5"/><circle cx="164" cy="154" r=".55"/><circle cx="238" cy="180" r=".65"/><circle cx="314" cy="162" r=".55"/><circle cx="392" cy="176" r=".6"/><circle cx="462" cy="148" r=".6"/><circle cx="496" cy="100" r=".5"/>
+        <circle cx="520" cy="28" r=".7"/><circle cx="556" cy="76" r=".55"/><circle cx="590" cy="14" r=".6"/><circle cx="626" cy="70" r=".5"/><circle cx="660" cy="16" r=".55"/><circle cx="706" cy="38" r=".6"/><circle cx="754" cy="18" r=".7"/><circle cx="800" cy="28" r=".55"/><circle cx="846" cy="58" r=".6"/><circle cx="878" cy="20" r=".55"/>
+        <circle cx="528" cy="162" r=".55"/><circle cx="572" cy="184" r=".65"/><circle cx="644" cy="168" r=".5"/><circle cx="680" cy="186" r=".6"/><circle cx="726" cy="170" r=".5"/><circle cx="794" cy="188" r=".7"/><circle cx="842" cy="172" r=".55"/><circle cx="876" cy="136" r=".6"/>
       </g>
-      <g fill="#e6edf3"><circle cx="483" cy="58" r="1.1" opacity=".8"/><circle cx="858" cy="61" r="1.2"/><circle cx="578" cy="116" r="1" opacity=".65"/><circle cx="615" cy="183" r="1" opacity=".7"/><circle cx="826" cy="139" r=".9" opacity=".7"/><circle cx="407" cy="127" r=".95" opacity=".6"/></g>
-      <path d="M542 36v6m-3-3h6M875 118v7m-3.5-3.5h7" fill="none" stroke="#d4ddf5" stroke-opacity=".62" stroke-linecap="round"/>
-      <ellipse cx="714" cy="108" rx="183" ry="65" transform="rotate(-13 714 108)" fill="none" stroke="#a5aed5" stroke-opacity=".18" stroke-width=".8"/>
-      <circle cx="805" cy="239" r="110" fill="url(#auto-air)"/>
-      <circle cx="805" cy="239" r="93" fill="url(#auto-planet)"/>
-      <g clip-path="url(#auto-globe)">
-        <path d="M725 184C766 156 806 186 858 170M716 202C767 175 815 204 889 185" fill="none" stroke="#d6dbea" stroke-opacity=".16" stroke-width="5"/>
-        <circle cx="805" cy="239" r="93" fill="url(#auto-night)"/>
+      <g fill="#ffe8b0"><circle cx="508" cy="64" r="1.1" opacity=".7"/><circle cx="858" cy="44" r="1.15" opacity=".8"/><circle cx="698" cy="16" r="1" opacity=".65"/><circle cx="552" cy="130" r=".9" opacity=".6"/><circle cx="828" cy="152" r="1" opacity=".7"/></g>
+      <path d="M866 174v6m-3-3h6M570 40v5m-2.5-2.5h5" fill="none" stroke="#ffe8b0" stroke-opacity=".5" stroke-linecap="round"/>
+      <!-- Clockwork mechanism -->
+      <g class="clockwork">
+        <!-- Central glow -->
+        <circle cx="710" cy="100" r="60" fill="url(#auto-glow)"/>
+        <!-- Gear ring tracks -->
+        <circle class="gear" cx="710" cy="100" r="65" fill="none" stroke="url(#auto-track)" stroke-width="1.2"/>
+        <circle class="gear" cx="710" cy="100" r="45" fill="none" stroke="url(#auto-track)" stroke-width="1" opacity=".7"/>
+        <circle class="gear" cx="710" cy="100" r="85" fill="none" stroke="#c9a455" stroke-opacity=".18" stroke-width=".8"/>
+        <!-- Tilted orbital ring -->
+        <ellipse cx="710" cy="100" rx="78" ry="30" transform="rotate(-22 710 100)" fill="none" stroke="#d4a017" stroke-opacity=".25" stroke-width="1.2"/>
+        <ellipse cx="710" cy="100" rx="55" ry="22" transform="rotate(18 710 100)" fill="none" stroke="#c9a455" stroke-opacity=".15" stroke-width=".8"/>
+        <!-- Core -->
+        <circle cx="710" cy="100" r="18" fill="url(#auto-core)"/>
+        <path d="M694 95A18 18 0 0 1 716 83" fill="none" stroke="#fff8e1" stroke-opacity=".6" stroke-width=".9"/>
+        <!-- Gear teeth marks -->
+        <g fill="none" stroke="#d4a017" stroke-opacity=".25" stroke-width="1.2" stroke-linecap="round">
+          <path d="M710 35v8M710 157v8M635 100h8M777 100h8"/><path d="M657 47l5.5 5.5M758 148l5.5 5.5M657 153l5.5-5.5M758 47l5.5-5.5"/>
+        </g>
+        <!-- Satellite nodes on orbits -->
+        <circle cx="775" cy="100" r="8" fill="url(#auto-node)"/><path d="M768 97A8 8 0 0 1 778 93" fill="none" stroke="#ffe8c0" stroke-opacity=".55" stroke-width=".6"/>
+        <circle cx="645" cy="100" r="7" fill="url(#auto-node)"/><path d="M639 97A7 7 0 0 1 648 93" fill="none" stroke="#ffe8c0" stroke-opacity=".5" stroke-width=".6"/>
+        <circle cx="710" cy="35" r="6" fill="url(#auto-node)"/>
+        <circle cx="710" cy="165" r="5" fill="url(#auto-node)"/>
+        <!-- Connection spokes -->
+        <path d="M710 53V82M710 118V160M727 100H767M653 100H692" fill="none" stroke="#c9a455" stroke-opacity=".2" stroke-width=".6"/>
+        <!-- Spark dots at mesh points -->
+        <circle cx="748" cy="68" r="1.5" fill="#ffd700" opacity=".5"/><circle cx="672" cy="132" r="1.5" fill="#ffd700" opacity=".45"/><circle cx="748" cy="132" r="1.3" fill="#e8c170" opacity=".4"/><circle cx="672" cy="68" r="1.3" fill="#e8c170" opacity=".4"/>
       </g>
-      <path d="M727 190A93 93 0 0 1 863 166" fill="none" stroke="#bfcee9" stroke-opacity=".7" stroke-width="1.1"/>
-      <g class="satellite" stroke-linejoin="round">
-        <path d="M635 112 680 106M729 104 776 87" fill="none" stroke="#343c55" stroke-width="6"/>
-        <path d="M635 110 680 104M729 102 776 85" fill="none" stroke="#b0b8cc" stroke-width="2"/>
-        <path d="M555 87 642 59 656 106 569 135Z" fill="#1a2037" stroke="#454e6d" stroke-width="1"/>
-        <path d="M555 83 642 55 656 102 569 131Z" fill="url(#auto-cells)" stroke="#96aac9" stroke-width="1.2"/>
-        <path d="M572 77 586 125M590 72 604 119M607 66 621 114M625 61 639 108M560 99 647 71M565 115 652 87" fill="none" stroke="#9bb6d9" stroke-opacity=".52" stroke-width=".75"/>
-        <path d="M558 84 642 57M556 87 568 128" fill="none" stroke="#c0d5eb" stroke-opacity=".5" stroke-width=".8"/>
-        <path d="M756 77 839 50 854 96 771 124Z" fill="#171f36" stroke="#454e6d" stroke-width="1"/>
-        <path d="M756 73 839 46 854 92 771 120Z" fill="url(#auto-cells)" stroke="#92a7c7" stroke-width="1.2"/>
-        <path d="M773 67 788 114M789 62 804 109M806 57 821 103M823 51 838 98M761 89 844 62M766 104 849 77" fill="none" stroke="#96b0d5" stroke-opacity=".5" stroke-width=".75"/>
-        <path d="M758 74 838 48" fill="none" stroke="#c2d1e8" stroke-opacity=".6" stroke-width=".8"/>
-        <path d="M678 92 702 76 737 88 713 105Z" fill="url(#auto-silver)" stroke="#b8c4d5" stroke-width=".8"/>
-        <path d="M678 92 713 105 713 134 678 121Z" fill="url(#auto-gold)" stroke="#bdadad" stroke-width=".8"/>
-        <path d="M713 105 737 88 737 117 713 134Z" fill="url(#auto-side)" stroke="#7f859f" stroke-width=".8"/>
-        <path d="M684 99 691 107 686 119M697 103 694 115 706 123M704 107 709 117 704 129" fill="none" stroke="#f0dcca" stroke-opacity=".28" stroke-width="1.5"/>
-        <path d="M682 95 687 104 684 113M699 110 704 116 700 123" fill="none" stroke="#67516c" stroke-opacity=".35" stroke-width="1"/>
-        <path d="M720 108 731 100 731 112 720 120Z" fill="#111a30" stroke="#919ab1" stroke-width=".7"/>
-        <path d="M687 90 704 79 724 86 707 97Z" fill="#3f4b64" stroke="#d0d6e0" stroke-width=".7"/>
-        <path d="M708 84 717 64" fill="none" stroke="#aebbd2" stroke-width="4"/>
-        <path d="M703 59Q706 91 732 80" fill="url(#auto-silver)" stroke="#9ca8c0" stroke-width=".9"/>
-        <ellipse cx="719" cy="65" rx="21" ry="10" transform="rotate(37 719 65)" fill="url(#auto-dish)" stroke="#e1e6ef" stroke-width="1.1"/>
-        <path d="M703 53 731 48 734 78M719 65 731 48" fill="none" stroke="#c7d0e2" stroke-width="1"/>
-        <circle cx="731" cy="48" r="2.5" fill="#ebdfef"/>
-        <path d="M690 126 681 146M686 144l-9 5" fill="none" stroke="#b9c2d5" stroke-width="1.3" stroke-linecap="round"/>
-        <circle cx="681" cy="146" r="1.8" fill="#d0d8e8"/>
-      </g>
-      <g class="transmission" fill="none" stroke="#c7b8ed" stroke-width="1" stroke-linecap="round">
-        <path d="M746 44Q751 51 750 57" opacity=".7"/>
-        <path d="M756 34Q768 46 765 60" opacity=".46"/>
-        <path d="M765 24Q785 41 780 63" opacity=".27"/>
-      </g>
-      <circle cx="600" cy="36" r="8" fill="url(#auto-moon)"/>
-      <path d="M593 33A8 8 0 0 1 602 28" fill="none" stroke="#ece5f5" stroke-opacity=".65" stroke-width=".7"/>
-      <path d="M549 163C586 188 679 177 729 155" fill="none" stroke="#b2b5df" stroke-opacity=".24" stroke-width=".8"/>
     </g>
     <text x="40" y="39" class="label secondary" font-size="10">SECTOR 06 / AUTOMATION</text>
     <text x="38" y="104" font-size="39" font-weight="650" letter-spacing="-1">Flight systems</text>
-    <text x="40" y="137" class="secondary" font-size="15">Quiet systems. Steady signals.</text>
-    <path class="decor" d="M40 164H70" stroke="#aeabe5" stroke-width="1.5"/>
+    <text x="40" y="137" class="secondary" font-size="15">Precision clockwork in orbit.</text>
+    <path class="decor" d="M40 164H70" stroke="#d4a017" stroke-width="1.5"/>
   </g>
-  <rect class="border" x=".5" y=".5" width="899" height="199" rx="15.5" fill="none" stroke="#8390b7" stroke-opacity=".23"/>
+  <rect class="border" x=".5" y=".5" width="899" height="199" rx="15.5" fill="none" stroke="#8b7d3e" stroke-opacity=".23"/>
 </svg>

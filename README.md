@@ -1,14 +1,18 @@
 <p align="center">
-  <img src="./assets/hero-banner.svg" width="100%" alt="Duong Thai Tan — code meets cosmos. Frontend developer and UI/UX enthusiast from Vietnam, against a three-dimensional galaxy." />
+  <img src="./assets/hero-banner.svg" width="100%" alt="Duong Thai Tan — code burns bright. Leo developer and UI/UX enthusiast from Vietnam, beneath the Leo constellation." />
+</p>
+
+<p align="center">
+  <img src="./assets/typing-anim.svg" width="500" alt="Leo Developer — Born August 18 — Frontend Engineer — UI/UX Enthusiast — Code burns bright" />
 </p>
 
 <h1 align="center">Duong Thai Tan</h1>
 <p align="center">
-  <strong>A creative orbit between code, design, and the unexpected.</strong><br />
+  <strong>A Leo's creative force — bold code, fearless design, golden results.</strong><br />
   Frontend developer &amp; UI/UX enthusiast · Vietnam
 </p>
 
-<p align="center"><samp>THOUGHTFUL INTERFACES / EXPRESSIVE MOTION / GROUNDED ENGINEERING</samp></p>
+<p align="center"><samp>BOLD VISION / FEARLESS EXECUTION / GOLDEN ENGINEERING</samp></p>
 
 <p align="center">
   <a href="#mission-control">About</a> &nbsp; · &nbsp;
@@ -26,7 +30,7 @@
 
 ## Mission control
 
-**One foot in engineering. One eye on the possibilities.**
+**Bold ideas. Fearless execution. One foot in engineering, one eye on the horizon.**
 
 I build responsive web interfaces where layout, motion, and small details work together. The goal isn't just a good first impression — it's an experience supported by clean, maintainable code.
 
@@ -188,4 +192,4 @@ The portfolio source remains in **[3d-portfolio/](./3d-portfolio/index.html)**. 
 <img src="./assets/section-divider.svg" width="100%" alt="" />
 
 <p align="center"><samp>STAY CURIOUS. KEEP BUILDING. EXPLORE FURTHER.</samp></p>
-<p align="center"><sub>Duong Thai Tan · Designed with intent, down to the last detail.</sub></p>
+<p align="center"><sub>Duong Thai Tan · ♌ Leo Developer — designed with intent, down to the last detail.</sub></p>

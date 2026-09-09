@@ -116,7 +116,7 @@ test('all sections have local artwork and every README navigation anchor resolve
   const root = new URL('../', import.meta.url);
   const scenes = ['about', 'toolkit', 'selected-work', 'certificates', 'automation', 'connect'];
   const readme = await readFile(new URL('README.md', root), 'utf8');
-  for (const file of ['assets/hero-banner.svg', 'assets/section-divider.svg', 'assets/github-metrics.svg', ...scenes.map(scene => `assets/galaxy/${scene}.svg`)]) {
+  for (const file of ['assets/hero-banner.svg', 'assets/typing-anim.svg', 'assets/section-divider.svg', 'assets/github-metrics.svg', ...scenes.map(scene => `assets/galaxy/${scene}.svg`)]) {
     const svg = await readFile(new URL(file, root), 'utf8');
     checkSvg(svg);
     assert.ok(readme.includes(`./${file}`), 'Every scene must appear in README');

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="36" viewBox="0 0 500 36" role="img" aria-labelledby="typing-title">
+  <title id="typing-title">Leo Developer — Born August 18 — Frontend Engineer — UI/UX Enthusiast — Code burns bright</title>
+  <defs>
+    <style>
+      text{font-family:ui-monospace,Consolas,'Courier New',monospace;font-size:14px;fill:#d4a017}.typing-line{opacity:0}.typing-l1{animation:typing-s1 25s linear 0s 200}.typing-l2{animation:typing-s2 25s linear 0s 200}.typing-l3{animation:typing-s3 25s linear 0s 200}.typing-l4{animation:typing-s4 25s linear 0s 200}.typing-l5{animation:typing-s5 25s linear 0s 200}.typing-cur{animation:typing-blink 1s step-end 0s 5000}@keyframes typing-s1{0%,2%{opacity:0}3%,17%{opacity:1}18%,100%{opacity:0}}@keyframes typing-s2{0%,22%{opacity:0}23%,37%{opacity:1}38%,100%{opacity:0}}@keyframes typing-s3{0%,42%{opacity:0}43%,57%{opacity:1}58%,100%{opacity:0}}@keyframes typing-s4{0%,62%{opacity:0}63%,77%{opacity:1}78%,100%{opacity:0}}@keyframes typing-s5{0%,82%{opacity:0}83%,97%{opacity:1}98%,100%{opacity:0}}@keyframes typing-blink{0%,100%{opacity:1}50%{opacity:0}}@media(prefers-color-scheme:light){text{fill:#8b6914}.typing-cur-r{fill:#8b6914}}@media(prefers-reduced-motion:reduce){.typing-line,.typing-cur{animation:none}.typing-l1{opacity:1}.typing-l2,.typing-l3,.typing-l4,.typing-l5{display:none}}@media(forced-colors:active){text{fill:CanvasText}.typing-cur-r{fill:CanvasText}}
+    </style>
+  </defs>
+  <text class="typing-line typing-l1" x="10" y="24">&gt; Leo Developer</text>
+  <text class="typing-line typing-l2" x="10" y="24">&gt; Born August 18</text>
+  <text class="typing-line typing-l3" x="10" y="24">&gt; Frontend Engineer</text>
+  <text class="typing-line typing-l4" x="10" y="24">&gt; UI/UX Enthusiast</text>
+  <text class="typing-line typing-l5" x="10" y="24">&gt; Code burns bright</text>
+  <rect class="typing-cur typing-cur-r" x="175" y="9" width="9" height="19" rx="1" fill="#d4a017" opacity=".85"/>
+</svg>

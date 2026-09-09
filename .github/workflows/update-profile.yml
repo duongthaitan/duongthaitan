@@ -9,6 +9,7 @@ on:
     paths:
       - 'README.md'
       - 'assets/hero-banner.svg'
+      - 'assets/typing-anim.svg'
       - 'assets/section-divider.svg'
       - 'assets/galaxy/*.svg'
       - 'scripts/render-metrics*'

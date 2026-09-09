@@ -2,11 +2,11 @@
   <defs>
     <linearGradient id="d" x1="0%" y1="0%" x2="100%">
       <stop offset="0%" stop-color="#8b949e" stop-opacity="0"/>
-      <stop offset="15%" stop-color="#0ea5e9" stop-opacity="0.4"/>
-      <stop offset="35%" stop-color="#0ea5e9" stop-opacity="0.5"/>
-      <stop offset="50%" stop-color="#8b5cf6" stop-opacity="0.6"/>
-      <stop offset="65%" stop-color="#ec4899" stop-opacity="0.5"/>
-      <stop offset="85%" stop-color="#ec4899" stop-opacity="0.4"/>
+      <stop offset="15%" stop-color="#d4a017" stop-opacity="0.4"/>
+      <stop offset="35%" stop-color="#ffd700" stop-opacity="0.5"/>
+      <stop offset="50%" stop-color="#f59e0b" stop-opacity="0.6"/>
+      <stop offset="65%" stop-color="#dc2626" stop-opacity="0.5"/>
+      <stop offset="85%" stop-color="#c4762b" stop-opacity="0.4"/>
       <stop offset="100%" stop-color="#8b949e" stop-opacity="0"/>
     </linearGradient>
   </defs>
