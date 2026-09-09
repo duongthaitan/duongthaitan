@@ -1,45 +1,44 @@
-import { writeFile } from 'node:fs/promises';
+import fs from 'fs';
+import path from 'path';
 
-const numStars = 150;
+// V12 Cybernetic Git / Digital Rain Header
 const width = 900;
 const height = 400;
-const cx = width / 2;
-const cy = height / 2;
 
-let starsSvg = '';
+let digitalRain = '';
+const numRain = 80;
 
-for (let i = 0; i < numStars; i++) {
-  const angle = Math.random() * Math.PI * 2;
-  const startRadius = 20 + Math.random() * 50; 
-  // Reduce endRadius significantly to ensure lines fade out WELL BEFORE hitting the edge of the SVG (900x400)
-  // Distance to nearest edge from center (450,200) is 200 (top/bottom)
-  const endRadius = startRadius + 100 + Math.random() * 80;
-  
-  const x1 = cx + Math.cos(angle) * startRadius;
-  const y1 = cy + Math.sin(angle) * startRadius;
-  const x2 = cx + Math.cos(angle) * endRadius;
-  const y2 = cy + Math.sin(angle) * endRadius;
-  
-  const dur = 0.5 + Math.random() * 1.5;
-  const delay = Math.random() * 3;
-  // Fade opacity smoothly from 0 -> peak -> 0 to prevent harsh cutoffs
+for (let i = 0; i < numRain; i++) {
+  const x = Math.random() * width;
+  const y = -Math.random() * 200;
+  const dur = 2 + Math.random() * 3;
+  const delay = Math.random() * 5;
   const opacity = 0.3 + Math.random() * 0.7;
-  const thickness = 0.5 + Math.random() * 1.5;
-  const color = Math.random() > 0.8 ? '#ffd700' : (Math.random() > 0.5 ? '#ffffff' : '#ff7700');
-
-  starsSvg += `
-    <line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${color}" stroke-width="${thickness}" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;${opacity};0" dur="${dur}s" begin="${delay}s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="${dur}s" begin="${delay}s" repeatCount="indefinite" />
-    </line>
+  const color = Math.random() > 0.8 ? '#00ffcc' : '#00ff00';
+  
+  digitalRain += `
+    <g transform="translate(${x}, ${y})">
+      <animateTransform attributeName="transform" type="translate" values="${x},${y}; ${x},${y + height + 200}" dur="${dur}s" begin="${delay}s" repeatCount="indefinite" />
+      <text fill="${color}" font-family="monospace" font-size="${10 + Math.random()*14}" opacity="${opacity}" filter="url(#glow)">${Math.random().toString(36).substring(2, 3)}</text>
+    </g>
   `;
 }
 
-const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="900" height="400" viewBox="0 0 900 400" preserveAspectRatio="xMidYMid meet" role="img" style="max-width:100%;height:auto">
-  <title>V6 Hyperspace Jump</title>
+// Draw Git Tree
+let gitTree = `
+  <path d="M 0,200 C 150,200 300,100 450,200 C 600,300 750,200 900,200" fill="none" stroke="#00ffcc" stroke-width="2" filter="url(#glow)"/>
+  <path d="M 300,100 C 450,100 600,150 750,200" fill="none" stroke="#00ff00" stroke-width="2" filter="url(#glow)"/>
+`;
+
+for(let i=0; i<5; i++) {
+    gitTree += `<circle cx="${150 + i*150}" cy="${i%2===0 ? 200 : 100}" r="8" fill="#0d1117" stroke="#00ffcc" stroke-width="2" filter="url(#glow)">
+        <animate attributeName="r" values="6;8;6" dur="2s" begin="${i*0.5}s" repeatCount="indefinite" />
+    </circle>`;
+}
+
+const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="V12 Cyber Matrix" style="max-width:100%;height:auto; background-color:#010409;">
   <defs>
-    <clipPath id="hero-frame"><rect width="900" height="400" rx="30"/></clipPath>
-    <filter id="neon" x="-50%" y="-50%" width="200%" height="200%">
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
       <feGaussianBlur stdDeviation="3" result="blur" />
       <feMerge>
         <feMergeNode in="blur" />
@@ -48,47 +47,47 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="900" height="400" vi
     </filter>
   </defs>
 
-  <g clip-path="url(#hero-frame)">
-    <rect width="900" height="400" fill="#010205"/>
+  <!-- Digital Rain -->
+  ${digitalRain}
+
+  <!-- Git Tree -->
+  <g opacity="0.6">
+    ${gitTree}
+  </g>
+
+  <!-- Cinematic Text Overlay -->
+  <g transform="translate(0, 0)">
+    <rect width="${width}" height="${height}" fill="url(#gradient)" opacity="0.3" />
+    <defs>
+      <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#010409" stop-opacity="0" />
+        <stop offset="100%" stop-color="#010409" stop-opacity="1" />
+      </linearGradient>
+    </defs>
     
-    <!-- Hyperspace Lines -->
-    <g filter="url(#neon)">
-      ${starsSvg}
-    </g>
-    
-    <!-- Center Core Void -->
-    <circle cx="450" cy="200" r="15" fill="#ffffff" filter="url(#neon)">
-       <animate attributeName="opacity" values="1;0.5;1" dur="0.2s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="450" cy="200" r="40" fill="none" stroke="#ff7700" stroke-width="2" filter="url(#neon)">
-       <animateTransform attributeName="transform" type="scale" values="1; 1.5; 1" dur="1s" repeatCount="indefinite" transform-origin="450 200"/>
-    </circle>
-    
-    <!-- Heavy Cyber Border -->
-    <rect x="2" y="2" width="896" height="396" rx="28" fill="none" stroke="#ffd700" stroke-width="4" opacity="0.5" filter="url(#neon)"/>
-    
-    <!-- Kinetic Typography -->
-    <g transform="translate(50, 0)">
-      <g filter="url(#neon)">
-        <!-- Animated Badge -->
-        <rect x="0" y="60" width="300" height="28" rx="8" fill="#1e180a" stroke="#ffd700" stroke-width="1.5"/>
-        <circle cx="15" cy="74" r="5" fill="#ff0000">
-           <animate attributeName="opacity" values="1;0;1" dur="0.5s" repeatCount="indefinite" />
+    <g transform="translate(450, 200)" text-anchor="middle">
+      <g filter="url(#glow)">
+        <circle cx="0" cy="-60" r="10" fill="none" stroke="#00ffcc" stroke-width="2">
+           <animate attributeName="r" values="5;15;5" dur="2s" repeatCount="indefinite" />
+           <animate attributeName="opacity" values="1;0;1" dur="2s" repeatCount="indefinite" />
         </circle>
-        <text x="30" y="79" font-family="monospace" font-size="12" font-weight="700" fill="#ffd700" letter-spacing="1">
-          SYS.BOOT(SEKHMET_V10_MAX_OMNIVERSE)
+        <text x="0" y="-60" font-family="monospace" font-size="12" font-weight="700" fill="#00ff00" letter-spacing="2">
+          SYS.BOOT(V12_CORE_ONLINE)
         </text>
       </g>
 
-      <text x="0" y="320" font-family="system-ui" font-size="60" font-weight="900" letter-spacing="-2" fill="#ffffff" filter="url(#neon)">
+      <text x="0" y="0" font-family="monospace" font-size="60" font-weight="900" letter-spacing="-2" fill="#ffffff" filter="url(#glow)">
         DUONG THAI TAN
       </text>
 
-      <text x="0" y="360" font-family="system-ui" font-size="28" font-weight="800" fill="#ff7700" letter-spacing="2">
-        V10 MAX OMNIVERSE ARCHITECT
+      <text x="0" y="40" font-family="monospace" font-size="24" font-weight="800" fill="#00ffcc" letter-spacing="4">
+        &gt; SENIOR SOFTWARE ENGINEER_
       </text>
     </g>
   </g>
 </svg>`;
 
-await writeFile('./assets/hero-banner.svg', svg);
+const dir = path.join(process.cwd(), 'assets');
+if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+fs.writeFileSync(path.join(dir, 'hero-banner.svg'), svg);
+console.log('V12 hero-banner.svg generated.');

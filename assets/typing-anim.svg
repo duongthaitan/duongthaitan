@@ -42,32 +42,32 @@
     </style>
   </defs>
 
-  <!-- V8 Background Particles -->
+  <!-- Hacker Particles -->
   <g filter="url(#glow)">
-    <circle cx="100" cy="140" r="1.5" fill="#ffd700"><animate attributeName="cy" values="140; 0" dur="10s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.5;0" dur="10s" repeatCount="indefinite"/></circle>
-    <circle cx="250" cy="140" r="1" fill="#ff7700"><animate attributeName="cy" values="140; 0" dur="15s" begin="2s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.8;0" dur="15s" begin="2s" repeatCount="indefinite"/></circle>
+    <circle cx="100" cy="140" r="1.5" fill="#00ff00"><animate attributeName="cy" values="140; 0" dur="10s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.5;0" dur="10s" repeatCount="indefinite"/></circle>
+    <circle cx="250" cy="140" r="1" fill="#00ffcc"><animate attributeName="cy" values="140; 0" dur="15s" begin="2s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.8;0" dur="15s" begin="2s" repeatCount="indefinite"/></circle>
     <circle cx="450" cy="140" r="2" fill="#ffffff"><animate attributeName="cy" values="140; 0" dur="8s" begin="1s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.4;0" dur="8s" begin="1s" repeatCount="indefinite"/></circle>
-    <circle cx="700" cy="140" r="1.5" fill="#ffd700"><animate attributeName="cy" values="140; 0" dur="12s" begin="4s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.6;0" dur="12s" begin="4s" repeatCount="indefinite"/></circle>
+    <circle cx="700" cy="140" r="1.5" fill="#00ff00"><animate attributeName="cy" values="140; 0" dur="12s" begin="4s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.6;0" dur="12s" begin="4s" repeatCount="indefinite"/></circle>
   </g>
 
   <!-- Massive Glass Terminal -->
-  <rect x="2" y="2" width="796" height="146" rx="16" fill="#030612" stroke="#ff7700" stroke-width="2" filter="url(#glass)" opacity="0.8"/>
+  <rect x="2" y="2" width="796" height="146" rx="16" fill="#030612" stroke="#00ffcc" stroke-width="2" filter="url(#glass)" opacity="0.8"/>
   <rect x="2" y="2" width="796" height="30" rx="16" fill="#0d1117"/>
   <rect x="2" y="16" width="796" height="16" fill="#0d1117"/>
   
   <circle cx="25" cy="17" r="6" fill="#ff5f56" filter="url(#glow)"/>
   <circle cx="45" cy="17" r="6" fill="#ffbd2e" filter="url(#glow)"/>
   <circle cx="65" cy="17" r="6" fill="#27c93f" filter="url(#glow)"/>
-  <text x="90" y="22" fill="#7d8590" font-size="12">root@v10-sekhmet-engine:~ (bash) - 100x40</text>
+  <text x="90" y="22" fill="#7d8590" font-size="12">root@v12-matrix-node:~ (bash) - 100x40</text>
 
   <!-- CLI Output -->
   <g transform="translate(25, 55)" filter="url(#glow)">
-    <text class="l1" y="0" fill="#ff7700" clip-path="url(#type1)">$ sudo systemctl start 3d-matrix-engine</text>
-    <text class="l2" y="22" fill="#ffd700" clip-path="url(#type2)">&gt; Allocating WebGL context... OK</text>
-    <text class="l3" y="44" fill="#a0b0c0" clip-path="url(#type3)">&gt; Compiling Solar Flare Shaders: </text>
-    <rect class="l3 load" x="250" y="34" height="12" rx="2" fill="#ffd700"/>
-    <text class="l3" x="250" y="44" fill="#1e180a" clip-path="url(#type4)">[████████████████████████] 100%</text> 
-    <text class="l4" y="66" fill="#27c93f" clip-path="url(#type5)">&gt; SUCCESS: Neural 3D Network Online.</text>
-    <text class="l5" y="88" fill="#ffd700" opacity="0"><animate attributeName="opacity" values="0; 0; 1; 1" dur="10s" keyTimes="0; 0.9; 0.91; 1" repeatCount="indefinite"/>tan@leo:~$ <tspan fill="#ffffff">Welcome to V10 MAX OMNIVERSE.</tspan></text>
+    <text class="l1" y="0" fill="#00ffcc" clip-path="url(#type1)">$ sudo systemctl start 3d-tesseract-engine</text>
+    <text class="l2" y="22" fill="#00ff00" clip-path="url(#type2)">&gt; Allocating WebGL context... OK</text>
+    <text class="l3" y="44" fill="#a0b0c0" clip-path="url(#type3)">&gt; Compiling Quantum Shaders: </text>
+    <rect class="l3 load" x="250" y="34" height="12" rx="2" fill="#00ffcc"/>
+    <text class="l3" x="250" y="44" fill="#030612" clip-path="url(#type4)">[████████████████████████] 100%</text> 
+    <text class="l4" y="66" fill="#00ff00" clip-path="url(#type5)">&gt; SUCCESS: Neural Matrix Online.</text>
+    <text class="l5" y="88" fill="#00ffcc" opacity="0"><animate attributeName="opacity" values="0; 0; 1; 1" dur="10s" keyTimes="0; 0.9; 0.91; 1" repeatCount="indefinite"/>tan@node:~$ <tspan fill="#ffffff">Welcome to V12 CYBER MATRIX.</tspan></text>
   </g>
 </svg>

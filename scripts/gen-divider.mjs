@@ -5,37 +5,43 @@ const height = 40;
 let sparks = '';
 
 for(let i=0; i<30; i++) {
-  const cx = 50 + Math.random() * 800;
-  const cy = 20 + (Math.random() - 0.5) * 10;
+  const color = Math.random() > 0.5 ? '#00ffcc' : '#00ff00';
+  const size = Math.random() * 2 + 1;
+  const x = Math.random() * width;
+  const y = 5 + Math.random() * 10;
   const dur = 1 + Math.random() * 2;
   const delay = Math.random() * 2;
+  
   sparks += `
-    <circle cx="${cx}" cy="${cy}" r="1" fill="#ffd700" filter="url(#glow)">
-      <animate attributeName="opacity" values="0;1;0" dur="${dur}s" begin="${delay}s" repeatCount="indefinite" />
-      <animateTransform attributeName="transform" type="translate" values="0,0; ${-20 + Math.random()*40}, -20" dur="${dur}s" begin="${delay}s" repeatCount="indefinite" />
+    <circle cx="${x}" cy="${y}" r="${size}" fill="${color}" opacity="0">
+      <animate attributeName="opacity" values="0; 0.8; 0" dur="${dur}s" begin="${delay}s" repeatCount="indefinite" />
+      <animate attributeName="cx" values="${x}; ${x + (Math.random() > 0.5 ? 20 : -20)}" dur="${dur}s" begin="${delay}s" repeatCount="indefinite" />
     </circle>
   `;
 }
 
-const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" preserveAspectRatio="xMidYMid meet" role="img" style="max-width:100%;height:auto">
+const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" preserveAspectRatio="none" role="presentation">
   <defs>
-    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="2" result="blur1" />
-      <feGaussianBlur stdDeviation="5" result="blur2" />
+    <filter id="glow-divider" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
       <feMerge>
-        <feMergeNode in="blur2"/>
-        <feMergeNode in="blur1"/>
-        <feMergeNode in="SourceGraphic"/>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
       </feMerge>
     </filter>
   </defs>
-  
-  <g filter="url(#glow)">
-    <line x1="0" y1="20" x2="900" y2="20" stroke="#ff7700" stroke-width="1" opacity="0.5"/>
-    <line x1="450" y1="20" x2="450" y2="20" stroke="#ffffff" stroke-width="2" stroke-linecap="round">
-       <animate attributeName="x1" values="450; 0; 450" dur="4s" repeatCount="indefinite"/>
-       <animate attributeName="x2" values="450; 900; 450" dur="4s" repeatCount="indefinite"/>
-    </line>
+
+  <!-- Core Laser Line -->
+  <rect x="0" y="9" width="${width}" height="2" fill="#00ff00" filter="url(#glow-divider)">
+    <animate attributeName="opacity" values="0.4; 1; 0.4" dur="2s" repeatCount="indefinite" />
+  </rect>
+
+  <!-- Scanning Bright Spot -->
+  <rect x="0" y="8" width="100" height="4" fill="#00ffcc" filter="url(#glow-divider)">
+    <animate attributeName="x" values="-100; ${width}" dur="3s" repeatCount="indefinite" />
+  </rect>
+
+  <g filter="url(#glow-divider)">
     ${sparks}
   </g>
 </svg>`;

@@ -1,8 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="400" viewBox="0 0 900 400" preserveAspectRatio="xMidYMid meet" role="img" style="max-width:100%;height:auto">
-  <title>V6 Hyperspace Jump</title>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="400" viewBox="0 0 900 400" preserveAspectRatio="xMidYMid meet" role="img" aria-label="V12 Cyber Matrix" style="max-width:100%;height:auto; background-color:#010409;">
   <defs>
-    <clipPath id="hero-frame"><rect width="900" height="400" rx="30"/></clipPath>
-    <filter id="neon" x="-50%" y="-50%" width="200%" height="200%">
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
       <feGaussianBlur stdDeviation="3" result="blur" />
       <feMerge>
         <feMergeNode in="blur" />
@@ -11,794 +9,454 @@
     </filter>
   </defs>
 
-  <g clip-path="url(#hero-frame)">
-    <rect width="900" height="400" fill="#010205"/>
-    
-    <!-- Hyperspace Lines -->
-    <g filter="url(#neon)">
-      
-    <line x1="434.6550992899945" y1="165.30364826343208" x2="390.8806425772949" y2="66.32523348681087" stroke="#ff7700" stroke-width="1.485970306168538" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.7091952014602207;0" dur="0.8739347148193091s" begin="1.9294572488628798s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.8739347148193091s" begin="1.9294572488628798s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="412.0090724394938" y1="204.2878210544628" x2="286.37313249142244" y2="218.46763879248982" stroke="#ffffff" stroke-width="1.1055617807380467" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.37764194643934434;0" dur="0.8966329618082951s" begin="1.7528949417674857s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.8966329618082951s" begin="1.7528949417674857s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="407.8388081138063" y1="149.59055208912994" x2="321.7606772678163" y2="46.672421480803735" stroke="#ffd700" stroke-width="0.6868727975942177" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.46889025877563495;0" dur="1.9566976128859368s" begin="0.8924602930288865s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.9566976128859368s" begin="0.8924602930288865s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="400.9386583658745" y1="150.94436397950204" x2="328.80700866615325" y2="78.82110286659463" stroke="#ffffff" stroke-width="1.9533579782588633" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.540138156818627;0" dur="1.8046728028458854s" begin="0.8372810925735885s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.8046728028458854s" begin="0.8372810925735885s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="483.6608358512401" y1="218.23741839190188" x2="582.2842816426622" y2="271.6715354797268" stroke="#ff7700" stroke-width="1.759967073028423" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.32352050713713043;0" dur="0.5780348411540448s" begin="0.8866804987675421s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.5780348411540448s" begin="0.8866804987675421s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="487.09769654611523" y1="255.45071095306156" x2="577.860901378498" y2="391.116391167943" stroke="#ff7700" stroke-width="1.6821702128903895" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.640857565303163;0" dur="1.0205844922301173s" begin="2.12742953981049s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.0205844922301173s" begin="2.12742953981049s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="430.2712284362928" y1="265.23309370088725" x2="396.29016057684026" y2="377.5913404662193" stroke="#ffffff" stroke-width="1.2820660059775906" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.4785728560376718;0" dur="1.6211686421476494s" begin="2.606050135485427s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.6211686421476494s" begin="2.606050135485427s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="418.652066838762" y1="255.396641709172" x2="349.51328061359845" y2="377.57556014129113" stroke="#ff7700" stroke-width="1.3494441585280568" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.49176032116400753;0" dur="1.3283801030414941s" begin="2.5808275272739127s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.3283801030414941s" begin="2.5808275272739127s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="483.72588593734343" y1="147.68991952033335" x2="551.2118095874616" y2="43.01678791036531" stroke="#ffffff" stroke-width="1.008700780840144" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.6056585723188921;0" dur="1.796548240496219s" begin="2.398023738669994s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.796548240496219s" begin="2.398023738669994s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="430.90471746083256" y1="173.99892983334425" x2="344.4905345824893" y2="56.33315412118296" stroke="#ffffff" stroke-width="1.3780716001871216" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.7302585084307999;0" dur="0.7495226018163446s" begin="0.8002356262287592s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.7495226018163446s" begin="0.8002356262287592s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="408.21579038207665" y1="204.44224781104157" x2="287.13369040980024" y2="217.3149740987117" stroke="#ffd700" stroke-width="0.8155667014103206" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.6039391638473579;0" dur="0.8777547106453578s" begin="2.221768398244037s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.8777547106453578s" begin="2.221768398244037s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="421.6267898339864" y1="176.94374997999844" x2="283.6594786815476" y2="64.83064039861247" stroke="#ff7700" stroke-width="1.5837943078374779" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.637339206880661;0" dur="0.7728544194675355s" begin="2.471623427143903s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.7728544194675355s" begin="2.471623427143903s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="467.99204257964954" y1="238.3125621368744" x2="511.566252218411" y2="331.1002268480793" stroke="#ff7700" stroke-width="0.52317177912855" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.5145854118713961;0" dur="0.962941981865548s" begin="2.1401692428624424s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.962941981865548s" begin="2.1401692428624424s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="412.116034926748" y1="241.40784444349137" x2="302.9600872739225" y2="360.7172274964646" stroke="#ffd700" stroke-width="1.4586521204051026" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.9875146793921599;0" dur="1.713508373092965s" begin="1.1698606299408914s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.713508373092965s" begin="1.1698606299408914s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="403.76011869264374" y1="202.3858146394761" x2="302.42860832512406" y2="207.61416285404195" stroke="#ff7700" stroke-width="1.2822620132596985" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.45204977537631713;0" dur="1.3383451791326484s" begin="2.352606390681911s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.3383451791326484s" begin="2.352606390681911s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="422.0353364866389" y1="212.52469936146264" x2="308.9582482225826" y2="263.1692041487351" stroke="#ffffff" stroke-width="1.4590655670195958" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.36864010894277266;0" dur="1.970146209633065s" begin="2.612510350234186s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.970146209633065s" begin="2.612510350234186s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="415.35814245475206" y1="195.48081414893792" x2="255.10580353827675" y2="174.57517703969796" stroke="#ffffff" stroke-width="1.2072869084667246" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.5867085119446958;0" dur="0.911331917686953s" begin="0.04906458673138436s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.911331917686953s" begin="0.04906458673138436s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="498.57484793586417" y1="209.1311942445154" x2="663.5391265809507" y2="240.14149969526056" stroke="#ff7700" stroke-width="0.8706033824962296" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.3584700238644447;0" dur="1.7213720604664036s" begin="1.4933203918471318s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.7213720604664036s" begin="1.4933203918471318s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="436.170401900508" y1="223.31867436094726" x2="381.3981374741997" y2="315.67252217201946" stroke="#ff7700" stroke-width="0.591862152222806" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.5154958453916993;0" dur="1.1971685772569913s" begin="0.40696988047013793s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.1971685772569913s" begin="0.40696988047013793s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="463.628700413111" y1="169.51930302767505" x2="527.2746391328316" y2="27.174654394215878" stroke="#ffffff" stroke-width="0.6748614457943629" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.897397668322585;0" dur="1.6511910907088234s" begin="2.4688248543085383s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.6511910907088234s" begin="2.4688248543085383s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="501.2547399135376" y1="196.42375704145286" x2="627.96198882461" y2="187.5828984695529" stroke="#ffd700" stroke-width="1.969641584157737" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.9478221681002257;0" dur="1.5820512723454363s" begin="1.4160449216849336s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.5820512723454363s" begin="1.4160449216849336s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="393.4565326154457" y1="160.3994758727972" x2="310.8154388201078" y2="102.52133751096983" stroke="#ffffff" stroke-width="0.8878884707659369" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.952766902312832;0" dur="0.9480179028960594s" begin="0.39774743378800226s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.9480179028960594s" begin="0.39774743378800226s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="428.0629861678927" y1="157.6648991090065" x2="374.34819212617657" y2="54.003514633481444" stroke="#ffffff" stroke-width="1.376779689747823" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.5200777463368446;0" dur="1.4694385137330723s" begin="2.017002310084739s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.4694385137330723s" begin="2.017002310084739s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="407.1958954459606" y1="199.44503837195475" x2="251.48898357314206" y2="197.42627493300125" stroke="#ffffff" stroke-width="1.544284379338874" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.6911811944128763;0" dur="0.6471000087235677s" begin="2.125722212061162s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.6471000087235677s" begin="2.125722212061162s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="422.7147149167487" y1="234.14358545231005" x2="332.5729601039142" y2="346.9429459457957" stroke="#ff7700" stroke-width="0.9276786546126665" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.7449608106135273;0" dur="1.0958911014208945s" begin="1.6150400821531607s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.0958911014208945s" begin="1.6150400821531607s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="489.66844051221113" y1="162.2226467375595" x2="593.0001162164743" y2="63.817033462234235" stroke="#ff7700" stroke-width="0.9303860485047333" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.42704463915470703;0" dur="1.1164435733021374s" begin="1.0860227602844073s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.1164435733021374s" begin="1.0860227602844073s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="444.8936438199691" y1="233.20566228215006" x2="424.463251890143" y2="366.0606122299738" stroke="#ffd700" stroke-width="1.921539537135074" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.3358799824173183;0" dur="1.093651409449351s" begin="2.1385995406451017s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.093651409449351s" begin="2.1385995406451017s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="463.6298948521955" y1="184.37387619043872" x2="529.8279661979832" y2="108.48046174954716" stroke="#ff7700" stroke-width="1.6555677564866624" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.46562498264769137;0" dur="1.7243455919351978s" begin="2.0791276896305466s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.7243455919351978s" begin="2.0791276896305466s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="472.29711754796335" y1="166.03817659766545" x2="565.3272649181226" y2="24.3394377682107" stroke="#ffffff" stroke-width="1.2659833398593185" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.30982229951301693;0" dur="1.1348196610241943s" begin="2.4553071461825775s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.1348196610241943s" begin="2.4553071461825775s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="398.38224820205687" y1="171.58021125847316" x2="244.658194973726" y2="86.94256306445642" stroke="#ffffff" stroke-width="1.5733909357831741" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.8584255108262031;0" dur="1.447956786762868s" begin="0.8746794838034829s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.447956786762868s" begin="0.8746794838034829s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="428.82535114260827" y1="155.31665196093127" x2="384.27664832350155" y2="61.3087084922343" stroke="#ffffff" stroke-width="1.1700762585656612" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.33983783739074763;0" dur="1.7185562256542335s" begin="1.38300980593573s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.7185562256542335s" begin="1.38300980593573s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="480.7124898453097" y1="156.26654963965268" x2="553.5368909209385" y2="52.56729420629952" stroke="#ffd700" stroke-width="1.525006061378892" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.6909074476106425;0" dur="0.9828740964644662s" begin="1.469090751767236s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.9828740964644662s" begin="1.469090751767236s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="495.9181685156209" y1="176.84316344329667" x2="620.6102763132064" y2="113.96010748697663" stroke="#ff7700" stroke-width="1.1335674634852777" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.3902475587682109;0" dur="1.4283249232100785s" begin="0.7845381384206664s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.4283249232100785s" begin="0.7845381384206664s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="491.7577245737282" y1="233.35062554144986" x2="604.3758784072927" y2="323.2953223852913" stroke="#ffd700" stroke-width="1.3551099528614319" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.6752192552543426;0" dur="0.9031369779864754s" begin="1.2983642768141643s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.9031369779864754s" begin="1.2983642768141643s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="465.174751588059" y1="236.35085570577556" x2="512.5928133984439" y2="349.9400049392442" stroke="#ffffff" stroke-width="1.6629645725573137" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.32916002536653133;0" dur="0.8733776358966759s" begin="1.6405742135547634s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.8733776358966759s" begin="1.6405742135547634s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="409.32030562359034" y1="231.3132531363906" x2="300.19108687196496" y2="315.3156259105537" stroke="#ffffff" stroke-width="1.888809151512113" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.32732563828396993;0" dur="1.5192661508029324s" begin="0.9410871933801004s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.5192661508029324s" begin="0.9410871933801004s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="454.64092456976255" y1="172.15406200767833" x2="480.84360802964716" y2="14.93575606703439" stroke="#ffd700" stroke-width="0.9714289988062856" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.6938853407037602;0" dur="1.6172063957531926s" begin="2.395732581414081s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.6172063957531926s" begin="2.395732581414081s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="469.24196003515385" y1="206.03111324283248" x2="594.4162266584699" y2="245.26517129692354" stroke="#ff7700" stroke-width="1.6486919048627886" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.9051676662487098;0" dur="0.7516933599793086s" begin="1.9384867870593259s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.7516933599793086s" begin="1.9384867870593259s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="463.6343372855671" y1="243.62474850276334" x2="510.8947847872584" y2="394.8403956741017" stroke="#ffd700" stroke-width="1.193003353262019" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.45277484802038914;0" dur="0.5922757174260599s" begin="2.7135001385453097s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.5922757174260599s" begin="2.7135001385453097s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="500.0543099394956" y1="156.61549408890968" x2="581.1850778674925" y2="86.29550995571233" stroke="#ffffff" stroke-width="1.9599669313018029" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.6031458044777316;0" dur="0.5898479142814136s" begin="0.9090930223508393s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.5898479142814136s" begin="0.9090930223508393s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="498.28871892502457" y1="208.30058891040068" x2="599.7316593023884" y2="225.73812224488756" stroke="#ffffff" stroke-width="0.8309424043616649" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.931591061234994;0" dur="0.7098985454781648s" begin="2.4339655260588446s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.7098985454781648s" begin="2.4339655260588446s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="472.7614732512502" y1="238.2022977624349" x2="550.8044301211239" y2="369.18768010977567" stroke="#ffffff" stroke-width="0.5249058732678065" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.4171106508558902;0" dur="0.9821824195712656s" begin="1.7296923634990897s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.9821824195712656s" begin="1.7296923634990897s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="419.4599906220203" y1="241.34388701710378" x2="346.26346437364526" y2="340.43452165977993" stroke="#ff7700" stroke-width="1.4998678861391395" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.7439814815854592;0" dur="1.3982244942045567s" begin="1.397145739246568s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.3982244942045567s" begin="1.397145739246568s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="457.73836914182857" y1="156.6884428897238" x2="479.8429839306423" y2="32.9691852167652" stroke="#ff7700" stroke-width="1.2007815951271614" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.7559210367199365;0" dur="0.5749125137775969s" begin="0.1490297275552077s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.5749125137775969s" begin="0.1490297275552077s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="451.5234205187177" y1="248.01800540487605" x2="455.24007283701036" y2="365.16637574324795" stroke="#ff7700" stroke-width="0.8648701134847968" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.3556042403488064;0" dur="1.0205500500710207s" begin="2.1973374471200606s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.0205500500710207s" begin="2.1973374471200606s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="458.49215159715453" y1="231.9567334589123" x2="504.51471041454397" y2="405.143778979535" stroke="#ffffff" stroke-width="0.873195087203393" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.7923964728886789;0" dur="0.9429179943008041s" begin="2.1746928907255567s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.9429179943008041s" begin="2.1746928907255567s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="406.8058504991336" y1="187.70428742629431" x2="253.7518239200408" y2="144.13569443832296" stroke="#ff7700" stroke-width="1.5777741980643698" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.38480148479795395;0" dur="0.6901571546458408s" begin="1.5535272721313713s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.6901571546458408s" begin="1.5535272721313713s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="461.5655888585707" y1="152.40364356869497" x2="490.52481643365905" y2="33.22651091299346" stroke="#ff7700" stroke-width="1.7488534166094798" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.9773027997635471;0" dur="1.5225629414649333s" begin="1.9146384972722021s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.5225629414649333s" begin="1.9146384972722021s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="484.3696760493405" y1="214.26370516388224" x2="647.5306886652623" y2="281.97690021561834" stroke="#ff7700" stroke-width="1.9041321256053148" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.3961840480687574;0" dur="0.9878698574588627s" begin="0.5672563031741771s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.9878698574588627s" begin="0.5672563031741771s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="454.66567312856944" y1="166.76977297267547" x2="478.6069212043978" y2="-3.746482014353745" stroke="#ffffff" stroke-width="1.379916287469014" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.3140655093308799;0" dur="0.7543741825524244s" begin="0.3163972514560164s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.7543741825524244s" begin="0.3163972514560164s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="416.88786829624826" y1="151.58765590808844" x2="360.03930044047" y2="68.47091631579909" stroke="#ffffff" stroke-width="1.484113177413096" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.36788622729074744;0" dur="1.2654483207562128s" begin="1.3949010254656666s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.2654483207562128s" begin="1.3949010254656666s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="476.7029323172457" y1="209.03633285690773" x2="618.6574294633363" y2="257.0740566359771" stroke="#ffffff" stroke-width="0.9125911076844355" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.46661445246843625;0" dur="0.6266727996948375s" begin="2.397142151308977s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.6266727996948375s" begin="2.397142151308977s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="421.8492895889161" y1="188.58799217957073" x2="307.2588484167211" y2="142.13420853762614" stroke="#ffffff" stroke-width="1.5216323555084583" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.9646563378093171;0" dur="1.4994911841263006s" begin="1.202273915933644s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.4994911841263006s" begin="1.202273915933644s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="448.5811646743224" y1="233.40668082344547" x2="442.06706672694145" y2="386.78204936869093" stroke="#ffffff" stroke-width="1.1641943611238488" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.6048297654526923;0" dur="0.7535432758905363s" begin="0.09702427345955167s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.7535432758905363s" begin="0.09702427345955167s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="456.57599174859206" y1="173.52185220385556" x2="481.10372962221004" y2="74.76122516052112" stroke="#ff7700" stroke-width="1.6057296852317666" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.3674866357049514;0" dur="1.2418794099667316s" begin="0.5959815819157616s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.2418794099667316s" begin="0.5959815819157616s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="485.7343204846186" y1="250.6153427045558" x2="574.934780533748" y2="376.9619975047811" stroke="#ff7700" stroke-width="1.0590725552054492" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.9580751482138923;0" dur="0.6572211479693348s" begin="2.919748771608531s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.6572211479693348s" begin="2.919748771608531s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="411.59599071418705" y1="158.1395554602852" x2="340.63659320500113" y2="80.793674672204" stroke="#ff7700" stroke-width="0.8873477049179117" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.5222450513707098;0" dur="1.4396695632837573s" begin="0.9105580626866083s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.4396695632837573s" begin="0.9105580626866083s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="509.15616708830737" y1="229.94177296571382" x2="647.7312223613294" y2="300.08125373197515" stroke="#ff7700" stroke-width="1.6729129069272468" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.505830824674935;0" dur="1.298321216497203s" begin="2.695534541124009s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.298321216497203s" begin="2.695534541124009s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="467.91435404295385" y1="174.57525280655602" x2="531.4549103405558" y2="84.39602688951872" stroke="#ff7700" stroke-width="1.2390683056621166" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.3678917807402201;0" dur="1.3228054496358597s" begin="2.791287754715186s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.3228054496358597s" begin="2.791287754715186s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="488.2270894551477" y1="155.3951050411032" x2="593.4249240827892" y2="32.64606946582285" stroke="#ff7700" stroke-width="1.8122926459585273" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.3080893683198014;0" dur="1.2440271661067386s" begin="2.172725204601161s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.2440271661067386s" begin="2.172725204601161s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="426.3976898190161" y1="208.21804088427675" x2="329.64404039534315" y2="241.90649936862224" stroke="#ffd700" stroke-width="1.9445966019750371" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.34125210755942154;0" dur="1.5922242357789151s" begin="0.8005857382880897s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.5922242357789151s" begin="0.8005857382880897s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="390.69726646474976" y1="174.87550275476906" x2="273.56490803342484" y2="125.2506129512335" stroke="#ff7700" stroke-width="1.4695820531737456" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.8694283775236062;0" dur="0.5023361510933113s" begin="2.029072157548187s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.5023361510933113s" begin="2.029072157548187s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="428.1646837371338" y1="196.14820997756817" x2="318.2767181351628" y2="176.76377036627565" stroke="#ff7700" stroke-width="1.5127187737192527" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.6266002749713775;0" dur="1.1493851995439917s" begin="0.054626695023061056s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.1493851995439917s" begin="0.054626695023061056s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="398.2569187796049" y1="217.43562378142323" x2="257.93720917632106" y2="264.71849925110206" stroke="#ffd700" stroke-width="0.6107012522192844" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.9416214167884323;0" dur="0.9051781468021927s" begin="2.2234037089396588s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.9051781468021927s" begin="2.2234037089396588s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="473.262909380796" y1="204.85938321703188" x2="587.6775390183197" y2="228.75942606818438" stroke="#ff7700" stroke-width="1.0380132867937892" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.5454379144795208;0" dur="1.4473257397226598s" begin="1.099271461001064s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.4473257397226598s" begin="1.099271461001064s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="428.28703987688147" y1="148.97887967562804" x2="380.98180123649513" y2="37.82101548029533" stroke="#ffd700" stroke-width="1.135549241730447" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.5847580972227503;0" dur="1.220660600568825s" begin="2.956402933458833s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.220660600568825s" begin="2.956402933458833s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="517.4708830019129" y1="184.61507742936666" x2="655.477595281392" y2="153.1463536157585" stroke="#ffd700" stroke-width="0.9523044634927018" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.7508656875478048;0" dur="0.6062706279841704s" begin="0.15280673820405388s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.6062706279841704s" begin="0.15280673820405388s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="477.0415868475057" y1="142.9014377950399" x2="552.3718206504674" y2="-16.15905170095067" stroke="#ffd700" stroke-width="0.729996982910237" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.8282240017643454;0" dur="1.9080876473663595s" begin="2.214611559550961s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.9080876473663595s" begin="2.214611559550961s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="504.17356320502665" y1="203.31376652379248" x2="637.3331708016046" y2="211.459065150447" stroke="#ffffff" stroke-width="1.8532506494950267" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.35784132663439283;0" dur="1.0118431878313452s" begin="2.5031060839598718s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.0118431878313452s" begin="2.5031060839598718s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="390.7836815551884" y1="201.58133288444947" x2="235.77686619185337" y2="205.7206880636519" stroke="#ff7700" stroke-width="1.2686627799054613" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.9163093381527208;0" dur="0.9166481344474453s" begin="2.135423274332669s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.9166481344474453s" begin="2.135423274332669s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="450.2216414887721" y1="161.85893524073575" x2="450.8792024297177" y2="48.702889544072775" stroke="#ffd700" stroke-width="0.784650546462627" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.5230528870034462;0" dur="1.3758576313340982s" begin="1.0658855069174882s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.3758576313340982s" begin="1.0658855069174882s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="483.3109344784091" y1="211.06114680632567" x2="644.3820083790641" y2="264.5460106375238" stroke="#ff7700" stroke-width="1.6759623662421392" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.6758519767454887;0" dur="0.5138653330813578s" begin="1.3676457394947032s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.5138653330813578s" begin="1.3676457394947032s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="466.6576032885982" y1="224.30654235717023" x2="532.37062153096" y2="320.1940619272131" stroke="#ff7700" stroke-width="0.661044590366662" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.5893171247500198;0" dur="1.498979389193244s" begin="2.4721517424639514s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.498979389193244s" begin="2.4721517424639514s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="439.6248996100007" y1="182.60056582895925" x2="370.4474403834487" y2="66.5873608779537" stroke="#ffffff" stroke-width="1.0744186226504493" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.5993002270254464;0" dur="1.1881754427037026s" begin="2.3866273670633102s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.1881754427037026s" begin="2.3866273670633102s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="404.168641414046" y1="203.15768083815553" x2="276.2936523246899" y2="211.9679892205598" stroke="#ffffff" stroke-width="1.8252687374114667" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.8359880617805131;0" dur="1.9855652699115849s" begin="2.468929573493796s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.9855652699115849s" begin="2.468929573493796s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="439.77068670363934" y1="217.51599734740367" x2="375.03258271251576" y2="328.36923108186124" stroke="#ffffff" stroke-width="0.5828564674436039" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.30651788604241115;0" dur="1.1772583407614212s" begin="2.9887285842633555s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.1772583407614212s" begin="2.9887285842633555s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="480.3735190209525" y1="169.51358646465246" x2="568.2169094252976" y2="81.34369332956771" stroke="#ffd700" stroke-width="0.8280106812983754" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.5941175408119459;0" dur="1.196321183922489s" begin="2.8426926573780356s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.196321183922489s" begin="2.8426926573780356s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="498.6368169054444" y1="172.81428770704346" x2="597.7275049881936" y2="117.42721452818238" stroke="#ff7700" stroke-width="1.2903604159423467" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.9086369280539268;0" dur="0.9317415645725555s" begin="1.761931642019898s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.9317415645725555s" begin="1.761931642019898s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="494.8378351645527" y1="196.80777197645426" x2="607.2645677716771" y2="188.80355488820655" stroke="#ffffff" stroke-width="1.9390052101819504" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.8977715939179771;0" dur="0.9590050158310228s" begin="0.8266375518063487s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.9590050158310228s" begin="0.8266375518063487s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="398.2289482021534" y1="221.4376541038539" x2="241.99882077884737" y2="286.1303214535476" stroke="#ff7700" stroke-width="1.459374504065373" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.6090558898226665;0" dur="1.5779182593599466s" begin="2.313296086443164s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.5779182593599466s" begin="2.313296086443164s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="472.0236881920125" y1="182.70885236575222" x2="571.9417659046358" y2="104.2615815001119" stroke="#ffffff" stroke-width="1.7212771963536977" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.9329713570169429;0" dur="1.8826184125021737s" begin="0.5174680594802169s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.8826184125021737s" begin="0.5174680594802169s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="402.07995900466267" y1="186.64749988604902" x2="290.79799813928685" y2="155.63975522906517" stroke="#ffffff" stroke-width="0.9630853138089208" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.4148056498392646;0" dur="1.8321345374554026s" begin="1.8947630348100146s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.8321345374554026s" begin="1.8947630348100146s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="450.9567999905531" y1="220.10179681246785" x2="457.04220611238196" y2="347.9525478473188" stroke="#ffd700" stroke-width="0.8889769649562576" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.7334439910470598;0" dur="1.2419680633526748s" begin="0.07692758968420177s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.2419680633526748s" begin="0.07692758968420177s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="431.52589619120477" y1="220.97539668379076" x2="315.5410069127424" y2="352.66400724486516" stroke="#ffffff" stroke-width="0.68618312968768" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.7206662554542108;0" dur="1.4201592087309722s" begin="0.012803230788589581s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.4201592087309722s" begin="0.012803230788589581s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="445.94512089329135" y1="237.52808432391123" x2="434.4785061111632" y2="343.6521080319336" stroke="#ffd700" stroke-width="1.860618052910406" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.4712136923991397;0" dur="1.450926767442331s" begin="1.3296345863688015s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.450926767442331s" begin="1.3296345863688015s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="454.13135591692816" y1="236.54493515961028" x2="471.26820855468804" y2="388.13322265636594" stroke="#ffd700" stroke-width="0.9614051613113208" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.7696542470423251;0" dur="0.9493720579081291s" begin="0.8689147290599789s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.9493720579081291s" begin="0.8689147290599789s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="464.6517757372071" y1="170.86645632790788" x2="529.9128220749806" y2="41.10160204203626" stroke="#ffffff" stroke-width="1.2680149061365007" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.5020149586286875;0" dur="1.9154281852280537s" begin="1.1576503565318634s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.9154281852280537s" begin="1.1576503565318634s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="426.4110426762068" y1="260.95363775703754" x2="384.7269902054609" y2="368.6648264997633" stroke="#ffffff" stroke-width="1.1404375168077943" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.9699283830064482;0" dur="1.9475127784257198s" begin="2.1450612476785142s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.9475127784257198s" begin="2.1450612476785142s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="471.70772203477696" y1="232.63569704917876" x2="537.2546560478348" y2="331.1798868782911" stroke="#ffd700" stroke-width="1.727107424225828" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.7224815554076487;0" dur="1.8106413237007593s" begin="0.9550401108595186s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.8106413237007593s" begin="0.9550401108595186s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="437.88831496938263" y1="259.37378553671493" x2="405.4625748098644" y2="418.3309361919402" stroke="#ffd700" stroke-width="1.4253424197614484" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.6894192513194304;0" dur="0.5066061088694099s" begin="2.8322218242252997s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.5066061088694099s" begin="2.8322218242252997s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="427.32329353152375" y1="185.56466359164688" x2="275.527038673109" y2="88.93555179997483" stroke="#ffd700" stroke-width="0.9495389328267079" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.887125031010652;0" dur="1.9337533994258513s" begin="1.3936598862794871s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.9337533994258513s" begin="1.3936598862794871s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="397.9866945774628" y1="222.4295637691144" x2="256.60849845070186" y2="283.39571925235236" stroke="#ffd700" stroke-width="1.2545193282914202" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.8681689665668275;0" dur="1.0896785470421106s" begin="1.938525948764752s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.0896785470421106s" begin="1.938525948764752s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="458.7776833670367" y1="225.16842425248242" x2="496.45654424253036" y2="333.2057635151351" stroke="#ff7700" stroke-width="1.5054719114129231" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.9807319000867727;0" dur="1.5394188892055267s" begin="0.4888528757275429s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.5394188892055267s" begin="0.4888528757275429s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="476.2714474814444" y1="200.8403172062828" x2="635.9407528364604" y2="205.94749162824073" stroke="#ffffff" stroke-width="1.5482822090790997" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.8518715839164095;0" dur="0.5368792293592446s" begin="1.493075170643562s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.5368792293592446s" begin="1.493075170643562s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="431.5414620084142" y1="262.42656159859285" x2="387.70754512345707" y2="410.672360576483" stroke="#ffffff" stroke-width="0.7304361381503195" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.6615211073479881;0" dur="1.4652447567236204s" begin="2.7522654097729853s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.4652447567236204s" begin="2.7522654097729853s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="473.7107406495453" y1="252.89668543302673" x2="545.6916804324508" y2="413.480160455896" stroke="#ff7700" stroke-width="1.9464868929377444" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.6668096961576294;0" dur="0.8566258048635782s" begin="1.350249315754155s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.8566258048635782s" begin="1.350249315754155s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="462.18329957443257" y1="255.3944750786214" x2="486.69329753249406" y2="366.83542445116734" stroke="#ff7700" stroke-width="1.1799371624807793" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.8857452145695739;0" dur="1.6240719843489426s" begin="1.7405566067159188s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.6240719843489426s" begin="1.7405566067159188s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="506.095845275761" y1="160.64768136477895" x2="608.3811341442479" y2="88.89257616115717" stroke="#ff7700" stroke-width="1.7805618507537924" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.3635624535880891;0" dur="0.8077027522326685s" begin="0.39610410474154s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.8077027522326685s" begin="0.39610410474154s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="441.9460722470758" y1="245.61569551682018" x2="416.10243149391835" y2="391.98845720618215" stroke="#ff7700" stroke-width="1.2217657737750451" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.8824687894876522;0" dur="1.3307764348550903s" begin="1.2782866295812694s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.3307764348550903s" begin="1.2782866295812694s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="445.4980304828443" y1="179.79625640294705" x2="410.0990062496374" y2="20.93405032443482" stroke="#ff7700" stroke-width="1.1414787866257612" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.5690524017188366;0" dur="0.6938784567079966s" begin="1.2675435029774489s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.6938784567079966s" begin="1.2675435029774489s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="462.9995286968312" y1="135.56770562912578" x2="496.3333343817415" y2="-29.65163658558137" stroke="#ff7700" stroke-width="1.8057822618542527" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.9553148861944185;0" dur="1.507280278882289s" begin="1.851841067947875s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.507280278882289s" begin="1.851841067947875s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="464.351283029544" y1="236.61615922936303" x2="504.7921037698124" y2="339.79770254806175" stroke="#ffffff" stroke-width="1.0342957984042074" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.8627693352762933;0" dur="1.517819809180153s" begin="0.6893047249487396s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.517819809180153s" begin="0.6893047249487396s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="449.2106587966112" y1="142.66256133741476" x2="446.8266051992587" y2="-30.51416669813318" stroke="#ffffff" stroke-width="1.9358011351044044" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.7203417948222808;0" dur="1.8094404115099036s" begin="1.5030812170235124s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.8094404115099036s" begin="1.5030812170235124s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="416.72526648282025" y1="188.24054327019275" x2="251.70860736681158" y2="129.92283318033822" stroke="#ffffff" stroke-width="1.004622318879055" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.9094982765073301;0" dur="1.9150369720725964s" begin="0.05686677293872833s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.9150369720725964s" begin="0.05686677293872833s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="499.88356025855546" y1="204.97375533410698" x2="635.7890073926767" y2="218.52452113979342" stroke="#ff7700" stroke-width="0.7692359038650642" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.9162108368563271;0" dur="1.656319826421934s" begin="1.5311530348708398s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.656319826421934s" begin="1.5311530348708398s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="452.2522116779235" y1="242.35039983601945" x2="458.0273037429267" y2="350.9447475343668" stroke="#ff7700" stroke-width="1.5916921741503982" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.7918779536230467;0" dur="1.826720632973169s" begin="0.4997383922597629s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.826720632973169s" begin="0.4997383922597629s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="477.29204326304693" y1="217.02697718790077" x2="598.4252455916078" y2="292.5996359612516" stroke="#ff7700" stroke-width="0.6624456904667958" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.5378869475907966;0" dur="1.722588312379149s" begin="1.2191888768794137s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.722588312379149s" begin="1.2191888768794137s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="459.17083145211353" y1="157.09504999199288" x2="495.4263625733305" y2="-12.52334921117449" stroke="#ffffff" stroke-width="1.927158155620685" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.7933224366954654;0" dur="1.7611133945523214s" begin="1.950547314611892s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.7611133945523214s" begin="1.950547314611892s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="508.85254278901016" y1="170.82031629188734" x2="651.0094156858482" y2="100.33750634881886" stroke="#ff7700" stroke-width="1.1714918474585994" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.47867920654335416;0" dur="1.2408587048769795s" begin="1.933970824974447s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.2408587048769795s" begin="1.933970824974447s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="396.69851044591474" y1="199.01348754546677" x2="239.5838219686205" y2="196.10558387767742" stroke="#ffffff" stroke-width="1.4404505755725188" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.6562200403416494;0" dur="0.7923099108221111s" begin="2.8389156313648813s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.7923099108221111s" begin="2.8389156313648813s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="460.73782203144714" y1="228.79805245406416" x2="505.9765899996504" y2="350.12511571607104" stroke="#ffd700" stroke-width="0.5822828656012968" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.5795572307355183;0" dur="0.5019815105357834s" begin="0.8772132687815165s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.5019815105357834s" begin="0.8772132687815165s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="435.4415481045883" y1="226.82538759953533" x2="386.5433181405386" y2="316.92521285157716" stroke="#ffffff" stroke-width="1.6138822990167783" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.7270666902536347;0" dur="1.8283523689368155s" begin="1.2831707705081574s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.8283523689368155s" begin="1.2831707705081574s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="421.6333914940341" y1="250.34367685086005" x2="353.6872191911217" y2="370.93123813620923" stroke="#ff7700" stroke-width="0.5491987036767696" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.5211258616239713;0" dur="1.5498425425218878s" begin="0.9316375945507228s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.5498425425218878s" begin="0.9316375945507228s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="427.30247361020923" y1="178.68628171625593" x2="342.03175378802473" y2="98.61429197910184" stroke="#ff7700" stroke-width="1.0765315901102692" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.8602084076730796;0" dur="1.7306012269017474s" begin="2.9109002745543093s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.7306012269017474s" begin="2.9109002745543093s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="400.93623910046716" y1="171.31669339831797" x2="312.12090704719117" y2="119.39410626866785" stroke="#ff7700" stroke-width="1.0279819214665893" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.5537913263254163;0" dur="0.6374602859180964s" begin="2.801837304601074s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.6374602859180964s" begin="2.801837304601074s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="482.7765955661384" y1="144.5096415065473" x2="539.8174776232584" y2="47.940155278321015" stroke="#ff7700" stroke-width="1.4852854551135741" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.726906928872425;0" dur="1.2554907092842618s" begin="1.761109538726684s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.2554907092842618s" begin="1.761109538726684s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="420.6749876331751" y1="237.20523092466945" x2="337.40418181129405" y2="342.8525711928445" stroke="#ff7700" stroke-width="1.189948572313411" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.4619217948664054;0" dur="1.8862671955319055s" begin="1.0972574235834585s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.8862671955319055s" begin="1.0972574235834585s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="433.313385703522" y1="144.26323169305337" x2="385.3328456139718" y2="-16.001768665819696" stroke="#ffffff" stroke-width="1.4421094230071325" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.7722027161879901;0" dur="1.571363801332637s" begin="2.4314692080210354s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.571363801332637s" begin="2.4314692080210354s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="467.67572865649527" y1="226.22427059202656" x2="556.6628644845371" y2="358.2484023556952" stroke="#ffffff" stroke-width="1.5991557068666533" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.7526558894293838;0" dur="1.2658171683717967s" begin="0.40578321754256386s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.2658171683717967s" begin="0.40578321754256386s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="402.30387620829134" y1="195.850412468843" x2="276.5877009112613" y2="184.91303995288206" stroke="#ffffff" stroke-width="1.4561019845724648" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.9051809269152387;0" dur="0.9280450785089202s" begin="1.9692970627758264s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.9280450785089202s" begin="1.9692970627758264s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="503.82358226602634" y1="194.25521458724023" x2="615.000877707064" y2="182.38886013459543" stroke="#ff7700" stroke-width="1.5465556371093996" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.4330726051446848;0" dur="1.2068375264086169s" begin="2.4570234596132403s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.2068375264086169s" begin="2.4570234596132403s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="391.9279879875194" y1="169.4928793454778" x2="238.17528813865167" y2="88.72157484444085" stroke="#ff7700" stroke-width="1.1867137530007397" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.6981424308478148;0" dur="1.2328543362488757s" begin="0.7877042897253901s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.2328543362488757s" begin="0.7877042897253901s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="489.4490419704631" y1="155.82225471946225" x2="560.6411733412089" y2="76.09641884161644" stroke="#ff7700" stroke-width="1.7652889103271034" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.7046955749658856;0" dur="1.0631901762499147s" begin="0.5710134301587052s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.0631901762499147s" begin="0.5710134301587052s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="478.21266638553385" y1="214.45342340335972" x2="602.9505538142307" y2="278.3569721431562" stroke="#ffd700" stroke-width="0.8781231892989527" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.49427509824024174;0" dur="0.6007860899003823s" begin="0.07245168377163647s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.6007860899003823s" begin="0.07245168377163647s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="418.45631303342105" y1="187.5498518714707" x2="252.06753743287817" y2="121.87696761585914" stroke="#ffffff" stroke-width="1.187403113256855" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.5676790020350366;0" dur="0.6759059987978386s" begin="2.279585884297823s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.6759059987978386s" begin="2.279585884297823s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="427.43982408765515" y1="175.81847246767705" x2="331.11358648373425" y2="72.56947406648541" stroke="#ff7700" stroke-width="0.8763516464040548" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.8594624303871625;0" dur="1.8376013898517642s" begin="1.4178243122560859s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.8376013898517642s" begin="1.4178243122560859s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="443.620681836137" y1="267.8358518669239" x2="429.4670822339896" y2="418.34119763159157" stroke="#ffd700" stroke-width="1.7768094637559946" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.795255475749844;0" dur="0.595448065677484s" begin="1.1595753967093494s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.595448065677484s" begin="1.1595753967093494s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="448.2610861980865" y1="250.15367945652895" x2="442.0741579792959" y2="428.5968054840086" stroke="#ff7700" stroke-width="1.9402009596214804" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.8682394072647519;0" dur="0.878026806742918s" begin="2.215574035667841s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.878026806742918s" begin="2.215574035667841s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="419.5089172909164" y1="144.4004212392866" x2="333.840283153406" y2="-11.813774776529499" stroke="#ff7700" stroke-width="0.5973269844495182" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.6364961697280666;0" dur="0.7797740780949224s" begin="1.8044733875700973s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.7797740780949224s" begin="1.8044733875700973s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="492.32584173257436" y1="188.12351911784648" x2="616.369457146205" y2="153.31732113786867" stroke="#ffd700" stroke-width="1.4374145149232858" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.7194825096429379;0" dur="0.7304934871469693s" begin="2.7228386075555377s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.7304934871469693s" begin="2.7228386075555377s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="459.07681711288774" y1="241.4302481526065" x2="492.8955145610718" y2="395.79240066164095" stroke="#ff7700" stroke-width="1.7787425419324787" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.6025795529610183;0" dur="0.6415097401207708s" begin="0.47011168151189964s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.6415097401207708s" begin="0.47011168151189964s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="475.3966839980329" y1="206.5582351945098" x2="611.8588622551637" y2="241.7971293837944" stroke="#ffd700" stroke-width="1.0850211168149348" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.4952043010927325;0" dur="1.3913293515687715s" begin="0.21160663440596628s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.3913293515687715s" begin="0.21160663440596628s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="431.07163030330133" y1="242.46780413742877" x2="379.83641346551514" y2="357.4194449005152" stroke="#ff7700" stroke-width="1.121311814480008" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.9549858107871867;0" dur="1.4780747508248109s" begin="0.055906155017894865s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.4780747508248109s" begin="0.055906155017894865s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="430.46311274740964" y1="221.8616204413149" x2="350.0921185169454" y2="311.79611960901406" stroke="#ff7700" stroke-width="0.7942348810056339" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.7421456398959546;0" dur="1.384485239653043s" begin="0.42503891594344256s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.384485239653043s" begin="0.42503891594344256s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="488.09060418338646" y1="183.52673674137654" x2="626.0698662940528" y2="123.85404953388431" stroke="#ff7700" stroke-width="1.5960425035820152" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.7742738204599329;0" dur="0.7517807301271551s" begin="2.7093026965593046s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.7517807301271551s" begin="2.7093026965593046s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="471.2193880743414" y1="190.61650764944778" x2="609.1906117110634" y2="129.60381882657762" stroke="#ffffff" stroke-width="1.1426872608192353" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.38293970547070594;0" dur="1.1185157637832581s" begin="2.551395204334993s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.1185157637832581s" begin="2.551395204334993s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="511.46679158310303" y1="207.4111108377234" x2="646.1600141705933" y2="223.65120367446178" stroke="#ffd700" stroke-width="1.1166134614090102" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.7918695537486378;0" dur="1.727582774967301s" begin="2.107742809447865s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.727582774967301s" begin="2.107742809447865s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="482.000707390691" y1="214.5820082515894" x2="637.2428254829563" y2="285.32237718712577" stroke="#ffd700" stroke-width="0.951989022854043" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.3842151201035429;0" dur="1.210244804723045s" begin="1.5175888892628797s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.210244804723045s" begin="1.5175888892628797s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="396.39206893397574" y1="243.27804989633228" x2="311.0573547267908" y2="312.1693491109822" stroke="#ffd700" stroke-width="0.5866302218019841" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.43980435482786884;0" dur="0.7135813987247017s" begin="1.284236167647693s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.7135813987247017s" begin="1.284236167647693s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="432.87428662883724" y1="217.20280713399688" x2="325.2717546346156" y2="325.28972677982324" stroke="#ffd700" stroke-width="1.081751547141134" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.5796266199918763;0" dur="1.439514717352656s" begin="1.3300178551561652s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.439514717352656s" begin="1.3300178551561652s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="433.61953537472874" y1="188.419648754776" x2="344.4394745117649" y2="125.37281507276296" stroke="#ff7700" stroke-width="1.2803520674420383" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.3140784136562036;0" dur="0.9482395620804343s" begin="1.6918726284502281s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.9482395620804343s" begin="1.6918726284502281s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="463.1936483923082" y1="177.54386370429737" x2="526.2876476342285" y2="70.15526244040944" stroke="#ff7700" stroke-width="1.4833744066877304" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.4847580447395472;0" dur="1.0290587615426605s" begin="1.9052809639514272s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.0290587615426605s" begin="1.9052809639514272s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="417.1858503443847" y1="191.35958897528218" x2="278.72173469048107" y2="154.90010780694837" stroke="#ff7700" stroke-width="0.7433158319721389" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.8387630896284144;0" dur="1.9968183986388048s" begin="0.5294306321238075s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.9968183986388048s" begin="0.5294306321238075s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="465.4380854614922" y1="218.06199453739623" x2="574.4878209629387" y2="345.6461908967582" stroke="#ffffff" stroke-width="1.809263339270364" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.6396274289119059;0" dur="1.0827139605426388s" begin="2.757189029537167s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.0827139605426388s" begin="2.757189029537167s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="451.6239704922385" y1="168.6575864993772" x2="460.7815688618191" y2="-8.082838369047977" stroke="#ff7700" stroke-width="1.6428122074841143" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.42843689720152606;0" dur="1.0313843348997445s" begin="2.9118931283177s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.0313843348997445s" begin="2.9118931283177s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="384.7613110176958" y1="204.52020402734797" x2="263.0974046896433" y2="212.94995158889267" stroke="#ffffff" stroke-width="1.5170263959105474" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.6366128810184426;0" dur="0.5615975814939929s" begin="0.020304072851489496s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="0.5615975814939929s" begin="0.020304072851489496s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="418.90217916103626" y1="168.5373121961208" x2="336.87041203937997" y2="85.5430762876218" stroke="#ff7700" stroke-width="1.8437171649888087" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.7968494203474219;0" dur="1.6474315896505394s" begin="1.064766051786441s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.6474315896505394s" begin="1.064766051786441s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="405.42586298154873" y1="223.7576841921145" x2="272.1748861215343" y2="294.77946584142694" stroke="#ffffff" stroke-width="0.727715917749655" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.48743737949151567;0" dur="1.5584691546187992s" begin="2.493899260561189s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.5584691546187992s" begin="2.493899260561189s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="500.432259664951" y1="164.37010460937276" x2="611.1418162528303" y2="86.15489184328233" stroke="#ff7700" stroke-width="0.5586663370608864" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.9897297804289091;0" dur="1.0909968173609694s" begin="0.29965354765339636s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.0909968173609694s" begin="0.29965354765339636s" repeatCount="indefinite" />
-    </line>
-  
-    <line x1="480.9629214661148" y1="216.93113763913684" x2="581.7395991083681" y2="272.0378174737001" stroke="#ffd700" stroke-width="0.6140956460743012" opacity="0" stroke-linecap="round">
-      <animate attributeName="opacity" values="0;0.5524915793687641;0" dur="1.8120375411956207s" begin="1.0157996361873995s" repeatCount="indefinite" />
-      <animate attributeName="stroke-dasharray" values="0,500; 500,0" dur="1.8120375411956207s" begin="1.0157996361873995s" repeatCount="indefinite" />
-    </line>
-  
+  <!-- Digital Rain -->
+  
+    <g transform="translate(672.4480970168187, -180.16090518148036)">
+      <animateTransform attributeName="transform" type="translate" values="672.4480970168187,-180.16090518148036; 672.4480970168187,419.83909481851964" dur="2.6382460962099192s" begin="0.6376194587993694s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="23.58080166053685" opacity="0.770239545971836" filter="url(#glow)">w</text>
     </g>
+  
+    <g transform="translate(15.293965242355313, -118.06524934353178)">
+      <animateTransform attributeName="transform" type="translate" values="15.293965242355313,-118.06524934353178; 15.293965242355313,481.9347506564682" dur="3.8753237248242534s" begin="3.6808130411162714s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="17.152340091089073" opacity="0.7201791365126602" filter="url(#glow)">s</text>
+    </g>
+  
+    <g transform="translate(360.1657578921246, -22.06973304023836)">
+      <animateTransform attributeName="transform" type="translate" values="360.1657578921246,-22.06973304023836; 360.1657578921246,577.9302669597616" dur="3.782333213396523s" begin="3.4922946777630055s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="21.759919227545428" opacity="0.766448885304032" filter="url(#glow)">2</text>
+    </g>
+  
+    <g transform="translate(23.118900506164806, -50.33181479135727)">
+      <animateTransform attributeName="transform" type="translate" values="23.118900506164806,-50.33181479135727; 23.118900506164806,549.6681852086427" dur="3.6449121683378785s" begin="2.0193425829583007s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="10.459116668486725" opacity="0.9897279099101353" filter="url(#glow)">7</text>
+    </g>
+  
+    <g transform="translate(213.6558668548916, -52.624256237052805)">
+      <animateTransform attributeName="transform" type="translate" values="213.6558668548916,-52.624256237052805; 213.6558668548916,547.3757437629472" dur="2.908536504161571s" begin="3.7955676311130326s" repeatCount="indefinite" />
+      <text fill="#00ffcc" font-family="monospace" font-size="19.75343576722583" opacity="0.7601135144541067" filter="url(#glow)">6</text>
+    </g>
+  
+    <g transform="translate(276.8683264049856, -76.54166260589894)">
+      <animateTransform attributeName="transform" type="translate" values="276.8683264049856,-76.54166260589894; 276.8683264049856,523.4583373941011" dur="3.0488200647852493s" begin="3.9342718988488667s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="13.407610967198107" opacity="0.9767856339458416" filter="url(#glow)">7</text>
+    </g>
+  
+    <g transform="translate(177.86277337341974, -163.66104735390783)">
+      <animateTransform attributeName="transform" type="translate" values="177.86277337341974,-163.66104735390783; 177.86277337341974,436.33895264609214" dur="2.08332153358651s" begin="4.291158350726126s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="18.89368567293443" opacity="0.5759585623580856" filter="url(#glow)">7</text>
+    </g>
+  
+    <g transform="translate(5.59933756153983, -174.34174775796976)">
+      <animateTransform attributeName="transform" type="translate" values="5.59933756153983,-174.34174775796976; 5.59933756153983,425.65825224203024" dur="4.926515395315686s" begin="1.3217827054741433s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="13.243887688895448" opacity="0.7178180688991751" filter="url(#glow)">z</text>
+    </g>
+  
+    <g transform="translate(46.11134466004413, -75.21031245202674)">
+      <animateTransform attributeName="transform" type="translate" values="46.11134466004413,-75.21031245202674; 46.11134466004413,524.7896875479732" dur="3.8507563854310867s" begin="1.9421599033620534s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="21.09773720171459" opacity="0.6117243867527633" filter="url(#glow)">y</text>
+    </g>
+  
+    <g transform="translate(433.28632546867084, -29.62886506393827)">
+      <animateTransform attributeName="transform" type="translate" values="433.28632546867084,-29.62886506393827; 433.28632546867084,570.3711349360617" dur="3.462881851049267s" begin="3.1317478264253547s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="17.09597654079699" opacity="0.5974275090758148" filter="url(#glow)">v</text>
+    </g>
+  
+    <g transform="translate(52.94061830331675, -76.39028315540803)">
+      <animateTransform attributeName="transform" type="translate" values="52.94061830331675,-76.39028315540803; 52.94061830331675,523.609716844592" dur="3.251923209209324s" begin="1.8677099531058277s" repeatCount="indefinite" />
+      <text fill="#00ffcc" font-family="monospace" font-size="17.127660825884842" opacity="0.9664778522916111" filter="url(#glow)">p</text>
+    </g>
+  
+    <g transform="translate(737.1418361562884, -197.4212074929142)">
+      <animateTransform attributeName="transform" type="translate" values="737.1418361562884,-197.4212074929142; 737.1418361562884,402.57879250708584" dur="4.803455862421454s" begin="1.8889900745103338s" repeatCount="indefinite" />
+      <text fill="#00ffcc" font-family="monospace" font-size="11.97329840486778" opacity="0.7262576765850227" filter="url(#glow)">1</text>
+    </g>
+  
+    <g transform="translate(97.08676261433382, -181.2177647773119)">
+      <animateTransform attributeName="transform" type="translate" values="97.08676261433382,-181.2177647773119; 97.08676261433382,418.7822352226881" dur="4.34425361322634s" begin="3.59725391451851s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="17.572909892035867" opacity="0.386101723253223" filter="url(#glow)">t</text>
+    </g>
+  
+    <g transform="translate(420.3514178855483, -19.0710720987477)">
+      <animateTransform attributeName="transform" type="translate" values="420.3514178855483,-19.0710720987477; 420.3514178855483,580.9289279012523" dur="3.5363024206072784s" begin="3.5190613180519175s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="15.067515254454765" opacity="0.7928795646966637" filter="url(#glow)">j</text>
+    </g>
+  
+    <g transform="translate(373.8832795801197, -117.57584701131753)">
+      <animateTransform attributeName="transform" type="translate" values="373.8832795801197,-117.57584701131753; 373.8832795801197,482.42415298868247" dur="2.60372155108468s" begin="2.5746131831927874s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="15.66384589183932" opacity="0.30561141820719595" filter="url(#glow)">5</text>
+    </g>
+  
+    <g transform="translate(490.31550947156086, -11.071863875822396)">
+      <animateTransform attributeName="transform" type="translate" values="490.31550947156086,-11.071863875822396; 490.31550947156086,588.9281361241776" dur="2.4975321355987132s" begin="3.5458103237346386s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="15.344005843745027" opacity="0.9308788814095617" filter="url(#glow)">b</text>
+    </g>
+  
+    <g transform="translate(634.4699215438582, -44.82132790346056)">
+      <animateTransform attributeName="transform" type="translate" values="634.4699215438582,-44.82132790346056; 634.4699215438582,555.1786720965395" dur="4.2904120585872345s" begin="4.042523626335803s" repeatCount="indefinite" />
+      <text fill="#00ffcc" font-family="monospace" font-size="15.509575094365774" opacity="0.5244334055711541" filter="url(#glow)">z</text>
+    </g>
+  
+    <g transform="translate(695.8982012293652, -113.06425765607777)">
+      <animateTransform attributeName="transform" type="translate" values="695.8982012293652,-113.06425765607777; 695.8982012293652,486.93574234392224" dur="3.6410093958333682s" begin="4.480839953428607s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="15.31859624331825" opacity="0.8692272075070362" filter="url(#glow)">t</text>
+    </g>
+  
+    <g transform="translate(520.5381440783831, -90.87386603305372)">
+      <animateTransform attributeName="transform" type="translate" values="520.5381440783831,-90.87386603305372; 520.5381440783831,509.12613396694627" dur="2.960161338116083s" begin="1.2172026092279953s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="18.11186086024493" opacity="0.4561245127831292" filter="url(#glow)">v</text>
+    </g>
+  
+    <g transform="translate(552.8253619857521, -159.37386836717974)">
+      <animateTransform attributeName="transform" type="translate" values="552.8253619857521,-159.37386836717974; 552.8253619857521,440.62613163282026" dur="2.285502305179366s" begin="3.968708572370062s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="23.758306581273466" opacity="0.6080799517407718" filter="url(#glow)">a</text>
+    </g>
+  
+    <g transform="translate(657.6259404719149, -51.83221687418937)">
+      <animateTransform attributeName="transform" type="translate" values="657.6259404719149,-51.83221687418937; 657.6259404719149,548.1677831258106" dur="2.3577837606197964s" begin="0.7352039066233174s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="16.07253837479724" opacity="0.7763214478021587" filter="url(#glow)">g</text>
+    </g>
+  
+    <g transform="translate(474.7870026632667, -159.02665188581895)">
+      <animateTransform attributeName="transform" type="translate" values="474.7870026632667,-159.02665188581895; 474.7870026632667,440.973348114181" dur="3.6344515494576095s" begin="0.6773354912832508s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="18.705491262701152" opacity="0.4304146608695877" filter="url(#glow)">z</text>
+    </g>
+  
+    <g transform="translate(35.30703684438643, -71.859256525181)">
+      <animateTransform attributeName="transform" type="translate" values="35.30703684438643,-71.859256525181; 35.30703684438643,528.140743474819" dur="3.412692724010765s" begin="4.517103294355534s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="12.470362288034051" opacity="0.5785338263323606" filter="url(#glow)">p</text>
+    </g>
+  
+    <g transform="translate(209.1827605020588, -92.4973010312553)">
+      <animateTransform attributeName="transform" type="translate" values="209.1827605020588,-92.4973010312553; 209.1827605020588,507.5026989687447" dur="2.273670561727746s" begin="4.883838061238595s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="19.107640280694753" opacity="0.7958630968082101" filter="url(#glow)">a</text>
+    </g>
+  
+    <g transform="translate(666.2283291370069, -131.3856716766287)">
+      <animateTransform attributeName="transform" type="translate" values="666.2283291370069,-131.3856716766287; 666.2283291370069,468.6143283233713" dur="3.3532525545568945s" begin="4.765510653749979s" repeatCount="indefinite" />
+      <text fill="#00ffcc" font-family="monospace" font-size="14.522929798711028" opacity="0.4195225677630915" filter="url(#glow)">u</text>
+    </g>
+  
+    <g transform="translate(32.55777999749715, -22.611708876575666)">
+      <animateTransform attributeName="transform" type="translate" values="32.55777999749715,-22.611708876575666; 32.55777999749715,577.3882911234243" dur="3.9789083266130634s" begin="0.0036339182721323304s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="13.982155468309978" opacity="0.7925697778229478" filter="url(#glow)">v</text>
+    </g>
+  
+    <g transform="translate(69.8131282915634, -60.65310256200438)">
+      <animateTransform attributeName="transform" type="translate" values="69.8131282915634,-60.65310256200438; 69.8131282915634,539.3468974379956" dur="2.5896441063327127s" begin="1.681284405994123s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="13.490228492997888" opacity="0.7326859694589152" filter="url(#glow)">9</text>
+    </g>
+  
+    <g transform="translate(785.338743374438, -10.092510647124374)">
+      <animateTransform attributeName="transform" type="translate" values="785.338743374438,-10.092510647124374; 785.338743374438,589.9074893528757" dur="2.8280743059607234s" begin="4.800531714092253s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="19.909070042850594" opacity="0.5128328080747898" filter="url(#glow)">f</text>
+    </g>
+  
+    <g transform="translate(786.8853469768643, -190.823895269818)">
+      <animateTransform attributeName="transform" type="translate" values="786.8853469768643,-190.823895269818; 786.8853469768643,409.17610473018203" dur="4.093176459494179s" begin="3.6151403183561475s" repeatCount="indefinite" />
+      <text fill="#00ffcc" font-family="monospace" font-size="14.491147972573586" opacity="0.9814754562101138" filter="url(#glow)">v</text>
+    </g>
+  
+    <g transform="translate(287.77118795519704, -92.20642490236295)">
+      <animateTransform attributeName="transform" type="translate" values="287.77118795519704,-92.20642490236295; 287.77118795519704,507.793575097637" dur="4.594608418699486s" begin="2.4283700232201366s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="17.52740878797444" opacity="0.6936543021134679" filter="url(#glow)">4</text>
+    </g>
+  
+    <g transform="translate(843.9449814156148, -23.580427123512848)">
+      <animateTransform attributeName="transform" type="translate" values="843.9449814156148,-23.580427123512848; 843.9449814156148,576.4195728764871" dur="2.2031007997522445s" begin="2.9917136354823604s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="17.168550094852684" opacity="0.7455525179282647" filter="url(#glow)">8</text>
+    </g>
+  
+    <g transform="translate(879.141347013045, -10.009283994531849)">
+      <animateTransform attributeName="transform" type="translate" values="879.141347013045,-10.009283994531849; 879.141347013045,589.9907160054681" dur="4.238750203275505s" begin="1.3159340262565826s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="21.334764513900616" opacity="0.3291321724470855" filter="url(#glow)">7</text>
+    </g>
+  
+    <g transform="translate(114.35561907481417, -160.69028705017794)">
+      <animateTransform attributeName="transform" type="translate" values="114.35561907481417,-160.69028705017794; 114.35561907481417,439.309712949822" dur="3.172059012359969s" begin="2.7707142486804703s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="13.343886442390321" opacity="0.9627481550928887" filter="url(#glow)">z</text>
+    </g>
+  
+    <g transform="translate(14.778839862800497, -86.78015687496463)">
+      <animateTransform attributeName="transform" type="translate" values="14.778839862800497,-86.78015687496463; 14.778839862800497,513.2198431250354" dur="4.477874298096104s" begin="3.765503458403452s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="19.46180889995577" opacity="0.6631061570770732" filter="url(#glow)">4</text>
+    </g>
+  
+    <g transform="translate(593.0861029694928, -183.11258284764037)">
+      <animateTransform attributeName="transform" type="translate" values="593.0861029694928,-183.11258284764037; 593.0861029694928,416.8874171523596" dur="2.7511208096325355s" begin="0.8382245911409897s" repeatCount="indefinite" />
+      <text fill="#00ffcc" font-family="monospace" font-size="13.18677619351342" opacity="0.5294664688270587" filter="url(#glow)">9</text>
+    </g>
+  
+    <g transform="translate(447.2641498879372, -136.92659310571102)">
+      <animateTransform attributeName="transform" type="translate" values="447.2641498879372,-136.92659310571102; 447.2641498879372,463.07340689428895" dur="2.9558361199535503s" begin="3.9125956374462305s" repeatCount="indefinite" />
+      <text fill="#00ffcc" font-family="monospace" font-size="11.114038139909734" opacity="0.7457574678324508" filter="url(#glow)">x</text>
+    </g>
+  
+    <g transform="translate(495.5685221318762, -177.25667056733556)">
+      <animateTransform attributeName="transform" type="translate" values="495.5685221318762,-177.25667056733556; 495.5685221318762,422.74332943266444" dur="2.833949623494502s" begin="0.5728392131151205s" repeatCount="indefinite" />
+      <text fill="#00ffcc" font-family="monospace" font-size="19.898317850834616" opacity="0.41384635172313217" filter="url(#glow)">a</text>
+    </g>
+  
+    <g transform="translate(526.0195353097312, -132.50094519858973)">
+      <animateTransform attributeName="transform" type="translate" values="526.0195353097312,-132.50094519858973; 526.0195353097312,467.49905480141024" dur="4.120181990204081s" begin="4.966716699403144s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="20.009002508002098" opacity="0.8367777694191321" filter="url(#glow)">h</text>
+    </g>
+  
+    <g transform="translate(849.6516372557172, -53.7212085699319)">
+      <animateTransform attributeName="transform" type="translate" values="849.6516372557172,-53.7212085699319; 849.6516372557172,546.2787914300682" dur="3.6714064718335466s" begin="0.3589629195963545s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="17.822595384603083" opacity="0.9313051264212855" filter="url(#glow)">c</text>
+    </g>
+  
+    <g transform="translate(444.8107467944458, -109.68128786318022)">
+      <animateTransform attributeName="transform" type="translate" values="444.8107467944458,-109.68128786318022; 444.8107467944458,490.3187121368198" dur="2.1113542253874433s" begin="1.4563618960197933s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="21.02865475669858" opacity="0.598880520676367" filter="url(#glow)">f</text>
+    </g>
+  
+    <g transform="translate(317.90276986488203, -19.658463197808707)">
+      <animateTransform attributeName="transform" type="translate" values="317.90276986488203,-19.658463197808707; 317.90276986488203,580.3415368021913" dur="3.0611895683150117s" begin="4.079676017342057s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="16.99765751584012" opacity="0.6093458637200606" filter="url(#glow)">g</text>
+    </g>
+  
+    <g transform="translate(449.8818160890998, -7.87653996002684)">
+      <animateTransform attributeName="transform" type="translate" values="449.8818160890998,-7.87653996002684; 449.8818160890998,592.1234600399732" dur="4.33472336481697s" begin="3.1075217253668583s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="22.925320532050634" opacity="0.914361000614613" filter="url(#glow)">z</text>
+    </g>
+  
+    <g transform="translate(309.55280730828775, -109.87759011286929)">
+      <animateTransform attributeName="transform" type="translate" values="309.55280730828775,-109.87759011286929; 309.55280730828775,490.12240988713074" dur="4.141646761087921s" begin="4.695261591131516s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="21.057432533694566" opacity="0.36947166466214687" filter="url(#glow)">b</text>
+    </g>
+  
+    <g transform="translate(526.6359756885856, -40.170643658944805)">
+      <animateTransform attributeName="transform" type="translate" values="526.6359756885856,-40.170643658944805; 526.6359756885856,559.8293563410552" dur="3.350272953907187s" begin="0.8390667537584517s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="19.97768358340785" opacity="0.3167012646276008" filter="url(#glow)">w</text>
+    </g>
+  
+    <g transform="translate(516.2349803852754, -83.94954486277395)">
+      <animateTransform attributeName="transform" type="translate" values="516.2349803852754,-83.94954486277395; 516.2349803852754,516.050455137226" dur="2.237362597909325s" begin="2.3187583907339757s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="15.346067947640929" opacity="0.6722970655228638" filter="url(#glow)">j</text>
+    </g>
+  
+    <g transform="translate(285.308689708279, -21.982831436938465)">
+      <animateTransform attributeName="transform" type="translate" values="285.308689708279,-21.982831436938465; 285.308689708279,578.0171685630615" dur="3.5181713577333773s" begin="2.242767772363878s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="17.728663729878065" opacity="0.9919343160606284" filter="url(#glow)">k</text>
+    </g>
+  
+    <g transform="translate(798.3264660090813, -68.22033227748288)">
+      <animateTransform attributeName="transform" type="translate" values="798.3264660090813,-68.22033227748288; 798.3264660090813,531.7796677225172" dur="4.293150473259589s" begin="2.3639064607110507s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="11.371345859030235" opacity="0.7043181793010143" filter="url(#glow)">3</text>
+    </g>
+  
+    <g transform="translate(724.8030158153758, -50.05108355925076)">
+      <animateTransform attributeName="transform" type="translate" values="724.8030158153758,-50.05108355925076; 724.8030158153758,549.9489164407493" dur="3.6001315210365665s" begin="0.22679553140814435s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="16.184156912046394" opacity="0.3033547587342107" filter="url(#glow)">s</text>
+    </g>
+  
+    <g transform="translate(295.33005711586827, -125.89711796560339)">
+      <animateTransform attributeName="transform" type="translate" values="295.33005711586827,-125.89711796560339; 295.33005711586827,474.1028820343966" dur="3.777166027353868s" begin="3.8553672747203627s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="10.412707933582102" opacity="0.6515084475350739" filter="url(#glow)">q</text>
+    </g>
+  
+    <g transform="translate(407.7859790400916, -93.45392571536566)">
+      <animateTransform attributeName="transform" type="translate" values="407.7859790400916,-93.45392571536566; 407.7859790400916,506.54607428463436" dur="2.6512697468780715s" begin="0.1866688055757315s" repeatCount="indefinite" />
+      <text fill="#00ffcc" font-family="monospace" font-size="11.757137786607402" opacity="0.36261226082188897" filter="url(#glow)">w</text>
+    </g>
+  
+    <g transform="translate(894.4328306658346, -62.949115803719465)">
+      <animateTransform attributeName="transform" type="translate" values="894.4328306658346,-62.949115803719465; 894.4328306658346,537.0508841962805" dur="4.83310128641416s" begin="4.949202752243309s" repeatCount="indefinite" />
+      <text fill="#00ffcc" font-family="monospace" font-size="16.471832704766122" opacity="0.8356202205143344" filter="url(#glow)">c</text>
+    </g>
+  
+    <g transform="translate(815.1825190049669, -9.113877524867409)">
+      <animateTransform attributeName="transform" type="translate" values="815.1825190049669,-9.113877524867409; 815.1825190049669,590.8861224751327" dur="4.033218595142165s" begin="1.3556151912983356s" repeatCount="indefinite" />
+      <text fill="#00ffcc" font-family="monospace" font-size="17.62782418861919" opacity="0.8312378903099855" filter="url(#glow)">p</text>
+    </g>
+  
+    <g transform="translate(215.41250352514942, -111.67764774139239)">
+      <animateTransform attributeName="transform" type="translate" values="215.41250352514942,-111.67764774139239; 215.41250352514942,488.3223522586076" dur="3.8573811693790176s" begin="0.9286834276456202s" repeatCount="indefinite" />
+      <text fill="#00ffcc" font-family="monospace" font-size="21.105976568255166" opacity="0.9051534887616373" filter="url(#glow)">y</text>
+    </g>
+  
+    <g transform="translate(200.72944347403077, -134.9870774439701)">
+      <animateTransform attributeName="transform" type="translate" values="200.72944347403077,-134.9870774439701; 200.72944347403077,465.01292255602993" dur="2.4904779438519737s" begin="0.5742559406333941s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="10.149492891434278" opacity="0.656072294601856" filter="url(#glow)">9</text>
+    </g>
+  
+    <g transform="translate(632.2979388795237, -12.927624897600264)">
+      <animateTransform attributeName="transform" type="translate" values="632.2979388795237,-12.927624897600264; 632.2979388795237,587.0723751023997" dur="2.9117114300884097s" begin="0.8651253232874112s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="14.155044566551009" opacity="0.6520907421070784" filter="url(#glow)">8</text>
+    </g>
+  
+    <g transform="translate(18.856622355586595, -134.27111111951285)">
+      <animateTransform attributeName="transform" type="translate" values="18.856622355586595,-134.27111111951285; 18.856622355586595,465.72888888048715" dur="3.39246696651224s" begin="2.080553005300964s" repeatCount="indefinite" />
+      <text fill="#00ffcc" font-family="monospace" font-size="13.45090667887985" opacity="0.41140927609130784" filter="url(#glow)">y</text>
+    </g>
+  
+    <g transform="translate(326.87682844433715, -76.81006876252027)">
+      <animateTransform attributeName="transform" type="translate" values="326.87682844433715,-76.81006876252027; 326.87682844433715,523.1899312374798" dur="4.202670998915304s" begin="4.969840142474245s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="16.48853710509112" opacity="0.8423761082307544" filter="url(#glow)">x</text>
+    </g>
+  
+    <g transform="translate(577.308394204593, -158.4781528079514)">
+      <animateTransform attributeName="transform" type="translate" values="577.308394204593,-158.4781528079514; 577.308394204593,441.5218471920486" dur="2.9584896254618425s" begin="3.167934550748035s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="18.24769877411247" opacity="0.5688096879045834" filter="url(#glow)">d</text>
+    </g>
+  
+    <g transform="translate(656.9777496281173, -183.92355573925832)">
+      <animateTransform attributeName="transform" type="translate" values="656.9777496281173,-183.92355573925832; 656.9777496281173,416.0764442607417" dur="3.862443975221073s" begin="0.43528341637986134s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="20.20518236829749" opacity="0.5095656914643382" filter="url(#glow)">1</text>
+    </g>
+  
+    <g transform="translate(373.68888561169706, -169.04439315566145)">
+      <animateTransform attributeName="transform" type="translate" values="373.68888561169706,-169.04439315566145; 373.68888561169706,430.95560684433855" dur="2.529580576962477s" begin="4.964773085399335s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="13.284063379016276" opacity="0.4263318291098258" filter="url(#glow)">r</text>
+    </g>
+  
+    <g transform="translate(319.1039771965261, -122.44119675826266)">
+      <animateTransform attributeName="transform" type="translate" values="319.1039771965261,-122.44119675826266; 319.1039771965261,477.55880324173734" dur="3.185604562057771s" begin="1.9910416667961306s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="12.20356892784375" opacity="0.47150586492980096" filter="url(#glow)">d</text>
+    </g>
+  
+    <g transform="translate(480.4701901690996, -17.73788922395818)">
+      <animateTransform attributeName="transform" type="translate" values="480.4701901690996,-17.73788922395818; 480.4701901690996,582.2621107760418" dur="4.2595881356082215s" begin="0.6990062950287401s" repeatCount="indefinite" />
+      <text fill="#00ffcc" font-family="monospace" font-size="11.893600153780943" opacity="0.9624030169793745" filter="url(#glow)">2</text>
+    </g>
+  
+    <g transform="translate(643.3105070944883, -174.09838371468342)">
+      <animateTransform attributeName="transform" type="translate" values="643.3105070944883,-174.09838371468342; 643.3105070944883,425.90161628531655" dur="3.6034831566812238s" begin="2.9542522162752354s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="15.829107592988711" opacity="0.3637602238617732" filter="url(#glow)">f</text>
+    </g>
+  
+    <g transform="translate(425.1432702520912, -141.20422925328592)">
+      <animateTransform attributeName="transform" type="translate" values="425.1432702520912,-141.20422925328592; 425.1432702520912,458.7957707467141" dur="3.5429680272660806s" begin="3.5474106732720916s" repeatCount="indefinite" />
+      <text fill="#00ffcc" font-family="monospace" font-size="22.195766266391132" opacity="0.9406663539793776" filter="url(#glow)">6</text>
+    </g>
+  
+    <g transform="translate(712.3446448034196, -158.8627213515538)">
+      <animateTransform attributeName="transform" type="translate" values="712.3446448034196,-158.8627213515538; 712.3446448034196,441.1372786484462" dur="3.4929785113302887s" begin="2.7098841930283313s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="15.504048708978583" opacity="0.95199265189624" filter="url(#glow)">a</text>
+    </g>
+  
+    <g transform="translate(514.624686250379, -75.45201181784171)">
+      <animateTransform attributeName="transform" type="translate" values="514.624686250379,-75.45201181784171; 514.624686250379,524.5479881821583" dur="3.0124225531235878s" begin="1.6206898634302846s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="16.021796918354095" opacity="0.42072799341081485" filter="url(#glow)">m</text>
+    </g>
+  
+    <g transform="translate(536.7033093367857, -143.93236007256377)">
+      <animateTransform attributeName="transform" type="translate" values="536.7033093367857,-143.93236007256377; 536.7033093367857,456.06763992743623" dur="3.669478303134822s" begin="1.5799572473886032s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="13.605143379010528" opacity="0.787386691231092" filter="url(#glow)">0</text>
+    </g>
+  
+    <g transform="translate(867.0333653612408, -0.3963694616646585)">
+      <animateTransform attributeName="transform" type="translate" values="867.0333653612408,-0.3963694616646585; 867.0333653612408,599.6036305383353" dur="4.507434537510572s" begin="3.8502407454491925s" repeatCount="indefinite" />
+      <text fill="#00ffcc" font-family="monospace" font-size="21.89081107565567" opacity="0.8648582944605838" filter="url(#glow)">p</text>
+    </g>
+  
+    <g transform="translate(508.0063089431638, -187.68992024094723)">
+      <animateTransform attributeName="transform" type="translate" values="508.0063089431638,-187.68992024094723; 508.0063089431638,412.31007975905277" dur="2.929224199209061s" begin="3.493714364208325s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="21.96463544125339" opacity="0.30115564989203053" filter="url(#glow)">5</text>
+    </g>
+  
+    <g transform="translate(649.8019652717365, -76.96628453014263)">
+      <animateTransform attributeName="transform" type="translate" values="649.8019652717365,-76.96628453014263; 649.8019652717365,523.0337154698574" dur="2.153009953964398s" begin="3.9618728433922983s" repeatCount="indefinite" />
+      <text fill="#00ffcc" font-family="monospace" font-size="21.52035150448482" opacity="0.703047636936244" filter="url(#glow)">y</text>
+    </g>
+  
+    <g transform="translate(583.8126751400271, -34.7142809522621)">
+      <animateTransform attributeName="transform" type="translate" values="583.8126751400271,-34.7142809522621; 583.8126751400271,565.2857190477379" dur="2.093267042542291s" begin="0.8077031438091398s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="12.366079240500135" opacity="0.44138917679561535" filter="url(#glow)">y</text>
+    </g>
+  
+    <g transform="translate(551.1137293463478, -44.93666451452274)">
+      <animateTransform attributeName="transform" type="translate" values="551.1137293463478,-44.93666451452274; 551.1137293463478,555.0633354854772" dur="4.899687643461977s" begin="4.247371609119363s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="16.472367956440134" opacity="0.9484199444774799" filter="url(#glow)">y</text>
+    </g>
+  
+    <g transform="translate(115.9186987229489, -55.04143300242479)">
+      <animateTransform attributeName="transform" type="translate" values="115.9186987229489,-55.04143300242479; 115.9186987229489,544.9585669975752" dur="3.88299647832315s" begin="0.7582931221827233s" repeatCount="indefinite" />
+      <text fill="#00ffcc" font-family="monospace" font-size="11.374134135982487" opacity="0.8178990556733687" filter="url(#glow)">4</text>
+    </g>
+  
+    <g transform="translate(747.9206610095328, -80.09459201355324)">
+      <animateTransform attributeName="transform" type="translate" values="747.9206610095328,-80.09459201355324; 747.9206610095328,519.9054079864468" dur="4.412025987989175s" begin="4.171879586784639s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="10.206495236795433" opacity="0.4630114195355789" filter="url(#glow)">p</text>
+    </g>
+  
+    <g transform="translate(104.16226425460263, -175.45312128773503)">
+      <animateTransform attributeName="transform" type="translate" values="104.16226425460263,-175.45312128773503; 104.16226425460263,424.54687871226497" dur="3.9061094665553746s" begin="0.951219467679677s" repeatCount="indefinite" />
+      <text fill="#00ffcc" font-family="monospace" font-size="14.959673177977736" opacity="0.6600321946772385" filter="url(#glow)">5</text>
+    </g>
+  
+    <g transform="translate(761.4462709496366, -42.487067745274196)">
+      <animateTransform attributeName="transform" type="translate" values="761.4462709496366,-42.487067745274196; 761.4462709496366,557.5129322547258" dur="2.2754700092475777s" begin="1.538176795317635s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="11.55564811870272" opacity="0.6300089827544817" filter="url(#glow)">z</text>
+    </g>
+  
+    <g transform="translate(715.5948210690309, -58.387648944704495)">
+      <animateTransform attributeName="transform" type="translate" values="715.5948210690309,-58.387648944704495; 715.5948210690309,541.6123510552954" dur="3.8212178121530385s" begin="2.0218132210839244s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="14.717638240864833" opacity="0.8258708675000015" filter="url(#glow)">l</text>
+    </g>
+  
+    <g transform="translate(13.898859899472049, -147.78008842026205)">
+      <animateTransform attributeName="transform" type="translate" values="13.898859899472049,-147.78008842026205; 13.898859899472049,452.219911579738" dur="2.69597942439882s" begin="4.107147054765038s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="16.041692158691067" opacity="0.8012877056989169" filter="url(#glow)">h</text>
+    </g>
+  
+    <g transform="translate(479.5584365473984, -28.157802172419146)">
+      <animateTransform attributeName="transform" type="translate" values="479.5584365473984,-28.157802172419146; 479.5584365473984,571.8421978275808" dur="4.367038511137503s" begin="0.8549325312532885s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="23.633585510713722" opacity="0.6989238043806586" filter="url(#glow)">u</text>
+    </g>
+  
+    <g transform="translate(417.35240353203324, -53.12361445383482)">
+      <animateTransform attributeName="transform" type="translate" values="417.35240353203324,-53.12361445383482; 417.35240353203324,546.8763855461652" dur="2.6517041961209267s" begin="0.20668714996720183s" repeatCount="indefinite" />
+      <text fill="#00ff00" font-family="monospace" font-size="22.46030377026497" opacity="0.8486733521999361" filter="url(#glow)">g</text>
+    </g>
+  
+
+  <!-- Git Tree -->
+  <g opacity="0.6">
     
-    <!-- Center Core Void -->
-    <circle cx="450" cy="200" r="15" fill="#ffffff" filter="url(#neon)">
-       <animate attributeName="opacity" values="1;0.5;1" dur="0.2s" repeatCount="indefinite"/>
+  <path d="M 0,200 C 150,200 300,100 450,200 C 600,300 750,200 900,200" fill="none" stroke="#00ffcc" stroke-width="2" filter="url(#glow)"/>
+  <path d="M 300,100 C 450,100 600,150 750,200" fill="none" stroke="#00ff00" stroke-width="2" filter="url(#glow)"/>
+<circle cx="150" cy="200" r="8" fill="#0d1117" stroke="#00ffcc" stroke-width="2" filter="url(#glow)">
+        <animate attributeName="r" values="6;8;6" dur="2s" begin="0s" repeatCount="indefinite" />
+    </circle><circle cx="300" cy="100" r="8" fill="#0d1117" stroke="#00ffcc" stroke-width="2" filter="url(#glow)">
+        <animate attributeName="r" values="6;8;6" dur="2s" begin="0.5s" repeatCount="indefinite" />
+    </circle><circle cx="450" cy="200" r="8" fill="#0d1117" stroke="#00ffcc" stroke-width="2" filter="url(#glow)">
+        <animate attributeName="r" values="6;8;6" dur="2s" begin="1s" repeatCount="indefinite" />
+    </circle><circle cx="600" cy="100" r="8" fill="#0d1117" stroke="#00ffcc" stroke-width="2" filter="url(#glow)">
+        <animate attributeName="r" values="6;8;6" dur="2s" begin="1.5s" repeatCount="indefinite" />
+    </circle><circle cx="750" cy="200" r="8" fill="#0d1117" stroke="#00ffcc" stroke-width="2" filter="url(#glow)">
+        <animate attributeName="r" values="6;8;6" dur="2s" begin="2s" repeatCount="indefinite" />
     </circle>
-    <circle cx="450" cy="200" r="40" fill="none" stroke="#ff7700" stroke-width="2" filter="url(#neon)">
-       <animateTransform attributeName="transform" type="scale" values="1; 1.5; 1" dur="1s" repeatCount="indefinite" transform-origin="450 200"/>
-    </circle>
+  </g>
+
+  <!-- Cinematic Text Overlay -->
+  <g transform="translate(0, 0)">
+    <rect width="900" height="400" fill="url(#gradient)" opacity="0.3" />
+    <defs>
+      <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#010409" stop-opacity="0" />
+        <stop offset="100%" stop-color="#010409" stop-opacity="1" />
+      </linearGradient>
+    </defs>
     
-    <!-- Heavy Cyber Border -->
-    <rect x="2" y="2" width="896" height="396" rx="28" fill="none" stroke="#ffd700" stroke-width="4" opacity="0.5" filter="url(#neon)"/>
-    
-    <!-- Kinetic Typography -->
-    <g transform="translate(50, 0)">
-      <g filter="url(#neon)">
-        <!-- Animated Badge -->
-        <rect x="0" y="60" width="300" height="28" rx="8" fill="#1e180a" stroke="#ffd700" stroke-width="1.5"/>
-        <circle cx="15" cy="74" r="5" fill="#ff0000">
-           <animate attributeName="opacity" values="1;0;1" dur="0.5s" repeatCount="indefinite" />
+    <g transform="translate(450, 200)" text-anchor="middle">
+      <g filter="url(#glow)">
+        <circle cx="0" cy="-60" r="10" fill="none" stroke="#00ffcc" stroke-width="2">
+           <animate attributeName="r" values="5;15;5" dur="2s" repeatCount="indefinite" />
+           <animate attributeName="opacity" values="1;0;1" dur="2s" repeatCount="indefinite" />
         </circle>
-        <text x="30" y="79" font-family="monospace" font-size="12" font-weight="700" fill="#ffd700" letter-spacing="1">
-          SYS.BOOT(SEKHMET_V10_MAX_OMNIVERSE)
+        <text x="0" y="-60" font-family="monospace" font-size="12" font-weight="700" fill="#00ff00" letter-spacing="2">
+          SYS.BOOT(V12_CORE_ONLINE)
         </text>
       </g>
 
-      <text x="0" y="320" font-family="system-ui" font-size="60" font-weight="900" letter-spacing="-2" fill="#ffffff" filter="url(#neon)">
+      <text x="0" y="0" font-family="monospace" font-size="60" font-weight="900" letter-spacing="-2" fill="#ffffff" filter="url(#glow)">
         DUONG THAI TAN
       </text>
 
-      <text x="0" y="360" font-family="system-ui" font-size="28" font-weight="800" fill="#ff7700" letter-spacing="2">
-        V10 MAX OMNIVERSE ARCHITECT
+      <text x="0" y="40" font-family="monospace" font-size="24" font-weight="800" fill="#00ffcc" letter-spacing="4">
+        &gt; SENIOR SOFTWARE ENGINEER_
       </text>
     </g>
   </g>

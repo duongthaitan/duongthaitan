@@ -1,211 +1,556 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="500" height="150" viewBox="0 0 500 150" preserveAspectRatio="xMidYMid meet" role="img">
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="400" viewBox="0 0 900 400" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Massive Tech Stack" style="max-width:100%;height:auto">
   <defs>
     <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="2" result="blur" />
+      <feGaussianBlur stdDeviation="3" result="blur" />
       <feMerge>
         <feMergeNode in="blur" />
         <feMergeNode in="SourceGraphic" />
       </feMerge>
     </filter>
+    <style>
+      .core-box { transition: all 0.3s ease; }
+      .tech-item:hover .core-box { stroke: #00ffcc; stroke-width: 2px; }
+      text { text-shadow: 0 0 5px rgba(0,255,0,0.5); }
+    </style>
   </defs>
-  <style>
-    .tech-item { cursor: pointer; transition: all 0.3s; }
-    .tech-item:hover .core-box { stroke: #ffffff; fill: #1a0a00; }
-    .tech-item:hover .core-fill { opacity: 0.3; }
-    .tech-item:hover text { fill: #ffffff; }
-  </style>
-  <rect width="500" height="150" fill="none"/>
+
+  <rect width="900" height="400" fill="#010409" rx="10" />
   
-    <g class="tech-item" transform="translate(0, 0)">
+  <!-- Cyber Grid Background -->
+  <g opacity="0.2">
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#00ff00" stroke-width="0.5" />
+    </pattern>
+    <rect width="900" height="400" fill="url(#grid)" />
+  </g>
+
+  
+    <g class="tech-item" transform="translate(15, 15)">
       <!-- Glow Ripple -->
-      <rect x="5" y="5" width="115" height="65" rx="10" fill="none" stroke="#F7DF1E" stroke-width="2" opacity="0">
-        <animate attributeName="opacity" values="0; 0.5; 0" dur="2s" begin="0s" repeatCount="indefinite"/>
-        <animateTransform attributeName="transform" type="scale" values="1; 1.1; 1" dur="2s" begin="0s" repeatCount="indefinite" transform-origin="62.5 37.5"/>
+      <rect x="5" y="5" width="110" height="60" rx="10" fill="none" stroke="#00ff00" stroke-width="2" opacity="0">
+        <animate attributeName="opacity" values="0; 0.8; 0" dur="2s" begin="0s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="scale" values="1; 1.15; 1" dur="2s" begin="0s" repeatCount="indefinite" transform-origin="60 35"/>
       </rect>
       
-      <!-- Tech Badge Core -->
-      <rect class="core-box" x="10" y="10" width="105" height="55" rx="6" fill="#0d1117" stroke="#F7DF1E" stroke-width="1.5" filter="url(#glow)"/>
+      <!-- Tech Badge Core (Neon Green theme) -->
+      <rect class="core-box" x="10" y="10" width="100" height="50" rx="6" fill="#0d1117" stroke="#00ff00" stroke-width="1" filter="url(#glow)"/>
       
-      <!-- V10 Orbital Ring -->
-      <circle cx="62.5" cy="35.5" r="15" fill="none" stroke="#F7DF1E" stroke-width="0.5" stroke-dasharray="4 4" opacity="0.4">
-        <animateTransform attributeName="transform" type="rotate" values="0; 360" dur="4s" repeatCount="indefinite" transform-origin="62.5 35.5"/>
-      </circle>
-      <circle cx="62.5" cy="35.5" r="12" fill="none" stroke="#F7DF1E" stroke-width="0.5" stroke-dasharray="2 6" opacity="0.6">
-        <animateTransform attributeName="transform" type="rotate" values="360; 0" dur="3s" repeatCount="indefinite" transform-origin="62.5 35.5"/>
-      </circle>
+      <!-- V12 Laser Scanner -->
+      <line x1="12" y1="12" x2="12" y2="58" stroke="#00ffcc" stroke-width="2" opacity="0.8">
+        <animate attributeName="x1" values="12; 108; 12" dur="3s" begin="0s" repeatCount="indefinite" />
+        <animate attributeName="x2" values="12; 108; 12" dur="3s" begin="0s" repeatCount="indefinite" />
+      </line>
 
-      <rect class="core-fill" x="10" y="10" width="105" height="55" rx="6" fill="#F7DF1E" opacity="0.1"/>
+      <rect class="core-fill" x="10" y="10" width="100" height="50" rx="6" fill="#F7DF1E" opacity="0.15"/>
       
       <!-- Tech Label -->
-      <text x="62.5" y="42.5" fill="#F7DF1E" text-anchor="middle" font-family="system-ui" font-size="12" font-weight="800" filter="url(#glow)">JavaScript</text>
+      <text x="60" y="40" fill="#F7DF1E" text-anchor="middle" font-family="monospace" font-size="12" font-weight="800" filter="url(#glow)">JavaScript</text>
     </g>
   
-    <g class="tech-item" transform="translate(125, 0)">
+    <g class="tech-item" transform="translate(165, 15)">
       <!-- Glow Ripple -->
-      <rect x="5" y="5" width="115" height="65" rx="10" fill="none" stroke="#3178C6" stroke-width="2" opacity="0">
-        <animate attributeName="opacity" values="0; 0.5; 0" dur="2s" begin="0.1s" repeatCount="indefinite"/>
-        <animateTransform attributeName="transform" type="scale" values="1; 1.1; 1" dur="2s" begin="0.1s" repeatCount="indefinite" transform-origin="62.5 37.5"/>
+      <rect x="5" y="5" width="110" height="60" rx="10" fill="none" stroke="#00ff00" stroke-width="2" opacity="0">
+        <animate attributeName="opacity" values="0; 0.8; 0" dur="2s" begin="0.15s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="scale" values="1; 1.15; 1" dur="2s" begin="0.15s" repeatCount="indefinite" transform-origin="60 35"/>
       </rect>
       
-      <!-- Tech Badge Core -->
-      <rect class="core-box" x="10" y="10" width="105" height="55" rx="6" fill="#0d1117" stroke="#3178C6" stroke-width="1.5" filter="url(#glow)"/>
+      <!-- Tech Badge Core (Neon Green theme) -->
+      <rect class="core-box" x="10" y="10" width="100" height="50" rx="6" fill="#0d1117" stroke="#00ff00" stroke-width="1" filter="url(#glow)"/>
       
-      <!-- V10 Orbital Ring -->
-      <circle cx="62.5" cy="35.5" r="15" fill="none" stroke="#3178C6" stroke-width="0.5" stroke-dasharray="4 4" opacity="0.4">
-        <animateTransform attributeName="transform" type="rotate" values="0; 360" dur="4s" repeatCount="indefinite" transform-origin="62.5 35.5"/>
-      </circle>
-      <circle cx="62.5" cy="35.5" r="12" fill="none" stroke="#3178C6" stroke-width="0.5" stroke-dasharray="2 6" opacity="0.6">
-        <animateTransform attributeName="transform" type="rotate" values="360; 0" dur="3s" repeatCount="indefinite" transform-origin="62.5 35.5"/>
-      </circle>
+      <!-- V12 Laser Scanner -->
+      <line x1="12" y1="12" x2="12" y2="58" stroke="#00ffcc" stroke-width="2" opacity="0.8">
+        <animate attributeName="x1" values="12; 108; 12" dur="3s" begin="0.15s" repeatCount="indefinite" />
+        <animate attributeName="x2" values="12; 108; 12" dur="3s" begin="0.15s" repeatCount="indefinite" />
+      </line>
 
-      <rect class="core-fill" x="10" y="10" width="105" height="55" rx="6" fill="#3178C6" opacity="0.1"/>
+      <rect class="core-fill" x="10" y="10" width="100" height="50" rx="6" fill="#3178C6" opacity="0.15"/>
       
       <!-- Tech Label -->
-      <text x="62.5" y="42.5" fill="#3178C6" text-anchor="middle" font-family="system-ui" font-size="12" font-weight="800" filter="url(#glow)">TypeScript</text>
+      <text x="60" y="40" fill="#3178C6" text-anchor="middle" font-family="monospace" font-size="12" font-weight="800" filter="url(#glow)">TypeScript</text>
     </g>
   
-    <g class="tech-item" transform="translate(250, 0)">
+    <g class="tech-item" transform="translate(315, 15)">
       <!-- Glow Ripple -->
-      <rect x="5" y="5" width="115" height="65" rx="10" fill="none" stroke="#000000" stroke-width="2" opacity="0">
-        <animate attributeName="opacity" values="0; 0.5; 0" dur="2s" begin="0.2s" repeatCount="indefinite"/>
-        <animateTransform attributeName="transform" type="scale" values="1; 1.1; 1" dur="2s" begin="0.2s" repeatCount="indefinite" transform-origin="62.5 37.5"/>
+      <rect x="5" y="5" width="110" height="60" rx="10" fill="none" stroke="#00ff00" stroke-width="2" opacity="0">
+        <animate attributeName="opacity" values="0; 0.8; 0" dur="2s" begin="0.3s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="scale" values="1; 1.15; 1" dur="2s" begin="0.3s" repeatCount="indefinite" transform-origin="60 35"/>
       </rect>
       
-      <!-- Tech Badge Core -->
-      <rect class="core-box" x="10" y="10" width="105" height="55" rx="6" fill="#0d1117" stroke="#ffd700" stroke-width="1.5" filter="url(#glow)"/>
+      <!-- Tech Badge Core (Neon Green theme) -->
+      <rect class="core-box" x="10" y="10" width="100" height="50" rx="6" fill="#0d1117" stroke="#00ff00" stroke-width="1" filter="url(#glow)"/>
       
-      <!-- V10 Orbital Ring -->
-      <circle cx="62.5" cy="35.5" r="15" fill="none" stroke="#000000" stroke-width="0.5" stroke-dasharray="4 4" opacity="0.4">
-        <animateTransform attributeName="transform" type="rotate" values="0; 360" dur="4s" repeatCount="indefinite" transform-origin="62.5 35.5"/>
-      </circle>
-      <circle cx="62.5" cy="35.5" r="12" fill="none" stroke="#000000" stroke-width="0.5" stroke-dasharray="2 6" opacity="0.6">
-        <animateTransform attributeName="transform" type="rotate" values="360; 0" dur="3s" repeatCount="indefinite" transform-origin="62.5 35.5"/>
-      </circle>
+      <!-- V12 Laser Scanner -->
+      <line x1="12" y1="12" x2="12" y2="58" stroke="#00ffcc" stroke-width="2" opacity="0.8">
+        <animate attributeName="x1" values="12; 108; 12" dur="3s" begin="0.3s" repeatCount="indefinite" />
+        <animate attributeName="x2" values="12; 108; 12" dur="3s" begin="0.3s" repeatCount="indefinite" />
+      </line>
 
-      <rect class="core-fill" x="10" y="10" width="105" height="55" rx="6" fill="#000000" opacity="0.1"/>
+      <rect class="core-fill" x="10" y="10" width="100" height="50" rx="6" fill="#61DAFB" opacity="0.15"/>
       
       <!-- Tech Label -->
-      <text x="62.5" y="42.5" fill="#000000" text-anchor="middle" font-family="system-ui" font-size="12" font-weight="800" filter="url(#glow)">Three.js</text>
+      <text x="60" y="40" fill="#61DAFB" text-anchor="middle" font-family="monospace" font-size="12" font-weight="800" filter="url(#glow)">React</text>
     </g>
   
-    <g class="tech-item" transform="translate(375, 0)">
+    <g class="tech-item" transform="translate(465, 15)">
       <!-- Glow Ripple -->
-      <rect x="5" y="5" width="115" height="65" rx="10" fill="none" stroke="#61DAFB" stroke-width="2" opacity="0">
-        <animate attributeName="opacity" values="0; 0.5; 0" dur="2s" begin="0.30000000000000004s" repeatCount="indefinite"/>
-        <animateTransform attributeName="transform" type="scale" values="1; 1.1; 1" dur="2s" begin="0.30000000000000004s" repeatCount="indefinite" transform-origin="62.5 37.5"/>
+      <rect x="5" y="5" width="110" height="60" rx="10" fill="none" stroke="#00ff00" stroke-width="2" opacity="0">
+        <animate attributeName="opacity" values="0; 0.8; 0" dur="2s" begin="0.44999999999999996s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="scale" values="1; 1.15; 1" dur="2s" begin="0.44999999999999996s" repeatCount="indefinite" transform-origin="60 35"/>
       </rect>
       
-      <!-- Tech Badge Core -->
-      <rect class="core-box" x="10" y="10" width="105" height="55" rx="6" fill="#0d1117" stroke="#61DAFB" stroke-width="1.5" filter="url(#glow)"/>
+      <!-- Tech Badge Core (Neon Green theme) -->
+      <rect class="core-box" x="10" y="10" width="100" height="50" rx="6" fill="#0d1117" stroke="#00ff00" stroke-width="1" filter="url(#glow)"/>
       
-      <!-- V10 Orbital Ring -->
-      <circle cx="62.5" cy="35.5" r="15" fill="none" stroke="#61DAFB" stroke-width="0.5" stroke-dasharray="4 4" opacity="0.4">
-        <animateTransform attributeName="transform" type="rotate" values="0; 360" dur="4s" repeatCount="indefinite" transform-origin="62.5 35.5"/>
-      </circle>
-      <circle cx="62.5" cy="35.5" r="12" fill="none" stroke="#61DAFB" stroke-width="0.5" stroke-dasharray="2 6" opacity="0.6">
-        <animateTransform attributeName="transform" type="rotate" values="360; 0" dur="3s" repeatCount="indefinite" transform-origin="62.5 35.5"/>
-      </circle>
+      <!-- V12 Laser Scanner -->
+      <line x1="12" y1="12" x2="12" y2="58" stroke="#00ffcc" stroke-width="2" opacity="0.8">
+        <animate attributeName="x1" values="12; 108; 12" dur="3s" begin="0.44999999999999996s" repeatCount="indefinite" />
+        <animate attributeName="x2" values="12; 108; 12" dur="3s" begin="0.44999999999999996s" repeatCount="indefinite" />
+      </line>
 
-      <rect class="core-fill" x="10" y="10" width="105" height="55" rx="6" fill="#61DAFB" opacity="0.1"/>
+      <rect class="core-fill" x="10" y="10" width="100" height="50" rx="6" fill="#4FC08D" opacity="0.15"/>
       
       <!-- Tech Label -->
-      <text x="62.5" y="42.5" fill="#61DAFB" text-anchor="middle" font-family="system-ui" font-size="12" font-weight="800" filter="url(#glow)">React</text>
+      <text x="60" y="40" fill="#4FC08D" text-anchor="middle" font-family="monospace" font-size="12" font-weight="800" filter="url(#glow)">Vue.js</text>
     </g>
   
-    <g class="tech-item" transform="translate(0, 75)">
+    <g class="tech-item" transform="translate(615, 15)">
       <!-- Glow Ripple -->
-      <rect x="5" y="5" width="115" height="65" rx="10" fill="none" stroke="#4FC08D" stroke-width="2" opacity="0">
-        <animate attributeName="opacity" values="0; 0.5; 0" dur="2s" begin="0.4s" repeatCount="indefinite"/>
-        <animateTransform attributeName="transform" type="scale" values="1; 1.1; 1" dur="2s" begin="0.4s" repeatCount="indefinite" transform-origin="62.5 37.5"/>
+      <rect x="5" y="5" width="110" height="60" rx="10" fill="none" stroke="#00ff00" stroke-width="2" opacity="0">
+        <animate attributeName="opacity" values="0; 0.8; 0" dur="2s" begin="0.6s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="scale" values="1; 1.15; 1" dur="2s" begin="0.6s" repeatCount="indefinite" transform-origin="60 35"/>
       </rect>
       
-      <!-- Tech Badge Core -->
-      <rect class="core-box" x="10" y="10" width="105" height="55" rx="6" fill="#0d1117" stroke="#4FC08D" stroke-width="1.5" filter="url(#glow)"/>
+      <!-- Tech Badge Core (Neon Green theme) -->
+      <rect class="core-box" x="10" y="10" width="100" height="50" rx="6" fill="#0d1117" stroke="#00ff00" stroke-width="1" filter="url(#glow)"/>
       
-      <!-- V10 Orbital Ring -->
-      <circle cx="62.5" cy="35.5" r="15" fill="none" stroke="#4FC08D" stroke-width="0.5" stroke-dasharray="4 4" opacity="0.4">
-        <animateTransform attributeName="transform" type="rotate" values="0; 360" dur="4s" repeatCount="indefinite" transform-origin="62.5 35.5"/>
-      </circle>
-      <circle cx="62.5" cy="35.5" r="12" fill="none" stroke="#4FC08D" stroke-width="0.5" stroke-dasharray="2 6" opacity="0.6">
-        <animateTransform attributeName="transform" type="rotate" values="360; 0" dur="3s" repeatCount="indefinite" transform-origin="62.5 35.5"/>
-      </circle>
+      <!-- V12 Laser Scanner -->
+      <line x1="12" y1="12" x2="12" y2="58" stroke="#00ffcc" stroke-width="2" opacity="0.8">
+        <animate attributeName="x1" values="12; 108; 12" dur="3s" begin="0.6s" repeatCount="indefinite" />
+        <animate attributeName="x2" values="12; 108; 12" dur="3s" begin="0.6s" repeatCount="indefinite" />
+      </line>
 
-      <rect class="core-fill" x="10" y="10" width="105" height="55" rx="6" fill="#4FC08D" opacity="0.1"/>
+      <rect class="core-fill" x="10" y="10" width="100" height="50" rx="6" fill="#FFFFFF" opacity="0.15"/>
       
       <!-- Tech Label -->
-      <text x="62.5" y="42.5" fill="#4FC08D" text-anchor="middle" font-family="system-ui" font-size="12" font-weight="800" filter="url(#glow)">Vue</text>
+      <text x="60" y="40" fill="#FFFFFF" text-anchor="middle" font-family="monospace" font-size="12" font-weight="800" filter="url(#glow)">Next.js</text>
     </g>
   
-    <g class="tech-item" transform="translate(125, 75)">
+    <g class="tech-item" transform="translate(765, 15)">
       <!-- Glow Ripple -->
-      <rect x="5" y="5" width="115" height="65" rx="10" fill="none" stroke="#990000" stroke-width="2" opacity="0">
-        <animate attributeName="opacity" values="0; 0.5; 0" dur="2s" begin="0.5s" repeatCount="indefinite"/>
-        <animateTransform attributeName="transform" type="scale" values="1; 1.1; 1" dur="2s" begin="0.5s" repeatCount="indefinite" transform-origin="62.5 37.5"/>
+      <rect x="5" y="5" width="110" height="60" rx="10" fill="none" stroke="#00ff00" stroke-width="2" opacity="0">
+        <animate attributeName="opacity" values="0; 0.8; 0" dur="2s" begin="0.75s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="scale" values="1; 1.15; 1" dur="2s" begin="0.75s" repeatCount="indefinite" transform-origin="60 35"/>
       </rect>
       
-      <!-- Tech Badge Core -->
-      <rect class="core-box" x="10" y="10" width="105" height="55" rx="6" fill="#0d1117" stroke="#990000" stroke-width="1.5" filter="url(#glow)"/>
+      <!-- Tech Badge Core (Neon Green theme) -->
+      <rect class="core-box" x="10" y="10" width="100" height="50" rx="6" fill="#0d1117" stroke="#00ff00" stroke-width="1" filter="url(#glow)"/>
       
-      <!-- V10 Orbital Ring -->
-      <circle cx="62.5" cy="35.5" r="15" fill="none" stroke="#990000" stroke-width="0.5" stroke-dasharray="4 4" opacity="0.4">
-        <animateTransform attributeName="transform" type="rotate" values="0; 360" dur="4s" repeatCount="indefinite" transform-origin="62.5 35.5"/>
-      </circle>
-      <circle cx="62.5" cy="35.5" r="12" fill="none" stroke="#990000" stroke-width="0.5" stroke-dasharray="2 6" opacity="0.6">
-        <animateTransform attributeName="transform" type="rotate" values="360; 0" dur="3s" repeatCount="indefinite" transform-origin="62.5 35.5"/>
-      </circle>
+      <!-- V12 Laser Scanner -->
+      <line x1="12" y1="12" x2="12" y2="58" stroke="#00ffcc" stroke-width="2" opacity="0.8">
+        <animate attributeName="x1" values="12; 108; 12" dur="3s" begin="0.75s" repeatCount="indefinite" />
+        <animate attributeName="x2" values="12; 108; 12" dur="3s" begin="0.75s" repeatCount="indefinite" />
+      </line>
 
-      <rect class="core-fill" x="10" y="10" width="105" height="55" rx="6" fill="#990000" opacity="0.1"/>
+      <rect class="core-fill" x="10" y="10" width="100" height="50" rx="6" fill="#06B6D4" opacity="0.15"/>
       
       <!-- Tech Label -->
-      <text x="62.5" y="42.5" fill="#990000" text-anchor="middle" font-family="system-ui" font-size="12" font-weight="800" filter="url(#glow)">WebGL</text>
+      <text x="60" y="40" fill="#06B6D4" text-anchor="middle" font-family="monospace" font-size="12" font-weight="800" filter="url(#glow)">Tailwind</text>
     </g>
   
-    <g class="tech-item" transform="translate(250, 75)">
+    <g class="tech-item" transform="translate(15, 115)">
       <!-- Glow Ripple -->
-      <rect x="5" y="5" width="115" height="65" rx="10" fill="none" stroke="#88CE02" stroke-width="2" opacity="0">
-        <animate attributeName="opacity" values="0; 0.5; 0" dur="2s" begin="0.6000000000000001s" repeatCount="indefinite"/>
-        <animateTransform attributeName="transform" type="scale" values="1; 1.1; 1" dur="2s" begin="0.6000000000000001s" repeatCount="indefinite" transform-origin="62.5 37.5"/>
+      <rect x="5" y="5" width="110" height="60" rx="10" fill="none" stroke="#00ff00" stroke-width="2" opacity="0">
+        <animate attributeName="opacity" values="0; 0.8; 0" dur="2s" begin="0.8999999999999999s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="scale" values="1; 1.15; 1" dur="2s" begin="0.8999999999999999s" repeatCount="indefinite" transform-origin="60 35"/>
       </rect>
       
-      <!-- Tech Badge Core -->
-      <rect class="core-box" x="10" y="10" width="105" height="55" rx="6" fill="#0d1117" stroke="#88CE02" stroke-width="1.5" filter="url(#glow)"/>
+      <!-- Tech Badge Core (Neon Green theme) -->
+      <rect class="core-box" x="10" y="10" width="100" height="50" rx="6" fill="#0d1117" stroke="#00ff00" stroke-width="1" filter="url(#glow)"/>
       
-      <!-- V10 Orbital Ring -->
-      <circle cx="62.5" cy="35.5" r="15" fill="none" stroke="#88CE02" stroke-width="0.5" stroke-dasharray="4 4" opacity="0.4">
-        <animateTransform attributeName="transform" type="rotate" values="0; 360" dur="4s" repeatCount="indefinite" transform-origin="62.5 35.5"/>
-      </circle>
-      <circle cx="62.5" cy="35.5" r="12" fill="none" stroke="#88CE02" stroke-width="0.5" stroke-dasharray="2 6" opacity="0.6">
-        <animateTransform attributeName="transform" type="rotate" values="360; 0" dur="3s" repeatCount="indefinite" transform-origin="62.5 35.5"/>
-      </circle>
+      <!-- V12 Laser Scanner -->
+      <line x1="12" y1="12" x2="12" y2="58" stroke="#00ffcc" stroke-width="2" opacity="0.8">
+        <animate attributeName="x1" values="12; 108; 12" dur="3s" begin="0.8999999999999999s" repeatCount="indefinite" />
+        <animate attributeName="x2" values="12; 108; 12" dur="3s" begin="0.8999999999999999s" repeatCount="indefinite" />
+      </line>
 
-      <rect class="core-fill" x="10" y="10" width="105" height="55" rx="6" fill="#88CE02" opacity="0.1"/>
+      <rect class="core-fill" x="10" y="10" width="100" height="50" rx="6" fill="#FFFFFF" opacity="0.15"/>
       
       <!-- Tech Label -->
-      <text x="62.5" y="42.5" fill="#88CE02" text-anchor="middle" font-family="system-ui" font-size="12" font-weight="800" filter="url(#glow)">GSAP</text>
+      <text x="60" y="40" fill="#FFFFFF" text-anchor="middle" font-family="monospace" font-size="12" font-weight="800" filter="url(#glow)">Three.js</text>
     </g>
   
-    <g class="tech-item" transform="translate(375, 75)">
+    <g class="tech-item" transform="translate(165, 115)">
       <!-- Glow Ripple -->
-      <rect x="5" y="5" width="115" height="65" rx="10" fill="none" stroke="#339933" stroke-width="2" opacity="0">
-        <animate attributeName="opacity" values="0; 0.5; 0" dur="2s" begin="0.7000000000000001s" repeatCount="indefinite"/>
-        <animateTransform attributeName="transform" type="scale" values="1; 1.1; 1" dur="2s" begin="0.7000000000000001s" repeatCount="indefinite" transform-origin="62.5 37.5"/>
+      <rect x="5" y="5" width="110" height="60" rx="10" fill="none" stroke="#00ff00" stroke-width="2" opacity="0">
+        <animate attributeName="opacity" values="0; 0.8; 0" dur="2s" begin="1.05s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="scale" values="1; 1.15; 1" dur="2s" begin="1.05s" repeatCount="indefinite" transform-origin="60 35"/>
       </rect>
       
-      <!-- Tech Badge Core -->
-      <rect class="core-box" x="10" y="10" width="105" height="55" rx="6" fill="#0d1117" stroke="#339933" stroke-width="1.5" filter="url(#glow)"/>
+      <!-- Tech Badge Core (Neon Green theme) -->
+      <rect class="core-box" x="10" y="10" width="100" height="50" rx="6" fill="#0d1117" stroke="#00ff00" stroke-width="1" filter="url(#glow)"/>
       
-      <!-- V10 Orbital Ring -->
-      <circle cx="62.5" cy="35.5" r="15" fill="none" stroke="#339933" stroke-width="0.5" stroke-dasharray="4 4" opacity="0.4">
-        <animateTransform attributeName="transform" type="rotate" values="0; 360" dur="4s" repeatCount="indefinite" transform-origin="62.5 35.5"/>
-      </circle>
-      <circle cx="62.5" cy="35.5" r="12" fill="none" stroke="#339933" stroke-width="0.5" stroke-dasharray="2 6" opacity="0.6">
-        <animateTransform attributeName="transform" type="rotate" values="360; 0" dur="3s" repeatCount="indefinite" transform-origin="62.5 35.5"/>
-      </circle>
+      <!-- V12 Laser Scanner -->
+      <line x1="12" y1="12" x2="12" y2="58" stroke="#00ffcc" stroke-width="2" opacity="0.8">
+        <animate attributeName="x1" values="12; 108; 12" dur="3s" begin="1.05s" repeatCount="indefinite" />
+        <animate attributeName="x2" values="12; 108; 12" dur="3s" begin="1.05s" repeatCount="indefinite" />
+      </line>
 
-      <rect class="core-fill" x="10" y="10" width="105" height="55" rx="6" fill="#339933" opacity="0.1"/>
+      <rect class="core-fill" x="10" y="10" width="100" height="50" rx="6" fill="#990000" opacity="0.15"/>
       
       <!-- Tech Label -->
-      <text x="62.5" y="42.5" fill="#339933" text-anchor="middle" font-family="system-ui" font-size="12" font-weight="800" filter="url(#glow)">Node.js</text>
+      <text x="60" y="40" fill="#990000" text-anchor="middle" font-family="monospace" font-size="12" font-weight="800" filter="url(#glow)">WebGL</text>
+    </g>
+  
+    <g class="tech-item" transform="translate(315, 115)">
+      <!-- Glow Ripple -->
+      <rect x="5" y="5" width="110" height="60" rx="10" fill="none" stroke="#00ff00" stroke-width="2" opacity="0">
+        <animate attributeName="opacity" values="0; 0.8; 0" dur="2s" begin="1.2s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="scale" values="1; 1.15; 1" dur="2s" begin="1.2s" repeatCount="indefinite" transform-origin="60 35"/>
+      </rect>
+      
+      <!-- Tech Badge Core (Neon Green theme) -->
+      <rect class="core-box" x="10" y="10" width="100" height="50" rx="6" fill="#0d1117" stroke="#00ff00" stroke-width="1" filter="url(#glow)"/>
+      
+      <!-- V12 Laser Scanner -->
+      <line x1="12" y1="12" x2="12" y2="58" stroke="#00ffcc" stroke-width="2" opacity="0.8">
+        <animate attributeName="x1" values="12; 108; 12" dur="3s" begin="1.2s" repeatCount="indefinite" />
+        <animate attributeName="x2" values="12; 108; 12" dur="3s" begin="1.2s" repeatCount="indefinite" />
+      </line>
+
+      <rect class="core-fill" x="10" y="10" width="100" height="50" rx="6" fill="#339933" opacity="0.15"/>
+      
+      <!-- Tech Label -->
+      <text x="60" y="40" fill="#339933" text-anchor="middle" font-family="monospace" font-size="12" font-weight="800" filter="url(#glow)">Node.js</text>
+    </g>
+  
+    <g class="tech-item" transform="translate(465, 115)">
+      <!-- Glow Ripple -->
+      <rect x="5" y="5" width="110" height="60" rx="10" fill="none" stroke="#00ff00" stroke-width="2" opacity="0">
+        <animate attributeName="opacity" values="0; 0.8; 0" dur="2s" begin="1.3499999999999999s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="scale" values="1; 1.15; 1" dur="2s" begin="1.3499999999999999s" repeatCount="indefinite" transform-origin="60 35"/>
+      </rect>
+      
+      <!-- Tech Badge Core (Neon Green theme) -->
+      <rect class="core-box" x="10" y="10" width="100" height="50" rx="6" fill="#0d1117" stroke="#00ff00" stroke-width="1" filter="url(#glow)"/>
+      
+      <!-- V12 Laser Scanner -->
+      <line x1="12" y1="12" x2="12" y2="58" stroke="#00ffcc" stroke-width="2" opacity="0.8">
+        <animate attributeName="x1" values="12; 108; 12" dur="3s" begin="1.3499999999999999s" repeatCount="indefinite" />
+        <animate attributeName="x2" values="12; 108; 12" dur="3s" begin="1.3499999999999999s" repeatCount="indefinite" />
+      </line>
+
+      <rect class="core-fill" x="10" y="10" width="100" height="50" rx="6" fill="#3776AB" opacity="0.15"/>
+      
+      <!-- Tech Label -->
+      <text x="60" y="40" fill="#3776AB" text-anchor="middle" font-family="monospace" font-size="12" font-weight="800" filter="url(#glow)">Python</text>
+    </g>
+  
+    <g class="tech-item" transform="translate(615, 115)">
+      <!-- Glow Ripple -->
+      <rect x="5" y="5" width="110" height="60" rx="10" fill="none" stroke="#00ff00" stroke-width="2" opacity="0">
+        <animate attributeName="opacity" values="0; 0.8; 0" dur="2s" begin="1.5s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="scale" values="1; 1.15; 1" dur="2s" begin="1.5s" repeatCount="indefinite" transform-origin="60 35"/>
+      </rect>
+      
+      <!-- Tech Badge Core (Neon Green theme) -->
+      <rect class="core-box" x="10" y="10" width="100" height="50" rx="6" fill="#0d1117" stroke="#00ff00" stroke-width="1" filter="url(#glow)"/>
+      
+      <!-- V12 Laser Scanner -->
+      <line x1="12" y1="12" x2="12" y2="58" stroke="#00ffcc" stroke-width="2" opacity="0.8">
+        <animate attributeName="x1" values="12; 108; 12" dur="3s" begin="1.5s" repeatCount="indefinite" />
+        <animate attributeName="x2" values="12; 108; 12" dur="3s" begin="1.5s" repeatCount="indefinite" />
+      </line>
+
+      <rect class="core-fill" x="10" y="10" width="100" height="50" rx="6" fill="#00ADD8" opacity="0.15"/>
+      
+      <!-- Tech Label -->
+      <text x="60" y="40" fill="#00ADD8" text-anchor="middle" font-family="monospace" font-size="12" font-weight="800" filter="url(#glow)">Go</text>
+    </g>
+  
+    <g class="tech-item" transform="translate(765, 115)">
+      <!-- Glow Ripple -->
+      <rect x="5" y="5" width="110" height="60" rx="10" fill="none" stroke="#00ff00" stroke-width="2" opacity="0">
+        <animate attributeName="opacity" values="0; 0.8; 0" dur="2s" begin="1.65s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="scale" values="1; 1.15; 1" dur="2s" begin="1.65s" repeatCount="indefinite" transform-origin="60 35"/>
+      </rect>
+      
+      <!-- Tech Badge Core (Neon Green theme) -->
+      <rect class="core-box" x="10" y="10" width="100" height="50" rx="6" fill="#0d1117" stroke="#00ff00" stroke-width="1" filter="url(#glow)"/>
+      
+      <!-- V12 Laser Scanner -->
+      <line x1="12" y1="12" x2="12" y2="58" stroke="#00ffcc" stroke-width="2" opacity="0.8">
+        <animate attributeName="x1" values="12; 108; 12" dur="3s" begin="1.65s" repeatCount="indefinite" />
+        <animate attributeName="x2" values="12; 108; 12" dur="3s" begin="1.65s" repeatCount="indefinite" />
+      </line>
+
+      <rect class="core-fill" x="10" y="10" width="100" height="50" rx="6" fill="#000000" opacity="0.15"/>
+      
+      <!-- Tech Label -->
+      <text x="60" y="40" fill="#000000" text-anchor="middle" font-family="monospace" font-size="12" font-weight="800" filter="url(#glow)">Rust</text>
+    </g>
+  
+    <g class="tech-item" transform="translate(15, 215)">
+      <!-- Glow Ripple -->
+      <rect x="5" y="5" width="110" height="60" rx="10" fill="none" stroke="#00ff00" stroke-width="2" opacity="0">
+        <animate attributeName="opacity" values="0; 0.8; 0" dur="2s" begin="1.7999999999999998s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="scale" values="1; 1.15; 1" dur="2s" begin="1.7999999999999998s" repeatCount="indefinite" transform-origin="60 35"/>
+      </rect>
+      
+      <!-- Tech Badge Core (Neon Green theme) -->
+      <rect class="core-box" x="10" y="10" width="100" height="50" rx="6" fill="#0d1117" stroke="#00ff00" stroke-width="1" filter="url(#glow)"/>
+      
+      <!-- V12 Laser Scanner -->
+      <line x1="12" y1="12" x2="12" y2="58" stroke="#00ffcc" stroke-width="2" opacity="0.8">
+        <animate attributeName="x1" values="12; 108; 12" dur="3s" begin="1.7999999999999998s" repeatCount="indefinite" />
+        <animate attributeName="x2" values="12; 108; 12" dur="3s" begin="1.7999999999999998s" repeatCount="indefinite" />
+      </line>
+
+      <rect class="core-fill" x="10" y="10" width="100" height="50" rx="6" fill="#E10098" opacity="0.15"/>
+      
+      <!-- Tech Label -->
+      <text x="60" y="40" fill="#E10098" text-anchor="middle" font-family="monospace" font-size="12" font-weight="800" filter="url(#glow)">GraphQL</text>
+    </g>
+  
+    <g class="tech-item" transform="translate(165, 215)">
+      <!-- Glow Ripple -->
+      <rect x="5" y="5" width="110" height="60" rx="10" fill="none" stroke="#00ff00" stroke-width="2" opacity="0">
+        <animate attributeName="opacity" values="0; 0.8; 0" dur="2s" begin="1.95s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="scale" values="1; 1.15; 1" dur="2s" begin="1.95s" repeatCount="indefinite" transform-origin="60 35"/>
+      </rect>
+      
+      <!-- Tech Badge Core (Neon Green theme) -->
+      <rect class="core-box" x="10" y="10" width="100" height="50" rx="6" fill="#0d1117" stroke="#00ff00" stroke-width="1" filter="url(#glow)"/>
+      
+      <!-- V12 Laser Scanner -->
+      <line x1="12" y1="12" x2="12" y2="58" stroke="#00ffcc" stroke-width="2" opacity="0.8">
+        <animate attributeName="x1" values="12; 108; 12" dur="3s" begin="1.95s" repeatCount="indefinite" />
+        <animate attributeName="x2" values="12; 108; 12" dur="3s" begin="1.95s" repeatCount="indefinite" />
+      </line>
+
+      <rect class="core-fill" x="10" y="10" width="100" height="50" rx="6" fill="#E0234E" opacity="0.15"/>
+      
+      <!-- Tech Label -->
+      <text x="60" y="40" fill="#E0234E" text-anchor="middle" font-family="monospace" font-size="12" font-weight="800" filter="url(#glow)">NestJS</text>
+    </g>
+  
+    <g class="tech-item" transform="translate(315, 215)">
+      <!-- Glow Ripple -->
+      <rect x="5" y="5" width="110" height="60" rx="10" fill="none" stroke="#00ff00" stroke-width="2" opacity="0">
+        <animate attributeName="opacity" values="0; 0.8; 0" dur="2s" begin="2.1s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="scale" values="1; 1.15; 1" dur="2s" begin="2.1s" repeatCount="indefinite" transform-origin="60 35"/>
+      </rect>
+      
+      <!-- Tech Badge Core (Neon Green theme) -->
+      <rect class="core-box" x="10" y="10" width="100" height="50" rx="6" fill="#0d1117" stroke="#00ff00" stroke-width="1" filter="url(#glow)"/>
+      
+      <!-- V12 Laser Scanner -->
+      <line x1="12" y1="12" x2="12" y2="58" stroke="#00ffcc" stroke-width="2" opacity="0.8">
+        <animate attributeName="x1" values="12; 108; 12" dur="3s" begin="2.1s" repeatCount="indefinite" />
+        <animate attributeName="x2" values="12; 108; 12" dur="3s" begin="2.1s" repeatCount="indefinite" />
+      </line>
+
+      <rect class="core-fill" x="10" y="10" width="100" height="50" rx="6" fill="#47A248" opacity="0.15"/>
+      
+      <!-- Tech Label -->
+      <text x="60" y="40" fill="#47A248" text-anchor="middle" font-family="monospace" font-size="12" font-weight="800" filter="url(#glow)">MongoDB</text>
+    </g>
+  
+    <g class="tech-item" transform="translate(465, 215)">
+      <!-- Glow Ripple -->
+      <rect x="5" y="5" width="110" height="60" rx="10" fill="none" stroke="#00ff00" stroke-width="2" opacity="0">
+        <animate attributeName="opacity" values="0; 0.8; 0" dur="2s" begin="2.25s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="scale" values="1; 1.15; 1" dur="2s" begin="2.25s" repeatCount="indefinite" transform-origin="60 35"/>
+      </rect>
+      
+      <!-- Tech Badge Core (Neon Green theme) -->
+      <rect class="core-box" x="10" y="10" width="100" height="50" rx="6" fill="#0d1117" stroke="#00ff00" stroke-width="1" filter="url(#glow)"/>
+      
+      <!-- V12 Laser Scanner -->
+      <line x1="12" y1="12" x2="12" y2="58" stroke="#00ffcc" stroke-width="2" opacity="0.8">
+        <animate attributeName="x1" values="12; 108; 12" dur="3s" begin="2.25s" repeatCount="indefinite" />
+        <animate attributeName="x2" values="12; 108; 12" dur="3s" begin="2.25s" repeatCount="indefinite" />
+      </line>
+
+      <rect class="core-fill" x="10" y="10" width="100" height="50" rx="6" fill="#4169E1" opacity="0.15"/>
+      
+      <!-- Tech Label -->
+      <text x="60" y="40" fill="#4169E1" text-anchor="middle" font-family="monospace" font-size="12" font-weight="800" filter="url(#glow)">PostgreSQL</text>
+    </g>
+  
+    <g class="tech-item" transform="translate(615, 215)">
+      <!-- Glow Ripple -->
+      <rect x="5" y="5" width="110" height="60" rx="10" fill="none" stroke="#00ff00" stroke-width="2" opacity="0">
+        <animate attributeName="opacity" values="0; 0.8; 0" dur="2s" begin="2.4s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="scale" values="1; 1.15; 1" dur="2s" begin="2.4s" repeatCount="indefinite" transform-origin="60 35"/>
+      </rect>
+      
+      <!-- Tech Badge Core (Neon Green theme) -->
+      <rect class="core-box" x="10" y="10" width="100" height="50" rx="6" fill="#0d1117" stroke="#00ff00" stroke-width="1" filter="url(#glow)"/>
+      
+      <!-- V12 Laser Scanner -->
+      <line x1="12" y1="12" x2="12" y2="58" stroke="#00ffcc" stroke-width="2" opacity="0.8">
+        <animate attributeName="x1" values="12; 108; 12" dur="3s" begin="2.4s" repeatCount="indefinite" />
+        <animate attributeName="x2" values="12; 108; 12" dur="3s" begin="2.4s" repeatCount="indefinite" />
+      </line>
+
+      <rect class="core-fill" x="10" y="10" width="100" height="50" rx="6" fill="#DC382D" opacity="0.15"/>
+      
+      <!-- Tech Label -->
+      <text x="60" y="40" fill="#DC382D" text-anchor="middle" font-family="monospace" font-size="12" font-weight="800" filter="url(#glow)">Redis</text>
+    </g>
+  
+    <g class="tech-item" transform="translate(765, 215)">
+      <!-- Glow Ripple -->
+      <rect x="5" y="5" width="110" height="60" rx="10" fill="none" stroke="#00ff00" stroke-width="2" opacity="0">
+        <animate attributeName="opacity" values="0; 0.8; 0" dur="2s" begin="2.55s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="scale" values="1; 1.15; 1" dur="2s" begin="2.55s" repeatCount="indefinite" transform-origin="60 35"/>
+      </rect>
+      
+      <!-- Tech Badge Core (Neon Green theme) -->
+      <rect class="core-box" x="10" y="10" width="100" height="50" rx="6" fill="#0d1117" stroke="#00ff00" stroke-width="1" filter="url(#glow)"/>
+      
+      <!-- V12 Laser Scanner -->
+      <line x1="12" y1="12" x2="12" y2="58" stroke="#00ffcc" stroke-width="2" opacity="0.8">
+        <animate attributeName="x1" values="12; 108; 12" dur="3s" begin="2.55s" repeatCount="indefinite" />
+        <animate attributeName="x2" values="12; 108; 12" dur="3s" begin="2.55s" repeatCount="indefinite" />
+      </line>
+
+      <rect class="core-fill" x="10" y="10" width="100" height="50" rx="6" fill="#FFCA28" opacity="0.15"/>
+      
+      <!-- Tech Label -->
+      <text x="60" y="40" fill="#FFCA28" text-anchor="middle" font-family="monospace" font-size="12" font-weight="800" filter="url(#glow)">Firebase</text>
+    </g>
+  
+    <g class="tech-item" transform="translate(15, 315)">
+      <!-- Glow Ripple -->
+      <rect x="5" y="5" width="110" height="60" rx="10" fill="none" stroke="#00ff00" stroke-width="2" opacity="0">
+        <animate attributeName="opacity" values="0; 0.8; 0" dur="2s" begin="2.6999999999999997s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="scale" values="1; 1.15; 1" dur="2s" begin="2.6999999999999997s" repeatCount="indefinite" transform-origin="60 35"/>
+      </rect>
+      
+      <!-- Tech Badge Core (Neon Green theme) -->
+      <rect class="core-box" x="10" y="10" width="100" height="50" rx="6" fill="#0d1117" stroke="#00ff00" stroke-width="1" filter="url(#glow)"/>
+      
+      <!-- V12 Laser Scanner -->
+      <line x1="12" y1="12" x2="12" y2="58" stroke="#00ffcc" stroke-width="2" opacity="0.8">
+        <animate attributeName="x1" values="12; 108; 12" dur="3s" begin="2.6999999999999997s" repeatCount="indefinite" />
+        <animate attributeName="x2" values="12; 108; 12" dur="3s" begin="2.6999999999999997s" repeatCount="indefinite" />
+      </line>
+
+      <rect class="core-fill" x="10" y="10" width="100" height="50" rx="6" fill="#2496ED" opacity="0.15"/>
+      
+      <!-- Tech Label -->
+      <text x="60" y="40" fill="#2496ED" text-anchor="middle" font-family="monospace" font-size="12" font-weight="800" filter="url(#glow)">Docker</text>
+    </g>
+  
+    <g class="tech-item" transform="translate(165, 315)">
+      <!-- Glow Ripple -->
+      <rect x="5" y="5" width="110" height="60" rx="10" fill="none" stroke="#00ff00" stroke-width="2" opacity="0">
+        <animate attributeName="opacity" values="0; 0.8; 0" dur="2s" begin="2.85s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="scale" values="1; 1.15; 1" dur="2s" begin="2.85s" repeatCount="indefinite" transform-origin="60 35"/>
+      </rect>
+      
+      <!-- Tech Badge Core (Neon Green theme) -->
+      <rect class="core-box" x="10" y="10" width="100" height="50" rx="6" fill="#0d1117" stroke="#00ff00" stroke-width="1" filter="url(#glow)"/>
+      
+      <!-- V12 Laser Scanner -->
+      <line x1="12" y1="12" x2="12" y2="58" stroke="#00ffcc" stroke-width="2" opacity="0.8">
+        <animate attributeName="x1" values="12; 108; 12" dur="3s" begin="2.85s" repeatCount="indefinite" />
+        <animate attributeName="x2" values="12; 108; 12" dur="3s" begin="2.85s" repeatCount="indefinite" />
+      </line>
+
+      <rect class="core-fill" x="10" y="10" width="100" height="50" rx="6" fill="#326CE5" opacity="0.15"/>
+      
+      <!-- Tech Label -->
+      <text x="60" y="40" fill="#326CE5" text-anchor="middle" font-family="monospace" font-size="12" font-weight="800" filter="url(#glow)">Kubernetes</text>
+    </g>
+  
+    <g class="tech-item" transform="translate(315, 315)">
+      <!-- Glow Ripple -->
+      <rect x="5" y="5" width="110" height="60" rx="10" fill="none" stroke="#00ff00" stroke-width="2" opacity="0">
+        <animate attributeName="opacity" values="0; 0.8; 0" dur="2s" begin="3s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="scale" values="1; 1.15; 1" dur="2s" begin="3s" repeatCount="indefinite" transform-origin="60 35"/>
+      </rect>
+      
+      <!-- Tech Badge Core (Neon Green theme) -->
+      <rect class="core-box" x="10" y="10" width="100" height="50" rx="6" fill="#0d1117" stroke="#00ff00" stroke-width="1" filter="url(#glow)"/>
+      
+      <!-- V12 Laser Scanner -->
+      <line x1="12" y1="12" x2="12" y2="58" stroke="#00ffcc" stroke-width="2" opacity="0.8">
+        <animate attributeName="x1" values="12; 108; 12" dur="3s" begin="3s" repeatCount="indefinite" />
+        <animate attributeName="x2" values="12; 108; 12" dur="3s" begin="3s" repeatCount="indefinite" />
+      </line>
+
+      <rect class="core-fill" x="10" y="10" width="100" height="50" rx="6" fill="#232F3E" opacity="0.15"/>
+      
+      <!-- Tech Label -->
+      <text x="60" y="40" fill="#232F3E" text-anchor="middle" font-family="monospace" font-size="12" font-weight="800" filter="url(#glow)">AWS</text>
+    </g>
+  
+    <g class="tech-item" transform="translate(465, 315)">
+      <!-- Glow Ripple -->
+      <rect x="5" y="5" width="110" height="60" rx="10" fill="none" stroke="#00ff00" stroke-width="2" opacity="0">
+        <animate attributeName="opacity" values="0; 0.8; 0" dur="2s" begin="3.15s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="scale" values="1; 1.15; 1" dur="2s" begin="3.15s" repeatCount="indefinite" transform-origin="60 35"/>
+      </rect>
+      
+      <!-- Tech Badge Core (Neon Green theme) -->
+      <rect class="core-box" x="10" y="10" width="100" height="50" rx="6" fill="#0d1117" stroke="#00ff00" stroke-width="1" filter="url(#glow)"/>
+      
+      <!-- V12 Laser Scanner -->
+      <line x1="12" y1="12" x2="12" y2="58" stroke="#00ffcc" stroke-width="2" opacity="0.8">
+        <animate attributeName="x1" values="12; 108; 12" dur="3s" begin="3.15s" repeatCount="indefinite" />
+        <animate attributeName="x2" values="12; 108; 12" dur="3s" begin="3.15s" repeatCount="indefinite" />
+      </line>
+
+      <rect class="core-fill" x="10" y="10" width="100" height="50" rx="6" fill="#FCC624" opacity="0.15"/>
+      
+      <!-- Tech Label -->
+      <text x="60" y="40" fill="#FCC624" text-anchor="middle" font-family="monospace" font-size="12" font-weight="800" filter="url(#glow)">Linux</text>
+    </g>
+  
+    <g class="tech-item" transform="translate(615, 315)">
+      <!-- Glow Ripple -->
+      <rect x="5" y="5" width="110" height="60" rx="10" fill="none" stroke="#00ff00" stroke-width="2" opacity="0">
+        <animate attributeName="opacity" values="0; 0.8; 0" dur="2s" begin="3.3s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="scale" values="1; 1.15; 1" dur="2s" begin="3.3s" repeatCount="indefinite" transform-origin="60 35"/>
+      </rect>
+      
+      <!-- Tech Badge Core (Neon Green theme) -->
+      <rect class="core-box" x="10" y="10" width="100" height="50" rx="6" fill="#0d1117" stroke="#00ff00" stroke-width="1" filter="url(#glow)"/>
+      
+      <!-- V12 Laser Scanner -->
+      <line x1="12" y1="12" x2="12" y2="58" stroke="#00ffcc" stroke-width="2" opacity="0.8">
+        <animate attributeName="x1" values="12; 108; 12" dur="3s" begin="3.3s" repeatCount="indefinite" />
+        <animate attributeName="x2" values="12; 108; 12" dur="3s" begin="3.3s" repeatCount="indefinite" />
+      </line>
+
+      <rect class="core-fill" x="10" y="10" width="100" height="50" rx="6" fill="#F05032" opacity="0.15"/>
+      
+      <!-- Tech Label -->
+      <text x="60" y="40" fill="#F05032" text-anchor="middle" font-family="monospace" font-size="12" font-weight="800" filter="url(#glow)">Git</text>
+    </g>
+  
+    <g class="tech-item" transform="translate(765, 315)">
+      <!-- Glow Ripple -->
+      <rect x="5" y="5" width="110" height="60" rx="10" fill="none" stroke="#00ff00" stroke-width="2" opacity="0">
+        <animate attributeName="opacity" values="0; 0.8; 0" dur="2s" begin="3.4499999999999997s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="scale" values="1; 1.15; 1" dur="2s" begin="3.4499999999999997s" repeatCount="indefinite" transform-origin="60 35"/>
+      </rect>
+      
+      <!-- Tech Badge Core (Neon Green theme) -->
+      <rect class="core-box" x="10" y="10" width="100" height="50" rx="6" fill="#0d1117" stroke="#00ff00" stroke-width="1" filter="url(#glow)"/>
+      
+      <!-- V12 Laser Scanner -->
+      <line x1="12" y1="12" x2="12" y2="58" stroke="#00ffcc" stroke-width="2" opacity="0.8">
+        <animate attributeName="x1" values="12; 108; 12" dur="3s" begin="3.4499999999999997s" repeatCount="indefinite" />
+        <animate attributeName="x2" values="12; 108; 12" dur="3s" begin="3.4499999999999997s" repeatCount="indefinite" />
+      </line>
+
+      <rect class="core-fill" x="10" y="10" width="100" height="50" rx="6" fill="#2088FF" opacity="0.15"/>
+      
+      <!-- Tech Label -->
+      <text x="60" y="40" fill="#2088FF" text-anchor="middle" font-family="monospace" font-size="12" font-weight="800" filter="url(#glow)">Actions</text>
     </g>
   
 </svg>
