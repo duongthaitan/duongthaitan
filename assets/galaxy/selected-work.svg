@@ -1,65 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="200" viewBox="0 0 900 200" role="img" aria-labelledby="work-title work-desc">
-  <title id="work-title">Network panel — Selected work</title>
-  <desc id="work-desc">A DevTools Network panel showing completed HTTP requests representing featured projects, with status codes, request types, and response times in a table layout.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="80" viewBox="0 0 900 80"
+     role="img" aria-labelledby="wt wd">
+  <title id="wt">Selected Work</title>
+  <desc id="wd">Featured projects and contributions</desc>
   <defs>
-    <clipPath id="work-frame"><rect width="900" height="200" rx="8"/></clipPath>
-    <style>
-      text{font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:13px;fill:#d4d4d4}
-      .tab{font-size:11px;fill:#8b949e}.tab-on{font-size:11px;fill:#e6edf3}
-      .hd{font-size:11px;fill:#8b949e}.ok{fill:#3fb950}.nm{fill:#b5cea8}
-      .lnk{fill:#9cdcfe}
-      @media(forced-colors:active){.bg{fill:Canvas}.bdr{stroke:CanvasText}text,.tab,.tab-on,.hd,.ok,.nm,.lnk{fill:CanvasText}line{stroke:CanvasText}}
-    </style>
+    <linearGradient id="wa" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ff8c32"/>
+      <stop offset="100%" stop-color="#64a0ff"/>
+    </linearGradient>
+    <linearGradient id="wl" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ff8c32" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#64a0ff" stop-opacity="0.15"/>
+    </linearGradient>
   </defs>
-  <g clip-path="url(#work-frame)">
-    <rect class="bg" width="900" height="200" fill="#0d1117"/>
-    <rect width="900" height="28" fill="#161b22"/>
-    <rect x="198" y="0" width="68" height="28" fill="#0d1117"/>
-    <text x="12" y="18" class="tab">Elements</text>
-    <text x="88" y="18" class="tab">Console</text>
-    <text x="148" y="18" class="tab">Sources</text>
-    <text x="210" y="18" class="tab-on">Network</text>
-    <text x="272" y="18" class="tab">Performance</text>
-    <text x="362" y="18" class="tab">Application</text>
-    <line x1="0" y1="28" x2="900" y2="28" stroke="#30363d"/>
-    <rect x="198" y="27" width="68" height="2" fill="#0078d4"/>
-    <!-- Table header -->
-    <text x="20" y="52" class="hd">Name</text>
-    <text x="340" y="52" class="hd">Status</text>
-    <text x="440" y="52" class="hd">Type</text>
-    <text x="540" y="52" class="hd">Size</text>
-    <text x="640" y="52" class="hd">Time</text>
-    <line x1="12" y1="58" x2="700" y2="58" stroke="#30363d" stroke-width="0.5"/>
-    <!-- Row 1 -->
-    <text x="20" y="78" class="lnk">/api/3d-interactive-portfolio</text>
-    <text x="340" y="78" class="ok">200</text>
-    <text x="440" y="78">fetch</text>
-    <text x="540" y="78" class="nm">12.4 kB</text>
-    <text x="640" y="78" class="nm">142 ms</text>
-    <line x1="12" y1="84" x2="700" y2="84" stroke="#21262d" stroke-width="0.5"/>
-    <!-- Row 2 -->
-    <text x="20" y="104" class="lnk">/api/enterprise-platform</text>
-    <text x="340" y="104" class="ok">200</text>
-    <text x="440" y="104">xhr</text>
-    <text x="540" y="104" class="nm">8.7 kB</text>
-    <text x="640" y="104" class="nm">87 ms</text>
-    <line x1="12" y1="110" x2="700" y2="110" stroke="#21262d" stroke-width="0.5"/>
-    <!-- Row 3 -->
-    <text x="20" y="130" class="lnk">/api/ai-research-suite</text>
-    <text x="340" y="130" class="ok">200</text>
-    <text x="440" y="130">fetch</text>
-    <text x="540" y="130" class="nm">15.2 kB</text>
-    <text x="640" y="130" class="nm">215 ms</text>
-    <line x1="12" y1="136" x2="700" y2="136" stroke="#21262d" stroke-width="0.5"/>
-    <!-- Row 4 -->
-    <text x="20" y="156" class="lnk">/api/open-source-tools</text>
-    <text x="340" y="156" class="ok">200</text>
-    <text x="440" y="156">fetch</text>
-    <text x="540" y="156" class="nm">6.3 kB</text>
-    <text x="640" y="156" class="nm">63 ms</text>
-    <line x1="12" y1="162" x2="700" y2="162" stroke="#21262d" stroke-width="0.5"/>
-    <!-- Summary -->
-    <text x="20" y="184" class="hd">4 requests · 42.6 kB transferred · 507 ms total</text>
-  </g>
-  <rect class="bdr" x=".5" y=".5" width="899" height="199" rx="7.5" fill="none" stroke="#30363d"/>
+  <style>text { font-family: -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; }</style>
+  <rect width="900" height="80" fill="#0a0a0b"/>
+  <rect x="30" y="18" width="3" height="26" rx="1.5" fill="url(#wa)"/>
+  <text x="46" y="36" fill="#ffffff" font-size="17" font-weight="700" letter-spacing="-0.01em">Selected Work</text>
+  <text x="46" y="55" fill="rgba(255,255,255,0.4)" font-size="12" font-weight="400">Featured projects and contributions</text>
+  <rect x="0" y="79" width="900" height="1" fill="url(#wl)"/>
 </svg>

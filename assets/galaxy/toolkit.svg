@@ -1,37 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="200" viewBox="0 0 900 200" role="img" aria-labelledby="toolkit-title toolkit-desc">
-  <title id="toolkit-title">Sources panel — Toolkit</title>
-  <desc id="toolkit-desc">A code editor panel styled as Chrome DevTools Sources tab, showing technology stack as TypeScript import statements grouped by category with syntax highlighting.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="80" viewBox="0 0 900 80"
+     role="img" aria-labelledby="kt kd">
+  <title id="kt">Toolkit</title>
+  <desc id="kd">Languages, frameworks and infrastructure</desc>
   <defs>
-    <clipPath id="toolkit-frame"><rect width="900" height="200" rx="8"/></clipPath>
-    <style>
-      text{font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:13px;fill:#d4d4d4}
-      .tab{font-size:11px;fill:#8b949e}.tab-on{font-size:11px;fill:#e6edf3}
-      .ln{fill:#6e7681;text-anchor:end}.cm{fill:#6a9955}
-      .ct{fill:#c586c0}.vr{fill:#9cdcfe}.st{fill:#ce9178}
-      @media(prefers-reduced-motion:reduce){.cur{display:none}}
-      @media(forced-colors:active){.bg{fill:Canvas}.bdr{stroke:CanvasText}text,.tab,.tab-on,.ln,.cm,.ct,.vr,.st{fill:CanvasText}}
-    </style>
+    <linearGradient id="ka" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ff8c32"/>
+      <stop offset="100%" stop-color="#64a0ff"/>
+    </linearGradient>
+    <linearGradient id="kl" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ff8c32" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#64a0ff" stop-opacity="0.15"/>
+    </linearGradient>
   </defs>
-  <g clip-path="url(#toolkit-frame)">
-    <rect class="bg" width="900" height="200" fill="#0d1117"/>
-    <rect width="900" height="28" fill="#161b22"/>
-    <rect x="137" y="0" width="64" height="28" fill="#0d1117"/>
-    <text x="12" y="18" class="tab">Elements</text>
-    <text x="88" y="18" class="tab">Console</text>
-    <text x="149" y="18" class="tab-on">Sources</text>
-    <text x="210" y="18" class="tab">Network</text>
-    <text x="272" y="18" class="tab">Performance</text>
-    <text x="362" y="18" class="tab">Application</text>
-    <line x1="0" y1="28" x2="900" y2="28" stroke="#30363d"/>
-    <rect x="137" y="27" width="64" height="2" fill="#0078d4"/>
-    <text x="30" y="54" class="ln">1</text><text x="44" y="54" class="cm">// toolkit.ts</text>
-    <text x="30" y="74" class="ln">2</text><text x="44" y="74"><tspan class="ct">import</tspan><tspan> { </tspan><tspan class="vr">TypeScript, JavaScript, Python, Go</tspan><tspan> } </tspan><tspan class="ct">from</tspan><tspan> </tspan><tspan class="st">"@lang"</tspan><tspan>;</tspan></text>
-    <text x="30" y="94" class="ln">3</text><text x="44" y="94"><tspan class="ct">import</tspan><tspan> { </tspan><tspan class="vr">React, Next, Vue, Tailwind</tspan><tspan> } </tspan><tspan class="ct">from</tspan><tspan> </tspan><tspan class="st">"@frontend"</tspan><tspan>;</tspan></text>
-    <text x="30" y="114" class="ln">4</text><text x="44" y="114"><tspan class="ct">import</tspan><tspan> { </tspan><tspan class="vr">Node, NestJS, GraphQL, Rust</tspan><tspan> } </tspan><tspan class="ct">from</tspan><tspan> </tspan><tspan class="st">"@backend"</tspan><tspan>;</tspan></text>
-    <text x="30" y="134" class="ln">5</text><text x="44" y="134"><tspan class="ct">import</tspan><tspan> { </tspan><tspan class="vr">PostgreSQL, MongoDB, Redis</tspan><tspan> } </tspan><tspan class="ct">from</tspan><tspan> </tspan><tspan class="st">"@data"</tspan><tspan>;</tspan></text>
-    <text x="30" y="154" class="ln">6</text><text x="44" y="154"><tspan class="ct">import</tspan><tspan> { </tspan><tspan class="vr">Docker, K8s, AWS, Actions</tspan><tspan> } </tspan><tspan class="ct">from</tspan><tspan> </tspan><tspan class="st">"@devops"</tspan><tspan>;</tspan></text>
-    <text x="30" y="174" class="ln">7</text>
-    <rect class="cur" x="44" y="162" width="7" height="14" fill="#aeafad"><animate attributeName="opacity" values="1;1;0;0" dur="1s" repeatCount="indefinite"/></rect>
-  </g>
-  <rect class="bdr" x=".5" y=".5" width="899" height="199" rx="7.5" fill="none" stroke="#30363d"/>
+  <style>text { font-family: -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; }</style>
+  <rect width="900" height="80" fill="#0a0a0b"/>
+  <rect x="30" y="18" width="3" height="26" rx="1.5" fill="url(#ka)"/>
+  <text x="46" y="36" fill="#ffffff" font-size="17" font-weight="700" letter-spacing="-0.01em">Toolkit</text>
+  <text x="46" y="55" fill="rgba(255,255,255,0.4)" font-size="12" font-weight="400">Languages, frameworks and infrastructure</text>
+  <rect x="0" y="79" width="900" height="1" fill="url(#kl)"/>
 </svg>

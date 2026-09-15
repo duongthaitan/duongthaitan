@@ -1,37 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="200" viewBox="0 0 900 200" role="img" aria-labelledby="about-title about-desc">
-  <title id="about-title">Elements panel — About</title>
-  <desc id="about-desc">A code editor panel styled as Chrome DevTools Elements tab, showing developer profile information as a TypeScript object literal with syntax highlighting on a dark background.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="80" viewBox="0 0 900 80"
+     role="img" aria-labelledby="at ad">
+  <title id="at">About</title>
+  <desc id="ad">Developer profile and background</desc>
   <defs>
-    <clipPath id="about-frame"><rect width="900" height="200" rx="8"/></clipPath>
-    <style>
-      text{font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:13px;fill:#d4d4d4}
-      .tab{font-size:11px;fill:#8b949e}.tab-on{font-size:11px;fill:#e6edf3}
-      .ln{fill:#6e7681;text-anchor:end}.cm{fill:#6a9955}
-      .kw{fill:#569cd6}.vr{fill:#9cdcfe}.st{fill:#ce9178}
-      @media(prefers-reduced-motion:reduce){.cur{display:none}}
-      @media(forced-colors:active){.bg{fill:Canvas}.bdr{stroke:CanvasText}text,.tab,.tab-on,.ln,.cm,.kw,.vr,.st{fill:CanvasText}}
-    </style>
+    <linearGradient id="aa" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ff8c32"/>
+      <stop offset="100%" stop-color="#64a0ff"/>
+    </linearGradient>
+    <linearGradient id="al" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ff8c32" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#64a0ff" stop-opacity="0.15"/>
+    </linearGradient>
   </defs>
-  <g clip-path="url(#about-frame)">
-    <rect class="bg" width="900" height="200" fill="#0d1117"/>
-    <rect width="900" height="28" fill="#161b22"/>
-    <rect width="76" height="28" fill="#0d1117"/>
-    <text x="12" y="18" class="tab-on">Elements</text>
-    <text x="88" y="18" class="tab">Console</text>
-    <text x="148" y="18" class="tab">Sources</text>
-    <text x="210" y="18" class="tab">Network</text>
-    <text x="272" y="18" class="tab">Performance</text>
-    <text x="362" y="18" class="tab">Application</text>
-    <line x1="0" y1="28" x2="900" y2="28" stroke="#30363d"/>
-    <rect y="27" width="76" height="2" fill="#0078d4"/>
-    <text x="30" y="56" class="ln">1</text><text x="44" y="56" class="cm">// about.ts</text>
-    <text x="30" y="76" class="ln">2</text><text x="44" y="76"><tspan class="kw">export const </tspan><tspan class="vr">developer</tspan><tspan> = {</tspan></text>
-    <text x="30" y="96" class="ln">3</text><text x="60" y="96"><tspan class="vr">name</tspan><tspan>: </tspan><tspan class="st">"Duong Thai Tan"</tspan><tspan>,</tspan></text>
-    <text x="30" y="116" class="ln">4</text><text x="60" y="116"><tspan class="vr">role</tspan><tspan>: </tspan><tspan class="st">"Full-Stack Developer"</tspan><tspan>,</tspan></text>
-    <text x="30" y="136" class="ln">5</text><text x="60" y="136"><tspan class="vr">focus</tspan><tspan>: [</tspan><tspan class="st">"Web"</tspan><tspan>, </tspan><tspan class="st">"Cloud"</tspan><tspan>, </tspan><tspan class="st">"System Design"</tspan><tspan>],</tspan></text>
-    <text x="30" y="156" class="ln">6</text><text x="60" y="156"><tspan class="vr">passion</tspan><tspan>: </tspan><tspan class="st">"Building things that matter"</tspan><tspan>,</tspan></text>
-    <text x="30" y="176" class="ln">7</text><text x="44" y="176">};</text>
-    <rect class="cur" x="56" y="164" width="7" height="14" fill="#aeafad"><animate attributeName="opacity" values="1;1;0;0" dur="1s" repeatCount="indefinite"/></rect>
-  </g>
-  <rect class="bdr" x=".5" y=".5" width="899" height="199" rx="7.5" fill="none" stroke="#30363d"/>
+  <style>text { font-family: -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; }</style>
+  <rect width="900" height="80" fill="#0a0a0b"/>
+  <rect x="30" y="18" width="3" height="26" rx="1.5" fill="url(#aa)"/>
+  <text x="46" y="36" fill="#ffffff" font-size="17" font-weight="700" letter-spacing="-0.01em">About</text>
+  <text x="46" y="55" fill="rgba(255,255,255,0.4)" font-size="12" font-weight="400">Developer profile and background</text>
+  <rect x="0" y="79" width="900" height="1" fill="url(#al)"/>
 </svg>

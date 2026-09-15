@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./assets/hero-banner.svg" width="100%" style="max-width: 900px;" alt="VS Code editor — profile.ts" />
+  <img src="./assets/hero-banner.svg" width="100%" style="max-width: 900px;" alt="Thai Tan — Full-Stack Developer and Visual Creator" />
 </div>
 
 <div align="center">
@@ -20,7 +20,7 @@
 
 <!-- ─── ABOUT ─── -->
 
-<img src="./assets/galaxy/about.svg" width="100%" alt="Elements panel — About" />
+<img src="./assets/galaxy/about.svg" width="100%" alt="About section" />
 
 ## About
 
@@ -32,7 +32,7 @@ Currently shipping TypeScript across the stack, from React frontends to Node.js 
 
 <!-- ─── TOOLKIT ─── -->
 
-<img src="./assets/galaxy/toolkit.svg" width="100%" alt="Sources panel — Toolkit" />
+<img src="./assets/galaxy/toolkit.svg" width="100%" alt="Toolkit section" />
 
 ## Toolkit
 
@@ -50,7 +50,7 @@ Currently shipping TypeScript across the stack, from React frontends to Node.js 
 
 <!-- ─── SELECTED WORK ─── -->
 
-<img src="./assets/galaxy/selected-work.svg" width="100%" alt="Network panel — Selected work" />
+<img src="./assets/galaxy/selected-work.svg" width="100%" alt="Selected Work section" />
 
 ## Selected Work
 
@@ -65,7 +65,7 @@ Currently shipping TypeScript across the stack, from React frontends to Node.js 
 
 <!-- ─── CERTIFICATES ─── -->
 
-<img src="./assets/galaxy/certificates.svg" width="100%" alt="Application panel — Certificates" />
+<img src="./assets/galaxy/certificates.svg" width="100%" alt="Certificates section" />
 
 ## Certificates
 
@@ -81,7 +81,7 @@ Currently shipping TypeScript across the stack, from React frontends to Node.js 
 
 <!-- ─── AUTOMATION ─── -->
 
-<img src="./assets/galaxy/automation.svg" width="100%" alt="Performance panel — Automation" />
+<img src="./assets/galaxy/automation.svg" width="100%" alt="Automation section" />
 
 ## Automation
 
@@ -98,7 +98,7 @@ All SVGs are generated from JS scripts — no external image services, no third-
 
 <!-- ─── CONNECT ─── -->
 
-<img src="./assets/galaxy/connect.svg" width="100%" alt="Console panel — Connect" />
+<img src="./assets/galaxy/connect.svg" width="100%" alt="Connect section" />
 
 ## Connect
 

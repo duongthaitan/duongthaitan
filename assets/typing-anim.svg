@@ -1,31 +1,50 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="130" viewBox="0 0 800 130" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="term-title" style="max-width:100%;height:auto">
-  <title id="term-title">Terminal session with typed commands</title>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="120" viewBox="0 0 800 120"
+     preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="tt"
+     style="max-width:100%;height:auto">
+  <title id="tt">Terminal — developer identity</title>
+
   <defs>
-    <clipPath id="term-frame"><rect width="800" height="130" rx="10"/></clipPath>
-    <clipPath id="t1"><rect x="0" y="-15" width="0" height="20"><animate attributeName="width" values="0;500;500" dur="8s" keyTimes="0;0.12;1" repeatCount="indefinite"/></rect></clipPath>
-    <clipPath id="t2"><rect x="0" y="-15" width="0" height="20"><animate attributeName="width" values="0;0;300;300" dur="8s" keyTimes="0;0.18;0.22;1" repeatCount="indefinite"/></rect></clipPath>
-    <clipPath id="t3"><rect x="0" y="-15" width="0" height="20"><animate attributeName="width" values="0;0;500;500" dur="8s" keyTimes="0;0.30;0.42;1" repeatCount="indefinite"/></rect></clipPath>
-    <clipPath id="t4"><rect x="0" y="-15" width="0" height="20"><animate attributeName="width" values="0;0;500;500" dur="8s" keyTimes="0;0.48;0.52;1" repeatCount="indefinite"/></rect></clipPath>
-    <clipPath id="t5"><rect x="0" y="-15" width="0" height="20"><animate attributeName="width" values="0;0;300;300" dur="8s" keyTimes="0;0.60;0.72;1" repeatCount="indefinite"/></rect></clipPath>
-    <style>
-      text{font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:13px}
-      .pr{fill:#569cd6}.cmd{fill:#e6edf3}.out{fill:#8b949e}
-      .ok{fill:#3fb950}.tb{font-size:12px;fill:#969696}
-      @media(prefers-reduced-motion:reduce){.cur{display:none}}
-      @media(forced-colors:active){rect,circle{fill:Canvas;stroke:CanvasText}text,.pr,.cmd,.out,.ok,.tb{fill:CanvasText}}
-    </style>
+    <linearGradient id="tb" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ff8c32" stop-opacity="0.25"/>
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#64a0ff" stop-opacity="0.25"/>
+    </linearGradient>
   </defs>
-  <g clip-path="url(#term-frame)">
-    <rect width="800" height="28" fill="#323233"/>
-    <circle cx="18" cy="14" r="5" fill="#ff5f57"/><circle cx="34" cy="14" r="5" fill="#febc2e"/><circle cx="50" cy="14" r="5" fill="#28c840"/>
-    <text x="68" y="18" class="tb">Terminal — node</text>
-    <rect y="28" width="800" height="102" fill="#1e1e1e"/>
-    <text x="20" y="52" clip-path="url(#t1)"><tspan class="pr">$ </tspan><tspan class="cmd">node --version</tspan></text>
-    <text x="20" y="70" class="out" clip-path="url(#t2)">v24.0.0</text>
-    <text x="20" y="88" clip-path="url(#t3)"><tspan class="pr">$ </tspan><tspan class="cmd">git log --oneline -1</tspan></text>
-    <text x="20" y="106" class="out" clip-path="url(#t4)">a1b2c3d chore: update devtools profile</text>
-    <text x="20" y="122" clip-path="url(#t5)"><tspan class="pr">$ </tspan><tspan class="ok">ready</tspan></text>
-    <rect class="cur" x="68" y="112" width="7" height="13" fill="#aeafad" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" dur="8s" keyTimes="0;0.71;0.72;0.85;0.86;1" repeatCount="indefinite"/></rect>
-  </g>
-  <rect x=".5" y=".5" width="799" height="129" rx="9.5" fill="none" stroke="#3c3c3c"/>
+
+  <style>
+    text { font-family: 'Cascadia Code', 'Fira Code', Consolas, Monaco, monospace; }
+  </style>
+
+  <!-- Frame -->
+  <rect width="800" height="120" rx="12" fill="#111113" stroke="url(#tb)" stroke-width="1"/>
+
+  <!-- Title bar -->
+  <rect width="800" height="32" rx="12" fill="#18181b"/>
+  <rect y="24" width="800" height="8" fill="#18181b"/>
+
+  <!-- Window dots -->
+  <circle cx="22" cy="16" r="5" fill="#ff5f57"/>
+  <circle cx="40" cy="16" r="5" fill="#febc2e"/>
+  <circle cx="58" cy="16" r="5" fill="#28c840"/>
+
+  <!-- Title text -->
+  <text x="400" y="20" text-anchor="middle" fill="rgba(255,255,255,0.35)"
+        font-size="11" font-weight="400">tandev — bash</text>
+
+  <!-- Command line -->
+  <text x="22" y="62" font-size="13" font-weight="600">
+    <tspan fill="#ff8c32">❯</tspan>
+    <tspan fill="rgba(255,255,255,0.88)" dx="8">whoami</tspan>
+  </text>
+
+  <!-- Output -->
+  <text x="22" y="88" font-size="12" font-weight="400">
+    <tspan fill="rgba(255,255,255,0.4)">→</tspan>
+    <tspan fill="rgba(255,255,255,0.62)" dx="8">Duong Thai Tan · Full-Stack Developer · Soc Trang, Vietnam</tspan>
+  </text>
+
+  <!-- Blinking cursor -->
+  <rect x="42" y="96" width="8" height="14" rx="1" fill="#ff8c32" opacity="0.7">
+    <animate attributeName="opacity" values="0.7;0;0.7" dur="1.2s" repeatCount="indefinite"/>
+  </rect>
 </svg>

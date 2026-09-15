@@ -1,60 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="200" viewBox="0 0 900 200" role="img" aria-labelledby="auto-title auto-desc">
-  <title id="auto-title">Performance panel — Automation</title>
-  <desc id="auto-desc">A DevTools Performance panel showing a CI/CD pipeline visualization with completed steps for checkout, setup, test, render, and deploy, displayed as a waterfall timeline.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="80" viewBox="0 0 900 80"
+     role="img" aria-labelledby="ut ud">
+  <title id="ut">Automation</title>
+  <desc id="ud">Self-maintaining profile infrastructure</desc>
   <defs>
-    <clipPath id="auto-frame"><rect width="900" height="200" rx="8"/></clipPath>
-    <style>
-      text{font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:13px;fill:#d4d4d4}
-      .tab{font-size:11px;fill:#8b949e}.tab-on{font-size:11px;fill:#e6edf3}
-      .ok{fill:#3fb950}.lbl{fill:#e6edf3}.dim{fill:#6e7681}
-      .bar{rx:3;ry:3}
-      @media(forced-colors:active){.bg{fill:Canvas}.bdr{stroke:CanvasText}text,.tab,.tab-on,.ok,.lbl,.dim{fill:CanvasText}rect.bar{fill:CanvasText}line{stroke:CanvasText}}
-    </style>
+    <linearGradient id="ua" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ff8c32"/>
+      <stop offset="100%" stop-color="#64a0ff"/>
+    </linearGradient>
+    <linearGradient id="ul" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ff8c32" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#64a0ff" stop-opacity="0.15"/>
+    </linearGradient>
   </defs>
-  <g clip-path="url(#auto-frame)">
-    <rect class="bg" width="900" height="200" fill="#0d1117"/>
-    <rect width="900" height="28" fill="#161b22"/>
-    <rect x="260" y="0" width="86" height="28" fill="#0d1117"/>
-    <text x="12" y="18" class="tab">Elements</text>
-    <text x="88" y="18" class="tab">Console</text>
-    <text x="148" y="18" class="tab">Sources</text>
-    <text x="210" y="18" class="tab">Network</text>
-    <text x="274" y="18" class="tab-on">Performance</text>
-    <text x="362" y="18" class="tab">Application</text>
-    <line x1="0" y1="28" x2="900" y2="28" stroke="#30363d"/>
-    <rect x="260" y="27" width="86" height="2" fill="#0078d4"/>
-    <!-- Pipeline header -->
-    <text x="20" y="52" class="dim">Pipeline: update-profile · Workflow #247</text>
-    <line x1="12" y1="58" x2="700" y2="58" stroke="#21262d" stroke-width="0.5"/>
-    <!-- Step 1: checkout -->
-    <text x="20" y="78" class="lbl">checkout</text>
-    <text x="140" y="78" class="ok">✓</text>
-    <rect class="bar" x="160" y="68" width="60" height="14" fill="#238636"/>
-    <text x="230" y="78" class="dim">2.1s</text>
-    <!-- Step 2: setup-node -->
-    <text x="20" y="100" class="lbl">setup-node</text>
-    <text x="140" y="100" class="ok">✓</text>
-    <rect class="bar" x="220" y="90" width="120" height="14" fill="#238636"/>
-    <text x="350" y="100" class="dim">4.3s</text>
-    <!-- Step 3: test -->
-    <text x="20" y="122" class="lbl">test-render</text>
-    <text x="140" y="122" class="ok">✓</text>
-    <rect class="bar" x="340" y="112" width="36" height="14" fill="#238636"/>
-    <text x="386" y="122" class="dim">1.2s</text>
-    <!-- Step 4: render -->
-    <text x="20" y="144" class="lbl">build-svg</text>
-    <text x="140" y="144" class="ok">✓</text>
-    <rect class="bar" x="376" y="134" width="90" height="14" fill="#238636"/>
-    <text x="476" y="144" class="dim">3.0s</text>
-    <!-- Step 5: deploy -->
-    <text x="20" y="166" class="lbl">deploy</text>
-    <text x="140" y="166" class="ok">✓</text>
-    <rect class="bar" x="466" y="156" width="30" height="14" fill="#238636"/>
-    <text x="506" y="166" class="dim">1.0s</text>
-    <!-- Summary -->
-    <line x1="12" y1="178" x2="700" y2="178" stroke="#21262d" stroke-width="0.5"/>
-    <text x="20" y="194" class="dim">Total: 11.6s</text>
-    <text x="120" y="194" class="ok">✓ All steps passed</text>
-  </g>
-  <rect class="bdr" x=".5" y=".5" width="899" height="199" rx="7.5" fill="none" stroke="#30363d"/>
+  <style>text { font-family: -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; }</style>
+  <rect width="900" height="80" fill="#0a0a0b"/>
+  <rect x="30" y="18" width="3" height="26" rx="1.5" fill="url(#ua)"/>
+  <text x="46" y="36" fill="#ffffff" font-size="17" font-weight="700" letter-spacing="-0.01em">Automation</text>
+  <text x="46" y="55" fill="rgba(255,255,255,0.4)" font-size="12" font-weight="400">Self-maintaining profile infrastructure</text>
+  <rect x="0" y="79" width="900" height="1" fill="url(#ul)"/>
 </svg>
