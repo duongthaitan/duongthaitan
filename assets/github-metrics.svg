@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="200" viewBox="0 0 900 200" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="metrics-title metrics-desc" style="max-width:100%;height:auto">
-  <title id="metrics-title">Console output — Awaiting first successful update</title>
-  <desc id="metrics-desc">DevTools Console panel. Awaiting first successful update.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="300" viewBox="0 0 900 300" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="metrics-title metrics-desc" style="max-width:100%;height:auto">
+  <title id="metrics-title">Console output — Public original repos: 13; Stars on original repos: 4; Followers: 11</title>
+  <desc id="metrics-desc">DevTools Console panel showing GitHub metrics. Public original repos: 13; Stars on original repos: 4; Followers: 11. Updated 2026-09-15 15:27:25 UTC</desc>
   <defs>
-    <clipPath id="metrics-frame"><rect width="900" height="200" rx="8"/></clipPath>
+    <clipPath id="metrics-frame"><rect width="900" height="300" rx="8"/></clipPath>
     <style>
       text{font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:14px;fill:#d4d4d4}
       .tab{font-size:11px;fill:#8b949e}.tab-on{font-size:11px;fill:#e6edf3}
@@ -23,7 +23,7 @@
     </style>
   </defs>
   <g clip-path="url(#metrics-frame)">
-    <rect class="bg" width="900" height="200" fill="#0d1117"/>
+    <rect class="bg" width="900" height="300" fill="#0d1117"/>
     <rect class="tab-bar" width="900" height="28" fill="#161b22"/>
     <rect width="64" height="28" fill="#0d1117"/>
     <text x="12" y="18" class="tab-on">Console</text>
@@ -37,9 +37,14 @@
     <line x1="0" y1="52" x2="900" y2="52" stroke="#30363d" stroke-width="0.5" class="tab-bdr"/>
     
     <text x="20" y="80"><tspan class="pr">&gt; </tspan><tspan class="fn">gh.api</tspan><tspan>.</tspan><tspan class="fn">getMetrics</tspan><tspan>(</tspan><tspan class="st">"duongthaitan"</tspan><tspan>)</tspan></text>
-    <text x="20" y="120" class="wait">Awaiting first successful update</text>
-    <text x="20" y="160"><tspan class="pr">&gt; </tspan></text>
-    <rect class="cur" x="34" y="148" width="7" height="14" fill="#aeafad"><animate attributeName="opacity" values="1;1;0;0" dur="1s" repeatCount="indefinite"/></rect>
+    <text x="20" y="110">{</text>
+    <text x="36" y="130"><tspan class="vr">repos</tspan><tspan class="op">: </tspan><tspan class="nm">13</tspan><tspan class="op">,</tspan></text>
+    <text x="36" y="150"><tspan class="vr">stars</tspan><tspan class="op">: </tspan><tspan class="nm">4</tspan><tspan class="op">,</tspan></text>
+    <text x="36" y="170"><tspan class="vr">followers</tspan><tspan class="op">: </tspan><tspan class="nm">11</tspan></text>
+    <text x="20" y="190" class="op">}</text>
+    <text x="20" y="230" class="ok">✓ Updated 2026-09-15 15:27:25 UTC</text>
+    <text x="20" y="260"><tspan class="pr">&gt; </tspan></text>
+    <rect class="cur" x="34" y="248" width="7" height="14" fill="#aeafad"><animate attributeName="opacity" values="1;1;0;0" dur="1s" repeatCount="indefinite"/></rect>
   </g>
-  <rect class="bdr" x=".5" y=".5" width="899" height="199" rx="7.5" fill="none" stroke="#30363d"/>
+  <rect class="bdr" x=".5" y=".5" width="899" height="299" rx="7.5" fill="none" stroke="#30363d"/>
 </svg>
