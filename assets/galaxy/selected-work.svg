@@ -1,73 +1,65 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="200" viewBox="0 0 900 200" role="img" aria-labelledby="work-title work-desc">
-  <title id="work-title">Selected work — Portfolio</title>
-  <desc id="work-desc">Five jewel-like golden stars form a crown-shaped constellation above a warm nebula. Fine radial rays extend from the crown points, framed by a deep starfield with amber and gold accents.</desc>
+  <title id="work-title">Network panel — Selected work</title>
+  <desc id="work-desc">A DevTools Network panel showing completed HTTP requests representing featured projects, with status codes, request types, and response times in a table layout.</desc>
   <defs>
-    <clipPath id="work-frame"><rect width="900" height="200" rx="16"/></clipPath>
-    <radialGradient id="work-nebula"><stop stop-color="#c9a020" stop-opacity=".32"/><stop offset=".5" stop-color="#6b4f14" stop-opacity=".14"/><stop offset="1" stop-color="#070b19" stop-opacity="0"/></radialGradient>
-    <radialGradient id="work-fire"><stop stop-color="#b86830" stop-opacity=".18"/><stop offset="1" stop-color="#070b19" stop-opacity="0"/></radialGradient>
-    <radialGradient id="work-glow"><stop stop-color="#ffd700" stop-opacity=".22"/><stop offset=".45" stop-color="#d4a017" stop-opacity=".08"/><stop offset="1" stop-color="#d4a017" stop-opacity="0"/></radialGradient>
-    <radialGradient id="work-gem" cx=".28" cy=".22" r=".8"><stop stop-color="#fff8e1"/><stop offset=".25" stop-color="#ffd700"/><stop offset=".55" stop-color="#c49020"/><stop offset=".8" stop-color="#4a3810"/><stop offset="1" stop-color="#0e0e08"/></radialGradient>
-    <radialGradient id="work-ruby" cx=".26" cy=".2" r=".82"><stop stop-color="#ffe0c0"/><stop offset=".28" stop-color="#e8884a"/><stop offset=".58" stop-color="#a04020"/><stop offset=".82" stop-color="#3a1810"/><stop offset="1" stop-color="#100808"/></radialGradient>
-    <linearGradient id="work-ray" x1="660" y1="40" x2="780" y2="165" gradientUnits="userSpaceOnUse"><stop stop-color="#ffd700" stop-opacity=".5"/><stop offset=".5" stop-color="#e8c170" stop-opacity=".6"/><stop offset="1" stop-color="#c4762b" stop-opacity=".3"/></linearGradient>
+    <clipPath id="work-frame"><rect width="900" height="200" rx="8"/></clipPath>
     <style>
-      text{font-family:'Segoe UI',Arial,sans-serif;fill:#e6edf3}.secondary{fill:#aeb8c5}.label{font-family:ui-monospace,Consolas,monospace;letter-spacing:1.6px}.crown{transform-origin:720px 100px;animation:work-pulse 6s ease-in-out 200}.ray{stroke-dasharray:300;stroke-dashoffset:0;animation:work-ray 7s ease-in-out 200}.neb{transform-origin:720px 100px;animation:work-drift 20s ease-in-out 200}.twk{transform-origin:508px 65px;animation:work-twk 3.5s ease-in-out 200}@keyframes work-pulse{0%,100%{transform:scale(.95);opacity:.9}50%{transform:scale(1.04);opacity:1}}@keyframes work-ray{0%,100%{stroke-dashoffset:0;opacity:.7}50%{stroke-dashoffset:140;opacity:1}}@keyframes work-drift{0%,100%{transform:rotate(-12deg) translate(0,0)}50%{transform:rotate(-12deg) translate(10px,-5px)}}@keyframes work-twk{0%,100%{opacity:.4;transform:scale(.9)}50%{opacity:1;transform:scale(1.25)}}@media(prefers-reduced-motion:reduce){.crown,.ray,.neb,.twk{animation:none}}@media(forced-colors:active){.decor{display:none}.background{fill:Canvas}.border{stroke:CanvasText}text,.secondary{fill:CanvasText}}
+      text{font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:13px;fill:#d4d4d4}
+      .tab{font-size:11px;fill:#8b949e}.tab-on{font-size:11px;fill:#e6edf3}
+      .hd{font-size:11px;fill:#8b949e}.ok{fill:#3fb950}.nm{fill:#b5cea8}
+      .lnk{fill:#9cdcfe}
+      @media(forced-colors:active){.bg{fill:Canvas}.bdr{stroke:CanvasText}text,.tab,.tab-on,.hd,.ok,.nm,.lnk{fill:CanvasText}line{stroke:CanvasText}}
     </style>
   </defs>
   <g clip-path="url(#work-frame)">
-    <rect class="background" width="900" height="200" fill="#070b19"/>
-    <g class="decor">
-      <ellipse class="neb" cx="720" cy="100" rx="310" ry="170" fill="url(#work-nebula)" transform="rotate(-12 720 100)"/>
-      <ellipse cx="810" cy="55" rx="200" ry="95" fill="url(#work-fire)" transform="rotate(-22 810 55)"/>
-      <ellipse cx="450" cy="175" rx="240" ry="88" fill="url(#work-nebula)" opacity=".35"/>
-      <g fill="#d4c5a0" opacity=".4">
-        <circle cx="25" cy="78" r=".6"/><circle cx="68" cy="20" r=".7"/><circle cx="130" cy="65" r=".5"/><circle cx="175" cy="22" r=".6"/><circle cx="226" cy="58" r=".55"/><circle cx="272" cy="18" r=".75"/><circle cx="330" cy="65" r=".6"/><circle cx="382" cy="24" r=".5"/><circle cx="435" cy="70" r=".6"/><circle cx="480" cy="16" r=".65"/>
-        <circle cx="22" cy="160" r=".6"/><circle cx="95" cy="178" r=".55"/><circle cx="165" cy="155" r=".5"/><circle cx="240" cy="180" r=".7"/><circle cx="315" cy="162" r=".55"/><circle cx="395" cy="175" r=".65"/><circle cx="465" cy="148" r=".6"/><circle cx="498" cy="100" r=".5"/>
-        <circle cx="520" cy="30" r=".7"/><circle cx="558" cy="80" r=".55"/><circle cx="590" cy="15" r=".6"/><circle cx="630" cy="70" r=".5"/><circle cx="665" cy="18" r=".55"/><circle cx="710" cy="38" r=".6"/><circle cx="758" cy="20" r=".7"/><circle cx="805" cy="28" r=".55"/><circle cx="848" cy="60" r=".65"/><circle cx="878" cy="22" r=".55"/>
-        <circle cx="530" cy="162" r=".6"/><circle cx="575" cy="185" r=".7"/><circle cx="648" cy="168" r=".5"/><circle cx="685" cy="186" r=".6"/><circle cx="728" cy="172" r=".5"/><circle cx="798" cy="188" r=".75"/><circle cx="845" cy="172" r=".55"/><circle cx="878" cy="138" r=".6"/>
-      </g>
-      <g class="twk" fill="#ffe8b0"><circle cx="508" cy="65" r="1.1" opacity=".75"/><circle cx="860" cy="45" r="1.15" opacity=".8"/><circle cx="700" cy="18" r="1" opacity=".7"/><circle cx="555" cy="130" r=".9" opacity=".6"/><circle cx="830" cy="155" r="1" opacity=".75"/></g>
-      <path d="M868 175v6m-3-3h6M575 42v5m-2.5-2.5h5" fill="none" stroke="#ffe8b0" stroke-opacity=".55" stroke-linecap="round"/>
-      <!-- Crown constellation -->
-      <g class="crown">
-        <!-- Crown base arc -->
-        <path d="M620 145C660 148 760 148 820 145" fill="none" stroke="#c9a455" stroke-opacity=".2" stroke-width=".8"/>
-        <!-- Crown structure lines -->
-        <path d="M640 140L660 72L720 55L780 72L800 140" fill="none" stroke="#c9a455" stroke-opacity=".15" stroke-width=".8"/>
-        <path d="M660 72L690 110L720 55L750 110L780 72" fill="none" stroke="#c9a455" stroke-opacity=".12" stroke-width=".8"/>
-        <!-- Animated ray traces -->
-        <path class="ray" d="M640 140L660 72L720 55L780 72L800 140" fill="none" stroke="url(#work-ray)" stroke-width="1.2"/>
-        <path class="ray" d="M660 72L720 55L780 72" fill="none" stroke="url(#work-ray)" stroke-width="1" opacity=".7"/>
-        <!-- Crown rays extending upward -->
-        <path d="M720 55V28M660 72L645 48M780 72L795 48" fill="none" stroke="#ffd700" stroke-opacity=".2" stroke-width=".6"/>
-        <!-- Crown gem stars -->
-        <!-- Center top gem -->
-        <circle cx="720" cy="55" r="30" fill="url(#work-glow)"/>
-        <circle cx="720" cy="55" r="12" fill="url(#work-gem)"/>
-        <path d="M709 51A12 12 0 0 1 724 44" fill="none" stroke="#fff8e1" stroke-opacity=".7" stroke-width=".8"/>
-        <!-- Left gem -->
-        <circle cx="660" cy="72" r="22" fill="url(#work-glow)"/>
-        <circle cx="660" cy="72" r="9" fill="url(#work-ruby)"/>
-        <path d="M652 69A9 9 0 0 1 663 64" fill="none" stroke="#ffe0c0" stroke-opacity=".65" stroke-width=".7"/>
-        <!-- Right gem -->
-        <circle cx="780" cy="72" r="22" fill="url(#work-glow)"/>
-        <circle cx="780" cy="72" r="9" fill="url(#work-ruby)"/>
-        <path d="M772 69A9 9 0 0 1 783 64" fill="none" stroke="#ffe0c0" stroke-opacity=".65" stroke-width=".7"/>
-        <!-- Left base -->
-        <circle cx="640" cy="140" r="16" fill="url(#work-glow)"/>
-        <circle cx="640" cy="140" r="7" fill="url(#work-gem)"/>
-        <path d="M634 137A7 7 0 0 1 643 134" fill="none" stroke="#fff4d4" stroke-opacity=".6" stroke-width=".6"/>
-        <!-- Right base -->
-        <circle cx="800" cy="140" r="16" fill="url(#work-glow)"/>
-        <circle cx="800" cy="140" r="7" fill="url(#work-gem)"/>
-        <path d="M794 137A7 7 0 0 1 803 134" fill="none" stroke="#fff4d4" stroke-opacity=".6" stroke-width=".6"/>
-        <!-- Connection node sparks -->
-        <circle cx="690" cy="110" r="1.8" fill="#ffd700" opacity=".6"/><circle cx="750" cy="110" r="1.8" fill="#ffd700" opacity=".6"/>
-      </g>
-    </g>
-    <text x="40" y="39" class="label secondary" font-size="10">SECTOR 03 / SEKHMET SOLAR CROWN</text>
-    <text x="38" y="104" font-size="39" font-weight="650" letter-spacing="-1">Crowned in Fire</text>
-    <text x="40" y="137" class="secondary" font-size="15">Golden Pyramids &amp; 3D Orbital Canvas.</text>
-    <path class="decor" d="M40 164H70" stroke="#d4a017" stroke-width="1.5"/>
+    <rect class="bg" width="900" height="200" fill="#0d1117"/>
+    <rect width="900" height="28" fill="#161b22"/>
+    <rect x="198" y="0" width="68" height="28" fill="#0d1117"/>
+    <text x="12" y="18" class="tab">Elements</text>
+    <text x="88" y="18" class="tab">Console</text>
+    <text x="148" y="18" class="tab">Sources</text>
+    <text x="210" y="18" class="tab-on">Network</text>
+    <text x="272" y="18" class="tab">Performance</text>
+    <text x="362" y="18" class="tab">Application</text>
+    <line x1="0" y1="28" x2="900" y2="28" stroke="#30363d"/>
+    <rect x="198" y="27" width="68" height="2" fill="#0078d4"/>
+    <!-- Table header -->
+    <text x="20" y="52" class="hd">Name</text>
+    <text x="340" y="52" class="hd">Status</text>
+    <text x="440" y="52" class="hd">Type</text>
+    <text x="540" y="52" class="hd">Size</text>
+    <text x="640" y="52" class="hd">Time</text>
+    <line x1="12" y1="58" x2="700" y2="58" stroke="#30363d" stroke-width="0.5"/>
+    <!-- Row 1 -->
+    <text x="20" y="78" class="lnk">/api/3d-interactive-portfolio</text>
+    <text x="340" y="78" class="ok">200</text>
+    <text x="440" y="78">fetch</text>
+    <text x="540" y="78" class="nm">12.4 kB</text>
+    <text x="640" y="78" class="nm">142 ms</text>
+    <line x1="12" y1="84" x2="700" y2="84" stroke="#21262d" stroke-width="0.5"/>
+    <!-- Row 2 -->
+    <text x="20" y="104" class="lnk">/api/enterprise-platform</text>
+    <text x="340" y="104" class="ok">200</text>
+    <text x="440" y="104">xhr</text>
+    <text x="540" y="104" class="nm">8.7 kB</text>
+    <text x="640" y="104" class="nm">87 ms</text>
+    <line x1="12" y1="110" x2="700" y2="110" stroke="#21262d" stroke-width="0.5"/>
+    <!-- Row 3 -->
+    <text x="20" y="130" class="lnk">/api/ai-research-suite</text>
+    <text x="340" y="130" class="ok">200</text>
+    <text x="440" y="130">fetch</text>
+    <text x="540" y="130" class="nm">15.2 kB</text>
+    <text x="640" y="130" class="nm">215 ms</text>
+    <line x1="12" y1="136" x2="700" y2="136" stroke="#21262d" stroke-width="0.5"/>
+    <!-- Row 4 -->
+    <text x="20" y="156" class="lnk">/api/open-source-tools</text>
+    <text x="340" y="156" class="ok">200</text>
+    <text x="440" y="156">fetch</text>
+    <text x="540" y="156" class="nm">6.3 kB</text>
+    <text x="640" y="156" class="nm">63 ms</text>
+    <line x1="12" y1="162" x2="700" y2="162" stroke="#21262d" stroke-width="0.5"/>
+    <!-- Summary -->
+    <text x="20" y="184" class="hd">4 requests · 42.6 kB transferred · 507 ms total</text>
   </g>
-  <rect class="border" x=".5" y=".5" width="899" height="199" rx="15.5" fill="none" stroke="#8b7d3e" stroke-opacity=".23"/>
+  <rect class="bdr" x=".5" y=".5" width="899" height="199" rx="7.5" fill="none" stroke="#30363d"/>
 </svg>

@@ -1,73 +1,31 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="150" viewBox="0 0 800 150" preserveAspectRatio="xMidYMid meet" role="img" style="max-width:100%;height:auto">
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="130" viewBox="0 0 800 130" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="term-title" style="max-width:100%;height:auto">
+  <title id="term-title">Terminal session with typed commands</title>
   <defs>
-    <filter id="glass" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="3" result="blur" />
-      <feMerge>
-        <feMergeNode in="blur" />
-        <feMergeNode in="SourceGraphic" />
-      </feMerge>
-    </filter>
-    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="2" result="blur1" />
-      <feGaussianBlur stdDeviation="6" result="blur2" />
-      <feMerge>
-        <feMergeNode in="blur2"/>
-        <feMergeNode in="blur1"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-    
-    <!-- V10 MAX True Typing Effect -->
-    <clipPath id="type1">
-      <rect x="0" y="-15" width="0" height="20"><animate attributeName="width" values="0; 400; 400" dur="10s" keyTimes="0; 0.1; 1" repeatCount="indefinite"/></rect>
-    </clipPath>
-    <clipPath id="type2">
-      <rect x="0" y="-15" width="0" height="20"><animate attributeName="width" values="0; 0; 400; 400" dur="10s" keyTimes="0; 0.15; 0.25; 1" repeatCount="indefinite"/></rect>
-    </clipPath>
-    <clipPath id="type3">
-      <rect x="0" y="-15" width="0" height="20"><animate attributeName="width" values="0; 0; 400; 400" dur="10s" keyTimes="0; 0.3; 0.4; 1" repeatCount="indefinite"/></rect>
-    </clipPath>
-    <clipPath id="type4">
-      <rect x="0" y="-15" width="0" height="20"><animate attributeName="width" values="0; 0; 400; 400" dur="10s" keyTimes="0; 0.5; 0.6; 1" repeatCount="indefinite"/></rect>
-    </clipPath>
-    <clipPath id="type5">
-      <rect x="0" y="-15" width="0" height="20"><animate attributeName="width" values="0; 0; 400; 400" dur="10s" keyTimes="0; 0.7; 0.8; 1" repeatCount="indefinite"/></rect>
-    </clipPath>
-
+    <clipPath id="term-frame"><rect width="800" height="130" rx="10"/></clipPath>
+    <clipPath id="t1"><rect x="0" y="-15" width="0" height="20"><animate attributeName="width" values="0;500;500" dur="8s" keyTimes="0;0.12;1" repeatCount="indefinite"/></rect></clipPath>
+    <clipPath id="t2"><rect x="0" y="-15" width="0" height="20"><animate attributeName="width" values="0;0;300;300" dur="8s" keyTimes="0;0.18;0.22;1" repeatCount="indefinite"/></rect></clipPath>
+    <clipPath id="t3"><rect x="0" y="-15" width="0" height="20"><animate attributeName="width" values="0;0;500;500" dur="8s" keyTimes="0;0.30;0.42;1" repeatCount="indefinite"/></rect></clipPath>
+    <clipPath id="t4"><rect x="0" y="-15" width="0" height="20"><animate attributeName="width" values="0;0;500;500" dur="8s" keyTimes="0;0.48;0.52;1" repeatCount="indefinite"/></rect></clipPath>
+    <clipPath id="t5"><rect x="0" y="-15" width="0" height="20"><animate attributeName="width" values="0;0;300;300" dur="8s" keyTimes="0;0.60;0.72;1" repeatCount="indefinite"/></rect></clipPath>
     <style>
-      .l1 { font-family: monospace; font-size: 14px; font-weight: bold; }
-      .l2, .l3, .l4, .l5 { font-family: monospace; font-size: 14px; }
-      .load { animation: load-anim 10s infinite; }
-      @keyframes load-anim { 0%, 30% { width: 0px; opacity: 0; } 31% { opacity: 1; } 50%, 100% { width: 200px; opacity: 1; } }
+      text{font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:13px}
+      .pr{fill:#569cd6}.cmd{fill:#e6edf3}.out{fill:#8b949e}
+      .ok{fill:#3fb950}.tb{font-size:12px;fill:#969696}
+      @media(prefers-reduced-motion:reduce){.cur{display:none}}
+      @media(forced-colors:active){rect,circle{fill:Canvas;stroke:CanvasText}text,.pr,.cmd,.out,.ok,.tb{fill:CanvasText}}
     </style>
   </defs>
-
-  <!-- Hacker Particles -->
-  <g filter="url(#glow)">
-    <circle cx="100" cy="140" r="1.5" fill="#00ff00"><animate attributeName="cy" values="140; 0" dur="10s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.5;0" dur="10s" repeatCount="indefinite"/></circle>
-    <circle cx="250" cy="140" r="1" fill="#00ffcc"><animate attributeName="cy" values="140; 0" dur="15s" begin="2s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.8;0" dur="15s" begin="2s" repeatCount="indefinite"/></circle>
-    <circle cx="450" cy="140" r="2" fill="#ffffff"><animate attributeName="cy" values="140; 0" dur="8s" begin="1s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.4;0" dur="8s" begin="1s" repeatCount="indefinite"/></circle>
-    <circle cx="700" cy="140" r="1.5" fill="#00ff00"><animate attributeName="cy" values="140; 0" dur="12s" begin="4s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.6;0" dur="12s" begin="4s" repeatCount="indefinite"/></circle>
+  <g clip-path="url(#term-frame)">
+    <rect width="800" height="28" fill="#323233"/>
+    <circle cx="18" cy="14" r="5" fill="#ff5f57"/><circle cx="34" cy="14" r="5" fill="#febc2e"/><circle cx="50" cy="14" r="5" fill="#28c840"/>
+    <text x="68" y="18" class="tb">Terminal — node</text>
+    <rect y="28" width="800" height="102" fill="#1e1e1e"/>
+    <text x="20" y="52" clip-path="url(#t1)"><tspan class="pr">$ </tspan><tspan class="cmd">node --version</tspan></text>
+    <text x="20" y="70" class="out" clip-path="url(#t2)">v24.0.0</text>
+    <text x="20" y="88" clip-path="url(#t3)"><tspan class="pr">$ </tspan><tspan class="cmd">git log --oneline -1</tspan></text>
+    <text x="20" y="106" class="out" clip-path="url(#t4)">a1b2c3d chore: update devtools profile</text>
+    <text x="20" y="122" clip-path="url(#t5)"><tspan class="pr">$ </tspan><tspan class="ok">ready</tspan></text>
+    <rect class="cur" x="68" y="112" width="7" height="13" fill="#aeafad" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" dur="8s" keyTimes="0;0.71;0.72;0.85;0.86;1" repeatCount="indefinite"/></rect>
   </g>
-
-  <!-- Massive Glass Terminal -->
-  <rect x="2" y="2" width="796" height="146" rx="16" fill="#030612" stroke="#00ffcc" stroke-width="2" filter="url(#glass)" opacity="0.8"/>
-  <rect x="2" y="2" width="796" height="30" rx="16" fill="#0d1117"/>
-  <rect x="2" y="16" width="796" height="16" fill="#0d1117"/>
-  
-  <circle cx="25" cy="17" r="6" fill="#ff5f56" filter="url(#glow)"/>
-  <circle cx="45" cy="17" r="6" fill="#ffbd2e" filter="url(#glow)"/>
-  <circle cx="65" cy="17" r="6" fill="#27c93f" filter="url(#glow)"/>
-  <text x="90" y="22" fill="#7d8590" font-size="12">root@v12-matrix-node:~ (bash) - 100x40</text>
-
-  <!-- CLI Output -->
-  <g transform="translate(25, 55)" filter="url(#glow)">
-    <text class="l1" y="0" fill="#00ffcc" clip-path="url(#type1)">$ sudo systemctl start 3d-tesseract-engine</text>
-    <text class="l2" y="22" fill="#00ff00" clip-path="url(#type2)">&gt; Allocating WebGL context... OK</text>
-    <text class="l3" y="44" fill="#a0b0c0" clip-path="url(#type3)">&gt; Compiling Quantum Shaders: </text>
-    <rect class="l3 load" x="250" y="34" height="12" rx="2" fill="#00ffcc"/>
-    <text class="l3" x="250" y="44" fill="#030612" clip-path="url(#type4)">[████████████████████████] 100%</text> 
-    <text class="l4" y="66" fill="#00ff00" clip-path="url(#type5)">&gt; SUCCESS: Neural Matrix Online.</text>
-    <text class="l5" y="88" fill="#00ffcc" opacity="0"><animate attributeName="opacity" values="0; 0; 1; 1" dur="10s" keyTimes="0; 0.9; 0.91; 1" repeatCount="indefinite"/>tan@node:~$ <tspan fill="#ffffff">Welcome to V12 CYBER MATRIX.</tspan></text>
-  </g>
+  <rect x=".5" y=".5" width="799" height="129" rx="9.5" fill="none" stroke="#3c3c3c"/>
 </svg>

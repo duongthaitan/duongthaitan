@@ -1,65 +1,60 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="200" viewBox="0 0 900 200" role="img" aria-labelledby="auto-title auto-desc">
-  <title id="auto-title">Flight systems — Automation</title>
-  <desc id="auto-desc">Interlocking golden gear rings and orbital mechanisms turn in deep space. Satellite nodes ride fixed positions on circular tracks while golden sparks mark the mesh points of the clockwork constellation.</desc>
+  <title id="auto-title">Performance panel — Automation</title>
+  <desc id="auto-desc">A DevTools Performance panel showing a CI/CD pipeline visualization with completed steps for checkout, setup, test, render, and deploy, displayed as a waterfall timeline.</desc>
   <defs>
-    <clipPath id="auto-frame"><rect width="900" height="200" rx="16"/></clipPath>
-    <radialGradient id="auto-nebula"><stop stop-color="#c9a020" stop-opacity=".28"/><stop offset=".5" stop-color="#6b4f14" stop-opacity=".12"/><stop offset="1" stop-color="#070b19" stop-opacity="0"/></radialGradient>
-    <radialGradient id="auto-fire"><stop stop-color="#b86830" stop-opacity=".16"/><stop offset="1" stop-color="#070b19" stop-opacity="0"/></radialGradient>
-    <radialGradient id="auto-glow"><stop stop-color="#ffd700" stop-opacity=".2"/><stop offset=".4" stop-color="#d4a017" stop-opacity=".08"/><stop offset="1" stop-color="#d4a017" stop-opacity="0"/></radialGradient>
-    <radialGradient id="auto-core" cx=".3" cy=".24" r=".78"><stop stop-color="#fff8e1"/><stop offset=".25" stop-color="#ffd700"/><stop offset=".55" stop-color="#b8860b"/><stop offset=".8" stop-color="#4a3810"/><stop offset="1" stop-color="#0e0e08"/></radialGradient>
-    <radialGradient id="auto-node" cx=".28" cy=".22" r=".8"><stop stop-color="#ffe8c0"/><stop offset=".3" stop-color="#d4a862"/><stop offset=".65" stop-color="#6b5530"/><stop offset="1" stop-color="#100e08"/></radialGradient>
-    <linearGradient id="auto-track"><stop stop-color="#ffd700" stop-opacity=".3"/><stop offset=".5" stop-color="#d4a017" stop-opacity=".5"/><stop offset="1" stop-color="#c4762b" stop-opacity=".2"/></linearGradient>
+    <clipPath id="auto-frame"><rect width="900" height="200" rx="8"/></clipPath>
     <style>
-      text{font-family:'Segoe UI',Arial,sans-serif;fill:#e6edf3}.secondary{fill:#aeb8c5}.label{font-family:ui-monospace,Consolas,monospace;letter-spacing:1.6px}.clockwork{transform-origin:710px 100px;animation:auto-spin 40s linear 200}.gear{stroke-dasharray:400;stroke-dashoffset:0;animation:auto-trace 8s ease-in-out 200}.neb{transform-origin:700px 100px;animation:auto-drift 20s ease-in-out 200}.twk{transform-origin:698px 84px;animation:auto-twk 3.5s ease-in-out 200}@keyframes auto-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}@keyframes auto-trace{0%,100%{stroke-dashoffset:0;opacity:.7}50%{stroke-dashoffset:150;opacity:1}}@keyframes auto-drift{0%,100%{transform:rotate(-10deg) translate(0,0)}50%{transform:rotate(-10deg) translate(8px,-5px)}}@keyframes auto-twk{0%,100%{opacity:.4;transform:scale(.9)}50%{opacity:1;transform:scale(1.2)}}@media(prefers-reduced-motion:reduce){.clockwork,.gear,.neb,.twk{animation:none}}@media(forced-colors:active){.decor{display:none}.background{fill:Canvas}.border{stroke:CanvasText}text,.secondary{fill:CanvasText}}
+      text{font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:13px;fill:#d4d4d4}
+      .tab{font-size:11px;fill:#8b949e}.tab-on{font-size:11px;fill:#e6edf3}
+      .ok{fill:#3fb950}.lbl{fill:#e6edf3}.dim{fill:#6e7681}
+      .bar{rx:3;ry:3}
+      @media(forced-colors:active){.bg{fill:Canvas}.bdr{stroke:CanvasText}text,.tab,.tab-on,.ok,.lbl,.dim{fill:CanvasText}rect.bar{fill:CanvasText}line{stroke:CanvasText}}
     </style>
   </defs>
   <g clip-path="url(#auto-frame)">
-    <rect class="background" width="900" height="200" fill="#070b19"/>
-    <g class="decor">
-      <ellipse class="neb" cx="700" cy="100" rx="310" ry="168" fill="url(#auto-nebula)" transform="rotate(-10 700 100)"/>
-      <ellipse cx="830" cy="50" rx="190" ry="90" fill="url(#auto-fire)" transform="rotate(-20 830 50)"/>
-      <ellipse cx="430" cy="175" rx="220" ry="85" fill="url(#auto-nebula)" opacity=".35"/>
-      <g fill="#d4c5a0" opacity=".4">
-        <circle cx="22" cy="80" r=".6"/><circle cx="68" cy="16" r=".7"/><circle cx="128" cy="66" r=".5"/><circle cx="172" cy="20" r=".6"/><circle cx="224" cy="56" r=".55"/><circle cx="270" cy="16" r=".7"/><circle cx="328" cy="60" r=".55"/><circle cx="380" cy="24" r=".65"/><circle cx="434" cy="66" r=".55"/><circle cx="476" cy="18" r=".6"/>
-        <circle cx="22" cy="162" r=".6"/><circle cx="96" cy="178" r=".5"/><circle cx="164" cy="154" r=".55"/><circle cx="238" cy="180" r=".65"/><circle cx="314" cy="162" r=".55"/><circle cx="392" cy="176" r=".6"/><circle cx="462" cy="148" r=".6"/><circle cx="496" cy="100" r=".5"/>
-        <circle cx="520" cy="28" r=".7"/><circle cx="556" cy="76" r=".55"/><circle cx="590" cy="14" r=".6"/><circle cx="626" cy="70" r=".5"/><circle cx="660" cy="16" r=".55"/><circle cx="706" cy="38" r=".6"/><circle cx="754" cy="18" r=".7"/><circle cx="800" cy="28" r=".55"/><circle cx="846" cy="58" r=".6"/><circle cx="878" cy="20" r=".55"/>
-        <circle cx="528" cy="162" r=".55"/><circle cx="572" cy="184" r=".65"/><circle cx="644" cy="168" r=".5"/><circle cx="680" cy="186" r=".6"/><circle cx="726" cy="170" r=".5"/><circle cx="794" cy="188" r=".7"/><circle cx="842" cy="172" r=".55"/><circle cx="876" cy="136" r=".6"/>
-      </g>
-      <g class="twk" fill="#ffe8b0"><circle cx="508" cy="64" r="1.1" opacity=".7"/><circle cx="858" cy="44" r="1.15" opacity=".8"/><circle cx="698" cy="16" r="1" opacity=".65"/><circle cx="552" cy="130" r=".9" opacity=".6"/><circle cx="828" cy="152" r="1" opacity=".7"/></g>
-      <path d="M866 174v6m-3-3h6M570 40v5m-2.5-2.5h5" fill="none" stroke="#ffe8b0" stroke-opacity=".5" stroke-linecap="round"/>
-      <!-- Clockwork mechanism -->
-      <g class="clockwork">
-        <!-- Central glow -->
-        <circle cx="710" cy="100" r="60" fill="url(#auto-glow)"/>
-        <!-- Gear ring tracks -->
-        <circle class="gear" cx="710" cy="100" r="65" fill="none" stroke="url(#auto-track)" stroke-width="1.2"/>
-        <circle class="gear" cx="710" cy="100" r="45" fill="none" stroke="url(#auto-track)" stroke-width="1" opacity=".7"/>
-        <circle class="gear" cx="710" cy="100" r="85" fill="none" stroke="#c9a455" stroke-opacity=".18" stroke-width=".8"/>
-        <!-- Tilted orbital ring -->
-        <ellipse cx="710" cy="100" rx="78" ry="30" transform="rotate(-22 710 100)" fill="none" stroke="#d4a017" stroke-opacity=".25" stroke-width="1.2"/>
-        <ellipse cx="710" cy="100" rx="55" ry="22" transform="rotate(18 710 100)" fill="none" stroke="#c9a455" stroke-opacity=".15" stroke-width=".8"/>
-        <!-- Core -->
-        <circle cx="710" cy="100" r="18" fill="url(#auto-core)"/>
-        <path d="M694 95A18 18 0 0 1 716 83" fill="none" stroke="#fff8e1" stroke-opacity=".6" stroke-width=".9"/>
-        <!-- Gear teeth marks -->
-        <g fill="none" stroke="#d4a017" stroke-opacity=".25" stroke-width="1.2" stroke-linecap="round">
-          <path d="M710 35v8M710 157v8M635 100h8M777 100h8"/><path d="M657 47l5.5 5.5M758 148l5.5 5.5M657 153l5.5-5.5M758 47l5.5-5.5"/>
-        </g>
-        <!-- Satellite nodes on orbits -->
-        <circle cx="775" cy="100" r="8" fill="url(#auto-node)"/><path d="M768 97A8 8 0 0 1 778 93" fill="none" stroke="#ffe8c0" stroke-opacity=".55" stroke-width=".6"/>
-        <circle cx="645" cy="100" r="7" fill="url(#auto-node)"/><path d="M639 97A7 7 0 0 1 648 93" fill="none" stroke="#ffe8c0" stroke-opacity=".5" stroke-width=".6"/>
-        <circle cx="710" cy="35" r="6" fill="url(#auto-node)"/>
-        <circle cx="710" cy="165" r="5" fill="url(#auto-node)"/>
-        <!-- Connection spokes -->
-        <path d="M710 53V82M710 118V160M727 100H767M653 100H692" fill="none" stroke="#c9a455" stroke-opacity=".2" stroke-width=".6"/>
-        <!-- Spark dots at mesh points -->
-        <circle cx="748" cy="68" r="1.5" fill="#ffd700" opacity=".5"/><circle cx="672" cy="132" r="1.5" fill="#ffd700" opacity=".45"/><circle cx="748" cy="132" r="1.3" fill="#e8c170" opacity=".4"/><circle cx="672" cy="68" r="1.3" fill="#e8c170" opacity=".4"/>
-      </g>
-    </g>
-    <text x="40" y="39" class="label secondary" font-size="10">SECTOR 06 / AUTOMATION</text>
-    <text x="38" y="104" font-size="39" font-weight="650" letter-spacing="-1">Flight systems</text>
-    <text x="40" y="137" class="secondary" font-size="15">Precision clockwork in orbit.</text>
-    <path class="decor" d="M40 164H70" stroke="#d4a017" stroke-width="1.5"/>
+    <rect class="bg" width="900" height="200" fill="#0d1117"/>
+    <rect width="900" height="28" fill="#161b22"/>
+    <rect x="260" y="0" width="86" height="28" fill="#0d1117"/>
+    <text x="12" y="18" class="tab">Elements</text>
+    <text x="88" y="18" class="tab">Console</text>
+    <text x="148" y="18" class="tab">Sources</text>
+    <text x="210" y="18" class="tab">Network</text>
+    <text x="274" y="18" class="tab-on">Performance</text>
+    <text x="362" y="18" class="tab">Application</text>
+    <line x1="0" y1="28" x2="900" y2="28" stroke="#30363d"/>
+    <rect x="260" y="27" width="86" height="2" fill="#0078d4"/>
+    <!-- Pipeline header -->
+    <text x="20" y="52" class="dim">Pipeline: update-profile · Workflow #247</text>
+    <line x1="12" y1="58" x2="700" y2="58" stroke="#21262d" stroke-width="0.5"/>
+    <!-- Step 1: checkout -->
+    <text x="20" y="78" class="lbl">checkout</text>
+    <text x="140" y="78" class="ok">✓</text>
+    <rect class="bar" x="160" y="68" width="60" height="14" fill="#238636"/>
+    <text x="230" y="78" class="dim">2.1s</text>
+    <!-- Step 2: setup-node -->
+    <text x="20" y="100" class="lbl">setup-node</text>
+    <text x="140" y="100" class="ok">✓</text>
+    <rect class="bar" x="220" y="90" width="120" height="14" fill="#238636"/>
+    <text x="350" y="100" class="dim">4.3s</text>
+    <!-- Step 3: test -->
+    <text x="20" y="122" class="lbl">test-render</text>
+    <text x="140" y="122" class="ok">✓</text>
+    <rect class="bar" x="340" y="112" width="36" height="14" fill="#238636"/>
+    <text x="386" y="122" class="dim">1.2s</text>
+    <!-- Step 4: render -->
+    <text x="20" y="144" class="lbl">build-svg</text>
+    <text x="140" y="144" class="ok">✓</text>
+    <rect class="bar" x="376" y="134" width="90" height="14" fill="#238636"/>
+    <text x="476" y="144" class="dim">3.0s</text>
+    <!-- Step 5: deploy -->
+    <text x="20" y="166" class="lbl">deploy</text>
+    <text x="140" y="166" class="ok">✓</text>
+    <rect class="bar" x="466" y="156" width="30" height="14" fill="#238636"/>
+    <text x="506" y="166" class="dim">1.0s</text>
+    <!-- Summary -->
+    <line x1="12" y1="178" x2="700" y2="178" stroke="#21262d" stroke-width="0.5"/>
+    <text x="20" y="194" class="dim">Total: 11.6s</text>
+    <text x="120" y="194" class="ok">✓ All steps passed</text>
   </g>
-  <rect class="border" x=".5" y=".5" width="899" height="199" rx="15.5" fill="none" stroke="#8b7d3e" stroke-opacity=".23"/>
+  <rect class="bdr" x=".5" y=".5" width="899" height="199" rx="7.5" fill="none" stroke="#30363d"/>
 </svg>

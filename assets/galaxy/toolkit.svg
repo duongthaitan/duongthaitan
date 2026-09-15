@@ -1,68 +1,37 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="200" viewBox="0 0 900 200" role="img" aria-labelledby="toolkit-title toolkit-desc">
-  <title id="toolkit-title">Technology constellation — Toolkit</title>
-  <desc id="toolkit-desc">Golden and amber spheres form a three-dimensional constellation forged in fire. Bright orbital connections cross at different depths around a ringed central world, suspended in a golden star cloud.</desc>
+  <title id="toolkit-title">Sources panel — Toolkit</title>
+  <desc id="toolkit-desc">A code editor panel styled as Chrome DevTools Sources tab, showing technology stack as TypeScript import statements grouped by category with syntax highlighting.</desc>
   <defs>
-    <clipPath id="toolkit-frame"><rect width="900" height="200" rx="16"/></clipPath>
-    <radialGradient id="toolkit-nebula"><stop stop-color="#c9a020" stop-opacity=".34"/><stop offset=".5" stop-color="#6b4f14" stop-opacity=".15"/><stop offset="1" stop-color="#070b19" stop-opacity="0"/></radialGradient>
-    <radialGradient id="toolkit-fire"><stop stop-color="#c4762b" stop-opacity=".2"/><stop offset="1" stop-color="#070b19" stop-opacity="0"/></radialGradient>
-    <radialGradient id="toolkit-glow"><stop stop-color="#ffd700" stop-opacity=".2"/><stop offset=".4" stop-color="#d4a017" stop-opacity=".08"/><stop offset="1" stop-color="#d4a017" stop-opacity="0"/></radialGradient>
-    <radialGradient id="toolkit-gold" cx=".27" cy=".2" r=".83"><stop stop-color="#fff8e1"/><stop offset=".23" stop-color="#ffd700"/><stop offset=".52" stop-color="#b8860b"/><stop offset=".77" stop-color="#4a3810"/><stop offset="1" stop-color="#0e1208"/></radialGradient>
-    <radialGradient id="toolkit-amber" cx=".25" cy=".22" r=".83"><stop stop-color="#fff0d4"/><stop offset=".22" stop-color="#e8c170"/><stop offset=".51" stop-color="#8b6c3a"/><stop offset=".76" stop-color="#3a2e18"/><stop offset="1" stop-color="#0c1006"/></radialGradient>
-    <radialGradient id="toolkit-pearl" cx=".26" cy=".2" r=".83"><stop stop-color="#ffe8c0"/><stop offset=".26" stop-color="#d4a862"/><stop offset=".54" stop-color="#8b7040"/><stop offset=".78" stop-color="#3e3018"/><stop offset="1" stop-color="#130e08"/></radialGradient>
-    <linearGradient id="toolkit-link" x1="557" y1="30" x2="842" y2="174" gradientUnits="userSpaceOnUse"><stop stop-color="#e8c170" stop-opacity=".25"/><stop offset=".48" stop-color="#ffd700" stop-opacity=".7"/><stop offset="1" stop-color="#c4762b" stop-opacity=".3"/></linearGradient>
-    <linearGradient id="toolkit-ring"><stop stop-color="#ffe8b0"/><stop offset=".48" stop-color="#d4a017"/><stop offset="1" stop-color="#8b6914"/></linearGradient>
+    <clipPath id="toolkit-frame"><rect width="900" height="200" rx="8"/></clipPath>
     <style>
-      text{font-family:'Segoe UI',Arial,sans-serif;fill:#e6edf3}.secondary{fill:#aeb8c5}.label{font-family:ui-monospace,Consolas,monospace;letter-spacing:1.6px}.constellation{transform-origin:699px 102px;animation:toolkit-spin 35s linear 200}.trace{stroke-dasharray:460;stroke-dashoffset:0;animation:toolkit-trace 8s ease-in-out 200}.neb{transform-origin:693px 110px;animation:toolkit-drift 18s ease-in-out 200}.twk{transform-origin:511px 70px;animation:toolkit-twk 3.5s ease-in-out 200}@keyframes toolkit-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}@keyframes toolkit-trace{0%,100%{stroke-dashoffset:0;opacity:.7}50%{stroke-dashoffset:180;opacity:1}}@keyframes toolkit-drift{0%,100%{transform:rotate(16deg) translate(0,0)}50%{transform:rotate(16deg) translate(8px,-6px)}}@keyframes toolkit-twk{0%,100%{opacity:.4;transform:scale(.9)}50%{opacity:1;transform:scale(1.25)}}@media(prefers-reduced-motion:reduce){.constellation,.trace,.neb,.twk{animation:none}}@media(forced-colors:active){.decor{display:none}.background{fill:Canvas}.border{stroke:CanvasText}text,.secondary{fill:CanvasText}}
+      text{font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:13px;fill:#d4d4d4}
+      .tab{font-size:11px;fill:#8b949e}.tab-on{font-size:11px;fill:#e6edf3}
+      .ln{fill:#6e7681;text-anchor:end}.cm{fill:#6a9955}
+      .ct{fill:#c586c0}.vr{fill:#9cdcfe}.st{fill:#ce9178}
+      @media(prefers-reduced-motion:reduce){.cur{display:none}}
+      @media(forced-colors:active){.bg{fill:Canvas}.bdr{stroke:CanvasText}text,.tab,.tab-on,.ln,.cm,.ct,.vr,.st{fill:CanvasText}}
     </style>
   </defs>
   <g clip-path="url(#toolkit-frame)">
-    <rect class="background" width="900" height="200" fill="#070b19"/>
-    <g class="decor">
-      <ellipse class="neb" cx="693" cy="110" rx="328" ry="165" fill="url(#toolkit-nebula)" transform="rotate(16 693 110)"/>
-      <ellipse cx="791" cy="41" rx="197" ry="103" fill="url(#toolkit-fire)" transform="rotate(-19 791 41)"/>
-      <ellipse cx="432" cy="180" rx="231" ry="94" fill="url(#toolkit-nebula)" opacity=".4"/>
-      <g fill="#d4c5a0" opacity=".4">
-        <circle cx="22" cy="94" r=".6"/><circle cx="66" cy="16" r=".7"/><circle cx="127" cy="70" r=".5"/><circle cx="171" cy="20" r=".65"/><circle cx="232" cy="61" r=".5"/><circle cx="278" cy="16" r=".7"/><circle cx="335" cy="61" r=".55"/><circle cx="389" cy="25" r=".7"/><circle cx="440" cy="62" r=".55"/><circle cx="479" cy="18" r=".6"/>
-        <circle cx="20" cy="165" r=".65"/><circle cx="101" cy="180" r=".5"/><circle cx="169" cy="157" r=".6"/><circle cx="244" cy="184" r=".7"/><circle cx="320" cy="168" r=".6"/><circle cx="398" cy="179" r=".65"/><circle cx="469" cy="151" r=".7"/><circle cx="501" cy="102" r=".5"/>
-        <circle cx="525" cy="29" r=".75"/><circle cx="562" cy="83" r=".55"/><circle cx="594" cy="16" r=".65"/><circle cx="628" cy="76" r=".5"/><circle cx="660" cy="18" r=".6"/><circle cx="704" cy="41" r=".65"/><circle cx="755" cy="17" r=".7"/><circle cx="800" cy="30" r=".6"/><circle cx="849" cy="65" r=".7"/><circle cx="880" cy="24" r=".55"/>
-        <circle cx="527" cy="166" r=".6"/><circle cx="573" cy="187" r=".7"/><circle cx="644" cy="165" r=".55"/><circle cx="679" cy="189" r=".65"/><circle cx="723" cy="169" r=".5"/><circle cx="793" cy="190" r=".8"/><circle cx="841" cy="176" r=".6"/><circle cx="880" cy="141" r=".6"/><circle cx="853" cy="111" r=".65"/><circle cx="754" cy="95" r=".55"/>
-      </g>
-      <g class="twk" fill="#ffe8b0"><circle cx="511" cy="70" r="1.1" opacity=".8"/><circle cx="863" cy="41" r="1.2" opacity=".8"/><circle cx="694" cy="16" r="1" opacity=".7"/><circle cx="557" cy="134" r=".9" opacity=".65"/><circle cx="411" cy="148" r=".95" opacity=".6"/><circle cx="828" cy="152" r="1" opacity=".8"/></g>
-      <path d="M871 180v6m-3-3h6M571 46v6m-3-3h6" fill="none" stroke="#ffe8b0" stroke-opacity=".55" stroke-linecap="round"/>
-      <ellipse cx="704" cy="105" rx="165" ry="64" transform="rotate(-11 704 105)" fill="none" stroke="#c9a455" stroke-opacity=".1" stroke-width=".8"/>
-      <g class="constellation">
-        <path d="M596 54 742 39 811 107 756 166 604 144Z" fill="#8b6914" fill-opacity=".02" stroke="#c9a455" stroke-opacity=".12" stroke-width=".8"/>
-        <path d="M596 54 698 102 742 39M604 144 698 102 756 166M811 107 698 102M604 144 742 39M596 54 756 166" fill="none" stroke="#c9a455" stroke-opacity=".15" stroke-width=".8"/>
-        <path class="trace" d="M596 54 698 102 811 107 756 166 698 102 604 144" fill="none" stroke="url(#toolkit-link)" stroke-width="1.1"/>
-        <path d="M742 39 811 107M596 54 604 144" fill="none" stroke="#d4a862" stroke-opacity=".38" stroke-width="1"/>
-        <circle cx="742" cy="39" r="24" fill="url(#toolkit-glow)"/>
-        <circle cx="742" cy="39" r="9" fill="url(#toolkit-pearl)"/>
-        <path d="M734 36A9 9 0 0 1 744 30" fill="none" stroke="#ffe8c0" stroke-opacity=".7" stroke-width=".7"/>
-        <circle cx="604" cy="144" r="12" fill="url(#toolkit-gold)"/>
-        <path d="M593 141A12 12 0 0 1 606 132" fill="none" stroke="#fff4d4" stroke-opacity=".7" stroke-width=".8"/>
-        <circle cx="698" cy="102" r="57" fill="url(#toolkit-glow)"/>
-        <ellipse cx="698" cy="102" rx="45" ry="12" transform="rotate(-23 698 102)" fill="none" stroke="url(#toolkit-ring)" stroke-width="3" stroke-opacity=".45"/>
-        <circle cx="698" cy="102" r="27" fill="url(#toolkit-gold)"/>
-        <path d="M673 96A27 27 0 0 1 707 76" fill="none" stroke="#fff8e1" stroke-width="1" stroke-opacity=".75"/>
-        <path d="M675 98C688 91 704 108 720 103M681 115C694 110 705 121 717 114" fill="none" stroke="#e8c870" stroke-width="2" stroke-opacity=".13"/>
-        <path d="M653 102A45 12 0 0 0 743 102" transform="rotate(-23 698 102)" fill="none" stroke="url(#toolkit-ring)" stroke-width="3.2"/>
-        <path d="M650 102A48 14 0 0 0 746 102" transform="rotate(-23 698 102)" fill="none" stroke="#ffe8b0" stroke-width=".65" stroke-opacity=".6"/>
-        <circle cx="596" cy="54" r="38" fill="url(#toolkit-glow)"/>
-        <circle cx="596" cy="54" r="18" fill="url(#toolkit-amber)"/>
-        <path d="M579 50A18 18 0 0 1 602 37" fill="none" stroke="#fff0d4" stroke-width=".9" stroke-opacity=".75"/>
-        <circle cx="811" cy="107" r="40" fill="url(#toolkit-glow)"/>
-        <circle cx="811" cy="107" r="21" fill="url(#toolkit-pearl)"/>
-        <path d="M791 102A21 21 0 0 1 817 87" fill="none" stroke="#ffe8c0" stroke-width="1" stroke-opacity=".75"/>
-        <circle cx="756" cy="166" r="30" fill="url(#toolkit-glow)"/>
-        <circle cx="756" cy="166" r="15" fill="url(#toolkit-amber)"/>
-        <path d="M742 162A15 15 0 0 1 760 152" fill="none" stroke="#fff0d4" stroke-width=".8" stroke-opacity=".75"/>
-        <circle cx="648" cy="78" r="2" fill="#ffe8b0"/><circle cx="754" cy="105" r="1.8" fill="#d4a862"/><circle cx="662" cy="124" r="1.6" fill="#e8c870"/>
-      </g>
-    </g>
-    <text x="40" y="39" class="label secondary" font-size="10">SECTOR 02 / SEKHMET SOLAR FORGE</text>
-    <text x="38" y="104" font-size="39" font-weight="650" letter-spacing="-1">Forge of Tech</text>
-    <text x="40" y="137" class="secondary" font-size="15">Tempered in Fire — Refined in Gold.</text>
-    <path class="decor" d="M40 164H70" stroke="#d4a017" stroke-width="1.5"/>
+    <rect class="bg" width="900" height="200" fill="#0d1117"/>
+    <rect width="900" height="28" fill="#161b22"/>
+    <rect x="137" y="0" width="64" height="28" fill="#0d1117"/>
+    <text x="12" y="18" class="tab">Elements</text>
+    <text x="88" y="18" class="tab">Console</text>
+    <text x="149" y="18" class="tab-on">Sources</text>
+    <text x="210" y="18" class="tab">Network</text>
+    <text x="272" y="18" class="tab">Performance</text>
+    <text x="362" y="18" class="tab">Application</text>
+    <line x1="0" y1="28" x2="900" y2="28" stroke="#30363d"/>
+    <rect x="137" y="27" width="64" height="2" fill="#0078d4"/>
+    <text x="30" y="54" class="ln">1</text><text x="44" y="54" class="cm">// toolkit.ts</text>
+    <text x="30" y="74" class="ln">2</text><text x="44" y="74"><tspan class="ct">import</tspan><tspan> { </tspan><tspan class="vr">TypeScript, JavaScript, Python, Go</tspan><tspan> } </tspan><tspan class="ct">from</tspan><tspan> </tspan><tspan class="st">"@lang"</tspan><tspan>;</tspan></text>
+    <text x="30" y="94" class="ln">3</text><text x="44" y="94"><tspan class="ct">import</tspan><tspan> { </tspan><tspan class="vr">React, Next, Vue, Tailwind</tspan><tspan> } </tspan><tspan class="ct">from</tspan><tspan> </tspan><tspan class="st">"@frontend"</tspan><tspan>;</tspan></text>
+    <text x="30" y="114" class="ln">4</text><text x="44" y="114"><tspan class="ct">import</tspan><tspan> { </tspan><tspan class="vr">Node, NestJS, GraphQL, Rust</tspan><tspan> } </tspan><tspan class="ct">from</tspan><tspan> </tspan><tspan class="st">"@backend"</tspan><tspan>;</tspan></text>
+    <text x="30" y="134" class="ln">5</text><text x="44" y="134"><tspan class="ct">import</tspan><tspan> { </tspan><tspan class="vr">PostgreSQL, MongoDB, Redis</tspan><tspan> } </tspan><tspan class="ct">from</tspan><tspan> </tspan><tspan class="st">"@data"</tspan><tspan>;</tspan></text>
+    <text x="30" y="154" class="ln">6</text><text x="44" y="154"><tspan class="ct">import</tspan><tspan> { </tspan><tspan class="vr">Docker, K8s, AWS, Actions</tspan><tspan> } </tspan><tspan class="ct">from</tspan><tspan> </tspan><tspan class="st">"@devops"</tspan><tspan>;</tspan></text>
+    <text x="30" y="174" class="ln">7</text>
+    <rect class="cur" x="44" y="162" width="7" height="14" fill="#aeafad"><animate attributeName="opacity" values="1;1;0;0" dur="1s" repeatCount="indefinite"/></rect>
   </g>
-  <rect class="border" x=".5" y=".5" width="899" height="199" rx="15.5" fill="none" stroke="#8b7d3e" stroke-opacity=".23"/>
+  <rect class="bdr" x=".5" y=".5" width="899" height="199" rx="7.5" fill="none" stroke="#30363d"/>
 </svg>

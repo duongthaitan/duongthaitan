@@ -24,7 +24,7 @@ function checkSvg(svg) {
   assert.doesNotMatch(svg, /<\s*(?:script|foreignObject)\b|\son\w+\s*=|@import\b|<!DOCTYPE|<!ENTITY|\binfinite\b/i);
   const ids = [...svg.matchAll(/\bid=["']([^"']+)["']/g)].map(match => match[1]);
   assert.equal(ids.length, new Set(ids).size, 'SVG IDs must be unique');
-  const refs = [...svg.matchAll(/\burl\s*\(\s*([^)]*?)\s*\)/gi)].map(match => match[1].replace(/^(['"])(.*)\1$/, '$2'));
+  const refs = [...svg.matchAll(/\burl\s*\(\s*([^)]*?)\s*\)/gi)].map(match => match[1].replace(/^(['"])(.*)\\1$/, '$2'));
   refs.push(...[...svg.matchAll(/\b(?:xlink:)?href=["']([^"']+)["']/gi)].map(match => match[1]));
   for (const ref of refs) {
     assert.match(ref, /^#[\w-]+$/, 'Only local SVG fragments allowed');
