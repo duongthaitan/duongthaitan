@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Duong Thai Tan — Full-Stack Developer & Visual Creator from Soc Trang, Vietnam. Building production-grade web applications with clean architecture and modern tooling.">
+  <title>Thai Tan — Full-Stack Developer & Visual Creator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ─── GLOBAL RESET ─── */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      overflow-x: hidden;
+      max-width: 100vw;
+    }
+
+    body {
+      font-family: 'Archivo', sans-serif;
+      background: #0a0a0b;
+      color: #fff;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: color 0.2s ease;
+    }
+    a:hover { color: #fff; }
+
+    /* ─── HERO SECTION ─── */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 720px;
+      overflow: hidden;
+      background: #0a0a0b;
+    }
+
+    /* ─── BACKGROUND VIDEO ─── */
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 60%;
+      pointer-events: none;
+    }
+
+    /* ─── GRADIENT OVERLAY ─── */
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg,
+        rgba(8,8,10,0.55) 0%,
+        rgba(8,8,10,0.15) 30%,
+        rgba(8,8,10,0.25) 55%,
+        rgba(8,8,10,0.92) 100%
+      );
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* ─── NAVBAR ─── */
+    .navbar {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 34px 56px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 42px;
+    }
+
+    .nav-link {
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.82);
+      transition: color 0.2s ease;
+    }
+    .nav-link:hover { color: #fff; }
+    .nav-link.active {
+      color: #fff;
+      border-bottom: 2px solid #fff;
+      padding-bottom: 3px;
+    }
+
+    .nav-logo {
+      color: #fff;
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .nav-right .nav-btn {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #FAF9F5;
+      font-family: 'Archivo', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 11px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+    }
+    .nav-right .nav-btn:hover {
+      background: #e9e9ec;
+      color: #0a0a0b;
+      border-color: #e9e9ec;
+    }
+    .nav-right .nav-btn .arrow { font-size: 15px; }
+
+    /* ─── GIANT HEADLINE ─── */
+    .giant-headline {
+      position: absolute;
+      top: 92px;
+      width: 100%;
+      text-align: center;
+      z-index: 2;
+      font-size: 13.3vw;
+      font-weight: 800;
+      line-height: 0.9;
+      letter-spacing: -0.03em;
+      white-space: nowrap;
+      background: linear-gradient(180deg, #ffffff 55%, #b8b8bd 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    /* ─── BOTTOM-LEFT HERO COPY ─── */
+    .hero-copy {
+      position: absolute;
+      left: 56px;
+      bottom: 56px;
+      z-index: 3;
+      max-width: 620px;
+    }
+
+    .hero-copy h2 {
+      color: #fff;
+      font-weight: 600;
+      font-size: clamp(38px, 5.8vw, 66px);
+      line-height: 0.98;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-copy p {
+      color: rgba(255,255,255,0.82);
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.5;
+      max-width: 480px;
+      margin-top: 18px;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.2);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      color: #fff;
+      font-family: 'Archivo', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      padding: 13px 24px;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 32px;
+      transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+    }
+    .hero-cta:hover {
+      background: #fff;
+      color: #0a0a0b;
+      border-color: #fff;
+    }
+    .hero-cta .arrow { font-size: 15px; }
+  </style>
+</head>
+<body>
+
+  <section class="hero" id="hero">
+    <!-- Background Video -->
+    <video class="hero-video" id="heroVideo"
+      autoplay muted loop playsinline preload="auto"
+      src="https://cdn.sceneai.art/Hero%20section%20video%20file%20(2)/37091057-3719-4207-815c-745ebf57aeb4.mp4">
+    </video>
+
+    <!-- Gradient Overlay -->
+    <div class="hero-overlay"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="nav-left">
+        <a href="#" class="nav-link active">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+      <span class="nav-logo">TANDEV</span>
+      <div class="nav-right">
+        <a href="https://github.com/duongthaitan" class="nav-btn" target="_blank" rel="noopener">
+          My GitHub <span class="arrow">→</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Giant Headline -->
+    <div class="giant-headline">THAI TAN</div>
+
+    <!-- Bottom-left Hero Copy -->
+    <div class="hero-copy">
+      <h2>Full-Stack Developer &amp; Visual Creator</h2>
+      <p>Crafting production-grade web applications with clean architecture, modern tooling, and a passion for visual storytelling. Based in Soc Trang, Vietnam.</p>
+      <button class="hero-cta" onclick="window.open('https://github.com/duongthaitan','_blank')">
+        EXPLORE WORK <span class="arrow">↗</span>
+      </button>
+    </div>
+  </section>
+
+  <script>
+    /* ─── ENFORCE CONTINUOUS VIDEO PLAYBACK ─── */
+    (() => {
+      const video = document.getElementById('heroVideo');
+      if (!video) return;
+
+      function forcePlay() {
+        if (video.paused) {
+          video.play().catch(() => {});
+        }
+      }
+
+      /* Re-call play() on key events */
+      video.addEventListener('pause', forcePlay);
+      video.addEventListener('ended', forcePlay);
+      video.addEventListener('loadedmetadata', forcePlay);
+      video.addEventListener('canplay', forcePlay);
+
+      /* Tab re-focus */
+      document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) forcePlay();
+      });
+
+      /* 1-second watchdog interval */
+      const watchdog = setInterval(forcePlay, 1000);
+
+      /* Initial play on mount */
+      forcePlay();
+
+      /* Cleanup (not strictly needed for a single-section page, but good practice) */
+      window.addEventListener('beforeunload', () => {
+        clearInterval(watchdog);
+      });
+    })();
+  </script>
+
+</body>
+</html>
