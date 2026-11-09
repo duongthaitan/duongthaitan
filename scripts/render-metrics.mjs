@@ -1,7 +1,7 @@
 import { writeFile, rename, rm } from 'node:fs/promises';
 import { randomUUID } from 'node:crypto';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { A, ADV, EASE, beam, chevron, escapeXml, style, svg, text, typed } from './svg-kit.mjs';
+import { A, ADV, EASE, chevron, escapeXml, style, svg, text, typed } from './svg-kit.mjs';
 
 export { escapeXml };
 
@@ -81,7 +81,6 @@ export function renderSvg(metrics = null, now = new Date()) {
     const liveAt = t0 + 520;
     parts.push(`<g${style(A('in', 420, liveAt))}><circle class="ac" cx="37" cy="202" r="3.5"/>${text(52, 206, `Updated ${updated}`, { size: 12, cls: 'mu' })}</g>`);
     parts.push(`<circle class="ring" cx="37" cy="202" r="3.5"${style(`ring 2400ms ${EASE.out} ${Math.round(liveAt + 500)}ms 5`)}/>`);
-    parts.push(beam(W, 232, 16, { delay: liveAt + 300, lap: 5200, laps: 1 }));
   } else {
     parts.push(text(52, 100, 'Awaiting first successful update', { size: 14, cls: 'mu', anim: A('in', 420, t0) }));
   }

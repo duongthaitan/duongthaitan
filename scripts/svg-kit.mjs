@@ -14,11 +14,13 @@ export const EASE = {
   linear: 'linear', // constant flow (line drawing)
 };
 
-// Dark matches GitHub's canvas so cards sit flush with the page; light mirrors it.
+// Cards have no background of their own: everything sits directly on GitHub's page, so the profile
+// reads as one surface in every theme (light, dark, dark dimmed, high contrast). Surfaces are
+// translucent white (dark) or ink (light) layered over whatever the page colour is.
 // Colour beyond the accent stays analogous (green, teal, blue from GitHub's own ANSI set);
 // brand colours appear only on the tool logos they belong to.
-const DARK = { bg: '#0d1117', raised: '#151b23', fg: '#e6edf3', muted: '#9198a1', faint: '#2a313c', line: '#262c36', accent: '#7ee787', glow: '#d2ffd6', deep: '#2ea043', teal: '#39c5cf', blue: '#79c0ff', vox: '#2d333b' };
-const LIGHT = { bg: '#ffffff', raised: '#f6f8fa', fg: '#1f2328', muted: '#59636e', faint: '#d8dee4', line: '#d1d9e0', accent: '#1a7f37', glow: '#4ac26b', deep: '#0f5323', teal: '#1b7c83', blue: '#0969da', vox: '#8c959f' };
+const DARK = { bg: '#0d1117', raised: 'rgba(255,255,255,.045)', panel: 'rgba(22,27,34,.92)', screen: 'rgba(1,4,9,.55)', fg: '#e6edf3', muted: '#9198a1', faint: 'rgba(255,255,255,.07)', line: 'rgba(255,255,255,.12)', accent: '#7ee787', glow: '#d2ffd6', deep: '#2ea043', teal: '#39c5cf', blue: '#79c0ff', vox: '#2d333b' };
+const LIGHT = { bg: '#ffffff', raised: 'rgba(31,35,40,.035)', panel: 'rgba(255,255,255,.95)', screen: 'rgba(246,248,250,.9)', fg: '#1f2328', muted: '#59636e', faint: 'rgba(31,35,40,.07)', line: 'rgba(31,35,40,.15)', accent: '#1a7f37', glow: '#4ac26b', deep: '#0f5323', teal: '#1b7c83', blue: '#0969da', vox: '#8c959f' };
 const vars = tokens => Object.entries(tokens).map(([key, value]) => `--${key}:${value}`).join(';');
 
 const r2 = n => Math.round(n * 100) / 100;
@@ -31,7 +33,7 @@ const CSS = `
 @media (prefers-color-scheme:light){:root{${vars(LIGHT)}}}
 text{font-family:${MONO};fill:var(--fg)}
 .fg{fill:var(--fg)}.mu{fill:var(--muted)}.ac{fill:var(--accent)}.bg{fill:var(--bg)}.fa{fill:var(--faint)}.rs{fill:var(--raised)}
-.frame{fill:var(--bg);stroke:var(--line)}
+.frame{fill:var(--raised);stroke:var(--line)}.xa{fill:var(--line)}.xb{fill:var(--faint)}
 .hair{fill:none;stroke:var(--line)}
 .chev,.tick{fill:none;stroke:var(--accent);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .shs{stop-color:var(--accent)}
@@ -55,6 +57,7 @@ text{font-family:${MONO};fill:var(--fg)}
 @keyframes draw{from{stroke-dashoffset:1}}
 @keyframes type{from{transform:translateX(0)}}
 @keyframes wipe{from{transform:scaleX(1)}}
+@keyframes ch{from{fill-opacity:0}}
 @keyframes vanish{to{opacity:0}}
 @keyframes blink{0%,45%{opacity:1}55%,100%{opacity:0}}
 @keyframes ring{0%{opacity:.55;transform:scale(1)}45%,100%{opacity:0;transform:scale(3)}}
@@ -97,16 +100,16 @@ export const chevron = (x, y, size = 15, anim) =>
 
 export const check = (x, y, anim) => `<path class="tick" d="M${r2(x)} ${r2(y - 5)}l3.5 3.5l7 -7"${style(anim)}/>`;
 
-// Typed text: a background-coloured cover shrinks toward its right edge one glyph per step, so it
-// is gone once typing ends (a sliding cover would linger over decorated backgrounds). A caret rides along.
+// Typed text: each glyph switches on (fill-opacity) at its keystroke, so no cover has to match the
+// page colour, which an SVG inside <img> cannot know. A caret rides along.
 // caret: 'blink' stays and blinks a few times; 'vanish' leaves once the command "runs".
 export function typed(x, y, str, { size = 15, cls = 'fg', delay = 0, cps = 50, caret = 'blink', blinks = 8, vanishAt } = {}) {
   const n = str.length;
   const w = width(str, size);
   const dur = n * cps;
   const steps = `steps(${n},end)`;
-  let out = text(x, y, str, { size, cls });
-  out += `<rect class="bg cv" x="${r2(x - 1)}" y="${r2(y - size)}" width="${r2(w + 2)}" height="${r2(size * 1.4)}"${style(A('wipe', dur, delay, steps))}/>`;
+  const glyphs = [...str].map((c, i) => (c === ' ' ? ' ' : `<tspan style="animation:ch 1ms linear ${Math.round(delay + (i + 1) * cps)}ms both">${escapeXml(c)}</tspan>`)).join('');
+  let out = `<text x="${r2(x)}" y="${r2(y)}" font-size="${size}" textLength="${w}" class="${cls}">${glyphs}</text>`;
   if (caret) {
     const anims = [A('in', 1, delay, EASE.linear), A('type', dur, delay, steps)];
     if (caret === 'vanish') anims.push(A('vanish', 120, vanishAt ?? delay + dur + 320, EASE.linear, 'forwards'));
@@ -127,6 +130,17 @@ export function beam(w, h, radius, { delay, lap = 5600, laps = 2 }) {
     `<path class="beam" d="${d}" pathLength="1" stroke-width="${sw}" stroke-linecap="round" stroke-dasharray="${len} ${r2(1 - len)}" style="--o0:${len};--o1:${r2(len - 1)};--bo:${opacity};animation:orbit ${lap}ms linear ${Math.round(delay)}ms ${laps},beamfade ${lap * laps}ms linear ${Math.round(delay)}ms 1"/>`).join('\n');
 }
 
+// Side faces of a box extruded by (dx, dy) behind a w x h face at (x, y). Only the two visible
+// faces are drawn and they never overlap the face itself, so translucent surfaces do not stack.
+export function extrude(x, y, w, h, dx, dy, r = 0, cls = ['xa', 'xb']) {
+  const p = (a, b) => `${r2(a)} ${r2(b)}`;
+  const right = `M${p(x + w, y + r)}L${p(x + w + dx, y + r + dy)}L${p(x + w + dx, y + h - r + dy)}L${p(x + w, y + h - r)}Z`;
+  const edge = dy < 0
+    ? `M${p(x + r, y)}L${p(x + w - r, y)}L${p(x + w - r + dx, y + dy)}L${p(x + r + dx, y + dy)}Z`
+    : `M${p(x + r, y + h)}L${p(x + w - r, y + h)}L${p(x + w - r + dx, y + h + dy)}L${p(x + r + dx, y + h + dy)}Z`;
+  return `<path class="${cls[0]}" d="${edge}"/><path class="${cls[1]}" d="${right}"/>`;
+}
+
 // Busy indicator for a running command; hidden before and after it spins.
 export const spinner = (cx, cy, start, dur) =>
   `<circle class="spin" cx="${cx}" cy="${cy}" r="6" pathLength="1" stroke-dasharray=".62 .38"${style(`spin 640ms linear ${Math.round(start)}ms ${r2(dur / 640)}`)}/>`;
@@ -140,7 +154,6 @@ export function svg({ w, h, id, title, desc, body, defs = '', radius = 16, frame
 <desc id="${id}-desc">${escapeXml(desc)}</desc>
 <style>${CSS}</style>
 <defs>${frame ? `<clipPath id="${id}-frame"><rect width="${w}" height="${h}" rx="${radius}"/></clipPath>` : ''}${defs}</defs>
-${frame ? `<rect class="frame" x=".5" y=".5" width="${w - 1}" height="${h - 1}" rx="${radius - 0.5}"/>` : ''}
 ${body}
 </svg>
 `;

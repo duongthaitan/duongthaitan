@@ -2,11 +2,11 @@
 <title id="metrics-title">GitHub metrics: Public original repos: 12; Stars on original repos: 4; Followers: 11</title>
 <desc id="metrics-desc">Terminal card running gh api for duongthaitan. Public original repos: 12; Stars on original repos: 4; Followers: 11. Updated 2026-11-09 15:58:26 UTC</desc>
 <style>
-:root{--bg:#0d1117;--raised:#151b23;--fg:#e6edf3;--muted:#9198a1;--faint:#2a313c;--line:#262c36;--accent:#7ee787;--glow:#d2ffd6;--deep:#2ea043;--teal:#39c5cf;--blue:#79c0ff;--vox:#2d333b}
-@media (prefers-color-scheme:light){:root{--bg:#ffffff;--raised:#f6f8fa;--fg:#1f2328;--muted:#59636e;--faint:#d8dee4;--line:#d1d9e0;--accent:#1a7f37;--glow:#4ac26b;--deep:#0f5323;--teal:#1b7c83;--blue:#0969da;--vox:#8c959f}}
+:root{--bg:#0d1117;--raised:rgba(255,255,255,.045);--panel:rgba(22,27,34,.92);--screen:rgba(1,4,9,.55);--fg:#e6edf3;--muted:#9198a1;--faint:rgba(255,255,255,.07);--line:rgba(255,255,255,.12);--accent:#7ee787;--glow:#d2ffd6;--deep:#2ea043;--teal:#39c5cf;--blue:#79c0ff;--vox:#2d333b}
+@media (prefers-color-scheme:light){:root{--bg:#ffffff;--raised:rgba(31,35,40,.035);--panel:rgba(255,255,255,.95);--screen:rgba(246,248,250,.9);--fg:#1f2328;--muted:#59636e;--faint:rgba(31,35,40,.07);--line:rgba(31,35,40,.15);--accent:#1a7f37;--glow:#4ac26b;--deep:#0f5323;--teal:#1b7c83;--blue:#0969da;--vox:#8c959f}}
 text{font-family:ui-monospace,'SF Mono','Cascadia Mono','JetBrains Mono',Menlo,Consolas,'Liberation Mono',monospace;fill:var(--fg)}
 .fg{fill:var(--fg)}.mu{fill:var(--muted)}.ac{fill:var(--accent)}.bg{fill:var(--bg)}.fa{fill:var(--faint)}.rs{fill:var(--raised)}
-.frame{fill:var(--bg);stroke:var(--line)}
+.frame{fill:var(--raised);stroke:var(--line)}.xa{fill:var(--line)}.xb{fill:var(--faint)}
 .hair{fill:none;stroke:var(--line)}
 .chev,.tick{fill:none;stroke:var(--accent);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .shs{stop-color:var(--accent)}
@@ -30,6 +30,7 @@ text{font-family:ui-monospace,'SF Mono','Cascadia Mono','JetBrains Mono',Menlo,C
 @keyframes draw{from{stroke-dashoffset:1}}
 @keyframes type{from{transform:translateX(0)}}
 @keyframes wipe{from{transform:scaleX(1)}}
+@keyframes ch{from{fill-opacity:0}}
 @keyframes vanish{to{opacity:0}}
 @keyframes blink{0%,45%{opacity:1}55%,100%{opacity:0}}
 @keyframes ring{0%{opacity:.55;transform:scale(1)}45%,100%{opacity:0;transform:scale(3)}}
@@ -47,9 +48,8 @@ text{font-family:ui-monospace,'SF Mono','Cascadia Mono','JetBrains Mono',Menlo,C
 @media (forced-colors:active){text,.fg,.mu,.ac,.fa,.rs{fill:CanvasText}.frame,.bg{fill:Canvas}.frame,.hair{stroke:CanvasText}.chev,.tick{stroke:CanvasText}}
 </style>
 <defs><clipPath id="metrics-frame"><rect width="900" height="232" rx="16"/></clipPath></defs>
-<rect class="frame" x=".5" y=".5" width="899" height="231" rx="15.5"/>
 <path class="chev" d="M32 39.5l4.8 4.8l-4.8 4.8" style="animation:in 240ms cubic-bezier(.23,1,.32,1) 80ms both"/>
-<text x="52" y="50" font-size="15" textLength="225" class="fg">gh api users/duongthaitan</text><rect class="bg cv" x="51" y="35" width="227" height="21" style="animation:wipe 750ms steps(25,end) 200ms both"/><rect class="ac mv transient" x="53" y="37.7" width="7.5" height="15.3" rx="1" style="--d:225px;animation:in 1ms linear 200ms both,type 750ms steps(25,end) 200ms both,vanish 120ms linear 1270ms forwards"/>
+<text x="52" y="50" font-size="15" textLength="225" class="fg"><tspan style="animation:ch 1ms linear 230ms both">g</tspan><tspan style="animation:ch 1ms linear 260ms both">h</tspan> <tspan style="animation:ch 1ms linear 320ms both">a</tspan><tspan style="animation:ch 1ms linear 350ms both">p</tspan><tspan style="animation:ch 1ms linear 380ms both">i</tspan> <tspan style="animation:ch 1ms linear 440ms both">u</tspan><tspan style="animation:ch 1ms linear 470ms both">s</tspan><tspan style="animation:ch 1ms linear 500ms both">e</tspan><tspan style="animation:ch 1ms linear 530ms both">r</tspan><tspan style="animation:ch 1ms linear 560ms both">s</tspan><tspan style="animation:ch 1ms linear 590ms both">/</tspan><tspan style="animation:ch 1ms linear 620ms both">d</tspan><tspan style="animation:ch 1ms linear 650ms both">u</tspan><tspan style="animation:ch 1ms linear 680ms both">o</tspan><tspan style="animation:ch 1ms linear 710ms both">n</tspan><tspan style="animation:ch 1ms linear 740ms both">g</tspan><tspan style="animation:ch 1ms linear 770ms both">t</tspan><tspan style="animation:ch 1ms linear 800ms both">h</tspan><tspan style="animation:ch 1ms linear 830ms both">a</tspan><tspan style="animation:ch 1ms linear 860ms both">i</tspan><tspan style="animation:ch 1ms linear 890ms both">t</tspan><tspan style="animation:ch 1ms linear 920ms both">a</tspan><tspan style="animation:ch 1ms linear 950ms both">n</tspan></text><rect class="ac mv transient" x="53" y="37.7" width="7.5" height="15.3" rx="1" style="--d:225px;animation:in 1ms linear 200ms both,type 750ms steps(25,end) 200ms both,vanish 120ms linear 1270ms forwards"/>
 <rect class="ac grow" x="32" y="86" width="20" height="2" rx="1" style="animation:grow 480ms cubic-bezier(.77,0,.175,1) 1310ms both"/>
 <text x="32" y="116" font-size="13" textLength="93.6" class="mu" style="animation:in 420ms cubic-bezier(.23,1,.32,1) 1370ms both">Public repos</text>
 <text x="32" y="160" font-size="40" textLength="48" class="fg" font-weight="600" style="animation:in 600ms cubic-bezier(.23,1,.32,1) 1430ms both">12</text>
@@ -63,7 +63,4 @@ text{font-family:ui-monospace,'SF Mono','Cascadia Mono','JetBrains Mono',Menlo,C
 <text x="589.33" y="160" font-size="40" textLength="48" class="fg" font-weight="600" style="animation:in 600ms cubic-bezier(.23,1,.32,1) 1590ms both">11</text>
 <g style="animation:in 420ms cubic-bezier(.23,1,.32,1) 1830ms both"><circle class="ac" cx="37" cy="202" r="3.5"/><text x="52" y="206" font-size="12" textLength="223.2" class="mu">Updated 2026-11-09 15:58:26 UTC</text></g>
 <circle class="ring" cx="37" cy="202" r="3.5" style="animation:ring 2400ms cubic-bezier(.23,1,.32,1) 2330ms 5"/>
-<path class="beam" d="M16 0.5H884A15.5 15.5 0 0 1 899.5 16V216A15.5 15.5 0 0 1 884 231.5H16A15.5 15.5 0 0 1 0.5 216V16A15.5 15.5 0 0 1 16 0.5Z" pathLength="1" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="0.18 0.82" style="--o0:0.18;--o1:-0.82;--bo:0.14;animation:orbit 5200ms linear 2130ms 1,beamfade 5200ms linear 2130ms 1"/>
-<path class="beam" d="M16 0.5H884A15.5 15.5 0 0 1 899.5 16V216A15.5 15.5 0 0 1 884 231.5H16A15.5 15.5 0 0 1 0.5 216V16A15.5 15.5 0 0 1 16 0.5Z" pathLength="1" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="0.07 0.93" style="--o0:0.07;--o1:-0.93;--bo:0.4;animation:orbit 5200ms linear 2130ms 1,beamfade 5200ms linear 2130ms 1"/>
-<path class="beam" d="M16 0.5H884A15.5 15.5 0 0 1 899.5 16V216A15.5 15.5 0 0 1 884 231.5H16A15.5 15.5 0 0 1 0.5 216V16A15.5 15.5 0 0 1 16 0.5Z" pathLength="1" stroke-width="2" stroke-linecap="round" stroke-dasharray="0.02 0.98" style="--o0:0.02;--o1:-0.98;--bo:1;animation:orbit 5200ms linear 2130ms 1,beamfade 5200ms linear 2130ms 1"/>
 </svg>

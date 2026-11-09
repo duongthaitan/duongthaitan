@@ -8,7 +8,7 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import { dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { A, EASE, beam, check, chevron, haloDef, rrect, spinner, style, svg, text, typed, width } from './svg-kit.mjs';
+import { A, EASE, check, chevron, escapeXml, extrude, haloDef, rrect, spinner, style, svg, text, typed, width } from './svg-kit.mjs';
 import { ICONS } from './tool-icons.mjs';
 
 const r2 = n => Math.round(n * 100) / 100;
@@ -72,20 +72,27 @@ function rotator(id, x, y, phrases, { size, delay, introCps = 34, typeCps = 42, 
   const pct = v => `${r2((v / T) * 100)}%`;
   const seg = (kind, j) => segs.find(s => s.kind === kind && s.j === j);
   const tx = v => `transform:translateX(${r2(v)}px)`;
-  const cv = typedOut => `transform:scaleX(${typedOut ? 0 : 1})`; // cover: 0 = text fully shown
   const steps = j => `animation-timing-function:steps(${n[j]},end)`;
 
+  // Each glyph gets its own visible window inside the cycle: it switches on at its keystroke while
+  // typing and off as the delete passes it. Nothing paints over the text, so the page colour never matters.
   const kf = [];
-  phrases.forEach((_, j) => {
-    if (j === 0) {
-      kf.push(`@keyframes ${id}c0{0%{${cv(1)}}${pct(seg('hold', 0).end)}{${cv(1)};${steps(0)}}${pct(seg('del', 0).end)}{${cv(0)}}${pct(seg('type', 0).start)}{${cv(0)};${steps(0)}}100%{${cv(1)}}}`);
-      kf.push(`@keyframes ${id}v0{0%{opacity:1}${pct(seg('del', 0).end)}{opacity:0}${pct(seg('type', 0).start)}{opacity:1}100%{opacity:1}}`);
-    } else {
-      const ty = seg('type', j);
-      const de = seg('del', j);
-      kf.push(`@keyframes ${id}c${j}{0%{${cv(0)}}${pct(ty.start)}{${cv(0)};${steps(j)}}${pct(ty.end)}{${cv(1)}}${pct(seg('hold', j).end)}{${cv(1)};${steps(j)}}${pct(de.end)}{${cv(0)}}100%{${cv(0)}}}`);
-      kf.push(`@keyframes ${id}v${j}{0%{opacity:0}${pct(ty.start)}{opacity:1}${pct(de.end)}{opacity:0}100%{opacity:0}}`);
-    }
+  const lines = phrases.map((phrase, j) => {
+    const typing = seg('type', j);
+    const deleting = seg('del', j);
+    const glyphs = [...phrase].map((c, k) => {
+      if (c === ' ') return ' ';
+      const on = typing.start + (k + 1) * typeCps;
+      const off = deleting.start + (n[j] - k) * delCps;
+      const name = `${id}${j}_${k}`;
+      kf.push(j === 0
+        ? `@keyframes ${name}{0%{fill-opacity:1}${pct(off)}{fill-opacity:0}${pct(on)}{fill-opacity:1}}`
+        : `@keyframes ${name}{0%{fill-opacity:0}${pct(on)}{fill-opacity:1}${pct(off)}{fill-opacity:0}}`);
+      const anims = [`${name} ${ms(T)} step-end ${ms(start)} ${loops}`];
+      if (j === 0) anims.unshift(A('ch', 1, delay + (k + 1) * introCps, EASE.linear));
+      return `<tspan${j ? ' class="rh"' : ''} style="animation:${anims.join(',')}">${escapeXml(c)}</tspan>`;
+    }).join('');
+    return `<text x="${r2(x)}" y="${r2(y)}" font-size="${size}" textLength="${w[j]}" class="ac">${glyphs}</text>`;
   });
 
   // Caret position and blink follow the same segments.
@@ -104,9 +111,8 @@ function rotator(id, x, y, phrases, { size, delay, introCps = 34, typeCps = 42, 
   kf.push(`@keyframes ${id}m{${move.join('')}}`, `@keyframes ${id}b{${blink.join('')}}`);
 
   const cycle = (name, timing) => `${id}${name} ${ms(T)} ${timing} ${ms(start)} ${loops}`;
-  const cover = (j, extra = []) => `<rect class="bg ${j ? 'cvs' : 'cv'}" x="${r2(x - 1)}" y="${r2(y - size)}" width="${r2(w[j] + 2)}" height="${r2(size * 1.4)}"${style([...extra, cycle(`c${j}`, 'linear')])}/>`;
-  const out = phrases.map((phrase, j) =>
-    `<g${j ? ' class="off"' : ''}${style(cycle(`v${j}`, 'step-end'))}>${text(x, y, phrase, { size, cls: 'ac' })}${cover(j, j ? [] : [A('wipe', intro, delay, `steps(${n[0]},end)`)])}</g>`);
+  const out = lines;
+  kf.push('.rh{fill-opacity:0}');
   out.push(`<rect class="ac mv" x="${r2(x + 1)}" y="${r2(y - size * 0.82)}" width="${r2(size * 0.5)}" height="${r2(size * 1.02)}" rx="1"${style([
     A('in', 1, delay, EASE.linear), A('type', intro, delay, `steps(${n[0]},end)`), cycle('m', 'linear'), cycle('b', 'step-end'),
   ], `--d:${w[0]}px;`)}/>`);
@@ -125,11 +131,11 @@ function hero() {
   //
   // Texture: a dot grid faded by a background-coloured vignette painted over it (a gradient, not a
   // mask), with a soft light drifting across it once.
-  parts.push(`<g clip-path="url(#hero-frame)"${style(A('in', 1400, 100, EASE.out))}><rect x="1" y="1" width="${W - 2}" height="${H - 2}" rx="15" fill="url(#hero-dots)"/><rect x="1" y="1" width="${W - 2}" height="${H - 2}" rx="15" fill="url(#hero-vig)"/></g>`);
-  parts.push(`<ellipse cx="640" cy="80" rx="150" ry="110" fill="url(#hero-au1)" class="spot" style="animation:spot 12000ms ${EASE.inOut} 2800ms 1"/>`);
+  parts.push(`<rect width="${W}" height="${H}" fill="url(#hero-dots)" mask="url(#hero-fade)"${style(A('in', 1400, 100, EASE.out))}/>`);
+  parts.push(`<ellipse cx="610" cy="140" rx="120" ry="86" fill="url(#hero-au1)" class="spot" style="animation:spot 12000ms ${EASE.inOut} 2800ms 1"/>`);
   // Aurora: three analogous lights drifting once behind the graph.
-  const aurora = [['hero-au1', 700, 96, 230, 130, '-40px', '22px', 9000], ['hero-au2', 830, 250, 190, 120, '-30px', '-24px', 10000], ['hero-au3', 640, 300, 200, 100, '34px', '-18px', 11000]];
-  parts.push(`<g class="aur" clip-path="url(#hero-frame)"${style(A('in', 1800, 200, EASE.out))}>${aurora.map(([gid, cx, cy, rx, ry, dx, dy, dur]) =>
+  const aurora = [['hero-au1', 690, 122, 170, 104, '-18px', '10px', 9000], ['hero-au2', 784, 196, 96, 86, '-14px', '-12px', 10000], ['hero-au3', 610, 214, 150, 74, '16px', '-10px', 11000]];
+  parts.push(`<g class="aur"${style(A('in', 1800, 200, EASE.out))}>${aurora.map(([gid, cx, cy, rx, ry, dx, dy, dur]) =>
     `<ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="${ry}" fill="url(#${gid})"${style(`drift ${dur}ms ${EASE.inOut} 600ms 1`, `--dx:${dx};--dy:${dy};`)}/>`).join('')}</g>`);
 
   // whoami → the name
@@ -190,7 +196,7 @@ function hero() {
   parts.push(packet(B.d, period * 1.5, packetAt + 900, 3, 2.4, 0.7));
   parts.push(packet(mainD, period, packetAt, loops, 3));
 
-  const node = (cx, cy, cls, delay) => `<circle class="nd ${cls} pop" cx="${cx}" cy="${cy}" r="4.5"${style(A('pop', 420, delay))}/>`;
+  const node = (cx, cy, cls, delay) => `<circle class="${cls} pop" cx="${cx}" cy="${cy}" r="4"${style(A('pop', 420, delay))}/>`;
   const merges = { 120: endA, 88: endB };
   for (const y of [276, 238, 176, 120, 88]) parts.push(node(L0, y, 'nm', Math.max(tMain(y), merges[y] ?? 0)));
   for (const y of [200, 166]) parts.push(node(698, y, 'nb', startA + Alane.at(y) / vBranch));
@@ -210,12 +216,11 @@ function hero() {
   parts.push(pill(676, mainTop + 4, 'HEAD -> main', true, tHead + 120));
   parts.push(pill(752, bNodes.at(-1) + 4, 'infra/aws', false, startB + B.at(bNodes.at(-1)) / vBranch + 120));
 
-  // Star border: two laps of light around the card once everything has landed.
-  parts.push(beam(W, H, 16, { delay: 2700, lap: 6000, laps: 2 }));
 
   const glyphs = words.map(([word, col]) => text(wordAt(col), 150, word, { size: nameSize, weight: 700 })).join('');
   const defs = `<pattern id="hero-dots" width="18" height="18" patternUnits="userSpaceOnUse"><circle class="fa" cx="9" cy="9" r="1.1"/></pattern>
-<radialGradient id="hero-vig" cx=".77" cy=".5" r=".4"><stop offset=".25" class="vg" stop-opacity="0"/><stop offset="1" class="vg"/></radialGradient>
+<radialGradient id="hero-fg" cx=".75" cy=".5" r=".3"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+<mask id="hero-fade"><rect width="${W}" height="${H}" fill="url(#hero-fg)"/></mask>
 <linearGradient id="hero-sheen"><stop offset="0" class="shs" stop-opacity="0"/><stop offset=".5" class="shs" stop-opacity=".95"/><stop offset="1" class="shs" stop-opacity="0"/></linearGradient>
 ${haloDef('hero-halo')}
 <radialGradient id="hero-au1"><stop offset="0" class="shs" stop-opacity=".17"/><stop offset="1" class="shs" stop-opacity="0"/></radialGradient>
@@ -223,13 +228,13 @@ ${haloDef('hero-halo')}
 <radialGradient id="hero-au3"><stop offset="0" class="shb" stop-opacity=".14"/><stop offset="1" class="shb" stop-opacity="0"/></radialGradient>
 <clipPath id="hero-name"><rect x="40" y="96" width="572" height="84"/></clipPath>
 <clipPath id="hero-glyphs">${glyphs}</clipPath>
-<style>.sht{stop-color:var(--teal)}.shb{stop-color:var(--blue)}.vg{stop-color:var(--bg)}.spot{opacity:0}
-@keyframes spot{0%{opacity:0;transform:translate(0,0)}15%{opacity:.9}50%{transform:translate(200px,150px)}85%{opacity:.9}100%{opacity:0;transform:translate(60px,40px)}}
+<style>.sht{stop-color:var(--teal)}.shb{stop-color:var(--blue)}.spot{opacity:0}
+@keyframes spot{0%{opacity:0;transform:translate(0,0)}15%{opacity:.9}50%{transform:translate(120px,34px)}85%{opacity:.9}100%{opacity:0;transform:translate(40px,14px)}}
 .x1{fill:var(--accent);opacity:.55}.x2{fill:var(--teal);opacity:.42}.x3{fill:var(--blue);opacity:.3}.x4{fill:var(--blue);opacity:.15}
 @media (prefers-color-scheme:light){.aur{opacity:.75}.x1{opacity:.35}.x2{opacity:.28}.x3{opacity:.2}.x4{opacity:.1}}
 @keyframes extrude{from{opacity:0;transform:translate(var(--e),var(--e))}}
 @keyframes drift{50%{transform:translate(var(--dx),var(--dy))}}
-.gl{fill:none;stroke-width:2}.gm{stroke:var(--accent)}.gb{stroke:var(--muted);opacity:.65}.nd{fill:var(--bg);stroke-width:2}.nm{stroke:var(--accent)}.nb{stroke:var(--muted)}.pill{fill:var(--raised);stroke:var(--line)}.pill-on{fill:var(--raised);stroke:var(--accent);stroke-opacity:.6}
+.gl{fill:none;stroke-width:2}.gm{stroke:var(--accent)}.gb{stroke:var(--muted);opacity:.65}.nm{fill:var(--accent)}.nb{fill:var(--muted)}.pill{fill:var(--raised);stroke:var(--line)}.pill-on{fill:var(--raised);stroke:var(--accent);stroke-opacity:.6}
 ${css.join('\n')}</style>`;
 
   return svg({
@@ -241,8 +246,8 @@ ${css.join('\n')}</style>`;
 }
 
 // ── Fetch card ──────────────────────────────────────────────────────────────
-// neofetch-style identity card: a pixel <T/> mark assembling in a diagonal wave beside key/value
-// rows whose values decrypt from noise, left to right. Later a glint wave crosses the mark.
+// neofetch-style identity card: a 3D voxel <T/> sculpture floating over a pedestal beside a raised
+// panel of key/value rows whose values decrypt from noise, left to right.
 
 const GLYPHS = {
   '<': ['....#', '...#.', '..#..', '.#...', '..#..', '...#.', '....#'],
@@ -265,42 +270,82 @@ const garble = (str, keep, rand) => [...str].map((c, i) => (i < keep || c === ' 
 
 function fetchCard() {
   const W = 900;
-  const H = 322;
+  const H = 344;
   const id = 'fetch';
   const parts = [];
 
   parts.push(chevron(40, 52, 15, A('in', 240, 100)));
   parts.push(typed(60, 52, 'neofetch', { size: 15, delay: 220, cps: 62, caret: 'vanish', vanishAt: 820 }).svg);
 
-  // Voxel mark: every pixel is a block with two receding faces (oblique depth toward the
-  // bottom-right). Painted back to front so neighbours hide each other's inner faces.
-  const cell = 10;
-  const pitch = 12;
-  const dz = 4;
-  const mx = 50;
-  const my = 150;
+  // ── Voxel sculpture ──
+  // Three-quarter view shared with the 3D terminal: the sign's width runs along a gentle slope and
+  // depth recedes up-right, so each block shows a front, a lit top and a shaded right side. Faces
+  // hidden by a neighbour are culled; rows paint bottom to top, columns left to right.
+  const S = 0.18; // slope of the sign's horizontal axis
+  const DV = [0.6, -0.42]; // screen step per pixel of depth
+  const ox = 40;
+  const oy = 110;
+  const P = (u, v, d = 0) => `${r2(ox + u + d * DV[0])} ${r2(oy + v + u * S + d * DV[1])}`;
+  const quad = (a, b, c, d) => `M${a}L${b}L${c}L${d}Z`;
+  const cell = 12;
+  const pitch = 13;
+  const D = 12;
+
+  const filled = new Set();
   const voxels = [];
   let col = 0;
   for (const char of ['<', 'T', '/', '>']) {
     GLYPHS[char].forEach((row, r) => [...row].forEach((on, c) => {
       if (on !== '#') return;
-      voxels.push({ x: mx + (col + c) * pitch, y: my + r * pitch, t: char === 'T', order: col + c + r, pop: 760 + (col + c) * 15 + r * 26 });
+      filled.add(`${col + c},${r}`);
+      voxels.push({ c: col + c, r, t: char === 'T' });
     }));
     col += 6;
   }
-  voxels.sort((p, q) => p.order - q.order);
-  for (const v of voxels) {
-    const faces = `<path class="${v.t ? 'vd' : 'vg'}" d="M${v.x + cell} ${v.y}l${dz} ${dz}v${cell}l${-dz} ${-dz}zM${v.x} ${v.y + cell}h${cell}l${dz} ${dz}h${-cell}z"/>`;
-    const front = `<rect class="${v.t ? 'ac' : 'mu px'}" x="${v.x}" y="${v.y}" width="${cell}" height="${cell}" rx="1.5"${style(`${v.t ? 'glintT' : 'glint'} 4600ms ${EASE.inOut} ${ms(2600 + v.order * 26)} 2`)}/>`;
-    parts.push(`<g class="pop"${style(A('pop', 520, v.pop))}>${faces}${front}</g>`);
-  }
+  voxels.sort((p, q) => q.r - p.r || p.c - q.c);
 
-  // Info rows
-  const kx = 380;
-  const vx = kx + 10 * 14 * 0.6;
+  // Pedestal the sign floats above, with a soft shadow and a light pooling beneath.
+  const vf = 7 * pitch + 14; // floor level under the sign
+  const [u0, u1, d0, d1, th] = [-14, 23 * pitch + 8, -10, 30, 9];
+  const down = pt => { const [x, y] = pt.split(' ').map(Number); return `${x} ${r2(y + th)}`; };
+  const fl = P(u0, vf, d0);
+  const fr = P(u1, vf, d0);
+  const br = P(u1, vf, d1);
+  const bl = P(u0, vf, d1);
+  parts.push(`<g${style(A('up', 800, 160))}>
+<ellipse cx="200" cy="292" rx="200" ry="44" fill="url(#${id}-pool)"/>
+<path class="pd-t" d="${quad(fl, fr, br, bl)}"/>
+<path class="pd-f" d="${quad(fl, fr, down(fr), down(fl))}"/>
+<path class="pd-r" d="${quad(fr, br, down(br), down(fr))}"/>
+<path class="pd-rim" d="M${fl}L${fr}L${br}"/>
+<path class="pd-run" d="M${fl}L${fr}L${br}" pathLength="1" stroke-dasharray=".12 .88"${style(`rim 3200ms ${EASE.inOut} 2300ms 2`)}/>
+</g>`);
+  const [scx, scy] = P((23 * pitch) / 2, vf, 10).split(' ').map(Number);
+  parts.push(`<ellipse class="vsh" cx="${scx}" cy="${scy}" rx="${(23 * pitch) / 2 + 8}" ry="12" transform="rotate(${r2((Math.atan(S) * 180) / Math.PI)} ${scx} ${scy})" fill="url(#${id}-shadow)" style="animation:in 900ms ${EASE.out} 900ms both,shb 4200ms ${EASE.inOut} 2400ms 3"/>`);
+
+  const blocks = voxels.map(({ c, r, t }) => {
+    const u = c * pitch;
+    const v = r * pitch;
+    const k = t ? 't' : 'g';
+    let faces = `<path class="${k}f" d="${quad(P(u, v), P(u + cell, v), P(u + cell, v + cell), P(u, v + cell))}"${style(`${t ? 'glintT' : 'glintG'} 4600ms ${EASE.inOut} ${ms(3200 + (c + r) * 24)} 2`)}/>`;
+    if (!filled.has(`${c},${r - 1}`)) faces += `<path class="${k}t" d="${quad(P(u, v), P(u + cell, v), P(u + cell, v, D), P(u, v, D))}"/>`;
+    if (!filled.has(`${c + 1},${r}`)) faces += `<path class="${k}r" d="${quad(P(u + cell, v), P(u + cell, v, D), P(u + cell, v + cell, D), P(u + cell, v + cell))}"/>`;
+    // Blocks stack from the bottom row up, in a wave from left to right.
+    return `<g${style(A('drop', 560, 700 + c * 20 + (6 - r) * 34))}>${faces}</g>`;
+  });
+  parts.push(`<g style="--b:-7px;animation:bob 4200ms ${EASE.inOut} 2400ms 3">${blocks.join('')}</g>`);
+
+  // ── Info panel: a raised slab with its back plate one step deeper ──
+  const [px, py, pw, ph] = [388, 72, 476, 252];
+  parts.push(`<g${style(A('up', 760, 260))}>${extrude(px, py, pw, ph, 8, -5.5, 12, ['ipt', 'ipr'])}<rect class="ip" x="${px}" y="${py}" width="${pw}" height="${ph}" rx="14"/><path class="ip-trim" d="M${px + 16} ${py + 0.5}H${px + pw - 16}"/></g>`);
+
+  const kx = px + 24;
+  const vx = kx + 10 * 8.4;
   const t0 = 900;
-  parts.push(`<g${style(A('in', 420, t0))}>${text(kx, 100, 'thaitan', { size: 14, cls: 'ac', weight: 700 })}${text(kx + 7 * 8.4, 100, '@', { size: 14, cls: 'mu' })}${text(kx + 8 * 8.4, 100, 'github', { size: 14, cls: 'ac', weight: 700 })}</g>`);
-  parts.push(`<path class="hair grow" d="M${kx} 113H${r2(kx + 14 * 8.4)}"${style(A('grow', 520, t0 + 80, EASE.inOut))}/>`);
+  // Header with two receding depth layers, on the same up-right depth axis as the blocks.
+  const header = (cls, dx, dy) => `${text(kx + dx, 104 + dy, 'thaitan', { size: 15, cls, weight: 700 })}${text(kx + 7 * 9 + dx, 104 + dy, '@', { size: 15, cls: cls === 'ac' ? 'mu' : cls })}${text(kx + 8 * 9 + dx, 104 + dy, 'github', { size: 15, cls, weight: 700 })}`;
+  parts.push(`<g${style(A('in', 420, t0))}>${header('hx2', 2.4, -1.7)}${header('hx1', 1.2, -0.85)}${header('ac', 0, 0)}</g>`);
+  parts.push(`<path class="hair grow" d="M${kx} 117H${r2(kx + 14 * 9)}"${style(A('grow', 520, t0 + 80, EASE.inOut))}/>`);
 
   const rows = [
     ['role', 'full-stack developer'],
@@ -315,7 +360,7 @@ function fetchCard() {
   let delay = t0 + 160;
   const frame = 55;
   rows.forEach(([key, value], i) => {
-    const y = 140 + i * 22;
+    const y = 142 + i * 21;
     const rand = random(i * 977 + 13);
     const frames = [0, 1, 2, 3].map(k => text(vx, y, garble(value, Math.floor((value.length * k) / 4), rand), {
       size: 14, cls: 'mu fr', anim: A('show', frame, delay + 40 + k * frame, EASE.linear, '1'),
@@ -325,19 +370,46 @@ function fetchCard() {
     delay += Math.max(34, 70 - i * 6);
   });
 
-  // Colour blocks, the neofetch signature, in GitHub's own terminal ANSI palette.
-  const sy = 140 + rows.length * 22 + 6;
+  // ── Colour blocks as little 3D cubes in GitHub's terminal ANSI palette ──
+  const cw = 20;
+  const chh = 13;
+  const cd = 8;
+  const cubes = [];
   for (let i = 0; i < 8; i++) {
-    parts.push(`<rect class="a${i} pop" x="${kx + i * 30}" y="${sy}" width="26" height="12" rx="2"${style(A('pop', 420, delay + 260 + i * 32))}/>`);
+    const x = kx + i * 30;
+    const y = 296;
+    const [dx, dy] = [cd * DV[0], cd * DV[1]];
+    const front = `M${x} ${y}h${cw}v${chh}h${-cw}z`;
+    const top = `M${x} ${y}h${cw}l${r2(dx)} ${r2(dy)}h${-cw}z`;
+    const right = `M${x + cw} ${y}l${r2(dx)} ${r2(dy)}v${chh}l${r2(-dx)} ${r2(-dy)}z`;
+    cubes.push(`<g${style([A('drop', 480, delay + 260 + i * 40), `wave 2600ms ${EASE.inOut} ${ms(delay + 1400 + i * 90)} 2`])}><path class="a${i}t" d="${top}"/><path class="a${i}r" d="${right}"/><path class="a${i}" d="${front}"/></g>`);
   }
-  const ansi = (list, scope = '') => list.map((hex, i) => `${scope}.a${i}{fill:${hex}}`).join('');
+  parts.push(cubes.join(''));
+
+  const shade = (hex, to, f) => toHex(hexRgb(hex).map((v, i) => v + (hexRgb(to)[i] - v) * f));
+  const ansi = list => list.map((hex, i) => `.a${i}{fill:${hex}}.a${i}t{fill:${shade(hex, '#ffffff', 0.32)}}.a${i}r{fill:${shade(hex, '#000000', 0.38)}}`).join('');
 
   return svg({
     w: W, h: H, id,
-    defs: `<style>.vd{fill:var(--deep)}.vg{fill:var(--vox)}${ansi(['#484f58', '#ff7b72', '#3fb950', '#d29922', '#58a6ff', '#bc8cff', '#39c5cf', '#b1bac4'])}
-@media (prefers-color-scheme:light){${ansi(['#24292f', '#cf222e', '#116329', '#9a6700', '#0969da', '#8250df', '#1b7c83', '#6e7781'])}}</style>`,
+    defs: `<radialGradient id="${id}-pool"><stop offset="0" class="shs" stop-opacity=".16"/><stop offset=".6" class="sht" stop-opacity=".05"/><stop offset="1" class="sht" stop-opacity="0"/></radialGradient><radialGradient id="${id}-shadow"><stop offset="0" stop-color="#000" stop-opacity=".55"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+<style>.sht{stop-color:var(--teal)}:root{--gf:#4d5562;--gt:#7d8590;--gr:#262c36}
+@media (prefers-color-scheme:light){:root{--gf:#8c959f;--gt:#c4cbd3;--gr:#57606a}}
+.tf{fill:var(--accent)}.tt{fill:var(--glow)}.tr{fill:var(--deep)}.gf{fill:var(--gf)}.gt{fill:var(--gt)}.gr{fill:var(--gr)}
+.pd-t{fill:var(--raised)}.pd-f{fill:var(--line)}.pd-r{fill:var(--faint)}.pd-rim{fill:none;stroke:var(--accent);stroke-opacity:.45}
+.pd-run{fill:none;stroke:var(--accent);stroke-width:2;stroke-linecap:round;opacity:0}
+.vsh{transform-box:fill-box;transform-origin:center}@media (prefers-color-scheme:light){.vsh{opacity:.3}}
+.ip{fill:var(--raised);stroke:var(--line)}.ipt{fill:var(--line)}.ipr{fill:var(--faint)}.ip-trim{fill:none;stroke:var(--accent);stroke-opacity:.5}
+.hx1{fill:var(--teal);opacity:.5}.hx2{fill:var(--blue);opacity:.28}
+${ansi(['#484f58', '#ff7b72', '#3fb950', '#d29922', '#58a6ff', '#bc8cff', '#39c5cf', '#b1bac4'])}
+@media (prefers-color-scheme:light){${ansi(['#24292f', '#cf222e', '#116329', '#9a6700', '#0969da', '#8250df', '#1b7c83', '#6e7781'])}.hx1{opacity:.3}.hx2{opacity:.16}}
+@keyframes drop{from{opacity:0;transform:translateY(-46px)}}
+@keyframes bob{50%{transform:translateY(var(--b))}}
+@keyframes shb{50%{transform:scale(.86)}}
+@keyframes wave{0%,40%,100%{transform:translateY(0)}20%{transform:translateY(-5px)}}
+@keyframes glintG{8%{fill:var(--gt)}26%{fill:var(--gf)}}
+@keyframes rim{0%{opacity:0;stroke-dashoffset:.12}10%,85%{opacity:1}100%{opacity:0;stroke-dashoffset:-.88}}</style>`,
     title: 'neofetch: thaitan@github',
-    desc: `A neofetch-style card with a pixel-art <T/> logo assembling in a diagonal wave; each value decrypts from noise into text. ${rows.map(([k, v]) => `${k}: ${v}`).join('; ')}.`,
+    desc: `A neofetch-style card. A 3D voxel <T/> sculpture assembles block by block above a lit pedestal and floats; beside it a raised panel lists ${rows.map(([k, v]) => `${k}: ${v}`).join('; ')}, each value decrypting from noise, above eight 3D colour cubes in the terminal ANSI palette.`,
     body: parts.join('\n'),
   });
 }
@@ -371,8 +443,7 @@ function sectionHeader(slug, command) {
   const runDur = 1000;
   const doneAt = runAt + runDur * 0.75;
   const body = [
-    `<path class="kb" d="${rrect(depth + 0.5, depth + 0.5, fw, fh, 11.5)}"/>`,
-    `<path class="ks" d="M${fw + 0.5} 12l${depth} ${depth}V${fh - 6}l${-depth} ${-depth}zM12 ${fh + 0.5}l${depth} ${depth}H${fw - 6}l${-depth} ${-depth}z"/>`,
+    extrude(0.5, 0.5, fw, fh, depth, depth, 10, ['kb', 'ks']),
     `<g${style(`press 300ms ${EASE.out} ${Math.round(enterAt)}ms 1`)}>`,
     `<path class="frame" d="${rrect(0.5, 0.5, fw, fh, 11.5)}"/>`,
     chevron(28, y, 15, A('in', 240, 60)),
@@ -559,7 +630,7 @@ function island({ id, title, subtitle, groups, cols, offset }) {
 <style>.sht{stop-color:var(--teal)}.shb{stop-color:var(--blue)}
 .pt{fill:var(--raised)}.pl{fill:var(--line)}.pr{fill:var(--faint)}.rim{fill:none;stroke:var(--accent);stroke-opacity:.45}
 .grid{fill:none;stroke:var(--line);stroke-width:.8}.z0{fill:var(--accent)}.z1{fill:var(--teal)}.z2{fill:var(--blue)}
-.ft{fill:#1f2732}.fl{fill:#171e27}.fr{fill:#10151c}.dish{fill:#fff;opacity:.025}.edge{fill:none;stroke:#fff;stroke-opacity:.09}
+.ft{fill:#2a3341}.fl{fill:#222a35}.fr{fill:#181e27}.dish{fill:#fff;opacity:.025}.edge{fill:none;stroke:#fff;stroke-opacity:.09}
 .shd{fill:#000;opacity:.45}.on{fill:none;stroke:var(--accent);stroke-width:1.4;stroke-opacity:.85}
 .lg{fill:var(--c)}
 @media (prefers-color-scheme:light){.ft{fill:#fff}.fl{fill:#f0f3f6}.fr{fill:#dfe4ea}.dish{fill:#1f2328;opacity:.03}.edge{stroke:#1f2328;stroke-opacity:.08}.shd{fill:#1f2328;opacity:.13}.lg{fill:var(--cl,var(--c))}.pl{fill:#e6eaef}.pr{fill:#d8dee4}}
@@ -619,7 +690,7 @@ function terminal3d(sizes) {
   const fade = k => r2(Math.max(0, 1 - Math.abs(k) / 5.2) ** 1.4);
   for (let v = -4; v <= 4; v++) grid.push(`<path d="M${Q(-6, v)}L${Q(6, v)}" opacity="${fade(v * 1.3)}"/>`);
   for (let u = -6; u <= 6; u++) grid.push(`<path d="M${Q(u, -4)}L${Q(u, 4)}" opacity="${fade(u)}"/>`);
-  parts.push(`<g${style(A('in', 1200, 100))}><ellipse cx="300" cy="372" rx="300" ry="70" fill="url(#${id}-pool)"/><ellipse cx="740" cy="300" rx="170" ry="60" fill="url(#${id}-pool2)"/><g class="tg">${grid.join('')}</g></g>`);
+  parts.push(`<g${style(A('in', 1200, 100))}><ellipse cx="300" cy="372" rx="300" ry="70" fill="url(#${id}-pool)"/><ellipse cx="740" cy="300" rx="148" ry="56" fill="url(#${id}-pool2)"/><g class="tg" mask="url(#${id}-floor)">${grid.join('')}</g></g>`);
 
   // A floating panel: placement > entrance > parallax pan > bob > static yaw. The back plate sits
   // one step deeper; shadow and reflection pan with the panel but bob against it.
@@ -697,7 +768,7 @@ function terminal3d(sizes) {
   const scrollT = stops.at(-1)[0];
   css.push(`.scroll{transform:translateY(${finalOffset}px)}@keyframes scroll{${stops.map(([at, off], k) => `${r2((at / scrollT) * 100)}%{transform:translateY(${off}px)${k % 2 ? `;animation-timing-function:${EASE.out}` : ''}}`).join('')}}`);
 
-  const screen = `<rect class="bg" x="-208" y="-92" width="416" height="208" rx="6"/>
+  const screen = `<rect class="scr" x="-208" y="-92" width="416" height="208" rx="6"/>
 <g clip-path="url(#${id}-scr)"><g class="scroll" style="animation:scroll ${scrollT}ms linear 0ms both">${rendered.join('')}</g>
 <rect class="scan" x="-208" y="-98" width="416" height="8" fill="url(#${id}-scan)" style="animation:scan 4600ms linear ${end + 400}ms 2"/>
 <g transform="skewX(-18)"><rect x="-330" y="-92" width="80" height="208" fill="url(#${id}-glare)" style="--d:620px;animation:sweep 7600ms linear ${end - 1400}ms 2"/></g></g>`;
@@ -724,7 +795,7 @@ function terminal3d(sizes) {
     `<path class="hair" d="M-120 -14H120"/>`,
     `<path class="gline" d="M-92 18H32"/>`,
     `<path class="gline draw" d="M32 18H72" pathLength="1"${style(A('draw', 260, pushedAt, EASE.out))}/>`,
-    ...[-92, -50, -8, 30].map(x => `<circle class="gnode" cx="${x}" cy="18" r="4.5"/>`),
+    ...[-92, -50, -8, 30].map(x => `<circle class="gnode" cx="${x}" cy="18" r="4"/>`),
     `<circle class="ring" cx="72" cy="18" r="5"${style(`ring 2200ms ${EASE.out} ${pushedAt + 260}ms 3`)}/>`,
     `<circle class="ac pop" cx="72" cy="18" r="5.5"${style(A('pop', 420, pushedAt + 200))}/>`,
     `<g style="--d:42px;animation:type 520ms ${EASE.out} ${pushedAt + 160}ms both" class="mv"><rect class="tpill" x="8" y="-5" width="44" height="16" rx="5"/>${text(15, 7, 'main', { size: 11, cls: 'ac' })}</g>`,
@@ -746,7 +817,8 @@ function terminal3d(sizes) {
   }
   parts.push(dots.join(''));
 
-  const defs = `<clipPath id="${id}-scr"><rect x="-208" y="-84" width="416" height="200" rx="6"/></clipPath>
+  const defs = `<radialGradient id="${id}-fl" cx=".4" cy=".78" r=".25"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient><mask id="${id}-floor"><rect width="${W}" height="${H}" fill="url(#${id}-fl)"/></mask>
+<clipPath id="${id}-scr"><rect x="-208" y="-84" width="416" height="200" rx="6"/></clipPath>
 <radialGradient id="${id}-pool"><stop offset="0" class="shs" stop-opacity=".14"/><stop offset="1" class="shs" stop-opacity="0"/></radialGradient>
 <radialGradient id="${id}-pool2"><stop offset="0" class="sht" stop-opacity=".12"/><stop offset="1" class="sht" stop-opacity="0"/></radialGradient>
 <radialGradient id="${id}-shadow"><stop offset="0" stop-color="#000" stop-opacity=".5"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
@@ -755,9 +827,9 @@ function terminal3d(sizes) {
 <linearGradient id="${id}-glare"><stop offset="0" class="shfg" stop-opacity="0"/><stop offset=".5" class="shfg" stop-opacity=".07"/><stop offset="1" class="shfg" stop-opacity="0"/></linearGradient>
 <style>.sht{stop-color:var(--teal)}.shfg{stop-color:var(--fg)}
 .tg{fill:none;stroke:var(--line);stroke-width:1}.tr{fill:var(--line);opacity:.6}
-.tb{fill:var(--raised);stroke:var(--line)}.tp{fill:var(--line)}.trim{fill:none;stroke:var(--accent);stroke-opacity:.5}
+.tb{fill:var(--panel);stroke:var(--line)}.tp{fill:var(--line)}.trim{fill:none;stroke:var(--accent);stroke-opacity:.5}
 .tsh{opacity:.9}.tpill{fill:var(--raised);stroke:var(--accent);stroke-opacity:.6}
-.gline{fill:none;stroke:var(--muted);stroke-width:2;opacity:.7}.gnode{fill:var(--bg);stroke:var(--muted);stroke-width:2}
+.gline{fill:none;stroke:var(--muted);stroke-width:2;opacity:.7}.gnode{fill:var(--muted)}.scr{fill:var(--screen)}
 .a1{fill:#ff7b72}.a2{fill:#3fb950}.a3{fill:#d29922}.tl{fill:var(--teal)}.bl{fill:var(--blue)}
 .scan,.pt{opacity:0}
 @media (prefers-color-scheme:light){.a1{fill:#cf222e}.a2{fill:#1a7f37}.a3{fill:#bf8700}.tsh{opacity:.25}}

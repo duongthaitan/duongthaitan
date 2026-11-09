@@ -2,11 +2,11 @@
 <title id="selected-work-title">$ ls ~/projects</title>
 <desc id="selected-work-desc">A 3D terminal key that types the command &quot;ls ~/projects&quot;, presses in as it runs with a spinner, and reports done.</desc>
 <style>
-:root{--bg:#0d1117;--raised:#151b23;--fg:#e6edf3;--muted:#9198a1;--faint:#2a313c;--line:#262c36;--accent:#7ee787;--glow:#d2ffd6;--deep:#2ea043;--teal:#39c5cf;--blue:#79c0ff;--vox:#2d333b}
-@media (prefers-color-scheme:light){:root{--bg:#ffffff;--raised:#f6f8fa;--fg:#1f2328;--muted:#59636e;--faint:#d8dee4;--line:#d1d9e0;--accent:#1a7f37;--glow:#4ac26b;--deep:#0f5323;--teal:#1b7c83;--blue:#0969da;--vox:#8c959f}}
+:root{--bg:#0d1117;--raised:rgba(255,255,255,.045);--panel:rgba(22,27,34,.92);--screen:rgba(1,4,9,.55);--fg:#e6edf3;--muted:#9198a1;--faint:rgba(255,255,255,.07);--line:rgba(255,255,255,.12);--accent:#7ee787;--glow:#d2ffd6;--deep:#2ea043;--teal:#39c5cf;--blue:#79c0ff;--vox:#2d333b}
+@media (prefers-color-scheme:light){:root{--bg:#ffffff;--raised:rgba(31,35,40,.035);--panel:rgba(255,255,255,.95);--screen:rgba(246,248,250,.9);--fg:#1f2328;--muted:#59636e;--faint:rgba(31,35,40,.07);--line:rgba(31,35,40,.15);--accent:#1a7f37;--glow:#4ac26b;--deep:#0f5323;--teal:#1b7c83;--blue:#0969da;--vox:#8c959f}}
 text{font-family:ui-monospace,'SF Mono','Cascadia Mono','JetBrains Mono',Menlo,Consolas,'Liberation Mono',monospace;fill:var(--fg)}
 .fg{fill:var(--fg)}.mu{fill:var(--muted)}.ac{fill:var(--accent)}.bg{fill:var(--bg)}.fa{fill:var(--faint)}.rs{fill:var(--raised)}
-.frame{fill:var(--bg);stroke:var(--line)}
+.frame{fill:var(--raised);stroke:var(--line)}.xa{fill:var(--line)}.xb{fill:var(--faint)}
 .hair{fill:none;stroke:var(--line)}
 .chev,.tick{fill:none;stroke:var(--accent);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .shs{stop-color:var(--accent)}
@@ -30,6 +30,7 @@ text{font-family:ui-monospace,'SF Mono','Cascadia Mono','JetBrains Mono',Menlo,C
 @keyframes draw{from{stroke-dashoffset:1}}
 @keyframes type{from{transform:translateX(0)}}
 @keyframes wipe{from{transform:scaleX(1)}}
+@keyframes ch{from{fill-opacity:0}}
 @keyframes vanish{to{opacity:0}}
 @keyframes blink{0%,45%{opacity:1}55%,100%{opacity:0}}
 @keyframes ring{0%{opacity:.55;transform:scale(1)}45%,100%{opacity:0;transform:scale(3)}}
@@ -47,13 +48,11 @@ text{font-family:ui-monospace,'SF Mono','Cascadia Mono','JetBrains Mono',Menlo,C
 @media (forced-colors:active){text,.fg,.mu,.ac,.fa,.rs{fill:CanvasText}.frame,.bg{fill:Canvas}.frame,.hair{stroke:CanvasText}.chev,.tick{stroke:CanvasText}}
 </style>
 <defs><clipPath id="selected-work-key"><rect width="894" height="58" rx="12"/></clipPath><style>.kb{fill:var(--line)}.ks{fill:var(--faint)}@keyframes press{40%{transform:translate(3px,3px)}}</style></defs>
-
-<path class="kb" d="M18 6.5H888A11.5 11.5 0 0 1 899.5 18V52A11.5 11.5 0 0 1 888 63.5H18A11.5 11.5 0 0 1 6.5 52V18A11.5 11.5 0 0 1 18 6.5Z"/>
-<path class="ks" d="M893.5 12l6 6V51l-6 -6zM12 57.5l6 6H887l-6 -6z"/>
+<path class="kb" d="M10.5 57.5L883.5 57.5L889.5 63.5L16.5 63.5Z"/><path class="ks" d="M893.5 10.5L899.5 16.5L899.5 53.5L893.5 47.5Z"/>
 <g style="animation:press 300ms cubic-bezier(.23,1,.32,1) 906ms 1">
 <path class="frame" d="M12 0.5H882A11.5 11.5 0 0 1 893.5 12V46A11.5 11.5 0 0 1 882 57.5H12A11.5 11.5 0 0 1 0.5 46V12A11.5 11.5 0 0 1 12 0.5Z"/>
 <path class="chev" d="M28 23.5l4.8 4.8l-4.8 4.8" style="animation:in 240ms cubic-bezier(.23,1,.32,1) 60ms both"/>
-<text x="48" y="34" font-size="15" textLength="117" class="fg">ls ~/projects</text><rect class="bg cv" x="47" y="19" width="119" height="21" style="animation:wipe 546ms steps(13,end) 160ms both"/><rect class="ac mv transient" x="49" y="21.7" width="7.5" height="15.3" rx="1" style="--d:117px;animation:in 1ms linear 160ms both,type 546ms steps(13,end) 160ms both,vanish 120ms linear 1026ms forwards"/>
+<text x="48" y="34" font-size="15" textLength="117" class="fg"><tspan style="animation:ch 1ms linear 202ms both">l</tspan><tspan style="animation:ch 1ms linear 244ms both">s</tspan> <tspan style="animation:ch 1ms linear 328ms both">~</tspan><tspan style="animation:ch 1ms linear 370ms both">/</tspan><tspan style="animation:ch 1ms linear 412ms both">p</tspan><tspan style="animation:ch 1ms linear 454ms both">r</tspan><tspan style="animation:ch 1ms linear 496ms both">o</tspan><tspan style="animation:ch 1ms linear 538ms both">j</tspan><tspan style="animation:ch 1ms linear 580ms both">e</tspan><tspan style="animation:ch 1ms linear 622ms both">c</tspan><tspan style="animation:ch 1ms linear 664ms both">t</tspan><tspan style="animation:ch 1ms linear 706ms both">s</tspan></text><rect class="ac mv transient" x="49" y="21.7" width="7.5" height="15.3" rx="1" style="--d:117px;animation:in 1ms linear 160ms both,type 546ms steps(13,end) 160ms both,vanish 120ms linear 1026ms forwards"/>
 <rect class="ac run" x="0" y="54.5" width="893" height="2" clip-path="url(#selected-work-key)" style="animation:run 1000ms cubic-bezier(.77,0,.175,1) 1086ms both"/>
 <circle class="spin" cx="827" cy="29" r="6" pathLength="1" stroke-dasharray=".62 .38" style="animation:spin 640ms linear 1086ms 1.17"/>
 <path class="tick" d="M821 28l3.5 3.5l7 -7" style="animation:pop 360ms cubic-bezier(.23,1,.32,1) 1836ms both"/>

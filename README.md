@@ -11,13 +11,13 @@
   <a href="#connect"><code>~/connect</code></a>
 </p>
 
-<img src="./assets/typing-anim.svg" width="100%" alt="neofetch for thaitan@github. Role: full-stack developer. Location: Soc Trang, Vietnam. Shipping: TypeScript across the stack. Stack: React, Node.js, PostgreSQL, AWS. Focus: clean architecture, testing. Certificates: Meta, Google, IBM, AWS, DeepLearning.AI. GitHub: duongthaitan." />
+<img src="./assets/typing-anim.svg" width="100%" alt="neofetch for thaitan@github, with a 3D voxel &lt;T/&gt; logo. Role: full-stack developer. Location: Soc Trang, Vietnam. Shipping: TypeScript across the stack. Stack: React, Node.js, PostgreSQL, AWS. Focus: clean architecture, testing. Certificates: Meta, Google, IBM, AWS, DeepLearning.AI. GitHub: duongthaitan." />
 
 <img src="./assets/section-divider.svg" width="100%" alt="" />
 
 <img src="./assets/galaxy/about.svg" width="100%" alt="$ cat about.md" />
 
-## About
+### About
 
 Full-stack developer focused on production-grade web applications and cloud infrastructure. I treat software as a craft: clean architecture, thorough testing and careful design over quick fixes.
 
@@ -25,7 +25,7 @@ Right now I ship TypeScript across the stack, from React frontends to Node.js se
 
 <img src="./assets/galaxy/toolkit.svg" width="100%" alt="$ ls ~/toolkit/{client,server}" />
 
-## Toolkit
+### Toolkit
 
 <img src="./assets/stack-client.svg" width="100%" alt="Client toolkit as 3D keycaps with logos. Languages: TypeScript, JavaScript, Python, Go, Rust. Frontend: React, Next.js, Vue, Tailwind, Three.js. In production now: TypeScript, React." />
 
@@ -35,7 +35,7 @@ Right now I ship TypeScript across the stack, from React frontends to Node.js se
 
 <img src="./assets/galaxy/selected-work.svg" width="100%" alt="$ ls ~/projects" />
 
-## Selected work
+### Selected work
 
 | Project | What it is | Stack |
 |---------|------------|-------|
@@ -46,7 +46,7 @@ Right now I ship TypeScript across the stack, from React frontends to Node.js se
 
 <img src="./assets/galaxy/certificates.svg" width="100%" alt="$ cat certificates.json" />
 
-## Certificates
+### Certificates
 
 | Certificate | Issuer | Credential |
 |-------------|--------|------------|
@@ -58,7 +58,7 @@ Right now I ship TypeScript across the stack, from React frontends to Node.js se
 
 <img src="./assets/galaxy/automation.svg" width="100%" alt="$ gh workflow list" />
 
-## Automation
+### Automation
 
 This profile maintains itself. Every visual on the page is an SVG generated from one set of design tokens, and GitHub Actions keeps the numbers current.
 
@@ -73,7 +73,7 @@ Artwork comes from `scripts/gen-profile.mjs`, with the palette, type and easing 
 
 <img src="./assets/galaxy/connect.svg" width="100%" alt="$ ping duongthaitan" />
 
-## Connect
+### Connect
 
 | Where | Handle |
 |-------|--------|
