@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./assets/hero-banner.svg" width="100%" alt="Duong Thai Tan: full-stack developer, cloud infrastructure builder, visual creator. I build web apps and the cloud systems that run them." />
+  <a href="https://duongthaitan.github.io/duongthaitan/terminal/"><img src="./assets/hero-banner.svg" width="100%" alt="Duong Thai Tan: full-stack developer, cloud infrastructure builder, visual creator. I build web apps and the cloud systems that run them. Opens the interactive terminal." /></a>
 </div>
 
 <p align="center">
@@ -11,7 +11,9 @@
   <a href="#connect"><code>~/connect</code></a>
 </p>
 
-<img src="./assets/typing-anim.svg" width="100%" alt="neofetch for thaitan@github, with a 3D voxel &lt;T/&gt; logo. Role: full-stack developer. Location: Soc Trang, Vietnam. Shipping: TypeScript across the stack. Stack: React, Node.js, PostgreSQL, AWS. Focus: clean architecture, testing. Certificates: Meta, Google, IBM, AWS, DeepLearning.AI. GitHub: duongthaitan." />
+<a href="https://duongthaitan.github.io/duongthaitan/terminal/"><img src="./assets/launch.svg" width="100%" alt="Open the interactive 3D terminal: type commands, tilt the terminal with your pointer and press the tool keys." /></a>
+
+<a href="https://duongthaitan.github.io/duongthaitan/terminal/"><img src="./assets/typing-anim.svg" width="100%" alt="neofetch for thaitan@github, with a 3D voxel &lt;T/&gt; logo. Role: full-stack developer. Location: Soc Trang, Vietnam. Shipping: TypeScript across the stack. Stack: React, Node.js, PostgreSQL, AWS. Focus: clean architecture, testing. Certificates: Meta, Google, IBM, AWS, DeepLearning.AI. GitHub: duongthaitan." /></a>
 
 <img src="./assets/section-divider.svg" width="100%" alt="" />
 
@@ -27,15 +29,18 @@ Right now I ship TypeScript across the stack, from React frontends to Node.js se
 
 ### Toolkit
 
-<img src="./assets/stack-client.svg" width="100%" alt="Client toolkit as 3D keycaps with logos. Languages: TypeScript, JavaScript, Python, Go, Rust. Frontend: React, Next.js, Vue, Tailwind, Three.js. In production now: TypeScript, React." />
+<a href="https://duongthaitan.github.io/duongthaitan/terminal/#toolkit"><img src="./assets/stack-client.svg" width="100%" alt="Client toolkit as 3D keycaps with logos. Languages: TypeScript, JavaScript, Python, Go, Rust. Frontend: React, Next.js, Vue, Tailwind, Three.js. In production now: TypeScript, React. Opens the playable keyboard." /></a>
 
-<img src="./assets/stack-server.svg" width="100%" alt="Server toolkit as 3D keycaps with logos. Backend: Node.js, NestJS, GraphQL. Data: PostgreSQL, MongoDB, Redis. DevOps: Docker, Kubernetes, AWS, GitHub Actions. In production now: Node.js, PostgreSQL, AWS." />
+<a href="https://duongthaitan.github.io/duongthaitan/terminal/#toolkit"><img src="./assets/stack-server.svg" width="100%" alt="Server toolkit as 3D keycaps with logos. Backend: Node.js, NestJS, GraphQL. Data: PostgreSQL, MongoDB, Redis. DevOps: Docker, Kubernetes, AWS, GitHub Actions. In production now: Node.js, PostgreSQL, AWS. Opens the playable keyboard." /></a>
 
-<sub>Logos from <a href="https://simpleicons.org">Simple Icons</a> (CC0). Trademarks belong to their owners.</sub>
+<sub>Click either board to press the keys for real. Logos from <a href="https://simpleicons.org">Simple Icons</a> (CC0); trademarks belong to their owners.</sub>
 
 <img src="./assets/galaxy/selected-work.svg" width="100%" alt="$ ls ~/projects" />
 
 ### Selected work
+
+<details open>
+<summary><code>ls -l ~/projects</code></summary>
 
 | Project | What it is | Stack |
 |---------|------------|-------|
@@ -44,9 +49,14 @@ Right now I ship TypeScript across the stack, from React frontends to Node.js se
 | **AI research suite** | ML pipeline orchestration with model training dashboards | `Python` `FastAPI` `PyTorch` |
 | **Open source tools** | Developer utilities and CLI tools for workflow automation | `Node.js` `Go` `GitHub Actions` |
 
+</details>
+
 <img src="./assets/galaxy/certificates.svg" width="100%" alt="$ cat certificates.json" />
 
 ### Certificates
+
+<details open>
+<summary><code>cat certificates.json | jq '.[]'</code></summary>
 
 | Certificate | Issuer | Credential |
 |-------------|--------|------------|
@@ -56,20 +66,27 @@ Right now I ship TypeScript across the stack, from React frontends to Node.js se
 | AWS Cloud Solutions Architect | Amazon | [`CT-11PGKZIX`](https://www.credly.com/badges/CT-11PGKZIX) |
 | Deep Learning Specialization | DeepLearning.AI | [`CC-USOBZSX7`](https://www.coursera.org/account/accomplishments/specialization/CC-USOBZSX7) |
 
+</details>
+
 <img src="./assets/galaxy/automation.svg" width="100%" alt="$ gh workflow list" />
 
 ### Automation
 
-This profile maintains itself. Every visual on the page is an SVG generated from one set of design tokens, and GitHub Actions keeps the numbers current.
+This profile maintains itself. Every visual on the page is an SVG generated from one set of design tokens, and GitHub Actions keeps the numbers current. Click the terminal to watch the runs.
 
-<img src="./assets/terminal-3d.svg" width="100%" alt="A 3D terminal runs this repo's pipeline: node scripts/gen-profile.mjs lists every generated asset with its size, node --test scripts/*.test.mjs reports both test files ok, and git push origin main lands a new commit on main. Floating panels chart the asset sizes and the git graph as it happens." />
+<a href="https://github.com/duongthaitan/duongthaitan/actions"><img src="./assets/terminal-3d.svg" width="100%" alt="A 3D terminal runs this repo's pipeline: node scripts/gen-profile.mjs lists every generated asset with its size, node --test scripts/*.test.mjs reports both test files ok, and git push origin main lands a new commit on main. Floating panels chart the asset sizes and the git graph as it happens. Opens the Actions runs." /></a>
+
+<details>
+<summary><code>cat .github/workflows/*.yml</code> &nbsp;how the pipeline works</summary>
 
 1. **Fetch live metrics** from the GitHub API: public repos, stars and followers.
 2. **Render the panel** at the bottom of this page with `scripts/render-metrics.mjs`.
-3. **Check every SVG.** The test suite rejects scripts, external references and motion without a `prefers-reduced-motion` fallback, and fails if a committed asset drifts from its generator.
+3. **Check every asset.** The test suite rejects scripts, external references and motion without a `prefers-reduced-motion` fallback, and fails if a committed asset drifts from its generator.
 4. **Push atomically.** The metrics file updates only when its content changed and the remote SHA still matches.
 
-Artwork comes from `scripts/gen-profile.mjs`, with the palette, type and easing curves in `scripts/svg-kit.mjs`. No external image services, no third-party actions.
+Artwork comes from `scripts/gen-profile.mjs` and the interactive page from `scripts/gen-site.mjs`, both reading the same facts from `scripts/profile-data.mjs`, with the palette, type and easing curves in `scripts/svg-kit.mjs`. No external image services, no third-party actions.
+
+</details>
 
 <img src="./assets/galaxy/connect.svg" width="100%" alt="$ ping duongthaitan" />
 
@@ -84,5 +101,5 @@ Artwork comes from `scripts/gen-profile.mjs`, with the palette, type and easing 
 <br/>
 
 <div align="center">
-  <img src="./assets/github-metrics.svg" width="100%" alt="Live GitHub metrics" />
+  <a href="https://github.com/duongthaitan?tab=repositories"><img src="./assets/github-metrics.svg" width="100%" alt="Live GitHub metrics. Opens the repositories." /></a>
 </div>

@@ -1,0 +1,629 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Duong Thai Tan, full-stack developer: interactive terminal</title>
+<meta name="description" content="Duong Thai Tan, full-stack developer from Soc Trang, Vietnam. I build web apps and the cloud systems that run them. An interactive 3D terminal you can type into.">
+<meta name="color-scheme" content="dark light">
+<link rel="canonical" href="https://duongthaitan.github.io/duongthaitan/terminal/">
+<link rel="icon" href="data:,">
+<script>try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<style>
+/* Interactive terminal page. Tokens mirror scripts/svg-kit.mjs so the page and the README art match. */
+:root {
+  --bg: #0d1117; --fg: #e6edf3; --muted: #9198a1; --line: rgba(255,255,255,.12); --raised: rgba(255,255,255,.045);
+  --panel: #161b22; --screen: #0b0f14; --accent: #7ee787; --glow: #d2ffd6; --deep: #2ea043; --teal: #39c5cf; --blue: #79c0ff;
+  --red: #ff7b72; --yellow: #d29922; --cap-top: #2a3341; --cap-front: #1c232d; --cap-side: #131920; --plate: #121820;
+  --shadow: rgba(0,0,0,.55);
+  --mono: ui-monospace, 'SF Mono', 'Cascadia Mono', 'JetBrains Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+  --ease-out: cubic-bezier(.23,1,.32,1); --ease-io: cubic-bezier(.77,0,.175,1);
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme=dark]) {
+    --bg: #ffffff; --fg: #1f2328; --muted: #59636e; --line: rgba(31,35,40,.15); --raised: rgba(31,35,40,.035);
+    --panel: #ffffff; --screen: #f6f8fa; --accent: #1a7f37; --glow: #4ac26b; --deep: #0f5323; --teal: #1b7c83; --blue: #0969da;
+    --red: #cf222e; --yellow: #9a6700; --cap-top: #ffffff; --cap-front: #e6eaef; --cap-side: #d3d9e0; --plate: #eef1f4;
+    --shadow: rgba(31,35,40,.18); color-scheme: light;
+  }
+}
+:root[data-theme=light] {
+  --bg: #ffffff; --fg: #1f2328; --muted: #59636e; --line: rgba(31,35,40,.15); --raised: rgba(31,35,40,.035);
+  --panel: #ffffff; --screen: #f6f8fa; --accent: #1a7f37; --glow: #4ac26b; --deep: #0f5323; --teal: #1b7c83; --blue: #0969da;
+  --red: #cf222e; --yellow: #9a6700; --cap-top: #ffffff; --cap-front: #e6eaef; --cap-side: #d3d9e0; --plate: #eef1f4;
+  --shadow: rgba(31,35,40,.18); color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+html, body { overflow-x: clip; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 15px/1.6 var(--mono); -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.skip { position: absolute; left: 16px; top: -48px; z-index: 10; padding: 8px 12px; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; }
+.skip:focus { top: 12px; }
+
+#field { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+.aurora { position: fixed; inset: -20vmax; z-index: 0; pointer-events: none; opacity: .9;
+  background: radial-gradient(40vmax 30vmax at 72% 22%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 70%),
+              radial-gradient(34vmax 26vmax at 86% 64%, color-mix(in srgb, var(--teal) 10%, transparent), transparent 70%),
+              radial-gradient(38vmax 24vmax at 58% 86%, color-mix(in srgb, var(--blue) 9%, transparent), transparent 70%); }
+header, main, footer { position: relative; z-index: 1; }
+.wrap { width: min(1120px, 100% - 48px); margin-inline: auto; }
+
+/* Top bar */
+.top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 0; }
+.brand { color: var(--accent); text-decoration: none; font-weight: 700; }
+.top nav { display: flex; gap: 4px; flex-wrap: wrap; }
+.top nav a, .theme { color: var(--muted); text-decoration: none; font: inherit; font-size: 13px; padding: 6px 10px; border-radius: 8px; border: 0; background: none; cursor: pointer; transition: color 160ms ease, background-color 160ms ease; }
+.top nav a:hover, .theme:hover { color: var(--fg); background: var(--raised); }
+
+/* Hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr); gap: 56px; align-items: center; min-height: calc(100dvh - 80px); padding: 24px 0 64px; }
+.intro { perspective: 900px; min-width: 0; }
+.prompt { color: var(--fg); margin: 0 0 12px; font-size: 15px; }
+.chev { color: var(--accent); font-weight: 700; margin-right: 10px; }
+.name { position: relative; margin: 0 0 18px; font-size: clamp(42px, 6.4vw, 78px); line-height: 1.04; letter-spacing: -.02em; font-weight: 800;
+  transform-style: preserve-3d; transform: rotateX(var(--nrx, 0deg)) rotateY(var(--nry, 0deg)); overflow-wrap: break-word; min-width: 0; }
+.name .face { position: relative; display: block; color: var(--fg); transform: translateZ(0); }
+.name .d { position: absolute; inset: 0; display: block; pointer-events: none; color: var(--c); opacity: var(--o); transform: translateZ(var(--z)); }
+.role { margin: 0 0 18px; color: var(--accent); font-size: clamp(16px, 2vw, 20px); min-height: 1.6em; }
+.caret { display: inline-block; width: .55em; height: 1.05em; margin-left: 2px; vertical-align: -.16em; background: var(--accent); animation: blink 1.1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.line { color: var(--muted); margin: 0 0 30px; max-width: 46ch; }
+.actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+/* Keys: every button is a small 3D key that presses in */
+.key { --d: 5px; position: relative; display: inline-flex; align-items: center; gap: 8px; font: inherit; font-size: 14px; color: var(--fg); text-decoration: none; cursor: pointer;
+  padding: 10px 16px; border-radius: 10px; border: 1px solid var(--line); background: var(--raised);
+  box-shadow: var(--d) var(--d) 0 -1px color-mix(in srgb, var(--fg) 14%, transparent);
+  transform: translate(0, 0); transition: transform 160ms var(--ease-out), box-shadow 160ms var(--ease-out), border-color 160ms ease; }
+.key.primary { border-color: color-mix(in srgb, var(--accent) 60%, transparent); color: var(--accent); }
+@media (hover: hover) and (pointer: fine) { .key:hover { border-color: var(--accent); transform: translate(-1px, -1px); box-shadow: calc(var(--d) + 1px) calc(var(--d) + 1px) 0 -1px color-mix(in srgb, var(--accent) 35%, transparent); } }
+.key:active { transform: translate(var(--d), var(--d)); box-shadow: 0 0 0 -1px transparent; transition-duration: 90ms; }
+
+/* The 3D terminal */
+.stage { position: relative; perspective: 1300px; min-width: 0; }
+.stage::before { content: ''; position: absolute; left: 6%; right: 6%; bottom: -46px; height: 70px; border-radius: 50%;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--accent) 22%, transparent), transparent); filter: blur(10px); pointer-events: none; }
+.term { position: relative; height: 480px; border-radius: 16px; background: var(--panel); border: 1px solid var(--line);
+  transform-style: preserve-3d; transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  box-shadow: 0 40px 80px -30px var(--shadow); }
+.term::before { content: ''; position: absolute; inset: 0; border-radius: inherit; background: var(--line); transform: translateZ(-26px); }
+.bar { position: relative; display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 16px; border-bottom: 1px solid var(--line); transform: translateZ(14px); color: var(--muted); font-size: 12px; }
+.bar i { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+.bar i:nth-child(1) { background: var(--red); } .bar i:nth-child(2) { background: var(--yellow); } .bar i:nth-child(3) { background: var(--deep); }
+.bar span { margin-left: auto; margin-right: auto; transform: translateX(-24px); }
+.screen { position: absolute; inset: 40px 0 54px; margin: 10px 12px 0; border-radius: 10px; background: var(--screen); transform: translateZ(6px); overflow: hidden; }
+.out { height: 100%; overflow-y: auto; padding: 12px 16px; font-size: 13.5px; line-height: 1.62; scrollbar-width: thin; }
+.out .ln { white-space: pre-wrap; overflow-wrap: anywhere; min-height: 1.62em; }
+.out a { color: var(--blue); }
+.ac { color: var(--accent); } .mu { color: var(--muted); } .tl { color: var(--teal); } .bl { color: var(--blue); } .er { color: var(--red); } .b { font-weight: 700; }
+.inputline { position: absolute; left: 12px; right: 12px; bottom: 10px; height: 38px; display: flex; align-items: center; padding: 0 14px; border-radius: 10px;
+  border: 1px solid var(--line); background: var(--raised); transform: translateZ(22px); transition: border-color 160ms ease; }
+.inputline:focus-within { border-color: var(--accent); }
+.inputline input { flex: 1; min-width: 0; border: 0; outline: 0; background: none; color: var(--fg); font: inherit; font-size: 14px; caret-color: var(--accent); }
+.inputline input::placeholder { color: var(--muted); }
+.glare { position: absolute; inset: 0; border-radius: inherit; pointer-events: none; transform: translateZ(30px);
+  background: radial-gradient(520px circle at var(--gx, 70%) var(--gy, 0%), color-mix(in srgb, var(--fg) 7%, transparent), transparent 60%); }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 26px; justify-content: center; }
+.chips .key { font-size: 12.5px; padding: 6px 11px; --d: 3px; }
+
+/* Sections */
+section.block { padding: 72px 0; }
+.block h2 { font-size: 15px; font-weight: 700; margin: 0 0 8px; }
+.block h2 + p { color: var(--muted); margin: 0 0 36px; max-width: 60ch; }
+
+/* 3D keyboard */
+.kbwrap { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 40px; align-items: center; }
+.kbstage { perspective: 1700px; display: grid; place-items: center; min-height: 460px; min-width: 0; }
+.kb { --krx: 0deg; --krz: 0deg; display: grid; gap: 12px; padding: 26px 26px 26px 22px; border-radius: 22px; background: var(--plate);
+  border: 1px solid var(--line); transform-style: preserve-3d; transform: rotateX(calc(52deg + var(--krx))) rotateZ(calc(-30deg + var(--krz)));
+  box-shadow: 0 0 0 1px var(--line), 40px 60px 80px -40px var(--shadow); }
+.kbrow { display: grid; grid-template-columns: 92px repeat(5, 72px); gap: 12px; align-items: center; transform-style: preserve-3d; }
+.kbrow .lbl { color: var(--muted); font-size: 12px; text-align: right; padding-right: 6px; }
+.cap { --lift: 12px; position: relative; width: 72px; height: 72px; padding: 0; border-radius: 8px; border: 1px solid var(--line); cursor: pointer;
+  background: var(--cap-top); color: var(--muted); font: inherit; display: grid; place-items: center; transform-style: preserve-3d;
+  transform: translateZ(var(--lift)); transition: transform 260ms var(--ease-out), box-shadow 200ms ease, background-color 200ms ease;
+  animation: land 760ms var(--ease-out) backwards; animation-delay: calc(var(--i) * 34ms + 200ms); }
+.cap::before { content: ''; position: absolute; left: -1px; right: -1px; top: 100%; height: 34px; background: var(--cap-front); transform-origin: top; transform: rotateX(-90deg); }
+.cap::after { content: ''; position: absolute; top: -1px; bottom: -1px; left: 100%; width: 34px; background: var(--cap-side); transform-origin: left; transform: rotateY(90deg); }
+.cap svg { width: 30px; height: 30px; fill: var(--c); }
+.cap .nm { position: absolute; bottom: 5px; left: 0; right: 0; font-size: 9.5px; letter-spacing: 0; color: var(--muted); }
+.cap svg { margin-bottom: 10px; }
+.cap.on { border-color: color-mix(in srgb, var(--accent) 70%, transparent); }
+@media (hover: hover) and (pointer: fine) {
+  .cap:hover { --lift: 26px; box-shadow: 0 0 0 1px var(--accent), 0 0 26px -6px var(--accent); }
+}
+.cap:focus-visible, .cap.match { --lift: 24px; box-shadow: 0 0 0 1px var(--accent), 0 0 26px -6px var(--accent); outline: none; }
+.cap.sel { --lift: 30px; background: color-mix(in srgb, var(--accent) 12%, var(--cap-top)); box-shadow: 0 0 0 2px var(--accent), 0 0 36px -6px var(--accent); }
+.cap:active { --lift: 4px; transition-duration: 90ms; }
+@keyframes land { from { opacity: 0; transform: translateZ(120px); } }
+/* Pale brand colours get a darker variant (--cl) on light surfaces. */
+@media (prefers-color-scheme: light) { :root:not([data-theme=dark]) :is(.cap, .inspector) svg { fill: var(--cl, var(--c)); } }
+:root[data-theme=light] :is(.cap, .inspector) svg { fill: var(--cl, var(--c)); }
+
+.inspector { border: 1px solid var(--line); border-radius: 16px; background: var(--raised); padding: 22px 24px; min-height: 280px; }
+.inspector .cmd { margin: 0 0 14px; }
+.inspector .big { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+.inspector .big svg { width: 48px; height: 48px; fill: var(--c); }
+.inspector dl { display: grid; grid-template-columns: 9ch 1fr; gap: 6px 14px; margin: 0; font-size: 14px; }
+.inspector dt { color: var(--accent); } .inspector dd { margin: 0; }
+.hint { color: var(--muted); font-size: 13px; margin-top: 18px; }
+
+/* Projects: tilt cards with glare */
+.grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; perspective: 1200px; }
+.card { position: relative; padding: 24px; border-radius: 16px; border: 1px solid var(--line); background: var(--raised); transform-style: preserve-3d;
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: border-color 200ms ease; }
+.card:hover { border-color: color-mix(in srgb, var(--accent) 50%, var(--line)); }
+.card h3 { margin: 0 0 8px; font-size: 16px; transform: translateZ(24px); }
+.card p { margin: 0 0 16px; color: var(--muted); font-size: 14px; transform: translateZ(14px); }
+.card ul { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; transform: translateZ(20px); }
+.card li { font-size: 12px; padding: 3px 8px; border-radius: 6px; border: 1px solid var(--line); color: var(--fg); }
+.card .glare { border-radius: inherit; }
+
+/* Certificates */
+.certs { display: grid; gap: 8px; }
+.certs a { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 16px; padding: 14px 18px; border-radius: 12px; border: 1px solid var(--line); text-decoration: none;
+  background: var(--raised); transition: transform 200ms var(--ease-out), border-color 200ms ease; }
+@media (hover: hover) and (pointer: fine) { .certs a:hover { transform: translateX(6px); border-color: var(--accent); } }
+.certs .who { color: var(--muted); font-size: 13px; }
+.certs code { color: var(--accent); font-size: 13px; grid-row: span 2; align-self: center; }
+
+.links { display: flex; gap: 14px; flex-wrap: wrap; }
+footer { padding: 48px 0 64px; color: var(--muted); font-size: 13px; }
+footer a { color: var(--fg); }
+
+@media (max-width: 900px) {
+  .hero, .kbwrap { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .hero { min-height: 0; padding-top: 12px; }
+  .term { height: 420px; }
+  .kbstage { min-height: 380px; overflow: hidden; }
+  .kb { transform: rotateX(48deg) rotateZ(-26deg) scale(.78); }
+  .grid2 { grid-template-columns: minmax(0, 1fr); }
+  .top nav { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition-duration: 1ms !important; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#term-input">Skip to the terminal</a>
+<div class="aurora" aria-hidden="true"></div>
+<canvas id="field" aria-hidden="true"></canvas>
+
+<header class="wrap top">
+  <a class="brand" href="https://github.com/duongthaitan">~/duongthaitan</a>
+  <nav aria-label="Sections"><a href="#toolkit">toolkit</a><a href="#projects">projects</a><a href="#certificates">certificates</a><a href="#connect">connect</a></nav>
+  <button class="theme" id="theme" type="button">theme: auto</button>
+</header>
+
+<main class="wrap">
+  <section class="hero" aria-label="Introduction">
+    <div class="intro">
+      <p class="prompt"><span class="chev">&gt;</span>whoami</p>
+      <h1 class="name"><span class="d" aria-hidden="true" style="--c:var(--blue);--o:.14;--z:-18px">Duong Thai Tan</span><span class="d" aria-hidden="true" style="--c:var(--blue);--o:.28;--z:-12px">Duong Thai Tan</span><span class="d" aria-hidden="true" style="--c:var(--teal);--o:.42;--z:-8px">Duong Thai Tan</span><span class="d" aria-hidden="true" style="--c:var(--accent);--o:.6;--z:-4px">Duong Thai Tan</span><span class="face">Duong Thai Tan</span></h1>
+      <p class="role"><span id="role">full-stack developer</span><span class="caret" aria-hidden="true"></span></p>
+      <p class="line">I build web apps and the cloud systems that run them.</p>
+      <div class="actions">
+        <button class="key primary" type="button" data-run="help">run help</button>
+        <a class="key" href="https://github.com/duongthaitan">github profile</a>
+      </div>
+    </div>
+    <div class="stage">
+      <div class="term" id="term">
+        <div class="bar"><i></i><i></i><i></i><span>~/duongthaitan : zsh</span></div>
+        <div class="screen"><div class="out" id="out" role="log" aria-live="polite" aria-label="Terminal output"><div class="ln"><span class="mu">   &#9604;&#9600;</span><span class=""> </span><span class="ac">&#9600;&#9600;&#9608;&#9600;&#9600;</span><span class=""> </span><span class="mu">   &#9604;&#9600;</span><span class=""> </span><span class="mu">&#9600;&#9604;   </span></div><div class="ln"><span class="mu"> &#9604;&#9600;  </span><span class=""> </span><span class="ac">  &#9608;  </span><span class=""> </span><span class="mu">  &#9604;&#9600; </span><span class=""> </span><span class="mu">  &#9600;&#9604; </span></div><div class="ln"><span class="mu">  &#9600;&#9604; </span><span class=""> </span><span class="ac">  &#9608;  </span><span class=""> </span><span class="mu"> &#9608;   </span><span class=""> </span><span class="mu"> &#9604;&#9600;  </span></div><div class="ln"><span class="mu">    &#9600;</span><span class=""> </span><span class="ac">  &#9600;  </span><span class=""> </span><span class="mu">&#9600;    </span><span class=""> </span><span class="mu">&#9600;    </span></div><div class="ln"></div><div class="ln b ac">duongthaitan@github</div><div class="ln"><span class="ac">role      </span>full-stack developer</div><div class="ln"><span class="ac">location  </span>soc trang, vietnam</div><div class="ln"><span class="ac">shipping  </span>typescript across the stack</div><div class="ln"><span class="ac">stack     </span>react, node.js, postgresql, aws</div><div class="ln"><span class="ac">focus     </span>clean architecture, testing</div><div class="ln"><span class="ac">certs     </span>meta, google, ibm, aws, deeplearning.ai</div><div class="ln"><span class="ac">github    </span>duongthaitan</div></div></div>
+        <form class="inputline" id="form" autocomplete="off">
+          <label class="sr" for="term-input">Type a command</label>
+          <span class="chev" aria-hidden="true">&#10095;</span>
+          <input id="term-input" name="cmd" type="text" spellcheck="false" autocapitalize="off" placeholder="type help and press enter">
+        </form>
+        <div class="glare" aria-hidden="true"></div>
+      </div>
+      <div class="chips" aria-label="Quick commands"><button class="key" type="button" data-run="neofetch">neofetch</button><button class="key" type="button" data-run="stack">stack</button><button class="key" type="button" data-run="projects">projects</button><button class="key" type="button" data-run="info react">info react</button><button class="key" type="button" data-run="certs">certs</button><button class="key" type="button" data-run="matrix">matrix</button></div>
+    </div>
+  </section>
+
+  <section class="block" id="toolkit">
+    <h2><span class="chev">&gt;</span>ls ~/toolkit</h2>
+    <p>Every key is a tool I use. Hover to lift it, click to inspect it, or type <span class="ac">info &lt;tool&gt;</span> in the terminal and watch the matching keys rise.</p>
+    <div class="kbwrap">
+      <div class="kbstage"><div class="kb" id="kb">
+<div class="kbrow"><span class="lbl">languages</span><button class="cap on" type="button" data-tool="typescript" style="--i:0;--c:#3178C6" aria-label="typescript, in production now"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M1.1 0c-.6 0-1.1.5-1.1 1.1v21.8c0 .6.5 1.1 1.1 1.1h21.8c.6 0 1.1-.5 1.1-1.1v-21.8c0-.6-.5-1.1-1.1-1.1zm17.4 9.8c.6-.1 1.1 0 1.6.1a6.4 6.4 0 0 1 1.3.3v2.5a4 4 0 0 0-.6-.4a5.1 5.1 0 0 0-.7-.3a5.5 5.5 0 0 0-1.5-.2c-.3 0-.5.1-.8.1a2.1 2.1 0 0 0-.6.3c-.2.1-.3.2-.4.3a.9.9 0 0 0-.1.5c0 .2 0 .4.1.6c.1.1.3.3.5.4s.4.3.7.4c.2.1.5.3.9.4c.5.2.9.4 1.2.7c.4.2.7.4 1 .7c.3.3.5.6.6 1c.2.3.2.7.2 1.2c0 .7-.1 1.2-.3 1.7a3 3 0 0 1-1 1.1a4.4 4.4 0 0 1-1.5.6c-.6.1-1.2.1-1.8.1a9.9 9.9 0 0 1-1.9-.1a5.5 5.5 0 0 1-1.5-.5v-2.6a5 5 0 0 0 3.3 1.2c.3 0 .6-.1.8-.1c.3-.1.5-.2.7-.3c.1-.1.2-.2.3-.4a1 1 0 0 0 0-1.1a2.1 2.1 0 0 0-.6-.5a5.6 5.6 0 0 0-.8-.4a27.7 27.7 0 0 0-1-.4c-.9-.4-1.6-.9-2-1.4c-.5-.6-.7-1.3-.7-2c0-.7.1-1.2.3-1.6c.3-.5.6-.8 1-1.1a4.5 4.5 0 0 1 1.5-.6a7.5 7.5 0 0 1 1.8-.2zm-15.1.1h9.5v2.2h-3.4v9.7h-2.7v-9.7h-3.4z"/></svg><span class="nm">typescript</span></button><button class="cap" type="button" data-tool="javascript" style="--i:1;--c:#F7DF1E;--cl:#a29214" aria-label="javascript"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M0 0h24v24h-24v-24zm22 18.3c-.1-1.1-.9-2-3-2.9c-.7-.3-1.5-.6-1.8-1.1c-.1-.4-.1-.5 0-.7c.1-.7.9-.9 1.5-.7c.4.1.8.4 1 .9c1-.7 1-.7 1.7-1.1c-.2-.4-.4-.6-.6-.8c-.6-.7-1.4-1.1-2.8-1l-.7 0c-.7.2-1.3.6-1.7 1.1c-1.1 1.2-.8 3.5.6 4.4c1.3 1 3.3 1.3 3.6 2.2c.2 1.2-.9 1.6-2 1.4c-.8-.1-1.2-.5-1.7-1.3l-1.9 1.1c.2.4.5.6.8 1.1c1.8 1.7 6.1 1.6 6.9-1c0-.1.3-.7.1-1.7l0 .1zm-8.9-7.3h-2.3c0 2 0 3.9 0 5.8c0 1.3.1 2.4-.1 2.7c-.4.7-1.2.6-1.6.5c-.4-.2-.6-.4-.8-.8c-.1-.1-.2-.2-.2-.2l-1.8 1.1c.3.6.8 1.2 1.3 1.5c.9.5 2 .7 3.2.4c.8-.2 1.5-.7 1.8-1.4c.6-.9.5-2.1.4-3.3c.1-2.1 0-4.1 0-6.2l.1-.1z"/></svg><span class="nm">javascript</span></button><button class="cap" type="button" data-tool="python" style="--i:2;--c:#3776AB" aria-label="python"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.3.2l.8.2l.8.2l.6.3l.4.4l.4.3l.2.3l.2.4l.1.3l0 .2l0 .2l0 .2v5.3l0 .6l-.2.6l-.2.4l-.2.4l-.3.3l-.4.3l-.3.2l-.4.1l-.3.1l-.3.1l-.3 0l-.2 0h-5.9l-.7.1l-.6.1l-.5.3l-.4.2l-.3.3l-.3.4l-.2.4l-.2.3l-.1.4l0 .3l-.1.3l0 .2v3h-2.2l-.2 0l-.3-.1l-.3-.1l-.4-.2l-.4-.2l-.3-.4l-.4-.4l-.3-.6l-.3-.8l-.2-.9l-.1-1l-.1-1.2l.1-1.3l.2-1l.2-.9l.3-.7l.4-.5l.4-.5l.4-.3l.4-.3l.4-.1l.4-.1l.3-.1l.2 0h.2l.1 0h8.1v-.8h-5.8l0-2.7l0-.4l0-.4l.1-.3l.2-.2l.2-.3l.3-.2l.4-.2l.5-.2l.5-.2l.6-.1l.6-.1l.7 0l.8-.1l.8 0l1.3 0zm-6.4 2l-.2.3l-.1.4l.1.4l.3.4l.3.2l.4.1l.4-.1l.3-.2l.3-.4l0-.4l0-.4l-.3-.3l-.3-.3l-.4 0l-.4 0zm13.1 3.9l.3.1l.3.1l.4.2l.4.2l.3.4l.4.5l.3.6l.3.7l.2.9l.1 1l.1 1.2l-.1 1.3l-.2 1l-.2.9l-.3.7l-.4.5l-.4.5l-.4.3l-.4.3l-.4.1l-.4.1l-.3.1l-.2 0l-.2 0h-8.2v.8h5.8l0 2.7l.1.4l-.1.3l-.1.4l-.2.2l-.2.3l-.3.2l-.4.2l-.5.2l-.5.2l-.5.1l-.7.1l-.7 0l-.8.1l-.8 0l-1.3 0l-1-.2l-.9-.2l-.8-.2l-.6-.3l-.4-.4l-.4-.3l-.2-.3l-.2-.4l-.1-.3l0-.2l0-.2l0-.2v-5.3l0-.6l.2-.6l.2-.4l.2-.4l.3-.3l.4-.3l.3-.2l.4-.1l.3-.1l.3-.1l.3 0l.2 0l.1 0h5.8l.7-.1l.6-.1l.5-.2l.4-.3l.4-.3l.2-.4l.2-.4l.2-.3l.1-.4l0-.3l.1-.3l0-.2v-3h2.1l.1 0zm-6.4 14.3l-.3.3l0 .4l0 .4l.3.3l.3.3l.4 0l.4 0l.4-.3l.2-.3l.1-.4l-.1-.4l-.2-.3l-.4-.3l-.4-.1l-.4.1z"/></svg><span class="nm">python</span></button><button class="cap" type="button" data-tool="go" style="--i:3;--c:#00ADD8" aria-label="go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M1.8 10.2c0 0 0 0 0 0l.2-.3c0-.1.1-.1.2-.1h4.1c.1 0 .1 0 .1.1l-.2.3c-.1 0-.1 0-.2 0zm-1.8 1.1c0 0 0 0 0-.1l.3-.3c0 0 0 0 .1 0h5.3c.1 0 .1 0 .1 0l-.1.3c0 .1-.1.1-.1.1zm2.9 1.1c-.1 0-.1-.1-.1-.1l.2-.3c0 0 .1-.1.1-.1h2.4c0 0 0 .1 0 .1l0 .3c0 .1 0 .1-.1.1zm12.1-2.4c-.7.2-1.2.3-2 .5c-.1.1-.1.1-.3-.1c-.2-.2-.3-.3-.5-.4c-.8-.4-1.5-.3-2.2.1c-.8.6-1.2 1.3-1.2 2.3c.1.9.7 1.7 1.6 1.8c.8.1 1.5-.2 2-.8c.1-.1.2-.2.3-.4h-2.2c-.3 0-.3-.2-.3-.4c.2-.3.5-.9.6-1.2a.3.3 0 0 1 .3-.2h4.3c0 .3 0 .6-.1.9a5 5 0 0 1-.9 2.3c-.9 1.1-2 1.8-3.4 2c-1.1.2-2.2-.1-3.1-.8c-.9-.6-1.4-1.5-1.5-2.6c-.1-1.2.2-2.4 1-3.4c.8-1.1 1.9-1.8 3.3-2c1.1-.2 2.1-.1 3.1.6c.6.4 1 .9 1.3 1.6c.1.1 0 .2-.1.2m3.9 6.5c-1.1 0-2.1-.3-2.9-1a3.7 3.7 0 0 1-1.2-2.3c-.3-1.3.1-2.5.9-3.5c.9-1.2 1.9-1.7 3.3-2c1.2-.2 2.3-.1 3.3.6c.9.6 1.5 1.5 1.7 2.6c.2 1.6-.3 2.9-1.4 4c-.8.8-1.7 1.3-2.8 1.5c-.3 0-.6 0-.9.1zm2.8-4.7c-.1-.2-.1-.3-.1-.4c-.2-1.2-1.3-1.8-2.4-1.6c-1.1.3-1.8 1-2 2.1c-.2.9.2 1.8 1.1 2.2c.6.2 1.2.2 1.9-.1c.9-.5 1.4-1.2 1.5-2.2z"/></svg><span class="nm">go</span></button><button class="cap" type="button" data-tool="rust" style="--i:4;--c:var(--fg)" aria-label="rust"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.8 11.7l-1-.6a13.7 13.7 0 0 0 0-.3l.9-.8a.3.3 0 0 0-.2-.6l-1.1-.4a8.5 8.5 0 0 0 0-.3l.6-1a.3.3 0 0 0-.2-.5l-1.1-.2a9.4 9.4 0 0 0-.2-.3l.5-1a.3.3 0 0 0 0-.4a.3.3 0 0 0-.3-.1l-1.2 0a6.7 6.7 0 0 0-.2-.2l.3-1.2a.3.3 0 0 0-.4-.4l-1.2.3a14 14 0 0 0-.2-.2l0-1.2a.3.3 0 0 0-.5-.3l-1 .5c-.1-.1-.2-.1-.3-.2l-.2-1.1a.3.3 0 0 0-.5-.2l-1 .6a8.5 8.5 0 0 0-.3 0l-.4-1.1a.3.3 0 0 0-.6-.2l-.8.9a9.3 9.3 0 0 0-.3 0l-.6-1a.3.3 0 0 0-.6 0l-.6 1a13.7 13.7 0 0 0-.3 0l-.8-.9a.3.3 0 0 0-.6.2l-.4 1.1c-.1 0-.2 0-.3 0l-1-.6a.3.3 0 0 0-.5.2l-.2 1.1a9.4 9.4 0 0 0-.3.2l-1-.5a.3.3 0 0 0-.5.3l0 1.2a8 8 0 0 0-.2.2l-1.2-.3a.3.3 0 0 0-.4.4l.3 1.2c-.1.1-.1.1-.2.2l-1.2 0a.3.3 0 0 0-.3.5l.5 1a9.2 9.2 0 0 0-.2.3l-1.1.2a.3.3 0 0 0-.2.5l.6 1a13.3 13.3 0 0 0 0 .3l-1.1.4a.3.3 0 0 0-.2.6l.9.8a9.3 9.3 0 0 0 0 .3l-1 .6a.3.3 0 0 0 0 .6l1 .6c0 .1 0 .2 0 .3l-.9.8a.3.3 0 0 0 .2.6l1.1.4c0 .1 0 .2 0 .3l-.6 1a.3.3 0 0 0 .2.5l1.1.2c.1.1.1.2.2.2l-.5 1.1a.3.3 0 0 0 .3.5l1.2 0c.1.1.1.1.2.2l-.3 1.2a.3.3 0 0 0 .4.4l1.2-.3c.1.1.1.1.2.2l0 1.2a.3.3 0 0 0 .5.3l1-.5c.1.1.2.1.3.1l.2 1.2a.3.3 0 0 0 .5.2l1-.6a9.3 9.3 0 0 0 .3 0l.4 1.1a.3.3 0 0 0 .6.2l.8-.9c.1 0 .2 0 .3 0l.6 1a.3.3 0 0 0 .6 0l.6-1c.1 0 .2 0 .3 0l.8.9a.3.3 0 0 0 .6-.2l.4-1.1a8.5 8.5 0 0 0 .3 0l1 .6a.3.3 0 0 0 .5-.2l.2-1.2c.1 0 .2 0 .3-.1l1 .5a.3.3 0 0 0 .5-.3l0-1.2a6.7 6.7 0 0 0 .2-.2l1.2.3a.3.3 0 0 0 .4-.4l-.3-1.2c.1-.1.1-.1.2-.2l1.2 0a.3.3 0 0 0 .3-.5l-.5-1c.1-.1.1-.2.2-.3l1.1-.2a.3.3 0 0 0 .2-.5l-.6-1l0-.3l1.1-.4a.3.3 0 0 0 .2-.6l-.9-.8c0-.1 0-.2 0-.3l1-.6a.3.3 0 0 0 0-.6zm-6.7 8.4a.7.7 0 0 1 .3-1.4a.7.7 0 1 1-.3 1.4zm-.3-2.4a.6.6 0 0 0-.8.5l-.4 1.7c-1.1.5-2.3.8-3.6.8a8.7 8.7 0 0 1-3.7-.8l-.3-1.7a.6.6 0 0 0-.8-.5l-1.5.3a8.7 8.7 0 0 1-.8-.9h7.2c.1 0 .1 0 .1-.1v-2.5c0-.1 0-.1-.1-.1h-2.1v-1.6h2.3c.2 0 1.1.1 1.4 1.2c.1.4.3 1.5.4 1.9c.1.4.7 1.2 1.3 1.2h3.5a.7.7 0 0 0 .2 0a8.8 8.8 0 0 1-.8 1zm-10 2.3a.7.7 0 1 1-.3-1.4a.7.7 0 0 1 .3 1.4zm-2.7-11a.7.7 0 1 1-1.3.6a.7.7 0 0 1 1.3-.6zm-.8 2l1.5-.7a.7.7 0 0 0 .3-.9l-.3-.7h1.3v5.6h-2.5a8.8 8.8 0 0 1-.3-3.3zm6.7-.6v-1.6h3c.1 0 1.1.2 1.1.9c0 .5-.8.7-1.3.7zm10.8 1.5c0 .2 0 .5-.1.7h-.9c0 0-.1 0-.1.1v.4c0 1-.5 1.2-1 1.3c-.5 0-1-.2-1-.5c-.3-1.5-.8-1.8-1.5-2.4c.9-.6 1.8-1.4 1.8-2.5c0-1.2-.8-1.9-1.3-2.3c-.8-.5-1.7-.6-1.9-.6h-9.3a8.8 8.8 0 0 1 4.9-2.8l1.1 1.2a.6.6 0 0 0 .9 0l1.2-1.2a8.8 8.8 0 0 1 6 4.3l-.8 1.9a.7.7 0 0 0 .3.8l1.6.7c.1.3.1.6.1.9zm-9.3-9.6a.7.7 0 1 1 1 1.1a.7.7 0 0 1-1-1.1zm8.3 6.7a.7.7 0 0 1 1-.3a.7.7 0 1 1-1 .3z"/></svg><span class="nm">rust</span></button></div>
+<div class="kbrow"><span class="lbl">frontend</span><button class="cap on" type="button" data-tool="react" style="--i:5;--c:#61DAFB;--cl:#479fb7" aria-label="react, in production now"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.2 12a2.2 2.2 0 0 1-2.2 2.2a2.2 2.2 0 0 1-2.2-2.2a2.2 2.2 0 0 1 2.2-2.2a2.2 2.2 0 0 1 2.2 2.2zm2.7-10.7c-1.4 0-3.1 1-4.9 2.6c-1.8-1.6-3.6-2.6-4.9-2.6c-.4 0-.8.1-1.1.3c-1.4.8-1.7 3.3-1 6.4c-3 .9-5 2.4-5 4c0 1.6 2 3.1 5 4c-.7 3.1-.3 5.6 1 6.4c.4.2.7.3 1.1.3c1.4 0 3.1-1 4.9-2.6c1.8 1.6 3.6 2.6 4.9 2.6c.4 0 .8-.1 1.1-.3c1.4-.8 1.7-3.3 1-6.4c3-.9 5-2.4 5-4c0-1.6-2-3.1-5-4c.7-3.1.3-5.6-1-6.4c-.3-.2-.7-.3-1.1-.3zm0 1.1v0c.2 0 .4.1.5.1c.7.4 1 1.9.8 3.7c-.1.5-.2 1-.3 1.5c-.9-.3-2-.4-3.1-.6c-.7-.9-1.3-1.7-2-2.4c1.6-1.5 3.1-2.3 4.1-2.3zm-9.8 0c1 0 2.5.8 4.1 2.3c-.7.7-1.4 1.5-2 2.4c-1.1.2-2.2.3-3.1.6c-.1-.5-.2-1-.3-1.4c-.2-1.9.1-3.4.7-3.7c.2-.1.4-.2.6-.2zm4.9 3.1c.4.4.9 1 1.3 1.5c-.4 0-.8 0-1.3 0c-.5 0-.9 0-1.4 0c.5-.5.9-1.1 1.4-1.5zm0 2.6c.7 0 1.5 0 2.2.1c.4.6.8 1.2 1.2 1.9c.4.6.7 1.2 1 1.9c-.3.7-.6 1.3-1 1.9c-.4.7-.8 1.3-1.2 1.9c-.7.1-1.5.1-2.2.1c-.7 0-1.5 0-2.2-.1c-.4-.6-.8-1.2-1.2-1.8c-.4-.7-.7-1.3-1-2c.3-.6.6-1.3 1-1.9c.4-.7.8-1.3 1.2-1.9c.7-.1 1.5-.1 2.2-.1zm-3.6.3c-.3.3-.5.7-.7 1.1c-.3.4-.5.8-.7 1.2c-.2-.7-.5-1.3-.6-2c.6-.1 1.3-.2 2-.3zm7.2 0c.7.1 1.4.2 2 .3c-.1.7-.4 1.3-.6 2c-.2-.4-.4-.8-.7-1.2c-.2-.4-.4-.8-.7-1.1zm3.1.6c.5.2.9.3 1.4.5c1.7.8 2.8 1.7 2.8 2.5c0 .8-1.1 1.7-2.8 2.5c-.5.2-.9.3-1.4.5c-.3-1-.6-2-1.1-3c.5-1 .8-2 1.1-3zm-13.4 0c.3 1 .6 2 1.1 3c-.5 1-.8 2-1.1 3c-.5-.2-.9-.3-1.4-.5c-1.7-.8-2.8-1.7-2.8-2.5c0-.8 1.1-1.7 2.8-2.5c.5-.2.9-.3 1.4-.5zm11.7 4.3c.2.7.5 1.3.6 2c-.6.1-1.3.3-2 .4c.3-.4.5-.8.7-1.2c.3-.4.5-.8.7-1.2zm-10 0c.2.4.4.8.7 1.2c.2.4.4.8.7 1.2c-.7-.2-1.4-.3-2-.4c.1-.7.4-1.3.6-2zm10.9 3c.1.5.2 1 .3 1.4c.2 1.9-.1 3.4-.7 3.8c-.2 0-.4.1-.6.1c-1 0-2.5-.8-4.1-2.3c.7-.7 1.4-1.5 2-2.4c1.1-.2 2.2-.3 3.1-.6zm-11.8 0c1 .3 2 .4 3.1.6c.7.9 1.3 1.7 2 2.4c-1.6 1.5-3.1 2.3-4.1 2.3c-.2 0-.4 0-.5-.1c-.7-.4-1-1.9-.8-3.7c.1-.5.2-1 .3-1.5zm4.6.7c.4 0 .8 0 1.3 0c.5 0 .9 0 1.4 0c-.5.5-.9 1.1-1.4 1.5c-.4-.4-.9-1-1.3-1.5z"/></svg><span class="nm">react</span></button><button class="cap" type="button" data-tool="next.js" style="--i:6;--c:var(--fg)" aria-label="next.js"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.7 22c-1.9 1.3-4.2 2-6.7 2c-6.6 0-12-5.4-12-12s5.4-12 12-12s12 5.4 12 12c0 3.6-1.6 6.8-4.1 9l-10.7-13.8h-2v9.6h1.6v-7.5l9.9 12.7zm-3.4-8.6l1.6 2.1v-8.3h-1.6v6.2z"/></svg><span class="nm">next.js</span></button><button class="cap" type="button" data-tool="vue" style="--i:7;--c:#4FC08D;--cl:#47ad7f" aria-label="vue"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 1.6h-9.9l-2.1 3.6l-2.1-3.6h-9.9l12 20.8zm-12 12.5l-6.8-11.9h4.4l2.4 4.2l2.4-4.2h4.4z"/></svg><span class="nm">vue</span></button><button class="cap" type="button" data-tool="tailwind" style="--i:8;--c:#06B6D4;--cl:#05a4bf" aria-label="tailwind"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.8c-3.2 0-5.2 1.6-6 4.8c1.2-1.6 2.6-2.2 4.2-1.8c.9.2 1.6.9 2.3 1.6c1.2 1.2 2.5 2.6 5.5 2.6c3.2 0 5.2-1.6 6-4.8c-1.2 1.6-2.6 2.2-4.2 1.8c-.9-.2-1.6-.9-2.3-1.6c-1.2-1.2-2.5-2.6-5.5-2.6zm-6 7.2c-3.2 0-5.2 1.6-6 4.8c1.2-1.6 2.6-2.2 4.2-1.8c.9.2 1.6.9 2.3 1.6c1.2 1.2 2.5 2.6 5.5 2.6c3.2 0 5.2-1.6 6-4.8c-1.2 1.6-2.6 2.2-4.2 1.8c-.9-.2-1.6-.9-2.3-1.6c-1.2-1.2-2.5-2.6-5.5-2.6z"/></svg><span class="nm">tailwind</span></button><button class="cap" type="button" data-tool="three.js" style="--i:9;--c:var(--fg)" aria-label="three.js"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M.4 0a.3.3 0 0 0-.3.3l2.9 11.7a.3.3 0 0 0 0 .1l2.9 11.7a.3.3 0 0 0 .5.1l17.4-16.7a.3.3 0 0 0-.1-.5l-5.8-1.7a.3.3 0 0 0-.1 0l-11.4-3.3a.3.3 0 0 0-.2 0l-5.7-1.7a.3.3 0 0 0-.1 0zm.4.7l4.9 1.4l-3.7 3.6zm5.8 1.6l4.9 1.4l-3.7 3.6zm-.5.2l1.2 4.9l-4.9-1.4zm6.3 1.5l4.8 1.4l-3.6 3.5zm-.6.1l1.3 4.9l-4.9-1.4zm6.3 1.6l5 1.4l-3.7 3.6zm-.5.1l1.2 4.9l-4.8-1.4zm-15.4.7l5 1.4l-3.8 3.6zm5.8 1.7l4.9 1.4l-3.6 3.5zm-.5.1l1.3 5l-5-1.4zm6.3 1.5l5 1.4l-3.8 3.6zm-.5.1l1.2 5.1l-4.9-1.5zm-9.6 2.5l4.8 1.4l-3.6 3.5zm5.8 1.7l4.9 1.4l-3.7 3.5zm-.5 0l1.2 4.9l-4.9-1.4zm-3.9 4l5 1.5l-3.8 3.6z"/></svg><span class="nm">three.js</span></button></div>
+<div class="kbrow"><span class="lbl">backend</span><button class="cap on" type="button" data-tool="node.js" style="--i:10;--c:#5FA04E" aria-label="node.js, in production now"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 24c-.3 0-.6-.1-.9-.2l-3-1.8c-.4-.2-.2-.3 0-.4c.5-.2.7-.2 1.3-.6c.1 0 .1 0 .2 0l2.3 1.4c0 0 .2 0 .2 0l8.8-5.1c.1 0 .2-.1.2-.2v-10.2c0-.1-.1-.2-.2-.2l-8.8-5.1c0 0-.2 0-.2 0l-8.8 5.1c-.1 0-.2.1-.2.2v10.2c0 .1.1.2.2.2l2.4 1.4c1.3.7 2.1-.1 2.1-.9v-10c0-.2.1-.3.2-.3h1.2c.1 0 .2.1.2.3v10c0 1.8-.9 2.8-2.6 2.8c-.5 0-.9 0-2-.6l-2.3-1.3c-.6-.4-.9-1-.9-1.6v-10.2c0-.6.3-1.3.9-1.6l8.8-5.1c.5-.3 1.3-.3 1.8 0l8.8 5.1c.6.3.9 1 .9 1.6v10.2c0 .6-.3 1.2-.9 1.6l-8.8 5.1c-.3.1-.6.2-.9.2zm7.1-10c0-1.9-1.3-2.4-4-2.8c-2.7-.3-3-.5-3-1.2c0-.5.2-1.2 2.3-1.2c1.8 0 2.4.4 2.7 1.6c0 .1.1.2.3.2h1.1c.1 0 .1 0 .2-.1c0 0 .1-.1 0-.2c-.1-2.1-1.5-3-4.3-3c-2.5 0-4 1-4 2.8c0 1.9 1.4 2.5 3.9 2.7c2.8.3 3.1.7 3.1 1.3c0 .9-.8 1.4-2.7 1.4c-2.3 0-2.8-.6-3-1.8c0-.1-.1-.2-.3-.2h-1.1c-.1 0-.2.1-.2.3c0 1.4.8 3.2 4.6 3.2c2.8 0 4.4-1.1 4.4-3z"/></svg><span class="nm">node.js</span></button><button class="cap" type="button" data-tool="nestjs" style="--i:11;--c:#E0234E" aria-label="nestjs"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.1 0c-.1 0-.3.1-.5.1c.4.2.5.5.6.8c0 .1 0 .1 0 .2a.7.7 0 0 1 .1.1c0 .5-.2.6-.3.9c-.2.4-.1.9.1 1.2a.7.7 0 0 0 .1.2c-.3-1.6 1-1.8 1.3-2.3c0-.5-.4-.7-.6-.9a1.4 1.4 0 0 0-.8-.3zm2 .4c0 .1 0 .1 0 .2c0 0 0 .1 0 .1c0 .1 0 .1-.1.2c0 0 0 .1 0 .1l-.1.2c0 0 0 0 0 .1l-.1 0a2.2 2.2 0 0 1-.1.1c0 .1 0 .1-.1.1v.1c0 0 0 0-.1.1c-.1.1-.3.1-.4.2c-.1 0-.1.1-.1.1a.9.9 0 0 0-.2.1c0 0 0 .1-.1.1c0 .1 0 .1-.1.2a1.6 1.6 0 0 0 0 .1c-.1 0-.1.1-.1.1c0 .1 0 .1-.1.2a2 2 0 0 0 0 .1c0 0 0 .1 0 .1c0 0 0 .1 0 .1c0 0 0 .1 0 .1c0 .1 0 .1 0 .1c0 .1 0 .1 0 .2c0 0 0 .1 0 .1c0 .1.1.1.1.2c0 0 0 .1 0 .1l-1.4-.6c-.3 0-.5-.1-.7-.2l-.4 0c-.4-.1-.8-.2-1.1-.2c-.1 0-.1 0-.1 0a11.1 11.1 0 0 0-1.9 0c-.4 0-.8 0-1.1.1a12.5 12.5 0 0 0-.9.2l-.2 0c-.1.1-.2.1-.3.2l-.2 0c0 .1 0 .1-.1.1c0 0-.1 0-.1 0a2.7 2.7 0 0 0-.3.2c0 0 0 0-.1 0a.6.6 0 0 1 0 .1c-.1 0-.2 0-.2.1a1.6 1.6 0 0 0-.1 0c-.1.1-.1.1-.2.1c0 0 0 0 0 0c0 .1-.1.1-.1.1l0 0l-.1.1c0 0 0 0-.1 0c0 .1 0 .1 0 .1c-.1 0-.1 0-.1 0c0 .1 0 .1-.1.2c0 0 0 0 0 0a1.7 1.7 0 0 0-.1.1c0 0 0 0 0 0a1.5 1.5 0 0 0-.1.1c0 0 0 0-.1 0a1.4 1.4 0 0 1-.1.1c0 0 0 .1 0 .1c0 0-.1.1-.1.1l0 0c-.1.1-.3.2-.4.3c-.1.1-.2.2-.3.3a3.8 3.8 0 0 1-.8.4c-.1.1-.2.1-.4.2c-.2 0-.5.1-.7.2c-.1 0-.1 0-.2 0l-.1 0l-.2.1c0 0-.1 0-.1 0c-.1.1-.1.1-.2.1a1 1 0 0 0-.1.1c0 .1-.1.1-.1.1c-.1.1-.1.1-.1.2c-.1 0-.1.1-.1.1a1.1 1.1 0 0 0-.1.1c0 .1-.1.2-.1.2c0 .1 0 .1 0 .2c0 0-.1.1-.1.1c0 0 0 0 0 0c0 .1 0 .2 0 .2c0 0 0 .1 0 .1a.7.7 0 0 0 .1.3v0c0 .1 0 .1 0 .2c.1 0 .1 0 .1.1c.1 0 .1 0 .1.1a.9.9 0 0 0 .1.1c.2.1.2.1.4.2c.1.1.1.1.1.1c0 0 0 0 0 0c0 0 0 0 0 0a1.3 1.3 0 0 0 .1.3c0 .1.1.1.1.1c0 0 0 .1 0 .1c0 0 0 .1.1.1l.1.1c0 .1 0 .1.1.2c0 0 0 0 .1.1c0 0 0 0 0 0c0 0 .1 0 .1.1a1 1 0 0 0 .1 0c.1.1.1.1.2.1a.7.7 0 0 0 .1 0c0 0 0 0 0 .1c.1 0 .1 0 .1 0c0 .3 0 .6 0 .7c.1.2.4-.2.6-.7c0 .5 0 1 0 1.1c.1.2.5-.3.8-.8c4.4-1.1 8.4 2 8.8 6.3c0-.7-.9-1.1-1.2-1c-.2.5-.6 1.1-1.1 1.4c.1-.4.1-.8 0-1.2a4 4 0 0 1-.8 1.6c-.6 0-1.2-.3-1.5-.7c0 0 0-.1 0-.1c0 0-.1-.1-.1-.1a.5.5 0 0 1 0-.1c0-.1 0-.1 0-.2v-.1a1 1 0 0 1 0-.1c0-.1 0-.1.1-.1c0-.1 0-.1 0-.2c.1-.3.1-.5-.1-.7a.7.7 0 0 0-.1 0c0 0 0 0-.1 0l0-.1a.8.8 0 0 0-.1 0a.5.5 0 0 0-.2 0a1 1 0 0 0-.1 0c0 0-.1 0-.1 0a.5.5 0 0 0-.1 0c-.1 0-.1 0-.2 0a1.1 1.1 0 0 0-.1.1c0 0-.1 0-.1 0c-.1 0-.1.1-.1.1c-1.5.9-.6 3.1.4 3.8c-.4 0-.8.1-.9.2l0 0c.3.2.5.3.8.4c.4.2.9.3 1 .3v0a6 6 0 0 0 1.6.2c2.8-.2 5-2.3 5.4-5.1l0 .2c.1.1.1.2.1.3v0c0 .1 0 .1 0 .2v0c0 .1 0 .1 0 .2c0 0 .1.1.1.2v.1c0 0 0 .1 0 .1c0 0 0 .1 0 .1v.1c0 0-.1.1-.1.1c0 0 0 .1 0 .1c0 0 0 .1 0 .1c0 0 0 .1 0 .1l0 .1c0 0 0 .1 0 .1c0 0 0 .1 0 .2v0l-.1.1v.1l0 .1c0 0 0 0 0 .1a1.7 1.7 0 0 1 0 .1v0c-.1.1-.1.2-.1.2c0 0 0 0 0 0l-.1.2c0 .1 0 .1 0 .2c-.1.1-.1.1-.1.2c0 0 0 .1-.1.2h0c0 0 0 .1-.1.1a.3.3 0 0 1 0 .1c0 0 0 0 0 0a5.9 5.9 0 0 1-1.7 2.1c-.1 0-.1 0-.2.1c0 0 0 0 0 0a2.6 2.6 0 0 1-.2.1l.1 0h0l.2 0h0c.2 0 .4-.1.5-.1c.1 0 .1 0 .2 0l0 0c.1 0 .1-.1.2-.1c0 0 0 0 .1 0c.6-.1 1.2-.3 1.8-.6a9.9 9.9 0 0 1-3.9 3.2c.7-.1 1.5-.2 2.1-.4a9.9 9.9 0 0 0 5.9-4.7a9.9 9.9 0 0 1-1.7 4a9.8 9.8 0 0 0 1.7-1.4a9.8 9.8 0 0 0 2.6-5.3c.2 1 .3 2 .2 3c4.5-6.2.4-12.7-1.4-14.4c0 0 0 0 0 0c0 0 0 0 0 0c0 0 0 0 0 0c0 .1 0 .1 0 .2a8.3 8.3 0 0 1-.1.4c0 .2 0 .3-.1.4c0 .2-.1.3-.1.4a5.3 5.3 0 0 1-.2.4a4.7 4.7 0 0 1-.5.7c-.1.1-.2.2-.3.3a4 4 0 0 1-.2.2l-.1.1a3.5 3.5 0 0 1-.3.2a4.3 4.3 0 0 1-.4.2c-.1.1-.3.2-.4.2a4.4 4.4 0 0 1-.8.2c-.2.1-.3.1-.4.1a4.9 4.9 0 0 1-.3 0a4.7 4.7 0 0 1-.5 0a3.1 3.1 0 0 1-.4-.1a3.1 3.1 0 0 1-.4-.1h0c.1 0 .3 0 .4 0a4.5 4.5 0 0 0 .8-.3c.2 0 .3-.1.4-.1c.1-.1.3-.2.4-.2c.1-.1.2-.2.3-.3c.1-.1.3-.2.4-.3c.1-.1.1-.2.2-.3c.1-.1.2-.2.3-.3c0 0 0-.1 0-.1c.1-.1.2-.2.2-.3a4.3 4.3 0 0 0 .4-.7c0-.2 0-.3.1-.4c0-.2 0-.3 0-.5c0-.1 0-.2 0-.4c0-.1 0-.2 0-.3a6.7 6.7 0 0 0 0-.4a4.5 4.5 0 0 0-.1-.4c-.1-.1-.1-.3-.1-.4c-.1-.1-.2-.3-.2-.4c-.1-.1-.2-.2-.2-.4a6.8 6.8 0 0 0-.3-.3c-.1-.1-.2-.2-.3-.3a3.9 3.9 0 0 0-.1-.2c-.3-.2-.6-.4-.9-.6a1.2 1.2 0 0 0-.1 0a2.4 2.4 0 0 0-.6-.3z"/></svg><span class="nm">nestjs</span></button><button class="cap" type="button" data-tool="graphql" style="--i:12;--c:#E10098" aria-label="graphql"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0a2.1 2.1 0 1 0 0 4.3a2.1 2.1 0 1 0 0-4.3zm8.5 4.9a2.1 2.1 0 1 0 0 4.3a2.1 2.1 0 1 0 0-4.3zm0 9.9a2.1 2.1 0 1 0 0 4.3a2.1 2.1 0 1 0 0-4.3zm-8.5 4.9a2.1 2.1 0 1 0 0 4.3a2.1 2.1 0 1 0 0-4.3zm-8.5-4.9a2.1 2.1 0 1 0 0 4.3a2.1 2.1 0 1 0 0-4.3zm0-9.9a2.1 2.1 0 1 0 0 4.3a2.1 2.1 0 1 0 0-4.3zm8.5-3.3l-9 5.2v10.4l9 5.2l9-5.2v-10.4zm0 1.6l7.7 13.2h-15.4zm-1.4.3l-6.6 11.5v-7.6zm2.8 0l6.6 3.9v7.6zm-8 13.9h13.2l-6.6 3.9z"/></svg><span class="nm">graphql</span></button></div>
+<div class="kbrow"><span class="lbl">data</span><button class="cap on" type="button" data-tool="postgresql" style="--i:13;--c:#4169E1" aria-label="postgresql, in production now"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.6 14.7a.5.5 0 0 0-.1-.1c-.1-.3-.5-.3-1-.2c-1.7.3-2.3.1-2.5 0c1.3-2.1 2.4-4.6 3-6.9c.3-1 .8-3.5.1-4.7a1.6 1.6 0 0 0-.1-.2c-1.3-1.7-3.2-2.6-5.5-2.6c-1.5 0-2.8.3-3.1.5a9.4 9.4 0 0 0-.5-.1a8 8 0 0 0-1.3-.1c-1.2 0-2.2.2-3.1.8c-.8-.3-4.8-1.6-7.2.1c-1.4 1-2 2.7-1.9 5.1c.1.8.5 3.3 1.3 5.7c.4 1.6.9 2.7 1.4 3.6c.6 1 1.1 1.6 1.7 1.8c.5.2 1.2.2 1.9-.7c.8-1 1.6-1.8 1.9-2.2c.5.2.9.3 1.4.4a.1.1 0 0 0 0 0a11 11 0 0 0-.2.3c-.4.4-.4.5-1.5.7c-.3.1-1.2.2-1.2.8c0 .1.1.3.1.4c.2.4.9.6 1 .6c1.4.3 2.5.1 3.4-.7c0 2.2.1 4.4.3 5.1c.3.5.8 1.9 2.5 1.9c.3 0 .5 0 .8-.1c1.8-.4 2.6-1.2 2.9-2.9c.1-.9.4-2.9.5-4.1c.1-.1.1-.1.1-.1c0 0 .1-.1.4 0a.4.4 0 0 0 .1 0l.2 0l0 0c.9.1 1.9-.1 2.6-.4c.6-.3 1.8-1 1.6-1.7zm-21.2-2.8c-.8-2.5-1.2-4.9-1.2-5.6c-.1-2.2.4-3.7 1.5-4.5c1.9-1.3 4.9-.5 6.1-.1c0 0 0 0 0 0c-2 2-2 5.5-2 5.7c0 .1.1.2.1.4c0 .6.1 1.7-.1 2.9c-.2 1.2.2 2.3 1 3.1c0 .1.1.2.2.2c-.3.4-1.1 1.2-1.9 2.2c-.6.7-.9.6-1.1.5c-.4-.1-.8-.6-1.2-1.3c-.5-.8-1-2-1.4-3.5zm6 5.1c-.2-.1-.3-.1-.5-.2c.1-.1.3-.1.5-.2c1.3-.2 1.5-.4 1.9-1c.1-.1.3-.2.4-.4a.4.4 0 0 0 .1-.1c.2-.2.3-.1.4-.1c.2.1.3.3.4.5c0 .1.1.3-.1.5c-.9 1.2-2.2 1.2-3.1 1zm2.1-4l-.1.1c-.1.4-.2.7-.3 1c-.7 0-1.3-.3-1.8-.8c-.7-.6-.9-1.5-.8-2.5c.2-1.3.1-2.4.1-3c0-.1 0-.2 0-.3c.3-.2 1.6-1 2.6-.7c.4.1.7.4.8.9c.6 2.7.1 3.8-.3 4.7c-.1.2-.2.4-.2.6zm7.3 4.5c0 .2 0 .4 0 .6l-.2.5a.4.4 0 0 0 0 .1c0 .5 0 .6-.1.9c-.1.2-.1.4-.2 1c-.1 1.4-.9 2.2-2.4 2.6c-1.5.3-1.8-.5-2-1.2a6.6 6.6 0 0 0-.1-.3c-.2-.6-.2-1.4-.2-2.5c.1-.6 0-1.9-.3-2.7c0-.3 0-.6 0-.9a.4.4 0 0 0 0-.1a1.5 1.5 0 0 0 0-.2c-.2-.4-.4-.8-.8-.9c-.1-.1-.4-.2-.7-.1c0-.3.2-.6.3-.9l0-.2c.1-.1.2-.3.2-.5c.5-.9 1.1-2.2.4-5.2c-.2-1.1-1-1.6-2.2-1.5c-.7.1-1.4.4-1.7.6a5.7 5.7 0 0 0-.2.1c.1-1.1.4-3.2 1.7-4.5a4 4 0 0 1 .3-.3a.4.4 0 0 0 .2-.1c.7-.5 1.7-.8 2.8-.8c.4 0 .8 0 1.1.1c2 .4 3.3 1.4 4.1 2.4c.8.9 1.2 1.9 1.4 2.4c-1.3-.1-2.2.2-2.7.8c-1 1.4.6 4.2 1.3 5.5c.2.3.3.5.3.5c.2.6.6 1 .8 1.3c.1.1.1.2.2.3c-.4.1-1.1.3-1.1 1.7c0 .1 0 .4-.1.8c0 .2 0 .4-.1.7zm.9-1.6c0-.8.3-.9.6-1a2.9 2.9 0 0 0 .2 0a1.2 1.2 0 0 0 .1.1c.6.4 1.6.4 3 .1c-.2.2-.5.4-1 .6c-.4.2-1 .3-1.7.4c-.7 0-1.1-.1-1.2-.2zm.6-9.2c0 .3-.1.6-.1 1c-.1.3-.1.7-.1 1.1c-.1.5 0 .9.1 1.4c.1.9.2 1.8-.3 2.7a3.5 3.5 0 0 1-.1-.4c-.1-.1-.2-.4-.4-.6c-.6-1.1-2-3.7-1.3-4.8c.4-.5 1.4-.5 2.2-.4zm.2 7a12.4 12.4 0 0 0-.1-.1l0-.1c.7-1.2.6-2.4.5-3.4c-.1-.5-.1-.9-.1-1.2c0-.4 0-.8.1-1.1c.1-.4.1-.9.1-1.4c0 0 0-.1 0-.2c0-.5-.6-1.9-1.7-3.2c-.6-.7-1.5-1.5-2.7-2.1c.5-.1 1.2-.2 2-.2c2.1.1 3.7.9 4.8 2.3a.9.9 0 0 1 .1.1c.7 1.4-.3 6.3-3 10.6zm-8.8-6.1c0 .1-.3.4-.6.4a.6.6 0 0 1-.1 0c-.2-.1-.4-.2-.5-.3c0-.1-.1-.2-.1-.3c0-.1 0-.1.1-.2c.1-.1.3-.1.6-.1c.3.1.6.2.6.5zm7.9-.5c0 .1 0 .2-.1.4c-.1 0-.2.1-.4.2a.5.5 0 0 1-.1 0c-.3 0-.5-.3-.6-.4c0-.2.3-.3.6-.3c.3-.1.6 0 .6.1z"/></svg><span class="nm">postgresql</span></button><button class="cap" type="button" data-tool="mongodb" style="--i:14;--c:#47A248" aria-label="mongodb"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.2 9.6c-1.3-5.6-4.3-7.5-4.6-8.2c-.3-.4-.5-.9-.7-1.4c-.1.5-.1.7-.5 1.2c-.8.5-4.5 3.7-4.8 10c-.3 5.9 4.3 9.4 4.9 9.9l.1 0a73.5 73.5 0 0 1 .3 2.9h.5c.1-1 .3-2.1.5-3.1c.4-.3.6-.4.9-.7a11.3 11.3 0 0 0 3.6-8.4c0-.8-.1-1.7-.2-2.2zm-5.3 8.2s0-8.3.2-8.3c.2 0 .5 10.7.5 10.7c-.4-.1-.7-1.8-.7-2.4z"/></svg><span class="nm">mongodb</span></button><button class="cap" type="button" data-tool="redis" style="--i:15;--c:#FF4438" aria-label="redis"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22.7 13.1c-1.6 2.1-3.4 4.5-7 4.5c-3.2 0-4.4-2.8-4.5-5.1c.7 1.5 2.1 2.7 4.2 2.6c4.1-.1 6.9-3.8 6.9-7.2c0-4.1-3-7-8.2-7c-3.8 0-8.4 1.5-11.5 3.7c0 2.3 1.3 5.4 1.7 5c2.7-1.9 4.8-3.1 6.8-3.7c-3 3.3-10.2 11.2-11.1 12.5c.1 1.3 1.7 4.7 2.4 4.7c.3 0 .5-.2.7-.4a100.5 100.5 0 0 0 5.5-6.8c.3 3.1 1.8 6.9 6 6.9c3.9 0 7.6-2.7 9.4-8.9c.2-.8-.8-1.4-1.3-.8zm-4.3-5c0 2-2 3-3.7 3c-1 0-1.7-.3-2.3-.6c1.1-1.6 2.1-3.2 3.3-5c1.9.3 2.7 1.4 2.7 2.6z"/></svg><span class="nm">redis</span></button></div>
+<div class="kbrow"><span class="lbl">devops</span><button class="cap" type="button" data-tool="docker" style="--i:16;--c:#2496ED" aria-label="docker"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 11.1h2.1a.2.2 0 0 0 .2-.2v-1.9a.2.2 0 0 0-.2-.2h-2.1a.2.2 0 0 0-.2.2v1.9c0 .1.1.2.2.2m-3-5.5h2.1a.2.2 0 0 0 .2-.1v-1.9a.2.2 0 0 0-.2-.2h-2.1a.2.2 0 0 0-.2.2v1.9c0 .1.1.1.2.1m0 2.8h2.1a.2.2 0 0 0 .2-.2v-1.9a.2.2 0 0 0-.2-.2h-2.1a.2.2 0 0 0-.2.2v1.9c0 .1.1.2.2.2m-2.9 0h2.1a.2.2 0 0 0 .2-.2v-1.9a.2.2 0 0 0-.2-.2h-2.1a.2.2 0 0 0-.2.2v1.9c0 .1.1.2.2.2m-3 0h2.2a.2.2 0 0 0 .1-.2v-1.9a.2.2 0 0 0-.1-.2h-2.2a.2.2 0 0 0-.1.2v1.9c0 .1 0 .2.1.2m5.9 2.7h2.1a.2.2 0 0 0 .2-.2v-1.9a.2.2 0 0 0-.2-.2h-2.1a.2.2 0 0 0-.2.2v1.9c0 .1.1.2.2.2m-2.9 0h2.1a.2.2 0 0 0 .2-.2v-1.9a.2.2 0 0 0-.2-.2h-2.1a.2.2 0 0 0-.2.2v1.9c0 .1.1.2.2.2m-3 0h2.2a.2.2 0 0 0 .1-.2v-1.9a.2.2 0 0 0-.1-.2h-2.2a.2.2 0 0 0-.2.2v1.9c0 .1.1.2.2.2m-2.9 0h2.1a.2.2 0 0 0 .2-.2v-1.9a.2.2 0 0 0-.2-.2h-2.1a.2.2 0 0 0-.2.2v1.9c0 .1.1.2.2.2m21.6-1.2c-.1-.1-.7-.5-2-.5c-.3 0-.7 0-1 .1c-.2-1.7-1.7-2.6-1.7-2.6l-.4-.2l-.2.3c-.3.5-.5 1-.6 1.5c-.2.9-.1 1.8.4 2.6c-.6.4-1.5.4-1.7.4h-15.8a.8.8 0 0 0-.8.8a11.4 11.4 0 0 0 .7 4.1c.5 1.4 1.3 2.4 2.4 3.1c1.2.7 3.1 1.1 5.3 1.1c1 0 1.9-.1 2.9-.3a12.2 12.2 0 0 0 3.8-1.3c1-.6 1.9-1.3 2.6-2.2c1.3-1.4 2-3 2.6-4.4h.2c1.4 0 2.2-.5 2.7-1c.3-.3.5-.6.7-1l.1-.3z"/></svg><span class="nm">docker</span></button><button class="cap" type="button" data-tool="kubernetes" style="--i:17;--c:#326CE5" aria-label="kubernetes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.2 14.4l0 0l-1 2.4a5.2 5.2 0 0 1-2.1-2.6l2.6-.5l0 0a.4.4 0 0 1 .5.7zm-.8-2.2a.4.4 0 0 0 .1-.7l0 0l-1.9-1.8a5.1 5.1 0 0 0-.7 3.3l2.5-.8l0 0zm1.1-2a.4.4 0 0 0 .7-.3l0 0l.2-2.6a5.1 5.1 0 0 0-3 1.4l2.1 1.5l0 0zm.8 2.8l.7.3l.7-.3l.2-.8l-.5-.6h-.8l-.5.6l.2.8zm1.5-3.1a.4.4 0 0 0 .7.3l0 0l2.1-1.5a5.2 5.2 0 0 0-3-1.4l.2 2.6l0 0zm10.9 6l-5.8 7.1a1.6 1.6 0 0 1-1.3.6l-9.2 0a1.6 1.6 0 0 1-1.3-.6l-5.8-7.1a1.6 1.6 0 0 1-.3-1.4l2.1-8.9c.1-.5.4-.9.9-1.1l8.3-4a1.6 1.6 0 0 1 1.4 0l8.3 4c.5.2.8.6.9 1.1l2.1 8.9c.1.5 0 1-.3 1.4zm-3.3-2.1c-.1 0-.1 0-.2 0c-.2-.1-.3-.1-.5-.1c-.3 0-.6 0-.9-.1c-.1-.1-.1-.2-.2-.2l-.2-.1a6.5 6.5 0 0 0-.1-2.3a6.5 6.5 0 0 0-.9-2.2c0 0 .1-.1.2-.1c0-.1 0-.2.1-.3c.2-.2.4-.4.7-.5c.1-.1.3-.2.4-.3c0 0 .1 0 .1-.1c.3-.2.3-.5.1-.7c-.1-.2-.5-.2-.7-.1c0 .1-.1.1-.1.1c-.1.1-.2.3-.3.4c-.3.2-.5.4-.7.6c-.1 0-.2 0-.3 0l-.2.2a6.5 6.5 0 0 0-4.2-2l0-.3c0 0-.1-.1-.1-.2c0-.3 0-.6 0-.9c.1-.2.1-.3.1-.5c0 0 0-.1 0-.1c0-.3-.2-.6-.5-.6c-.3 0-.5.3-.5.6l0 0c0 0 0 .1 0 .1c0 .2 0 .3.1.5c0 .3 0 .6 0 .9a.5.5 0 0 1-.1.2l-.1.3a6.4 6.4 0 0 0-4.1 2a8.4 8.4 0 0 1-.2-.2c-.1 0-.2.1-.3 0c-.2-.2-.4-.4-.7-.6c-.1-.1-.2-.2-.3-.4c0 0-.1 0-.1 0a.6.6 0 0 0-.4-.2a.5.5 0 0 0-.4.2c-.1.2-.1.5.2.7l0 0l.1.1c.1.1.3.2.4.3c.3.1.5.3.7.5c.1.1.1.2.1.3l.2.1a6.5 6.5 0 0 0-1 4.5l-.2.1c-.1.1-.2.2-.2.2c-.3.1-.6.1-.9.1c-.2.1-.3.1-.5.1c-.1 0-.1 0-.2 0l0 0l0 0c-.3.1-.4.4-.4.6c.1.3.4.5.7.4l0 0l0 0l.1 0c.2-.1.3-.2.5-.2c.3-.1.6-.2.8-.3c.1 0 .3.1.3.1l.2 0a6.5 6.5 0 0 0 2.9 3.6l-.1.2c.1.1.1.2.1.3c-.1.2-.3.5-.5.8c-.1.1-.2.2-.3.4c0 0 0 .1 0 .1c-.2.3-.1.6.2.7c.2.2.5 0 .7-.2v0c0-.1 0-.1 0-.2c.1-.1.1-.3.2-.4c.1-.4.2-.7.4-.9c0-.1.1-.1.2-.1l.1-.2a6.5 6.5 0 0 0 4.6 0l.1.2c.1 0 .2 0 .3.1c.1.3.2.5.3.9c.1.1.1.3.2.4c0 .1 0 .1 0 .2c.2.2.5.4.7.2c.3-.1.4-.4.2-.7c0 0 0-.1 0-.1c-.1-.2-.2-.3-.3-.4c-.2-.3-.4-.5-.5-.8c0-.1.1-.2.1-.3c0 0-.1-.1-.1-.2a6.5 6.5 0 0 0 2.9-3.6c0 0 .2 0 .2 0c.1 0 .1-.1.3-.1c.2.1.5.2.8.3c.2 0 .3.1.5.2c0 0 .1 0 .1 0l0 0l0 0c.3 0 .6-.1.7-.4c0-.2-.1-.5-.4-.6zm-4-4.1l-1.9 1.7v.1a.4.4 0 0 0 .1.7l0 0l2.6.7a5.2 5.2 0 0 0-.2-1.6a5.2 5.2 0 0 0-.6-1.6zm-4 5.3a.4.4 0 0 0-.4-.2a.4.4 0 0 0-.4.2h0l-1.3 2.3a5.2 5.2 0 0 0 3.4 0l-1.3-2.3h0zm1.9-1.3a.4.4 0 0 0-.3.1a.4.4 0 0 0-.2.5l0 0l1 2.5a5.2 5.2 0 0 0 2.1-2.6l-2.6-.5l0 0z"/></svg><span class="nm">kubernetes</span></button><button class="cap on" type="button" data-tool="aws" style="--i:18;--c:var(--fg)" aria-label="aws, in production now"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.8 10c0 .3 0 .6.1.7c0 .2.1.4.2.6c0 .1.1.1.1.2c0 .1-.1.2-.2.2l-.5.4a.4.4 0 0 1-.2.1c-.1 0-.2-.1-.2-.2a2.5 2.5 0 0 1-.3-.3a6.2 6.2 0 0 1-.3-.5c-.6.7-1.4 1.1-2.3 1.1c-.7 0-1.2-.2-1.6-.6c-.4-.4-.6-.9-.6-1.5c0-.7.2-1.2.7-1.7c.5-.4 1.2-.6 2-.6c.2 0 .5 0 .8.1c.3 0 .6.1.9.2v-.6c0-.6-.1-1.1-.3-1.3c-.3-.2-.7-.4-1.3-.4c-.3 0-.6.1-.9.1c-.3.1-.6.2-.9.3a2.3 2.3 0 0 1-.2.1a.5.5 0 0 1-.2 0c-.1 0-.1 0-.1-.2v-.4c0-.1 0-.2 0-.3a.6.6 0 0 1 .2-.1c.3-.2.7-.3 1-.4a4.8 4.8 0 0 1 1.3-.2c.9 0 1.6.3 2.1.7c.4.4.6 1.1.6 1.9v2.6zm-3.3 1.3c.3-.1.6-.1.8-.2c.3-.1.6-.3.8-.5c.1-.2.2-.3.3-.5c0-.2.1-.4.1-.7v-.3a6.7 6.7 0 0 0-.8-.2a6 6 0 0 0-.7 0c-.6 0-1 .1-1.2.3c-.3.2-.4.5-.4.9c0 .4.1.7.3.9c.2.2.5.3.8.3zm6.4.8c-.1 0-.2 0-.3-.1c0 0-.1-.1-.1-.3l-1.9-6.1a1.4 1.4 0 0 1-.1-.4c0-.1.1-.2.2-.2h.8c.1 0 .2.1.3.1c.1.1.1.2.2.3l1.3 5.3l1.2-5.3c.1-.1.1-.2.2-.3a.5.5 0 0 1 .3-.1h.7c.1 0 .2.1.3.1c0 .1.1.2.1.3l1.3 5.4l1.4-5.4c0-.1.1-.2.1-.3a.5.5 0 0 1 .3-.1h.8c.1 0 .2.1.2.2c0 .1 0 .1 0 .2a1.1 1.1 0 0 1-.1.2l-1.9 6.1c-.1.2-.1.3-.2.3a.5.5 0 0 1-.3.1h-.7c-.1 0-.2 0-.3-.1c-.1 0-.1-.1-.1-.3l-1.3-5.1l-1.2 5.1c-.1.2-.1.3-.2.3c0 .1-.1.1-.3.1zm10.3.2c-.4 0-.8 0-1.2-.1c-.4-.1-.7-.2-1-.3c-.1-.1-.2-.2-.2-.3a.6.6 0 0 1-.1-.2v-.4c0-.2.1-.2.2-.2c.1 0 .1 0 .2 0c0 0 .1 0 .2.1c.2.1.5.2.9.2c.3.1.6.1.9.1c.5 0 .9 0 1.2-.2a.9.9 0 0 0 .4-.8a.8.8 0 0 0-.2-.5c-.2-.2-.4-.3-.8-.5l-1.2-.3c-.6-.2-1-.5-1.3-.8a1.9 1.9 0 0 1-.4-1.2c0-.3.1-.6.2-.9c.2-.2.4-.4.6-.6c.3-.2.5-.3.8-.4c.4-.1.7-.2 1.1-.2c.1 0 .3 0 .5.1c.2 0 .3 0 .5 0c.2.1.3.1.5.2c.1 0 .2.1.3.1a.7.7 0 0 1 .2.2a.4.4 0 0 1 .1.3v.4c0 .1-.1.2-.2.2a.8.8 0 0 1-.3-.1a3.7 3.7 0 0 0-1.5-.3c-.5 0-.8.1-1.1.2c-.2.2-.3.4-.3.7c0 .3 0 .5.2.6c.2.2.4.3.9.4l1.1.4c.6.2 1 .4 1.2.8c.3.3.4.7.4 1.1c0 .3-.1.6-.2.9c-.1.3-.3.5-.6.7c-.2.2-.5.4-.9.5c-.3.1-.7.1-1.1.1zm1.5 3.9c-2.6 1.9-6.4 3-9.7 3c-4.6 0-8.8-1.7-11.9-4.5c-.2-.3 0-.6.3-.4c3.4 2 7.5 3.2 11.9 3.2c2.9 0 6.1-.7 9-1.9c.5-.2.8.3.4.6zm1.1-1.2c-.3-.5-2.2-.2-3.1-.1c-.2 0-.3-.2 0-.4c1.5-1.1 3.9-.8 4.2-.4c.3.4-.1 2.8-1.5 4c-.2.2-.4.1-.3-.1c.3-.8 1-2.6.7-3z"/></svg><span class="nm">aws</span></button><button class="cap" type="button" data-tool="github actions" style="--i:19;--c:#2088FF" aria-label="github actions"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 13.8a.5.5 0 0 1-.4-.1l-.7-.8a.5.5 0 1 1 .7-.7l.4.4l1.2-1.2a.5.5 0 0 1 .7.8l-1.6 1.5a.5.5 0 0 1-.3.1zm9.3-.1l1.6-1.5a.5.5 0 0 0-.7-.7l-1.2 1.1l-.4-.4a.5.5 0 1 0-.7.7l.7.8a.5.5 0 0 0 .7 0zm-15.8-6.2l2.6-1.6a1 1 0 0 0 0-1.7l-2.6-1.6a1 1 0 0 0-1.5.8v3.2a1 1 0 0 0 1.5.9zm2.1-2.5l-2.6 1.6v-3.2l2.6 1.6zm17.4 7.5c0 1.9-1.6 3.5-3.5 3.5a3.5 3.5 0 0 1-3.5-3h-2a3.5 3.5 0 0 1-3.5 3a3.5 3.5 0 0 1-3.5-3h-.5c-1 0-1.9-.4-2.5-1v5c0 1.7 1.3 3 3 3h0c.3-1.7 1.7-3 3.5-3c1.9 0 3.5 1.6 3.5 3.5s-1.6 3.5-3.5 3.5a3.5 3.5 0 0 1-3.5-3h0c-2.2 0-4-1.8-4-4v-7.1a5 5 0 0 1-4-4.9c0-2.8 2.2-5 5-5s5 2.2 5 5a5 5 0 0 1-5 5a2.5 2.5 0 0 0 2.5 2h.5c.3-1.7 1.7-3 3.5-3a3.5 3.5 0 0 1 3.5 3h2a3.5 3.5 0 0 1 3.5-3c1.9 0 3.5 1.6 3.5 3.5zm-15 8c0 1.4 1.1 2.5 2.5 2.5s2.5-1.1 2.5-2.5s-1.1-2.5-2.5-2.5s-2.5 1.1-2.5 2.5zm-4-11.5c2.2 0 4-1.8 4-4s-1.8-4-4-4s-4 1.8-4 4s1.8 4 4 4zm9 3.5c0-1.4-1.1-2.5-2.5-2.5s-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5s2.5-1.1 2.5-2.5zm9 0c0-1.4-1.1-2.5-2.5-2.5s-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5s2.5-1.1 2.5-2.5zm-13 8a.5.5 0 1 0 1 0a.5.5 0 0 0-1 0zm2 0a.5.5 0 1 0 1 0a.5.5 0 0 0-1 0zm12 0c0 1.9-1.6 3.5-3.5 3.5a3.5 3.5 0 0 1-3.5-3c0 0 0 0 0 0l-.5 0h0a.5.5 0 0 1 0-1l.5 0c0 0 0 0 0 0a3.5 3.5 0 0 1 3.5-3c1.9 0 3.5 1.6 3.5 3.5zm-1 0c0-1.4-1.1-2.5-2.5-2.5s-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5s2.5-1.1 2.5-2.5z"/></svg><span class="nm">github actions</span></button></div>
+      </div></div>
+      <aside class="inspector" id="inspector" aria-live="polite">
+        <p class="cmd"><span class="ac">&#10095; </span>info</p>
+        <div class="big"></div>
+        <dl></dl>
+        <p class="hint">Green keys are in production now.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="block" id="projects">
+    <h2><span class="chev">&gt;</span>ls ~/projects</h2>
+    <p>Selected work. Cards turn toward you as you move over them.</p>
+    <div class="grid2">
+      <article class="card"><h3>3D interactive portfolio</h3><p>WebGL-powered portfolio with real-time 3D rendering</p><ul><li>Three.js</li><li>React</li><li>GLSL</li></ul><div class="glare" aria-hidden="true"></div></article>
+      <article class="card"><h3>Enterprise platform</h3><p>Full-stack SaaS platform with multi-tenant architecture</p><ul><li>Next.js</li><li>NestJS</li><li>PostgreSQL</li></ul><div class="glare" aria-hidden="true"></div></article>
+      <article class="card"><h3>AI research suite</h3><p>ML pipeline orchestration with model training dashboards</p><ul><li>Python</li><li>FastAPI</li><li>PyTorch</li></ul><div class="glare" aria-hidden="true"></div></article>
+      <article class="card"><h3>Open source tools</h3><p>Developer utilities and CLI tools for workflow automation</p><ul><li>Node.js</li><li>Go</li><li>GitHub Actions</li></ul><div class="glare" aria-hidden="true"></div></article>
+    </div>
+  </section>
+
+  <section class="block" id="certificates">
+    <h2><span class="chev">&gt;</span>cat certificates.json</h2>
+    <p>Each one links to its credential.</p>
+    <div class="certs">
+      <a href="https://www.coursera.org/account/accomplishments/professional-cert/4tv2o" target="_blank" rel="noopener"><span>Meta Front-End Developer Professional</span><code>cert/4tv2o</code><span class="who">Meta</span></a>
+      <a href="https://www.coursera.org/account/accomplishments/professional-cert/d0gj4" target="_blank" rel="noopener"><span>Google Cloud Digital Leader</span><code>cert/d0gj4</code><span class="who">Google</span></a>
+      <a href="https://www.coursera.org/account/accomplishments/professional-cert/kj7vr" target="_blank" rel="noopener"><span>IBM Full Stack Software Developer</span><code>cert/kj7vr</code><span class="who">IBM</span></a>
+      <a href="https://www.credly.com/badges/CT-11PGKZIX" target="_blank" rel="noopener"><span>AWS Cloud Solutions Architect</span><code>CT-11PGKZIX</code><span class="who">Amazon</span></a>
+      <a href="https://www.coursera.org/account/accomplishments/specialization/CC-USOBZSX7" target="_blank" rel="noopener"><span>Deep Learning Specialization</span><code>CC-USOBZSX7</code><span class="who">DeepLearning.AI</span></a>
+    </div>
+  </section>
+
+  <section class="block" id="connect">
+    <h2><span class="chev">&gt;</span>ping duongthaitan</h2>
+    <p>Say hello.</p>
+    <div class="links">
+      <a class="key" href="https://github.com/duongthaitan" target="_blank" rel="noopener">github.com/duongthaitan</a>
+      <a class="key" href="https://www.linkedin.com/in/duongthaitan/" target="_blank" rel="noopener">linkedin.com/in/duongthaitan</a>
+      <a class="key" href="https://www.instagram.com/thaitan.duong_" target="_blank" rel="noopener">@thaitan.duong_</a>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  Generated by <code>scripts/gen-site.mjs</code> in <a href="https://github.com/duongthaitan/duongthaitan">duongthaitan/duongthaitan</a>. Logos from Simple Icons (CC0); trademarks belong to their owners.
+</footer>
+
+<script type="application/json" id="data">{"profile":{"name":"Duong Thai Tan","handle":"duongthaitan","role":"full-stack developer","roles":["full-stack developer","cloud infrastructure builder","visual creator"],"location":"Soc Trang, Vietnam","line":"I build web apps and the cloud systems that run them.","about":["Full-stack developer focused on production-grade web applications and cloud infrastructure. I treat software as a craft: clean architecture, thorough testing and careful design over quick fixes.","Right now I ship TypeScript across the stack, from React frontends to Node.js services backed by PostgreSQL, deployed on AWS. I build systems that are meant to scale and meant to be maintained."]},"neofetch":[["role","full-stack developer"],["location","soc trang, vietnam"],["shipping","typescript across the stack"],["stack","react, node.js, postgresql, aws"],["focus","clean architecture, testing"],["certs","meta, google, ibm, aws, deeplearning.ai"],["github","duongthaitan"]],"stack":[["languages",["typescript","javascript","python","go","rust"]],["frontend",["react","next.js","vue","tailwind","three.js"]],["backend",["node.js","nestjs","graphql"]],["data",["postgresql","mongodb","redis"]],["devops",["docker","kubernetes","aws","github actions"]]],"current":["typescript","react","node.js","postgresql","aws"],"projects":[{"name":"3D interactive portfolio","what":"WebGL-powered portfolio with real-time 3D rendering","stack":["Three.js","React","GLSL"]},{"name":"Enterprise platform","what":"Full-stack SaaS platform with multi-tenant architecture","stack":["Next.js","NestJS","PostgreSQL"]},{"name":"AI research suite","what":"ML pipeline orchestration with model training dashboards","stack":["Python","FastAPI","PyTorch"]},{"name":"Open source tools","what":"Developer utilities and CLI tools for workflow automation","stack":["Node.js","Go","GitHub Actions"]}],"certs":[{"name":"Meta Front-End Developer Professional","issuer":"Meta","id":"cert/4tv2o","url":"https://www.coursera.org/account/accomplishments/professional-cert/4tv2o"},{"name":"Google Cloud Digital Leader","issuer":"Google","id":"cert/d0gj4","url":"https://www.coursera.org/account/accomplishments/professional-cert/d0gj4"},{"name":"IBM Full Stack Software Developer","issuer":"IBM","id":"cert/kj7vr","url":"https://www.coursera.org/account/accomplishments/professional-cert/kj7vr"},{"name":"AWS Cloud Solutions Architect","issuer":"Amazon","id":"CT-11PGKZIX","url":"https://www.credly.com/badges/CT-11PGKZIX"},{"name":"Deep Learning Specialization","issuer":"DeepLearning.AI","id":"CC-USOBZSX7","url":"https://www.coursera.org/account/accomplishments/specialization/CC-USOBZSX7"}],"links":[{"where":"github","label":"github.com/duongthaitan","url":"https://github.com/duongthaitan"},{"where":"linkedin","label":"linkedin.com/in/duongthaitan","url":"https://www.linkedin.com/in/duongthaitan/"},{"where":"instagram","label":"@thaitan.duong_","url":"https://www.instagram.com/thaitan.duong_"}],"art":[[["   \u2584\u2580","mu"],[" ",""],["\u2580\u2580\u2588\u2580\u2580","ac"],[" ",""],["   \u2584\u2580","mu"],[" ",""],["\u2580\u2584   ","mu"]],[[" \u2584\u2580  ","mu"],[" ",""],["  \u2588  ","ac"],[" ",""],["  \u2584\u2580 ","mu"],[" ",""],["  \u2580\u2584 ","mu"]],[["  \u2580\u2584 ","mu"],[" ",""],["  \u2588  ","ac"],[" ",""],[" \u2588   ","mu"],[" ",""],[" \u2584\u2580  ","mu"]],[["    \u2580","mu"],[" ",""],["  \u2580  ","ac"],[" ",""],["\u2580    ","mu"],[" ",""],["\u2580    ","mu"]]]}</script>
+<script>
+// Interactive terminal page. Progressive enhancement: everything here is optional, the HTML
+// already holds the content. Motion is transform-only and honours prefers-reduced-motion.
+(() => {
+  const data = JSON.parse(document.getElementById('data').textContent);
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const $ = s => document.querySelector(s);
+  const $$ = s => [...document.querySelectorAll(s)];
+  const sleep = ms => new Promise(r => setTimeout(r, ms));
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  const root = document.documentElement;
+  let matrixOn = false;
+
+  // ---------------------------------------------------------------- theme
+  const themeBtn = $('#theme');
+  const themes = ['auto', 'dark', 'light'];
+  let theme = 'auto';
+  try { theme = localStorage.getItem('theme') || 'auto'; } catch (e) { /* storage blocked */ }
+  const applyTheme = t => {
+    theme = t;
+    if (t === 'auto') root.removeAttribute('data-theme'); else root.setAttribute('data-theme', t);
+    themeBtn.textContent = 'theme: ' + t;
+    try { localStorage.setItem('theme', t); } catch (e) { /* storage blocked */ }
+    colours = readColours();
+    drawField();
+  };
+  themeBtn.addEventListener('click', () => applyTheme(themes[(themes.indexOf(theme) + 1) % 3]));
+
+  // ---------------------------------------------------------------- pointer + springs
+  // One rAF loop serves every 3D surface. Each surface eases toward its target (a critically
+  // damped follow), so motion stays smooth whatever the pointer does, and the loop sleeps at rest.
+  const pointer = { x: innerWidth * 0.66, y: innerHeight * 0.4, moved: false };
+  const surfaces = [];
+  const surface = (el, opts) => { const s = { el, rx: 0, ry: 0, hover: false, ...opts }; surfaces.push(s); return s; };
+  let raf = 0;
+  const kick = () => { if (!raf) raf = requestAnimationFrame(frame); };
+
+  function frame() {
+    raf = 0;
+    let busy = false;
+    for (const s of surfaces) {
+      let tx = 0;
+      let ty = 0;
+      if (fine && !reduce && (!s.local || s.hover)) {
+        const r = s.el.getBoundingClientRect();
+        const nx = clamp((pointer.x - (r.left + r.width / 2)) / (s.local ? r.width / 2 : innerWidth / 2), -1, 1);
+        const ny = clamp((pointer.y - (r.top + r.height / 2)) / (s.local ? r.height / 2 : innerHeight / 2), -1, 1);
+        tx = -ny * s.max;
+        ty = nx * s.max;
+        if (s.glare) {
+          s.glare.style.setProperty('--gx', ((pointer.x - r.left) / r.width * 100).toFixed(1) + '%');
+          s.glare.style.setProperty('--gy', ((pointer.y - r.top) / r.height * 100).toFixed(1) + '%');
+        }
+      }
+      s.rx += (tx - s.rx) * 0.1;
+      s.ry += (ty - s.ry) * 0.1;
+      if (Math.abs(tx - s.rx) > 0.02 || Math.abs(ty - s.ry) > 0.02) busy = true;
+      s.apply(s.rx, s.ry);
+    }
+    if (pointer.moved) { drawField(); pointer.moved = false; }
+    if (busy || matrixOn) kick();
+  }
+
+  addEventListener('pointermove', e => { pointer.x = e.clientX; pointer.y = e.clientY; pointer.moved = true; kick(); }, { passive: true });
+  addEventListener('scroll', () => { pointer.moved = true; kick(); }, { passive: true });
+
+  // Hero name: depth layers parallax as the heading turns.
+  const name = $('.name');
+  surface(name, { max: 7, apply: (rx, ry) => { name.style.setProperty('--nrx', rx.toFixed(2) + 'deg'); name.style.setProperty('--nry', ry.toFixed(2) + 'deg'); } });
+  // Terminal: tilts toward the pointer, with a glare that follows it.
+  const term = $('#term');
+  surface(term, { max: 9, glare: $('#term .glare'), apply: (rx, ry) => { term.style.setProperty('--rx', rx.toFixed(2) + 'deg'); term.style.setProperty('--ry', ry.toFixed(2) + 'deg'); } });
+  // Keyboard: the whole board turns a little, like a desk object.
+  const kb = $('#kb');
+  surface(kb, { max: 5, apply: (rx, ry) => { kb.style.setProperty('--krx', rx.toFixed(2) + 'deg'); kb.style.setProperty('--krz', (ry * 0.8).toFixed(2) + 'deg'); } });
+  // Project cards: tilt only while hovered.
+  for (const card of $$('.card')) {
+    const s = surface(card, { max: 8, local: true, glare: card.querySelector('.glare'), apply: (rx, ry) => { card.style.setProperty('--rx', rx.toFixed(2) + 'deg'); card.style.setProperty('--ry', ry.toFixed(2) + 'deg'); } });
+    card.addEventListener('pointerenter', () => { s.hover = true; kick(); });
+    card.addEventListener('pointerleave', () => { s.hover = false; kick(); });
+  }
+
+  // ---------------------------------------------------------------- background field
+  // A dot grid that leans away from the pointer and lights up around it.
+  const canvas = $('#field');
+  const ctx = canvas.getContext('2d');
+  let W = 0;
+  let H = 0;
+  let colours = readColours();
+  function readColours() {
+    const cs = getComputedStyle(root);
+    return { dot: cs.getPropertyValue('--muted').trim(), accent: cs.getPropertyValue('--accent').trim(), bg: cs.getPropertyValue('--bg').trim() };
+  }
+  function resize() {
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    W = innerWidth;
+    H = innerHeight;
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    drawField();
+  }
+  const GAP = 28;
+  const R = 170;
+  function drawField() {
+    if (matrixOn) return;
+    ctx.clearRect(0, 0, W, H);
+    for (let y = GAP / 2; y < H; y += GAP) {
+      for (let x = GAP / 2; x < W; x += GAP) {
+        const dx = x - pointer.x;
+        const dy = y - pointer.y;
+        const d = Math.hypot(dx, dy) || 1;
+        const f = reduce ? 0 : Math.max(0, 1 - d / R);
+        const k = f * f;
+        const px = x + (dx / d) * k * 10;
+        const py = y + (dy / d) * k * 10;
+        ctx.globalAlpha = 0.16 + k * 0.75;
+        ctx.fillStyle = k > 0.02 ? colours.accent : colours.dot;
+        const size = 1.6 + k * 2;
+        ctx.fillRect(px - size / 2, py - size / 2, size, size);
+      }
+    }
+    ctx.globalAlpha = 1;
+  }
+  addEventListener('resize', resize);
+  resize();
+
+  // ---------------------------------------------------------------- matrix (easter egg)
+  async function matrix() {
+    if (reduce) return ['matrix: motion is reduced on this device, so the rain stays in the code.'];
+    matrixOn = true;
+    const cols = Math.ceil(W / 16);
+    const drops = Array.from({ length: cols }, () => Math.random() * -40);
+    const glyphs = '01<>/{}[]=;:+*#$%&ACDEFGHJKLMNPRSTUVWXYZ';
+    const end = performance.now() + 5200;
+    ctx.font = '14px ' + getComputedStyle(document.body).fontFamily;
+    await new Promise(done => {
+      const step = now => {
+        ctx.globalAlpha = 0.14;
+        ctx.fillStyle = colours.bg;
+        ctx.fillRect(0, 0, W, H);
+        ctx.globalAlpha = now > end ? Math.max(0, 1 - (now - end) / 900) : 1;
+        ctx.fillStyle = colours.accent;
+        for (let i = 0; i < cols; i++) {
+          ctx.fillText(glyphs[(Math.random() * glyphs.length) | 0], i * 16, drops[i] * 16);
+          if (drops[i] * 16 > H && Math.random() > 0.975) drops[i] = 0;
+          drops[i] += 1;
+        }
+        if (now < end + 900) requestAnimationFrame(step); else done();
+      };
+      requestAnimationFrame(step);
+    });
+    matrixOn = false;
+    drawField();
+    return [['wake up, ' + data.profile.handle + '...', 'ac'], 'the matrix has you. type help to get out.'];
+  }
+
+  // ---------------------------------------------------------------- terminal
+  const out = $('#out');
+  const input = $('#term-input');
+  const form = $('#form');
+  const history = [];
+  let hpos = 0;
+  let busy = false;
+
+  const el = (tag, text, cls) => { const n = document.createElement(tag); if (text != null) n.textContent = text; if (cls) n.className = cls; return n; };
+  const link = (text, url) => { const a = el('a', text); a.href = url; a.target = '_blank'; a.rel = 'noopener'; return a; };
+  function print(line) {
+    const div = el('div', null, 'ln');
+    if (typeof line === 'string') div.textContent = line;
+    else if (Array.isArray(line) && typeof line[0] === 'string' && typeof line[1] === 'string') { div.textContent = line[0]; div.className += ' ' + line[1]; }
+    else for (const part of [].concat(line)) div.append(typeof part === 'string' ? part : part);
+    out.append(div);
+    out.scrollTop = out.scrollHeight;
+  }
+  async function printAll(lines) {
+    for (const l of lines) { print(l); if (!reduce) await sleep(16); }
+  }
+  const pad = (s, n) => s + ' '.repeat(Math.max(1, n - s.length));
+  const tools = data.stack.flatMap(([group, items]) => items.map(t => ({ name: t, group })));
+
+  function neofetch() {
+    const lines = data.art.map(row => row.map(([t, c]) => el('span', t, c)));
+    lines.push('');
+    lines.push([el('span', data.profile.handle + '@github', 'b ac')]);
+    lines.push([el('span', '-'.repeat(data.profile.handle.length + 7), 'mu')]);
+    for (const [k, v] of data.neofetch) lines.push([el('span', pad(k, 10), 'ac'), v]);
+    const blocks = [];
+    ['var(--muted)', 'var(--red)', 'var(--deep)', 'var(--yellow)', 'var(--blue)', '#bc8cff', 'var(--teal)', 'var(--fg)'].forEach(c => { const b = el('span', '\u2588\u2588\u2588'); b.style.color = c; blocks.push(b); });
+    lines.push(blocks);
+    return lines;
+  }
+
+  const files = { 'about.md': () => data.profile.about, 'certificates.json': () => certs(), 'contact.txt': () => contact() };
+  function certs() { return data.certs.map(c => [el('span', pad(c.issuer, 17), 'ac'), c.name + '  ', link(c.id, c.url)]); }
+  function contact() { return data.links.map(l => [el('span', pad(l.where, 11), 'ac'), link(l.label, l.url)]); }
+  function info(arg) {
+    const q = (arg || '').toLowerCase();
+    const t = tools.find(x => x.name === q) || tools.find(x => x.name.startsWith(q));
+    if (!q || !t) return [['usage: info <tool>   e.g. info react', 'mu'], 'tools: ' + tools.map(x => x.name).join(', ')];
+    select(t.name, false);
+    const same = data.stack.find(([g]) => g === t.group)[1].filter(n => n !== t.name);
+    return [[el('span', pad('tool', 10), 'ac'), t.name], [el('span', pad('layer', 10), 'ac'), t.group],
+      [el('span', pad('status', 10), 'ac'), data.current.includes(t.name) ? el('span', 'in production now', 'ac') : 'in the toolkit'],
+      [el('span', pad('alongside', 10), 'ac'), same.join(', ')]];
+  }
+
+  const commands = {
+    help: () => [['available commands', 'b'], ...[
+      ['whoami', 'who is behind this terminal'], ['about', 'the short version'], ['neofetch', 'system info, developer edition'],
+      ['ls', 'list files'], ['cat <file>', 'read a file (about.md, certificates.json, contact.txt)'], ['projects', 'selected work'],
+      ['stack', 'the toolkit, layer by layer'], ['info <tool>', 'one tool in detail, also lights its key (try: info react)'],
+      ['certs', 'certificates with credential links'], ['contact', 'where to find me'], ['theme [dark|light|auto]', 'switch colours'],
+      ['matrix', '?'], ['clear', 'clear the screen (or ctrl+l)'], ['history', 'what you typed'],
+    ].map(([c, d]) => [el('span', pad(c, 24), 'ac'), d]), ['tab completes, arrow keys walk history', 'mu']],
+    whoami: () => [[data.profile.name, 'b'], [data.profile.role + ', ' + data.profile.location, 'ac'], data.profile.line],
+    about: () => data.profile.about,
+    neofetch,
+    ls: () => [[el('span', 'about.md  ', 'fg'), el('span', 'certificates.json  ', 'fg'), el('span', 'contact.txt  ', 'fg'), el('span', 'projects/  ', 'bl'), el('span', 'toolkit/', 'bl')]],
+    cat: ([f]) => files[f] ? files[f]() : [['cat: ' + (f || '') + ': no such file. try ls', 'er']],
+    projects: () => data.projects.flatMap(p => [[p.name, 'b'], [el('span', '  ' + p.what + '  ', 'mu'), el('span', p.stack.join(' / '), 'tl')]]),
+    stack: () => data.stack.map(([g, items]) => [el('span', pad(g, 11), 'ac'), ...items.map(i => el('span', i + '  ', data.current.includes(i) ? 'ac' : 'fg'))]).concat([['green = in production now', 'mu']]),
+    info: ([t]) => info(t),
+    certs,
+    contact,
+    theme: ([t]) => { const next = themes.includes(t) ? t : themes[(themes.indexOf(theme) + 1) % 3]; applyTheme(next); return [['theme: ' + next, 'ac']]; },
+    matrix,
+    history: () => history.map((h, i) => [el('span', String(i + 1).padStart(3) + '  ', 'mu'), h]),
+    clear: () => { out.textContent = ''; return []; },
+    date: () => [new Date().toString()],
+    echo: args => [args.join(' ')],
+    sudo: () => [['nice try. this terminal runs as guest, and guest cannot be root.', 'er']],
+    exit: () => [['there is no exit. only more commands. (try help)', 'mu']],
+    'git': ([sub]) => sub === 'log'
+      ? [['feat: interactive 3D terminal page', 'ac'], ['feat: seamless profile on any GitHub theme, 3D neofetch', 'ac'], ['feat: rebuild profile as an animated 3D terminal', 'ac']]
+      : [['usage: git log', 'mu']],
+  };
+  const aliases = { cls: 'clear', '?': 'help', man: 'help', ll: 'ls', dir: 'ls', skills: 'stack', toolkit: 'stack', work: 'projects', certificates: 'certs', socials: 'contact' };
+
+  async function run(raw) {
+    const cmd = raw.trim();
+    print([el('span', '\u276f ', 'ac'), cmd]);
+    if (!cmd) return;
+    history.push(cmd);
+    hpos = history.length;
+    const [word, ...args] = cmd.split(/\s+/);
+    const key = aliases[word.toLowerCase()] || word.toLowerCase();
+    const fn = commands[key];
+    if (!fn) { print(['command not found: ' + word + '. type help', 'er']); return; }
+    busy = true;
+    const res = await fn(args);
+    await printAll(res);
+    busy = false;
+  }
+
+  form.addEventListener('submit', e => { e.preventDefault(); if (busy) return; const v = input.value; input.value = ''; highlight(''); run(v); });
+  input.addEventListener('keydown', e => {
+    if (e.key === 'ArrowUp' && history.length) { e.preventDefault(); hpos = Math.max(0, hpos - 1); input.value = history[hpos]; }
+    else if (e.key === 'ArrowDown' && history.length) { e.preventDefault(); hpos = Math.min(history.length, hpos + 1); input.value = history[hpos] || ''; }
+    else if (e.key === 'Tab') {
+      e.preventDefault();
+      const v = input.value;
+      const parts = v.split(/\s+/);
+      const pool = parts.length > 1 ? (parts[0] === 'info' ? tools.map(t => t.name) : parts[0] === 'cat' ? Object.keys(files) : []) : Object.keys(commands);
+      const hit = pool.filter(c => c.startsWith(parts.at(-1)));
+      if (hit.length === 1) { parts[parts.length - 1] = hit[0]; input.value = parts.join(' ') + (parts.length === 1 ? ' ' : ''); }
+      else if (hit.length > 1) print([['  ' + hit.join('   '), 'mu']]);
+    } else if (e.key === 'l' && e.ctrlKey) { e.preventDefault(); out.textContent = ''; }
+  });
+  input.addEventListener('input', () => { const m = /^info\s+(\S*)$/.exec(input.value); highlight(m ? m[1].toLowerCase() : ''); });
+  $('.screen').addEventListener('pointerup', () => { if (!getSelection().toString()) input.focus({ preventScroll: true }); });
+  for (const b of $$('[data-run]')) b.addEventListener('click', () => { if (busy) return; input.focus({ preventScroll: true }); run(b.dataset.run); });
+
+  // ---------------------------------------------------------------- 3D keyboard
+  const caps = $$('.cap');
+  const insp = $('#inspector');
+  function highlight(prefix) { for (const c of caps) c.classList.toggle('match', !!prefix && c.dataset.tool.startsWith(prefix)); }
+  function select(toolName, scroll) {
+    const cap = caps.find(c => c.dataset.tool === toolName);
+    if (!cap) return;
+    for (const c of caps) c.classList.toggle('sel', c === cap);
+    const t = tools.find(x => x.name === toolName);
+    const same = data.stack.find(([g]) => g === t.group)[1].filter(n => n !== t.name);
+    const on = data.current.includes(t.name);
+    insp.querySelector('.cmd').innerHTML = '';
+    insp.querySelector('.cmd').append(el('span', '\u276f ', 'ac'), 'info ' + t.name);
+    const big = insp.querySelector('.big');
+    big.innerHTML = '';
+    const logo = cap.querySelector('svg').cloneNode(true);
+    big.style.cssText = cap.style.cssText;
+    big.append(logo, el('strong', t.name));
+    const dl = insp.querySelector('dl');
+    dl.innerHTML = '';
+    for (const [k, v, cls] of [['layer', t.group], ['status', on ? 'in production now' : 'in the toolkit', on ? 'ac' : ''], ['alongside', same.join(', ')]]) {
+      dl.append(el('dt', k), el('dd', v, cls));
+    }
+    if (scroll) cap.focus({ preventScroll: true });
+  }
+  for (const c of caps) c.addEventListener('click', () => select(c.dataset.tool, false));
+
+  // ---------------------------------------------------------------- hero role rotator
+  const role = $('#role');
+  (async () => {
+    if (reduce) return;
+    const phrases = data.profile.roles;
+    let i = 0;
+    await sleep(2600);
+    for (;;) {
+      if (document.hidden) { await sleep(500); continue; }
+      const cur = phrases[i];
+      for (let n = cur.length; n >= 0; n--) { role.textContent = cur.slice(0, n); await sleep(24); }
+      i = (i + 1) % phrases.length;
+      const next = phrases[i];
+      await sleep(260);
+      for (let n = 1; n <= next.length; n++) { role.textContent = next.slice(0, n); await sleep(46); }
+      await sleep(2400);
+    }
+  })();
+
+  // ---------------------------------------------------------------- boot
+  (async () => {
+    out.textContent = '';
+    if (!reduce) {
+      await sleep(500);
+      for (const ch of 'neofetch') { input.value += ch; await sleep(70); }
+      await sleep(260);
+      input.value = '';
+    }
+    await run('neofetch');
+    print([el('span', 'type ', 'mu'), el('span', 'help', 'ac'), el('span', ', or try ', 'mu'), el('span', 'info react', 'ac'), el('span', ' and ', 'mu'), el('span', 'matrix', 'ac')]);
+    select('react', false);
+  })();
+  applyTheme(theme);
+  kick();
+})();
+</script>
+</body>
+</html>

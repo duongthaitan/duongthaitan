@@ -158,3 +158,23 @@ ${body}
 </svg>
 `;
 }
+
+// Colour helpers shared by the artwork and the interactive page.
+export const hexRgb = hex => [1, 3, 5].map(i => parseInt(hex.slice(i, i + 2), 16));
+export const luminance = rgb => {
+  const [r, g, b] = rgb.map(v => { const c = v / 255; return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4; });
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+};
+export const contrast = (p, q) => { const [hi, lo] = [luminance(p), luminance(q)].sort((m, n) => n - m); return (hi + 0.05) / (lo + 0.05); };
+export const toHex = rgb => `#${rgb.map(v => Math.round(v).toString(16).padStart(2, '0')).join('')}`;
+
+// Brand colour on its own logo. Near-black marks switch to the text ink so they survive dark mode;
+// pale marks are darkened just enough to hold 2.4:1 on the light face.
+export function logoInk(hex) {
+  const rgb = hexRgb(hex);
+  if (luminance(rgb) < 0.05) return '--c:var(--fg)';
+  let light = rgb;
+  while (contrast(light, hexRgb('#f3f5f7')) < 2.4) light = light.map(v => v * 0.9);
+  const cl = toHex(light);
+  return cl.toLowerCase() === hex.toLowerCase() ? `--c:${hex}` : `--c:${hex};--cl:${cl}`;
+}

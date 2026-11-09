@@ -19,8 +19,8 @@ test('artwork is ASCII only, so no glyph depends on platform font coverage', () 
 
 test('every animated element starts from a finished base state', () => {
   for (const [file, svg] of assets) {
-    // Loops stay finite: attention loops stop on their own.
-    assert.doesNotMatch(svg, /\bindefinite\b|\binfinite\b/, file);
+    // Loops in the README images stay finite: an SVG inside <img> repaints whole while anything moves.
+    if (file.endsWith('.svg')) assert.doesNotMatch(svg, /\bindefinite\b|\binfinite\b/, file);
     for (const [, count] of svg.matchAll(/repeatCount="([^"]*)"/g)) assert.match(count, /^\d+$/, file);
     // SMIL ignores prefers-reduced-motion, so every SMIL animation sits under .fx (display:none there)
     // or inside a mask that only an .fx layer uses.
@@ -34,4 +34,13 @@ test('every animated element starts from a finished base state', () => {
     for (const [, list] of svg.matchAll(/style="[^"]*?animation:([^"]+)"/g))
       for (const entry of list.split(/,(?![^(]*\))/)) assert.match(entry.trim(), /\b(both|forwards|\d+)$/, `${file}: ${entry}`);
   }
+});
+
+test('interactive page is self-contained, linked safely and motion-aware', () => {
+  const html = renderAssets()['terminal/index.html'];
+  assert.doesNotMatch(html, /<script[^>]+\ssrc=|<link[^>]+stylesheet|@import|url\(\s*['"]?https?:/i, 'no external scripts, styles or fonts');
+  for (const [, href] of html.matchAll(/\shref="([^"]+)"/g)) assert.match(href, /^(https:\/\/|#|data:,$)/, href);
+  for (const [, tag] of html.matchAll(/(<a\s[^>]*target="_blank"[^>]*>)/g)) assert.match(tag, /rel="noopener"/, tag);
+  assert.match(html, /prefers-reduced-motion: reduce/);
+  assert.match(html, /<h1/);
 });

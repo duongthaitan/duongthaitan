@@ -8,8 +8,10 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import { dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { A, EASE, check, chevron, escapeXml, extrude, haloDef, rrect, spinner, style, svg, text, typed, width } from './svg-kit.mjs';
+import { A, EASE, check, chevron, escapeXml, extrude, haloDef, hexRgb, logoInk, rrect, spinner, style, svg, text, toHex, typed, width } from './svg-kit.mjs';
 import { ICONS } from './tool-icons.mjs';
+import { renderSite } from './gen-site.mjs';
+import { CURRENT, GLYPHS, NEOFETCH, SLUGS, STACK } from './profile-data.mjs';
 
 const r2 = n => Math.round(n * 100) / 100;
 const ms = n => `${Math.round(n)}ms`;
@@ -249,12 +251,6 @@ ${css.join('\n')}</style>`;
 // neofetch-style identity card: a 3D voxel <T/> sculpture floating over a pedestal beside a raised
 // panel of key/value rows whose values decrypt from noise, left to right.
 
-const GLYPHS = {
-  '<': ['....#', '...#.', '..#..', '.#...', '..#..', '...#.', '....#'],
-  T: ['#####', '..#..', '..#..', '..#..', '..#..', '..#..', '..#..'],
-  '/': ['....#', '...#.', '...#.', '..#..', '.#...', '.#...', '#....'],
-  '>': ['#....', '.#...', '..#..', '...#.', '..#..', '.#...', '#....'],
-};
 
 // Deterministic noise so regenerating never changes committed output.
 function random(seed) {
@@ -347,15 +343,7 @@ function fetchCard() {
   parts.push(`<g${style(A('in', 420, t0))}>${header('hx2', 2.4, -1.7)}${header('hx1', 1.2, -0.85)}${header('ac', 0, 0)}</g>`);
   parts.push(`<path class="hair grow" d="M${kx} 117H${r2(kx + 14 * 9)}"${style(A('grow', 520, t0 + 80, EASE.inOut))}/>`);
 
-  const rows = [
-    ['role', 'full-stack developer'],
-    ['location', 'soc trang, vietnam'],
-    ['shipping', 'typescript across the stack'],
-    ['stack', 'react, node.js, postgresql, aws'],
-    ['focus', 'clean architecture, testing'],
-    ['certs', 'meta, google, ibm, aws, deeplearning.ai'],
-    ['github', 'duongthaitan'],
-  ];
+  const rows = NEOFETCH;
   // Delays shrink as the list goes on: a wave, not a metronome.
   let delay = t0 + 160;
   const frame = 55;
@@ -462,6 +450,39 @@ function sectionHeader(slug, command) {
   });
 }
 
+// ── Launch key ──────────────────────────────────────────────────────────────
+// The README's one call to action: a bigger 3D key that types the launch command, then waits with
+// a slow accent pulse and an enter symbol, inviting the click (the image is wrapped in a link).
+function launchKey() {
+  const W = 900;
+  const H = 84;
+  const depth = 7;
+  const fw = W - depth - 1;
+  const fh = H - depth - 1;
+  const id = 'launch';
+  const y = 46;
+  const cmd = typed(54, y, './terminal --interactive --3d', { size: 17, delay: 300, cps: 40, caret: 'blink', blinks: 6 });
+  const ready = cmd.end + 200;
+  const label = 'open the interactive terminal';
+  const lx = fw - 76 - width(label, 13);
+  const enter = `M${fw - 46} ${y - 13}v9h-16m0 0l5 -5m-5 5l5 5`;
+  const body = [
+    extrude(0.5, 0.5, fw, fh, depth, depth, 12, ['kb', 'ks']),
+    `<path class="face" d="${rrect(0.5, 0.5, fw, fh, 13)}"/>`,
+    `<path class="pulse" d="${rrect(0.5, 0.5, fw, fh, 13)}"${style(`pulse 2600ms ${EASE.inOut} ${Math.round(ready)}ms 4`)}/>`,
+    chevron(30, y, 17, A('in', 240, 80)),
+    cmd.svg,
+    `<g${style(A('side', 520, ready))}>${text(lx, y - 1, label, { size: 13, cls: 'mu' })}<rect class="ek" x="${fw - 66}" y="${y - 22}" width="40" height="28" rx="6"/><path class="tick" d="${enter}"/></g>`,
+  ].join('\n');
+  return svg({
+    w: W, h: H, id, body, frame: false,
+    defs: `<style>.kb{fill:var(--line)}.ks{fill:var(--faint)}.face{fill:var(--raised);stroke:var(--accent);stroke-opacity:.55}.pulse{fill:none;stroke:var(--accent);stroke-width:2;opacity:0}.ek{fill:var(--raised);stroke:var(--line)}
+@keyframes pulse{0%,100%{opacity:0}45%{opacity:.85}}</style>`,
+    title: 'Open the interactive 3D terminal',
+    desc: 'A 3D key that types ./terminal --interactive --3d and invites a click to open the interactive terminal page, where you can type commands, tilt the terminal and press the tool keys.',
+  });
+}
+
 // ── Divider ─────────────────────────────────────────────────────────────────
 
 function divider() {
@@ -485,14 +506,6 @@ function divider() {
 
 // ── Toolkit tree ────────────────────────────────────────────────────────────
 
-const STACK = [
-  ['languages', ['typescript', 'javascript', 'python', 'go', 'rust']],
-  ['frontend', ['react', 'next.js', 'vue', 'tailwind', 'three.js']],
-  ['backend', ['node.js', 'nestjs', 'graphql']],
-  ['data', ['postgresql', 'mongodb', 'redis']],
-  ['devops', ['docker', 'kubernetes', 'aws', 'github actions']],
-];
-const CURRENT = new Set(['typescript', 'react', 'node.js', 'postgresql', 'aws']); // from the About copy
 
 // ── Isometric toolkit islands ───────────────────────────────────────────────
 // Two platforms (client, server) where every tool is a block. Isometric projection is affine,
@@ -500,31 +513,7 @@ const CURRENT = new Set(['typescript', 'react', 'node.js', 'postgresql', 'aws'])
 // no CSS 3D (which SVG images do not support). Blocks drop in back to front, shadows grow as
 // they land, then the island breathes in a slow wave.
 
-const SLUGS = {
-  typescript: 'typescript', javascript: 'javascript', python: 'python', go: 'go', rust: 'rust',
-  react: 'react', 'next.js': 'nextdotjs', vue: 'vuedotjs', tailwind: 'tailwindcss', 'three.js': 'threedotjs',
-  'node.js': 'nodedotjs', nestjs: 'nestjs', graphql: 'graphql', postgresql: 'postgresql', mongodb: 'mongodb',
-  redis: 'redis', docker: 'docker', kubernetes: 'kubernetes', aws: 'amazonwebservices', 'github actions': 'githubactions',
-};
 
-const hexRgb = hex => [1, 3, 5].map(i => parseInt(hex.slice(i, i + 2), 16));
-const luminance = rgb => {
-  const [r, g, b] = rgb.map(v => { const c = v / 255; return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4; });
-  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
-};
-const contrast = (p, q) => { const [hi, lo] = [luminance(p), luminance(q)].sort((m, n) => n - m); return (hi + 0.05) / (lo + 0.05); };
-const toHex = rgb => `#${rgb.map(v => Math.round(v).toString(16).padStart(2, '0')).join('')}`;
-
-// Brand colour on its own logo. Near-black marks switch to the text ink so they survive dark mode;
-// pale marks are darkened just enough to hold 2.4:1 on the light face.
-function logoInk(hex) {
-  const rgb = hexRgb(hex);
-  if (luminance(rgb) < 0.05) return '--c:var(--fg)';
-  let light = rgb;
-  while (contrast(light, hexRgb('#f3f5f7')) < 2.4) light = light.map(v => v * 0.9);
-  const cl = toHex(light);
-  return cl.toLowerCase() === hex.toLowerCase() ? `--c:${hex}` : `--c:${hex};--cl:${cl}`;
-}
 
 function island({ id, title, subtitle, groups, cols, offset }) {
   const W = 900;
@@ -852,6 +841,7 @@ export function renderAssets() {
     'assets/hero-banner.svg': hero(),
     'assets/typing-anim.svg': fetchCard(),
     'assets/section-divider.svg': divider(),
+    'assets/launch.svg': launchKey(),
     'assets/stack-client.svg': island({ id: 'client', title: 'client', subtitle: 'languages and frontend', groups: STACK.slice(0, 2), cols: 5, offset: 0 }),
     'assets/stack-server.svg': island({ id: 'server', title: 'server', subtitle: 'backend, data and devops', groups: STACK.slice(2), cols: 4, offset: 300 }),
   };
@@ -867,6 +857,8 @@ export function renderAssets() {
     'galaxy/*.svg': galaxy,
     'section-divider.svg': bytes('assets/section-divider.svg'),
   });
+  // The interactive page (GitHub Pages) lives alongside the artwork and is checked the same way.
+  assets['terminal/index.html'] = renderSite();
   return assets;
 }
 
