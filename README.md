@@ -1,121 +1,88 @@
 <div align="center">
-  <img src="./assets/hero-banner.svg" width="100%" style="max-width: 900px;" alt="Thai Tan — Full-Stack Developer and Visual Creator" />
+  <img src="./assets/hero-banner.svg" width="100%" alt="Duong Thai Tan: full-stack developer, cloud infrastructure builder, visual creator. I build web apps and the cloud systems that run them." />
 </div>
 
-<div align="center">
-  <img src="./assets/typing-anim.svg" width="100%" style="max-width: 800px;" alt="Terminal session" />
-</div>
+<p align="center">
+  <a href="#about"><code>~/about</code></a>&ensp;
+  <a href="#toolkit"><code>~/toolkit</code></a>&ensp;
+  <a href="#selected-work"><code>~/projects</code></a>&ensp;
+  <a href="#certificates"><code>~/certificates</code></a>&ensp;
+  <a href="#automation"><code>~/automation</code></a>&ensp;
+  <a href="#connect"><code>~/connect</code></a>
+</p>
 
-<div align="center">
-  <img src="./assets/section-divider.svg" width="100%" alt="section divider" />
-</div>
+<img src="./assets/typing-anim.svg" width="100%" alt="neofetch for thaitan@github. Role: full-stack developer. Location: Soc Trang, Vietnam. Shipping: TypeScript across the stack. Stack: React, Node.js, PostgreSQL, AWS. Focus: clean architecture, testing. Certificates: Meta, Google, IBM, AWS, DeepLearning.AI. GitHub: duongthaitan." />
 
-<br/>
+<img src="./assets/section-divider.svg" width="100%" alt="" />
 
-<div align="center">
-  <a href="#about">About</a> · <a href="#toolkit">Toolkit</a> · <a href="#selected-work">Selected Work</a> · <a href="#certificates">Certificates</a> · <a href="#automation">Automation</a> · <a href="#connect">Connect</a>
-</div>
-
-<br/>
-
-<!-- ─── ABOUT ─── -->
-
-<img src="./assets/galaxy/about.svg" width="100%" alt="About section" />
+<img src="./assets/galaxy/about.svg" width="100%" alt="$ cat about.md" />
 
 ## About
 
-Full-stack developer focused on building production-grade web applications and cloud infrastructure. I approach software as a craft — clean architecture, thorough testing, and thoughtful design over quick fixes.
+Full-stack developer focused on production-grade web applications and cloud infrastructure. I treat software as a craft: clean architecture, thorough testing and careful design over quick fixes.
 
-Currently shipping TypeScript across the stack, from React frontends to Node.js services backed by PostgreSQL and deployed on AWS. I build systems designed to scale and maintain.
+Right now I ship TypeScript across the stack, from React frontends to Node.js services backed by PostgreSQL, deployed on AWS. I build systems that are meant to scale and meant to be maintained.
 
-<img src="./assets/section-divider.svg" width="100%" alt="section divider" />
-
-<!-- ─── TOOLKIT ─── -->
-
-<img src="./assets/galaxy/toolkit.svg" width="100%" alt="Toolkit section" />
+<img src="./assets/galaxy/toolkit.svg" width="100%" alt="$ ls ~/toolkit/{client,server}" />
 
 ## Toolkit
 
-**Languages** &nbsp; ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=000) ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white) ![Go](https://img.shields.io/badge/Go-00ADD8?style=flat&logo=go&logoColor=white) ![Rust](https://img.shields.io/badge/Rust-000?style=flat&logo=rust&logoColor=white)
+<img src="./assets/stack-client.svg" width="100%" alt="Client toolkit as 3D keycaps with logos. Languages: TypeScript, JavaScript, Python, Go, Rust. Frontend: React, Next.js, Vue, Tailwind, Three.js. In production now: TypeScript, React." />
 
-**Frontend** &nbsp; ![React](https://img.shields.io/badge/React-61DAFB?style=flat&logo=react&logoColor=000) ![Next.js](https://img.shields.io/badge/Next.js-000?style=flat&logo=next.js&logoColor=white) ![Vue](https://img.shields.io/badge/Vue-4FC08D?style=flat&logo=vue.js&logoColor=white) ![Tailwind](https://img.shields.io/badge/Tailwind-06B6D4?style=flat&logo=tailwindcss&logoColor=white) ![Three.js](https://img.shields.io/badge/Three.js-000?style=flat&logo=three.js&logoColor=white)
+<img src="./assets/stack-server.svg" width="100%" alt="Server toolkit as 3D keycaps with logos. Backend: Node.js, NestJS, GraphQL. Data: PostgreSQL, MongoDB, Redis. DevOps: Docker, Kubernetes, AWS, GitHub Actions. In production now: Node.js, PostgreSQL, AWS." />
 
-**Backend** &nbsp; ![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat&logo=node.js&logoColor=white) ![NestJS](https://img.shields.io/badge/NestJS-E0234E?style=flat&logo=nestjs&logoColor=white) ![GraphQL](https://img.shields.io/badge/GraphQL-E10098?style=flat&logo=graphql&logoColor=white)
+<sub>Logos from <a href="https://simpleicons.org">Simple Icons</a> (CC0). Trademarks belong to their owners.</sub>
 
-**Data** &nbsp; ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat&logo=postgresql&logoColor=white) ![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat&logo=mongodb&logoColor=white) ![Redis](https://img.shields.io/badge/Redis-DC382D?style=flat&logo=redis&logoColor=white)
+<img src="./assets/galaxy/selected-work.svg" width="100%" alt="$ ls ~/projects" />
 
-**DevOps** &nbsp; ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white) ![Kubernetes](https://img.shields.io/badge/K8s-326CE5?style=flat&logo=kubernetes&logoColor=white) ![AWS](https://img.shields.io/badge/AWS-232F3E?style=flat&logo=amazonwebservices&logoColor=white) ![GitHub Actions](https://img.shields.io/badge/Actions-2088FF?style=flat&logo=githubactions&logoColor=white)
+## Selected work
 
-<img src="./assets/section-divider.svg" width="100%" alt="section divider" />
+| Project | What it is | Stack |
+|---------|------------|-------|
+| **3D interactive portfolio** | WebGL-powered portfolio with real-time 3D rendering | `Three.js` `React` `GLSL` |
+| **Enterprise platform** | Full-stack SaaS platform with multi-tenant architecture | `Next.js` `NestJS` `PostgreSQL` |
+| **AI research suite** | ML pipeline orchestration with model training dashboards | `Python` `FastAPI` `PyTorch` |
+| **Open source tools** | Developer utilities and CLI tools for workflow automation | `Node.js` `Go` `GitHub Actions` |
 
-<!-- ─── SELECTED WORK ─── -->
-
-<img src="./assets/galaxy/selected-work.svg" width="100%" alt="Selected Work section" />
-
-## Selected Work
-
-| Project | Description | Stack |
-|---------|-------------|-------|
-| **3D Interactive Portfolio** | WebGL-powered interactive portfolio with real-time 3D rendering | Three.js · React · GLSL |
-| **Enterprise Platform** | Full-stack SaaS platform with multi-tenant architecture | Next.js · NestJS · PostgreSQL |
-| **AI Research Suite** | ML pipeline orchestration with model training dashboards | Python · FastAPI · PyTorch |
-| **Open Source Tools** | Developer utilities and CLI tools for workflow automation | Node.js · Go · GitHub Actions |
-
-<img src="./assets/section-divider.svg" width="100%" alt="section divider" />
-
-<!-- ─── CERTIFICATES ─── -->
-
-<img src="./assets/galaxy/certificates.svg" width="100%" alt="Certificates section" />
+<img src="./assets/galaxy/certificates.svg" width="100%" alt="$ cat certificates.json" />
 
 ## Certificates
 
 | Certificate | Issuer | Credential |
 |-------------|--------|------------|
-| Meta Front-End Developer Professional | Meta | [cert/4tv2o](https://www.coursera.org/account/accomplishments/professional-cert/4tv2o) |
-| Google Cloud Digital Leader | Google | [cert/d0gj4](https://www.coursera.org/account/accomplishments/professional-cert/d0gj4) |
-| IBM Full Stack Software Developer | IBM | [cert/kj7vr](https://www.coursera.org/account/accomplishments/professional-cert/kj7vr) |
-| AWS Cloud Solutions Architect | Amazon | [CT-11PGKZIX](https://www.credly.com/badges/CT-11PGKZIX) |
-| Deep Learning Specialization | DeepLearning.AI | [CC-USOBZSX7](https://www.coursera.org/account/accomplishments/specialization/CC-USOBZSX7) |
+| Meta Front-End Developer Professional | Meta | [`cert/4tv2o`](https://www.coursera.org/account/accomplishments/professional-cert/4tv2o) |
+| Google Cloud Digital Leader | Google | [`cert/d0gj4`](https://www.coursera.org/account/accomplishments/professional-cert/d0gj4) |
+| IBM Full Stack Software Developer | IBM | [`cert/kj7vr`](https://www.coursera.org/account/accomplishments/professional-cert/kj7vr) |
+| AWS Cloud Solutions Architect | Amazon | [`CT-11PGKZIX`](https://www.credly.com/badges/CT-11PGKZIX) |
+| Deep Learning Specialization | DeepLearning.AI | [`CC-USOBZSX7`](https://www.coursera.org/account/accomplishments/specialization/CC-USOBZSX7) |
 
-<img src="./assets/section-divider.svg" width="100%" alt="section divider" />
-
-<!-- ─── AUTOMATION ─── -->
-
-<img src="./assets/galaxy/automation.svg" width="100%" alt="Automation section" />
+<img src="./assets/galaxy/automation.svg" width="100%" alt="$ gh workflow list" />
 
 ## Automation
 
-This profile is self-maintaining. GitHub Actions runs daily to:
+This profile maintains itself. Every visual on the page is an SVG generated from one set of design tokens, and GitHub Actions keeps the numbers current.
 
-1. **Fetch live metrics** from the GitHub API (repos, stars, followers)
-2. **Render an SVG** panel with the latest data via `scripts/render-metrics.mjs`
-3. **Run security checks** — the test suite validates no scripts, external references, or unsafe content in any SVG
-4. **Push atomically** — the metrics asset updates only if the content changed and the remote SHA matches
+<img src="./assets/terminal-3d.svg" width="100%" alt="A 3D terminal runs this repo's pipeline: node scripts/gen-profile.mjs lists every generated asset with its size, node --test scripts/*.test.mjs reports both test files ok, and git push origin main lands a new commit on main. Floating panels chart the asset sizes and the git graph as it happens." />
 
-All SVGs are generated from JS scripts — no external image services, no third-party actions.
+1. **Fetch live metrics** from the GitHub API: public repos, stars and followers.
+2. **Render the panel** at the bottom of this page with `scripts/render-metrics.mjs`.
+3. **Check every SVG.** The test suite rejects scripts, external references and motion without a `prefers-reduced-motion` fallback, and fails if a committed asset drifts from its generator.
+4. **Push atomically.** The metrics file updates only when its content changed and the remote SHA still matches.
 
-<img src="./assets/section-divider.svg" width="100%" alt="section divider" />
+Artwork comes from `scripts/gen-profile.mjs`, with the palette, type and easing curves in `scripts/svg-kit.mjs`. No external image services, no third-party actions.
 
-<!-- ─── CONNECT ─── -->
-
-<img src="./assets/galaxy/connect.svg" width="100%" alt="Connect section" />
+<img src="./assets/galaxy/connect.svg" width="100%" alt="$ ping duongthaitan" />
 
 ## Connect
 
-<p>
-  <a href="https://github.com/duongthaitan">
-    <img src="https://img.shields.io/badge/GitHub-duongthaitan-24292e?style=flat-square&logo=github" alt="GitHub" />
-  </a>&nbsp;
-  <a href="https://www.linkedin.com/in/duongthaitan/">
-    <img src="https://img.shields.io/badge/LinkedIn-duongthaitan-0A66C2?style=flat-square&logo=linkedin" alt="LinkedIn" />
-  </a>&nbsp;
-  <a href="https://www.instagram.com/thaitan.duong_">
-    <img src="https://img.shields.io/badge/Instagram-thaitan.duong__-E4405F?style=flat-square&logo=instagram&logoColor=white" alt="Instagram" />
-  </a>
-</p>
+| Where | Handle |
+|-------|--------|
+| GitHub | [`github.com/duongthaitan`](https://github.com/duongthaitan) |
+| LinkedIn | [`linkedin.com/in/duongthaitan`](https://www.linkedin.com/in/duongthaitan/) |
+| Instagram | [`@thaitan.duong_`](https://www.instagram.com/thaitan.duong_) |
 
 <br/>
 
 <div align="center">
-  <img src="./assets/github-metrics.svg" width="100%" style="max-width: 900px;" alt="Live GitHub metrics" />
+  <img src="./assets/github-metrics.svg" width="100%" alt="Live GitHub metrics" />
 </div>

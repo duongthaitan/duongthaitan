@@ -1,21 +1,62 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="80" viewBox="0 0 900 80"
-     role="img" aria-labelledby="at ad">
-  <title id="at">About</title>
-  <desc id="ad">Developer profile and background</desc>
-  <defs>
-    <linearGradient id="aa" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#ff8c32"/>
-      <stop offset="100%" stop-color="#64a0ff"/>
-    </linearGradient>
-    <linearGradient id="al" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#ff8c32" stop-opacity="0.15"/>
-      <stop offset="100%" stop-color="#64a0ff" stop-opacity="0.15"/>
-    </linearGradient>
-  </defs>
-  <style>text { font-family: -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; }</style>
-  <rect width="900" height="80" fill="#0a0a0b"/>
-  <rect x="30" y="18" width="3" height="26" rx="1.5" fill="url(#aa)"/>
-  <text x="46" y="36" fill="#ffffff" font-size="17" font-weight="700" letter-spacing="-0.01em">About</text>
-  <text x="46" y="55" fill="rgba(255,255,255,0.4)" font-size="12" font-weight="400">Developer profile and background</text>
-  <rect x="0" y="79" width="900" height="1" fill="url(#al)"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="64" viewBox="0 0 900 64" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="about-title about-desc" style="max-width:100%;height:auto">
+<title id="about-title">$ cat about.md</title>
+<desc id="about-desc">A 3D terminal key that types the command &quot;cat about.md&quot;, presses in as it runs with a spinner, and reports done.</desc>
+<style>
+:root{--bg:#0d1117;--raised:#151b23;--fg:#e6edf3;--muted:#9198a1;--faint:#2a313c;--line:#262c36;--accent:#7ee787;--glow:#d2ffd6;--deep:#2ea043;--teal:#39c5cf;--blue:#79c0ff;--vox:#2d333b}
+@media (prefers-color-scheme:light){:root{--bg:#ffffff;--raised:#f6f8fa;--fg:#1f2328;--muted:#59636e;--faint:#d8dee4;--line:#d1d9e0;--accent:#1a7f37;--glow:#4ac26b;--deep:#0f5323;--teal:#1b7c83;--blue:#0969da;--vox:#8c959f}}
+text{font-family:ui-monospace,'SF Mono','Cascadia Mono','JetBrains Mono',Menlo,Consolas,'Liberation Mono',monospace;fill:var(--fg)}
+.fg{fill:var(--fg)}.mu{fill:var(--muted)}.ac{fill:var(--accent)}.bg{fill:var(--bg)}.fa{fill:var(--faint)}.rs{fill:var(--raised)}
+.frame{fill:var(--bg);stroke:var(--line)}
+.hair{fill:none;stroke:var(--line)}
+.chev,.tick{fill:none;stroke:var(--accent);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.shs{stop-color:var(--accent)}
+.pop,.ring,.chip,.spin,.tick{transform-box:fill-box;transform-origin:center}
+.grow,.run{transform-box:fill-box;transform-origin:0 50%}
+.draw{stroke-dasharray:1 1}
+.mv{transform:translateX(var(--d))}
+.cv,.cvs{transform-box:fill-box;transform-origin:100% 50%}.cv{transform:scaleX(0)}
+.ring{fill:none;stroke:var(--accent);stroke-width:1.5}
+.spin{fill:none;stroke:var(--accent);stroke-width:2;stroke-linecap:round}
+.beam{fill:none;stroke:var(--accent)}
+.ring,.run,.spin,.beam,.pk,.flash,.fr,.off{opacity:0}
+.px{opacity:.55;--o:.55}
+@keyframes in{from{opacity:0}}
+@keyframes up{from{opacity:0;transform:translateY(8px)}}
+@keyframes side{from{opacity:0;transform:translateX(-10px)}}
+@keyframes rise{from{opacity:0;transform:translateY(var(--rise))}}
+@keyframes pop{from{opacity:0;transform:scale(.5)}}
+@keyframes chip{from{opacity:0;transform:translateY(6px) scale(.96)}}
+@keyframes grow{from{transform:scaleX(0)}}
+@keyframes draw{from{stroke-dashoffset:1}}
+@keyframes type{from{transform:translateX(0)}}
+@keyframes wipe{from{transform:scaleX(1)}}
+@keyframes vanish{to{opacity:0}}
+@keyframes blink{0%,45%{opacity:1}55%,100%{opacity:0}}
+@keyframes ring{0%{opacity:.55;transform:scale(1)}45%,100%{opacity:0;transform:scale(3)}}
+@keyframes run{0%{opacity:1;transform:scaleX(0)}75%{opacity:1;transform:scaleX(1)}100%{opacity:0;transform:scaleX(1)}}
+@keyframes show{from,to{opacity:1}}
+@keyframes spin{from{opacity:1;transform:rotate(0)}to{opacity:1;transform:rotate(360deg)}}
+@keyframes sweep{0%{transform:translateX(0);animation-timing-function:cubic-bezier(.77,0,.175,1)}38%,100%{transform:translateX(var(--d))}}
+@keyframes orbit{from{stroke-dashoffset:var(--o0)}to{stroke-dashoffset:var(--o1)}}
+@keyframes beamfade{0%{opacity:0}6%,94%{opacity:var(--bo)}100%{opacity:0}}
+@keyframes glint{8%{opacity:1}26%{opacity:var(--o)}}
+@keyframes glintT{8%{fill:var(--glow)}26%{fill:var(--accent)}}
+@keyframes descend{0%{opacity:0;transform:translateY(0)}4%,52%{opacity:1}56%,100%{opacity:0;transform:translateY(var(--d))}}
+@keyframes flash{0%{opacity:0}5%{opacity:.22}24%,100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}.transient,.fx{display:none}}
+@media (forced-colors:active){text,.fg,.mu,.ac,.fa,.rs{fill:CanvasText}.frame,.bg{fill:Canvas}.frame,.hair{stroke:CanvasText}.chev,.tick{stroke:CanvasText}}
+</style>
+<defs><clipPath id="about-key"><rect width="894" height="58" rx="12"/></clipPath><style>.kb{fill:var(--line)}.ks{fill:var(--faint)}@keyframes press{40%{transform:translate(3px,3px)}}</style></defs>
+
+<path class="kb" d="M18 6.5H888A11.5 11.5 0 0 1 899.5 18V52A11.5 11.5 0 0 1 888 63.5H18A11.5 11.5 0 0 1 6.5 52V18A11.5 11.5 0 0 1 18 6.5Z"/>
+<path class="ks" d="M893.5 12l6 6V51l-6 -6zM12 57.5l6 6H887l-6 -6z"/>
+<g style="animation:press 300ms cubic-bezier(.23,1,.32,1) 864ms 1">
+<path class="frame" d="M12 0.5H882A11.5 11.5 0 0 1 893.5 12V46A11.5 11.5 0 0 1 882 57.5H12A11.5 11.5 0 0 1 0.5 46V12A11.5 11.5 0 0 1 12 0.5Z"/>
+<path class="chev" d="M28 23.5l4.8 4.8l-4.8 4.8" style="animation:in 240ms cubic-bezier(.23,1,.32,1) 60ms both"/>
+<text x="48" y="34" font-size="15" textLength="108" class="fg">cat about.md</text><rect class="bg cv" x="47" y="19" width="110" height="21" style="animation:wipe 504ms steps(12,end) 160ms both"/><rect class="ac mv transient" x="49" y="21.7" width="7.5" height="15.3" rx="1" style="--d:108px;animation:in 1ms linear 160ms both,type 504ms steps(12,end) 160ms both,vanish 120ms linear 984ms forwards"/>
+<rect class="ac run" x="0" y="54.5" width="893" height="2" clip-path="url(#about-key)" style="animation:run 1000ms cubic-bezier(.77,0,.175,1) 1044ms both"/>
+<circle class="spin" cx="827" cy="29" r="6" pathLength="1" stroke-dasharray=".62 .38" style="animation:spin 640ms linear 1044ms 1.17"/>
+<path class="tick" d="M821 28l3.5 3.5l7 -7" style="animation:pop 360ms cubic-bezier(.23,1,.32,1) 1794ms both"/>
+<text x="871" y="34" font-size="13" textLength="31.2" class="mu" text-anchor="end" style="animation:in 360ms cubic-bezier(.23,1,.32,1) 1854ms both">done</text>
+</g>
 </svg>

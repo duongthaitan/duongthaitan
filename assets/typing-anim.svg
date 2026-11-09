@@ -1,50 +1,103 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="120" viewBox="0 0 800 120"
-     preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="tt"
-     style="max-width:100%;height:auto">
-  <title id="tt">Terminal — developer identity</title>
-
-  <defs>
-    <linearGradient id="tb" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#ff8c32" stop-opacity="0.25"/>
-      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.08"/>
-      <stop offset="100%" stop-color="#64a0ff" stop-opacity="0.25"/>
-    </linearGradient>
-  </defs>
-
-  <style>
-    text { font-family: 'Cascadia Code', 'Fira Code', Consolas, Monaco, monospace; }
-  </style>
-
-  <!-- Frame -->
-  <rect width="800" height="120" rx="12" fill="#111113" stroke="url(#tb)" stroke-width="1"/>
-
-  <!-- Title bar -->
-  <rect width="800" height="32" rx="12" fill="#18181b"/>
-  <rect y="24" width="800" height="8" fill="#18181b"/>
-
-  <!-- Window dots -->
-  <circle cx="22" cy="16" r="5" fill="#ff5f57"/>
-  <circle cx="40" cy="16" r="5" fill="#febc2e"/>
-  <circle cx="58" cy="16" r="5" fill="#28c840"/>
-
-  <!-- Title text -->
-  <text x="400" y="20" text-anchor="middle" fill="rgba(255,255,255,0.35)"
-        font-size="11" font-weight="400">tandev — bash</text>
-
-  <!-- Command line -->
-  <text x="22" y="62" font-size="13" font-weight="600">
-    <tspan fill="#ff8c32">❯</tspan>
-    <tspan fill="rgba(255,255,255,0.88)" dx="8">whoami</tspan>
-  </text>
-
-  <!-- Output -->
-  <text x="22" y="88" font-size="12" font-weight="400">
-    <tspan fill="rgba(255,255,255,0.4)">→</tspan>
-    <tspan fill="rgba(255,255,255,0.62)" dx="8">Duong Thai Tan · Full-Stack Developer · Soc Trang, Vietnam</tspan>
-  </text>
-
-  <!-- Blinking cursor -->
-  <rect x="42" y="96" width="8" height="14" rx="1" fill="#ff8c32" opacity="0.7">
-    <animate attributeName="opacity" values="0.7;0;0.7" dur="1.2s" repeatCount="indefinite"/>
-  </rect>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="322" viewBox="0 0 900 322" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="fetch-title fetch-desc" style="max-width:100%;height:auto">
+<title id="fetch-title">neofetch: thaitan@github</title>
+<desc id="fetch-desc">A neofetch-style card with a pixel-art &lt;T/&gt; logo assembling in a diagonal wave; each value decrypts from noise into text. role: full-stack developer; location: soc trang, vietnam; shipping: typescript across the stack; stack: react, node.js, postgresql, aws; focus: clean architecture, testing; certs: meta, google, ibm, aws, deeplearning.ai; github: duongthaitan.</desc>
+<style>
+:root{--bg:#0d1117;--raised:#151b23;--fg:#e6edf3;--muted:#9198a1;--faint:#2a313c;--line:#262c36;--accent:#7ee787;--glow:#d2ffd6;--deep:#2ea043;--teal:#39c5cf;--blue:#79c0ff;--vox:#2d333b}
+@media (prefers-color-scheme:light){:root{--bg:#ffffff;--raised:#f6f8fa;--fg:#1f2328;--muted:#59636e;--faint:#d8dee4;--line:#d1d9e0;--accent:#1a7f37;--glow:#4ac26b;--deep:#0f5323;--teal:#1b7c83;--blue:#0969da;--vox:#8c959f}}
+text{font-family:ui-monospace,'SF Mono','Cascadia Mono','JetBrains Mono',Menlo,Consolas,'Liberation Mono',monospace;fill:var(--fg)}
+.fg{fill:var(--fg)}.mu{fill:var(--muted)}.ac{fill:var(--accent)}.bg{fill:var(--bg)}.fa{fill:var(--faint)}.rs{fill:var(--raised)}
+.frame{fill:var(--bg);stroke:var(--line)}
+.hair{fill:none;stroke:var(--line)}
+.chev,.tick{fill:none;stroke:var(--accent);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.shs{stop-color:var(--accent)}
+.pop,.ring,.chip,.spin,.tick{transform-box:fill-box;transform-origin:center}
+.grow,.run{transform-box:fill-box;transform-origin:0 50%}
+.draw{stroke-dasharray:1 1}
+.mv{transform:translateX(var(--d))}
+.cv,.cvs{transform-box:fill-box;transform-origin:100% 50%}.cv{transform:scaleX(0)}
+.ring{fill:none;stroke:var(--accent);stroke-width:1.5}
+.spin{fill:none;stroke:var(--accent);stroke-width:2;stroke-linecap:round}
+.beam{fill:none;stroke:var(--accent)}
+.ring,.run,.spin,.beam,.pk,.flash,.fr,.off{opacity:0}
+.px{opacity:.55;--o:.55}
+@keyframes in{from{opacity:0}}
+@keyframes up{from{opacity:0;transform:translateY(8px)}}
+@keyframes side{from{opacity:0;transform:translateX(-10px)}}
+@keyframes rise{from{opacity:0;transform:translateY(var(--rise))}}
+@keyframes pop{from{opacity:0;transform:scale(.5)}}
+@keyframes chip{from{opacity:0;transform:translateY(6px) scale(.96)}}
+@keyframes grow{from{transform:scaleX(0)}}
+@keyframes draw{from{stroke-dashoffset:1}}
+@keyframes type{from{transform:translateX(0)}}
+@keyframes wipe{from{transform:scaleX(1)}}
+@keyframes vanish{to{opacity:0}}
+@keyframes blink{0%,45%{opacity:1}55%,100%{opacity:0}}
+@keyframes ring{0%{opacity:.55;transform:scale(1)}45%,100%{opacity:0;transform:scale(3)}}
+@keyframes run{0%{opacity:1;transform:scaleX(0)}75%{opacity:1;transform:scaleX(1)}100%{opacity:0;transform:scaleX(1)}}
+@keyframes show{from,to{opacity:1}}
+@keyframes spin{from{opacity:1;transform:rotate(0)}to{opacity:1;transform:rotate(360deg)}}
+@keyframes sweep{0%{transform:translateX(0);animation-timing-function:cubic-bezier(.77,0,.175,1)}38%,100%{transform:translateX(var(--d))}}
+@keyframes orbit{from{stroke-dashoffset:var(--o0)}to{stroke-dashoffset:var(--o1)}}
+@keyframes beamfade{0%{opacity:0}6%,94%{opacity:var(--bo)}100%{opacity:0}}
+@keyframes glint{8%{opacity:1}26%{opacity:var(--o)}}
+@keyframes glintT{8%{fill:var(--glow)}26%{fill:var(--accent)}}
+@keyframes descend{0%{opacity:0;transform:translateY(0)}4%,52%{opacity:1}56%,100%{opacity:0;transform:translateY(var(--d))}}
+@keyframes flash{0%{opacity:0}5%{opacity:.22}24%,100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}.transient,.fx{display:none}}
+@media (forced-colors:active){text,.fg,.mu,.ac,.fa,.rs{fill:CanvasText}.frame,.bg{fill:Canvas}.frame,.hair{stroke:CanvasText}.chev,.tick{stroke:CanvasText}}
+</style>
+<defs><clipPath id="fetch-frame"><rect width="900" height="322" rx="16"/></clipPath><style>.vd{fill:var(--deep)}.vg{fill:var(--vox)}.a0{fill:#484f58}.a1{fill:#ff7b72}.a2{fill:#3fb950}.a3{fill:#d29922}.a4{fill:#58a6ff}.a5{fill:#bc8cff}.a6{fill:#39c5cf}.a7{fill:#b1bac4}
+@media (prefers-color-scheme:light){.a0{fill:#24292f}.a1{fill:#cf222e}.a2{fill:#116329}.a3{fill:#9a6700}.a4{fill:#0969da}.a5{fill:#8250df}.a6{fill:#1b7c83}.a7{fill:#6e7781}}</style></defs>
+<rect class="frame" x=".5" y=".5" width="899" height="321" rx="15.5"/>
+<path class="chev" d="M40 41.5l4.8 4.8l-4.8 4.8" style="animation:in 240ms cubic-bezier(.23,1,.32,1) 100ms both"/>
+<text x="60" y="52" font-size="15" textLength="72" class="fg">neofetch</text><rect class="bg cv" x="59" y="37" width="74" height="21" style="animation:wipe 496ms steps(8,end) 220ms both"/><rect class="ac mv transient" x="61" y="39.7" width="7.5" height="15.3" rx="1" style="--d:72px;animation:in 1ms linear 220ms both,type 496ms steps(8,end) 220ms both,vanish 120ms linear 820ms forwards"/>
+<g class="pop" style="animation:pop 520ms cubic-bezier(.23,1,.32,1) 820ms both"><path class="vg" d="M108 150l4 4v10l-4 -4zM98 160h10l4 4h-10z"/><rect class="mu px" x="98" y="150" width="10" height="10" rx="1.5" style="animation:glint 4600ms cubic-bezier(.77,0,.175,1) 2704ms 2"/></g>
+<g class="pop" style="animation:pop 520ms cubic-bezier(.23,1,.32,1) 831ms both"><path class="vg" d="M96 162l4 4v10l-4 -4zM86 172h10l4 4h-10z"/><rect class="mu px" x="86" y="162" width="10" height="10" rx="1.5" style="animation:glint 4600ms cubic-bezier(.77,0,.175,1) 2704ms 2"/></g>
+<g class="pop" style="animation:pop 520ms cubic-bezier(.23,1,.32,1) 842ms both"><path class="vg" d="M84 174l4 4v10l-4 -4zM74 184h10l4 4h-10z"/><rect class="mu px" x="74" y="174" width="10" height="10" rx="1.5" style="animation:glint 4600ms cubic-bezier(.77,0,.175,1) 2704ms 2"/></g>
+<g class="pop" style="animation:pop 520ms cubic-bezier(.23,1,.32,1) 853ms both"><path class="vg" d="M72 186l4 4v10l-4 -4zM62 196h10l4 4h-10z"/><rect class="mu px" x="62" y="186" width="10" height="10" rx="1.5" style="animation:glint 4600ms cubic-bezier(.77,0,.175,1) 2704ms 2"/></g>
+<g class="pop" style="animation:pop 520ms cubic-bezier(.23,1,.32,1) 894ms both"><path class="vg" d="M84 198l4 4v10l-4 -4zM74 208h10l4 4h-10z"/><rect class="mu px" x="74" y="198" width="10" height="10" rx="1.5" style="animation:glint 4600ms cubic-bezier(.77,0,.175,1) 2756ms 2"/></g>
+<g class="pop" style="animation:pop 520ms cubic-bezier(.23,1,.32,1) 850ms both"><path class="vd" d="M132 150l4 4v10l-4 -4zM122 160h10l4 4h-10z"/><rect class="ac" x="122" y="150" width="10" height="10" rx="1.5" style="animation:glintT 4600ms cubic-bezier(.77,0,.175,1) 2756ms 2"/></g>
+<g class="pop" style="animation:pop 520ms cubic-bezier(.23,1,.32,1) 865ms both"><path class="vd" d="M144 150l4 4v10l-4 -4zM134 160h10l4 4h-10z"/><rect class="ac" x="134" y="150" width="10" height="10" rx="1.5" style="animation:glintT 4600ms cubic-bezier(.77,0,.175,1) 2782ms 2"/></g>
+<g class="pop" style="animation:pop 520ms cubic-bezier(.23,1,.32,1) 935ms both"><path class="vg" d="M96 210l4 4v10l-4 -4zM86 220h10l4 4h-10z"/><rect class="mu px" x="86" y="210" width="10" height="10" rx="1.5" style="animation:glint 4600ms cubic-bezier(.77,0,.175,1) 2808ms 2"/></g>
+<g class="pop" style="animation:pop 520ms cubic-bezier(.23,1,.32,1) 880ms both"><path class="vd" d="M156 150l4 4v10l-4 -4zM146 160h10l4 4h-10z"/><rect class="ac" x="146" y="150" width="10" height="10" rx="1.5" style="animation:glintT 4600ms cubic-bezier(.77,0,.175,1) 2808ms 2"/></g>
+<g class="pop" style="animation:pop 520ms cubic-bezier(.23,1,.32,1) 895ms both"><path class="vd" d="M168 150l4 4v10l-4 -4zM158 160h10l4 4h-10z"/><rect class="ac" x="158" y="150" width="10" height="10" rx="1.5" style="animation:glintT 4600ms cubic-bezier(.77,0,.175,1) 2834ms 2"/></g>
+<g class="pop" style="animation:pop 520ms cubic-bezier(.23,1,.32,1) 906ms both"><path class="vd" d="M156 162l4 4v10l-4 -4zM146 172h10l4 4h-10z"/><rect class="ac" x="146" y="162" width="10" height="10" rx="1.5" style="animation:glintT 4600ms cubic-bezier(.77,0,.175,1) 2834ms 2"/></g>
+<g class="pop" style="animation:pop 520ms cubic-bezier(.23,1,.32,1) 976ms both"><path class="vg" d="M108 222l4 4v10l-4 -4zM98 232h10l4 4h-10z"/><rect class="mu px" x="98" y="222" width="10" height="10" rx="1.5" style="animation:glint 4600ms cubic-bezier(.77,0,.175,1) 2860ms 2"/></g>
+<g class="pop" style="animation:pop 520ms cubic-bezier(.23,1,.32,1) 910ms both"><path class="vd" d="M180 150l4 4v10l-4 -4zM170 160h10l4 4h-10z"/><rect class="ac" x="170" y="150" width="10" height="10" rx="1.5" style="animation:glintT 4600ms cubic-bezier(.77,0,.175,1) 2860ms 2"/></g>
+<g class="pop" style="animation:pop 520ms cubic-bezier(.23,1,.32,1) 932ms both"><path class="vd" d="M156 174l4 4v10l-4 -4zM146 184h10l4 4h-10z"/><rect class="ac" x="146" y="174" width="10" height="10" rx="1.5" style="animation:glintT 4600ms cubic-bezier(.77,0,.175,1) 2860ms 2"/></g>
+<g class="pop" style="animation:pop 520ms cubic-bezier(.23,1,.32,1) 958ms both"><path class="vd" d="M156 186l4 4v10l-4 -4zM146 196h10l4 4h-10z"/><rect class="ac" x="146" y="186" width="10" height="10" rx="1.5" style="animation:glintT 4600ms cubic-bezier(.77,0,.175,1) 2886ms 2"/></g>
+<g class="pop" style="animation:pop 520ms cubic-bezier(.23,1,.32,1) 984ms both"><path class="vd" d="M156 198l4 4v10l-4 -4zM146 208h10l4 4h-10z"/><rect class="ac" x="146" y="198" width="10" height="10" rx="1.5" style="animation:glintT 4600ms cubic-bezier(.77,0,.175,1) 2912ms 2"/></g>
+<g class="pop" style="animation:pop 520ms cubic-bezier(.23,1,.32,1) 1010ms both"><path class="vd" d="M156 210l4 4v10l-4 -4zM146 220h10l4 4h-10z"/><rect class="ac" x="146" y="210" width="10" height="10" rx="1.5" style="animation:glintT 4600ms cubic-bezier(.77,0,.175,1) 2938ms 2"/></g>
+<g class="pop" style="animation:pop 520ms cubic-bezier(.23,1,.32,1) 1036ms both"><path class="vd" d="M156 222l4 4v10l-4 -4zM146 232h10l4 4h-10z"/><rect class="ac" x="146" y="222" width="10" height="10" rx="1.5" style="animation:glintT 4600ms cubic-bezier(.77,0,.175,1) 2964ms 2"/></g>
+<g class="pop" style="animation:pop 520ms cubic-bezier(.23,1,.32,1) 1000ms both"><path class="vg" d="M252 150l4 4v10l-4 -4zM242 160h10l4 4h-10z"/><rect class="mu px" x="242" y="150" width="10" height="10" rx="1.5" style="animation:glint 4600ms cubic-bezier(.77,0,.175,1) 3016ms 2"/></g>
+<g class="pop" style="animation:pop 520ms cubic-bezier(.23,1,.32,1) 1011ms both"><path class="vg" d="M240 162l4 4v10l-4 -4zM230 172h10l4 4h-10z"/><rect class="mu px" x="230" y="162" width="10" height="10" rx="1.5" style="animation:glint 4600ms cubic-bezier(.77,0,.175,1) 3016ms 2"/></g>
+<g class="pop" style="animation:pop 520ms cubic-bezier(.23,1,.32,1) 1037ms both"><path class="vg" d="M240 174l4 4v10l-4 -4zM230 184h10l4 4h-10z"/><rect class="mu px" x="230" y="174" width="10" height="10" rx="1.5" style="animation:glint 4600ms cubic-bezier(.77,0,.175,1) 3042ms 2"/></g>
+<g class="pop" style="animation:pop 520ms cubic-bezier(.23,1,.32,1) 1048ms both"><path class="vg" d="M228 186l4 4v10l-4 -4zM218 196h10l4 4h-10z"/><rect class="mu px" x="218" y="186" width="10" height="10" rx="1.5" style="animation:glint 4600ms cubic-bezier(.77,0,.175,1) 3042ms 2"/></g>
+<g class="pop" style="animation:pop 520ms cubic-bezier(.23,1,.32,1) 1059ms both"><path class="vg" d="M216 198l4 4v10l-4 -4zM206 208h10l4 4h-10z"/><rect class="mu px" x="206" y="198" width="10" height="10" rx="1.5" style="animation:glint 4600ms cubic-bezier(.77,0,.175,1) 3042ms 2"/></g>
+<g class="pop" style="animation:pop 520ms cubic-bezier(.23,1,.32,1) 1085ms both"><path class="vg" d="M216 210l4 4v10l-4 -4zM206 220h10l4 4h-10z"/><rect class="mu px" x="206" y="210" width="10" height="10" rx="1.5" style="animation:glint 4600ms cubic-bezier(.77,0,.175,1) 3068ms 2"/></g>
+<g class="pop" style="animation:pop 520ms cubic-bezier(.23,1,.32,1) 1096ms both"><path class="vg" d="M204 222l4 4v10l-4 -4zM194 232h10l4 4h-10z"/><rect class="mu px" x="194" y="222" width="10" height="10" rx="1.5" style="animation:glint 4600ms cubic-bezier(.77,0,.175,1) 3068ms 2"/></g>
+<g class="pop" style="animation:pop 520ms cubic-bezier(.23,1,.32,1) 1030ms both"><path class="vg" d="M276 150l4 4v10l-4 -4zM266 160h10l4 4h-10z"/><rect class="mu px" x="266" y="150" width="10" height="10" rx="1.5" style="animation:glint 4600ms cubic-bezier(.77,0,.175,1) 3068ms 2"/></g>
+<g class="pop" style="animation:pop 520ms cubic-bezier(.23,1,.32,1) 1071ms both"><path class="vg" d="M288 162l4 4v10l-4 -4zM278 172h10l4 4h-10z"/><rect class="mu px" x="278" y="162" width="10" height="10" rx="1.5" style="animation:glint 4600ms cubic-bezier(.77,0,.175,1) 3120ms 2"/></g>
+<g class="pop" style="animation:pop 520ms cubic-bezier(.23,1,.32,1) 1112ms both"><path class="vg" d="M300 174l4 4v10l-4 -4zM290 184h10l4 4h-10z"/><rect class="mu px" x="290" y="174" width="10" height="10" rx="1.5" style="animation:glint 4600ms cubic-bezier(.77,0,.175,1) 3172ms 2"/></g>
+<g class="pop" style="animation:pop 520ms cubic-bezier(.23,1,.32,1) 1153ms both"><path class="vg" d="M312 186l4 4v10l-4 -4zM302 196h10l4 4h-10z"/><rect class="mu px" x="302" y="186" width="10" height="10" rx="1.5" style="animation:glint 4600ms cubic-bezier(.77,0,.175,1) 3224ms 2"/></g>
+<g class="pop" style="animation:pop 520ms cubic-bezier(.23,1,.32,1) 1164ms both"><path class="vg" d="M300 198l4 4v10l-4 -4zM290 208h10l4 4h-10z"/><rect class="mu px" x="290" y="198" width="10" height="10" rx="1.5" style="animation:glint 4600ms cubic-bezier(.77,0,.175,1) 3224ms 2"/></g>
+<g class="pop" style="animation:pop 520ms cubic-bezier(.23,1,.32,1) 1175ms both"><path class="vg" d="M288 210l4 4v10l-4 -4zM278 220h10l4 4h-10z"/><rect class="mu px" x="278" y="210" width="10" height="10" rx="1.5" style="animation:glint 4600ms cubic-bezier(.77,0,.175,1) 3224ms 2"/></g>
+<g class="pop" style="animation:pop 520ms cubic-bezier(.23,1,.32,1) 1186ms both"><path class="vg" d="M276 222l4 4v10l-4 -4zM266 232h10l4 4h-10z"/><rect class="mu px" x="266" y="222" width="10" height="10" rx="1.5" style="animation:glint 4600ms cubic-bezier(.77,0,.175,1) 3224ms 2"/></g>
+<g style="animation:in 420ms cubic-bezier(.23,1,.32,1) 900ms both"><text x="380" y="100" font-size="14" textLength="58.8" class="ac" font-weight="700">thaitan</text><text x="438.8" y="100" font-size="14" textLength="8.4" class="mu">@</text><text x="447.2" y="100" font-size="14" textLength="50.4" class="ac" font-weight="700">github</text></g>
+<path class="hair grow" d="M380 113H497.6" style="animation:grow 520ms cubic-bezier(.77,0,.175,1) 980ms both"/>
+<g style="animation:side 480ms cubic-bezier(.23,1,.32,1) 1060ms both"><text x="380" y="140" font-size="14" textLength="33.6" class="ac">role</text><text x="464" y="140" font-size="14" textLength="168" class="mu fr" style="animation:show 55ms linear 1100ms 1">&lt;=11001=&lt;d {a+$&lt;=&gt;&gt;#</text><text x="464" y="140" font-size="14" textLength="168" class="mu fr" style="animation:show 55ms linear 1155ms 1">full-{|{=# a/1+01+e=</text><text x="464" y="140" font-size="14" textLength="168" class="mu fr" style="animation:show 55ms linear 1210ms 1">full-stack a%=+}0&lt;1$</text><text x="464" y="140" font-size="14" textLength="168" class="mu fr" style="animation:show 55ms linear 1265ms 1">full-stack deve/#$*e</text><text x="464" y="140" font-size="14" textLength="168" class="fg" style="animation:in 1ms linear 1320ms both">full-stack developer</text></g>
+<g style="animation:side 480ms cubic-bezier(.23,1,.32,1) 1130ms both"><text x="380" y="162" font-size="14" textLength="67.2" class="ac">location</text><text x="464" y="162" font-size="14" textLength="151.2" class="mu fr" style="animation:show 55ms linear 1170ms 1">b{* #&lt;&lt;|a, e}&lt;{$=e</text><text x="464" y="162" font-size="14" textLength="151.2" class="mu fr" style="animation:show 55ms linear 1225ms 1">soc e%dc{, e*%#${a</text><text x="464" y="162" font-size="14" textLength="151.2" class="mu fr" style="animation:show 55ms linear 1280ms 1">soc trang, cb&lt;?a&gt;/</text><text x="464" y="162" font-size="14" textLength="151.2" class="mu fr" style="animation:show 55ms linear 1335ms 1">soc trang, via{1#$</text><text x="464" y="162" font-size="14" textLength="151.2" class="fg" style="animation:in 1ms linear 1390ms both">soc trang, vietnam</text></g>
+<g style="animation:side 480ms cubic-bezier(.23,1,.32,1) 1194ms both"><text x="380" y="184" font-size="14" textLength="67.2" class="ac">shipping</text><text x="464" y="184" font-size="14" textLength="226.8" class="mu fr" style="animation:show 55ms linear 1234ms 1">cbcf11d+&gt;| d$|=&gt;} ?e/ c}&gt;/0</text><text x="464" y="184" font-size="14" textLength="226.8" class="mu fr" style="animation:show 55ms linear 1289ms 1">typesce1$f #?}fde d1| =%&gt;%}</text><text x="464" y="184" font-size="14" textLength="226.8" class="mu fr" style="animation:show 55ms linear 1344ms 1">typescript ac{e&lt;{ 0*? ++=1e</text><text x="464" y="184" font-size="14" textLength="226.8" class="mu fr" style="animation:show 55ms linear 1399ms 1">typescript across th| +e0f*</text><text x="464" y="184" font-size="14" textLength="226.8" class="fg" style="animation:in 1ms linear 1454ms both">typescript across the stack</text></g>
+<g style="animation:side 480ms cubic-bezier(.23,1,.32,1) 1252ms both"><text x="380" y="206" font-size="14" textLength="42" class="ac">stack</text><text x="464" y="206" font-size="14" textLength="260.4" class="mu fr" style="animation:show 55ms linear 1292ms 1">a?&gt;c{, #ca$*/b, *+e$+ba1#+, /=*</text><text x="464" y="206" font-size="14" textLength="260.4" class="mu fr" style="animation:show 55ms linear 1347ms 1">react, /d}/&gt;0$, %/=%%{%?a1, /$=</text><text x="464" y="206" font-size="14" textLength="260.4" class="mu fr" style="animation:show 55ms linear 1402ms 1">react, node.js, f/%+}1?*fd, |f/</text><text x="464" y="206" font-size="14" textLength="260.4" class="mu fr" style="animation:show 55ms linear 1457ms 1">react, node.js, postgrec1|, fe$</text><text x="464" y="206" font-size="14" textLength="260.4" class="fg" style="animation:in 1ms linear 1512ms both">react, node.js, postgresql, aws</text></g>
+<g style="animation:side 480ms cubic-bezier(.23,1,.32,1) 1304ms both"><text x="380" y="228" font-size="14" textLength="42" class="ac">focus</text><text x="464" y="228" font-size="14" textLength="226.8" class="mu fr" style="animation:show 55ms linear 1344ms 1">d*d$f $e$#/}?$=??0, &lt;a/*?+0</text><text x="464" y="228" font-size="14" textLength="226.8" class="mu fr" style="animation:show 55ms linear 1399ms 1">clean d+$d{10&gt;=d|}, =&lt;+0&gt;#d</text><text x="464" y="228" font-size="14" textLength="226.8" class="mu fr" style="animation:show 55ms linear 1454ms 1">clean archite&gt;?*&lt;0, c&gt;d#ebe</text><text x="464" y="228" font-size="14" textLength="226.8" class="mu fr" style="animation:show 55ms linear 1509ms 1">clean architecture, d&gt;$+%$+</text><text x="464" y="228" font-size="14" textLength="226.8" class="fg" style="animation:in 1ms linear 1564ms both">clean architecture, testing</text></g>
+<g style="animation:side 480ms cubic-bezier(.23,1,.32,1) 1350ms both"><text x="380" y="250" font-size="14" textLength="42" class="ac">certs</text><text x="464" y="250" font-size="14" textLength="327.6" class="mu fr" style="animation:show 55ms linear 1390ms 1">d?be, +#0a{&lt;, &lt;}&gt;, 0c&gt;, }&lt;%0+b+$&gt;c{ecf{</text><text x="464" y="250" font-size="14" textLength="327.6" class="mu fr" style="animation:show 55ms linear 1445ms 1">meta, goo/d%, }|#, 1%?, %fb1+c&lt;|#%e|bb{</text><text x="464" y="250" font-size="14" textLength="327.6" class="mu fr" style="animation:show 55ms linear 1500ms 1">meta, google, ibm, c%&gt;, 1f#?|ddc=1?/%&gt;*</text><text x="464" y="250" font-size="14" textLength="327.6" class="mu fr" style="animation:show 55ms linear 1555ms 1">meta, google, ibm, aws, deepl0a}&lt;fdc=#&lt;</text><text x="464" y="250" font-size="14" textLength="327.6" class="fg" style="animation:in 1ms linear 1610ms both">meta, google, ibm, aws, deeplearning.ai</text></g>
+<g style="animation:side 480ms cubic-bezier(.23,1,.32,1) 1390ms both"><text x="380" y="272" font-size="14" textLength="50.4" class="ac">github</text><text x="464" y="272" font-size="14" textLength="100.8" class="mu fr" style="animation:show 55ms linear 1430ms 1">|#%/f&lt;&gt;1c$d}</text><text x="464" y="272" font-size="14" textLength="100.8" class="mu fr" style="animation:show 55ms linear 1485ms 1">duo&gt;/0&lt;$+fa|</text><text x="464" y="272" font-size="14" textLength="100.8" class="mu fr" style="animation:show 55ms linear 1540ms 1">duongt$}&lt;e0%</text><text x="464" y="272" font-size="14" textLength="100.8" class="mu fr" style="animation:show 55ms linear 1595ms 1">duongthai/*b</text><text x="464" y="272" font-size="14" textLength="100.8" class="fg" style="animation:in 1ms linear 1650ms both">duongthaitan</text></g>
+<rect class="a0 pop" x="380" y="300" width="26" height="12" rx="2" style="animation:pop 420ms cubic-bezier(.23,1,.32,1) 1684ms both"/>
+<rect class="a1 pop" x="410" y="300" width="26" height="12" rx="2" style="animation:pop 420ms cubic-bezier(.23,1,.32,1) 1716ms both"/>
+<rect class="a2 pop" x="440" y="300" width="26" height="12" rx="2" style="animation:pop 420ms cubic-bezier(.23,1,.32,1) 1748ms both"/>
+<rect class="a3 pop" x="470" y="300" width="26" height="12" rx="2" style="animation:pop 420ms cubic-bezier(.23,1,.32,1) 1780ms both"/>
+<rect class="a4 pop" x="500" y="300" width="26" height="12" rx="2" style="animation:pop 420ms cubic-bezier(.23,1,.32,1) 1812ms both"/>
+<rect class="a5 pop" x="530" y="300" width="26" height="12" rx="2" style="animation:pop 420ms cubic-bezier(.23,1,.32,1) 1844ms both"/>
+<rect class="a6 pop" x="560" y="300" width="26" height="12" rx="2" style="animation:pop 420ms cubic-bezier(.23,1,.32,1) 1876ms both"/>
+<rect class="a7 pop" x="590" y="300" width="26" height="12" rx="2" style="animation:pop 420ms cubic-bezier(.23,1,.32,1) 1908ms both"/>
 </svg>
