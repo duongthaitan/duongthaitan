@@ -1,14 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="20" viewBox="0 0 900 20"
-     role="img" aria-labelledby="dt">
-  <title id="dt">Section divider</title>
-  <defs>
-    <linearGradient id="dl" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#0a0a0b"/>
-      <stop offset="20%" stop-color="#ff8c32" stop-opacity="0.2"/>
-      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.06"/>
-      <stop offset="80%" stop-color="#64a0ff" stop-opacity="0.2"/>
-      <stop offset="100%" stop-color="#0a0a0b"/>
-    </linearGradient>
-  </defs>
-  <rect x="0" y="9" width="900" height="1" fill="url(#dl)"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="24" viewBox="0 0 900 24" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="div-title" style="max-width:100%;height:auto">
+<title id="div-title">Section divider</title>
+<style>:root{--line:#262c36;--accent:#7ee787}@media (prefers-color-scheme:light){:root{--line:#d1d9e0;--accent:#1a7f37}}
+.e{stop-color:var(--line)}.a{fill:var(--accent)}.g{stop-color:var(--accent)}.t{opacity:0}
+@keyframes slide{from{opacity:0;transform:translateX(-430px)}}
+@keyframes trace{0%{opacity:0;transform:translateX(0)}10%,85%{opacity:1}100%{opacity:0;transform:translateX(900px)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}</style>
+<defs><linearGradient id="div-edge" gradientUnits="userSpaceOnUse" x1="0" x2="900" y1="0" y2="0"><stop offset="0" class="e" stop-opacity="0"/><stop offset=".2" class="e"/><stop offset=".8" class="e"/><stop offset="1" class="e" stop-opacity="0"/></linearGradient>
+<linearGradient id="div-trace"><stop offset="0" class="g" stop-opacity="0"/><stop offset="1" class="g" stop-opacity=".8"/></linearGradient></defs>
+<rect y="12" width="900" height="1" fill="url(#div-edge)"/>
+<rect class="t" x="-160" y="12" width="160" height="1" fill="url(#div-trace)" style="animation:trace 2400ms cubic-bezier(.77,0,.175,1) 1500ms 2"/>
+<rect class="a" x="426" y="11.5" width="48" height="2" rx="1" style="animation:slide 1600ms cubic-bezier(.23,1,.32,1) 200ms both"/>
 </svg>

@@ -1,12 +1,14 @@
 import { writeFile, rename, rm } from 'node:fs/promises';
 import { randomUUID } from 'node:crypto';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { A, ADV, EASE, beam, chevron, escapeXml, style, svg, text, typed } from './svg-kit.mjs';
+
+export { escapeXml };
 
 const HANDLE = 'duongthaitan';
 export const FAILURE = 'Metrics update failed; previous asset preserved.';
 const invalid = () => { throw new Error(FAILURE); };
 const count = value => Number.isSafeInteger(value) && value >= 0 ? value : invalid();
-export const escapeXml = value => String(value).replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;' })[char]);
 
 // ponytail: public snapshot only; add contribution history when requested.
 export async function fetchMetrics({ fetchImpl = fetch, timeoutMs = 30_000 } = {}) {
@@ -51,80 +53,40 @@ export function renderSvg(metrics = null, now = new Date()) {
   const accessibleText = values
     ? labels.map((l, i) => `${l}: ${values[i]}`).join('; ')
     : 'Awaiting first successful update';
-
-  const titleText = values
-    ? `Console output — ${accessibleText}`
-    : 'Console output — Awaiting first successful update';
-
+  const titleText = `GitHub metrics: ${accessibleText}`;
   const descText = values
-    ? `DevTools Console panel showing GitHub metrics. ${accessibleText}. Updated ${updated}`
-    : 'DevTools Console panel. Awaiting first successful update.';
+    ? `Terminal card running gh api for ${HANDLE}. ${accessibleText}. Updated ${updated}`
+    : `Terminal card running gh api for ${HANDLE}. Awaiting first successful update.`;
 
-  const height = values ? 300 : 200;
+  const W = 900;
+  const cmd = typed(52, 50, `gh api users/${HANDLE}`, { size: 15, delay: 200, cps: 30, caret: 'vanish' });
+  const parts = [chevron(32, 50, 15, A('in', 240, 80)), cmd.svg];
+  const t0 = cmd.end + 360;
 
-  let content;
   if (values) {
-    const formatted = values.map(v => v.toLocaleString('en-US'));
-    content = `
-    <text x="20" y="80"><tspan class="pr">&gt; </tspan><tspan class="fn">gh.api</tspan><tspan>.</tspan><tspan class="fn">getMetrics</tspan><tspan>(</tspan><tspan class="st">"${escapeXml(HANDLE)}"</tspan><tspan>)</tspan></text>
-    <text x="20" y="110">{</text>
-    <text x="36" y="130"><tspan class="vr">repos</tspan><tspan class="op">: </tspan><tspan class="nm">${escapeXml(formatted[0])}</tspan><tspan class="op">,</tspan></text>
-    <text x="36" y="150"><tspan class="vr">stars</tspan><tspan class="op">: </tspan><tspan class="nm">${escapeXml(formatted[1])}</tspan><tspan class="op">,</tspan></text>
-    <text x="36" y="170"><tspan class="vr">followers</tspan><tspan class="op">: </tspan><tspan class="nm">${escapeXml(formatted[2])}</tspan></text>
-    <text x="20" y="190" class="op">}</text>
-    <text x="20" y="230" class="ok">✓ Updated ${escapeXml(updated)}</text>
-    <text x="20" y="260"><tspan class="pr">&gt; </tspan></text>
-    <rect class="cur" x="34" y="248" width="7" height="14" fill="#aeafad"><animate attributeName="opacity" values="1;1;0;0" dur="1s" repeatCount="indefinite"/></rect>`;
+    // Three stat tiles. Values wear text ink and only fade: data the reader is reading never moves.
+    const tiles = ['Public repos', 'Stars', 'Followers'];
+    const colW = (W - 64) / 3;
+    values.forEach((value, i) => {
+      const x = 32 + i * colW;
+      const formatted = value.toLocaleString('en-US');
+      const size = Math.min(40, Math.floor((colW - 40) / (formatted.length * ADV)));
+      const delay = t0 + i * 80;
+      if (i) parts.push(`<path class="hair" d="M${Math.round(x - 20)}.5 86V170"${style(A('in', 400, t0))}/>`);
+      parts.push(`<rect class="ac grow" x="${Math.round(x)}" y="86" width="20" height="2" rx="1"${style(A('grow', 480, delay, EASE.inOut))}/>`);
+      parts.push(text(x, 116, tiles[i], { size: 13, cls: 'mu', anim: A('in', 420, delay + 60) }));
+      parts.push(text(x, 160, formatted, { size, weight: 600, anim: A('in', 600, delay + 120) }));
+    });
+    // Live indicator: real state (the panel refreshes daily), so a status dot is earned here.
+    const liveAt = t0 + 520;
+    parts.push(`<g${style(A('in', 420, liveAt))}><circle class="ac" cx="37" cy="202" r="3.5"/>${text(52, 206, `Updated ${updated}`, { size: 12, cls: 'mu' })}</g>`);
+    parts.push(`<circle class="ring" cx="37" cy="202" r="3.5"${style(`ring 2400ms ${EASE.out} ${Math.round(liveAt + 500)}ms 5`)}/>`);
+    parts.push(beam(W, 232, 16, { delay: liveAt + 300, lap: 5200, laps: 1 }));
   } else {
-    content = `
-    <text x="20" y="80"><tspan class="pr">&gt; </tspan><tspan class="fn">gh.api</tspan><tspan>.</tspan><tspan class="fn">getMetrics</tspan><tspan>(</tspan><tspan class="st">"${escapeXml(HANDLE)}"</tspan><tspan>)</tspan></text>
-    <text x="20" y="120" class="wait">Awaiting first successful update</text>
-    <text x="20" y="160"><tspan class="pr">&gt; </tspan></text>
-    <rect class="cur" x="34" y="148" width="7" height="14" fill="#aeafad"><animate attributeName="opacity" values="1;1;0;0" dur="1s" repeatCount="indefinite"/></rect>`;
+    parts.push(text(52, 100, 'Awaiting first successful update', { size: 14, cls: 'mu', anim: A('in', 420, t0) }));
   }
 
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="900" height="${height}" viewBox="0 0 900 ${height}" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="metrics-title metrics-desc" style="max-width:100%;height:auto">
-  <title id="metrics-title">${escapeXml(titleText)}</title>
-  <desc id="metrics-desc">${escapeXml(descText)}</desc>
-  <defs>
-    <clipPath id="metrics-frame"><rect width="900" height="${height}" rx="8"/></clipPath>
-    <style>
-      text{font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:14px;fill:#d4d4d4}
-      .tab{font-size:11px;fill:#8b949e}.tab-on{font-size:11px;fill:#e6edf3}
-      .pr{fill:#569cd6}.fn{fill:#dcdcaa}.vr{fill:#9cdcfe}
-      .st{fill:#ce9178}.nm{fill:#b5cea8}.op{fill:#d4d4d4}
-      .ok{fill:#3fb950}.wait{fill:#8b949e}
-      .cur{fill:#aeafad}
-      @media(prefers-color-scheme:light){
-        .bg{fill:#ffffff}.tab-bar{fill:#f3f3f3}
-        text,.op{fill:#1e1e1e}.tab{fill:#616161}
-        .tab-on{fill:#1e1e1e}.pr{fill:#0451a5}
-        .fn{fill:#795e26}.vr{fill:#001080}.st{fill:#a31515}
-        .nm{fill:#098658}.ok{fill:#1a7f37}.wait{fill:#57606a}
-        .bdr{stroke:#d0d7de}.tab-bdr{stroke:#d0d7de}
-      }
-      @media(prefers-reduced-motion:reduce){.cur{display:none}}
-      @media(forced-colors:active){.bg{fill:Canvas}.bdr{stroke:CanvasText}text,.tab,.tab-on,.pr,.fn,.vr,.st,.nm,.op,.ok,.wait{fill:CanvasText}}
-    </style>
-  </defs>
-  <g clip-path="url(#metrics-frame)">
-    <rect class="bg" width="900" height="${height}" fill="#0d1117"/>
-    <rect class="tab-bar" width="900" height="28" fill="#161b22"/>
-    <rect width="64" height="28" fill="#0d1117"/>
-    <text x="12" y="18" class="tab-on">Console</text>
-    <text x="78" y="18" class="tab">Elements</text>
-    <text x="148" y="18" class="tab">Sources</text>
-    <text x="210" y="18" class="tab">Network</text>
-    <line x1="0" y1="28" x2="900" y2="28" stroke="#30363d" class="tab-bdr"/>
-    <rect y="27" width="64" height="2" fill="#0078d4"/>
-    <rect y="28" width="900" height="24" fill="#161b22" opacity="0.5"/>
-    <text x="12" y="46" fill="#8b949e" font-size="11">Filter</text>
-    <line x1="0" y1="52" x2="900" y2="52" stroke="#30363d" stroke-width="0.5" class="tab-bdr"/>
-    ${content}
-  </g>
-  <rect class="bdr" x=".5" y=".5" width="899" height="${height - 1}" rx="7.5" fill="none" stroke="#30363d"/>
-</svg>
-`;
+  return svg({ w: W, h: values ? 232 : 136, id: 'metrics', title: titleText, desc: descText, body: parts.join('\n') });
 }
 
 export async function updateMetrics({ output = new URL('../assets/github-metrics.svg', import.meta.url), ...options } = {}) {

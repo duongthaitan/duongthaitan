@@ -18,15 +18,15 @@ jobs:
           node-version: 24
 
       - name: Generate SVGs
-        run: |
-          node scripts/gen-hyperspace.mjs
-          node scripts/gen-divider.mjs
-          node scripts/gen-tech.mjs
+        run: node scripts/gen-profile.mjs
+
+      - name: Check generated SVGs
+        run: node --test scripts/gen-profile.test.mjs
 
       - name: Commit and push changes
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add assets/*.svg
+          git add assets
           git commit -m "chore: regenerate static SVG assets [skip ci]" || echo "No changes to commit"
           git push

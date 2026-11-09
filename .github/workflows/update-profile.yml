@@ -12,7 +12,12 @@ on:
       - 'assets/typing-anim.svg'
       - 'assets/section-divider.svg'
       - 'assets/galaxy/*.svg'
+      - 'assets/stack-*.svg'
+      - 'assets/terminal-3d.svg'
       - 'scripts/render-metrics*'
+      - 'scripts/gen-profile*'
+      - 'scripts/svg-kit.mjs'
+      - 'scripts/tool-icons.mjs'
       - '.github/workflows/update-profile.yml'
 
 permissions: {}
@@ -35,7 +40,7 @@ jobs:
         with:
           node-version: '24'
       - name: Test renderer
-        run: node --test scripts/render-metrics.test.mjs
+        run: node --test scripts/render-metrics.test.mjs scripts/gen-profile.test.mjs
       - name: Render and update only the metrics asset
         shell: bash
         env:
