@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="50" viewBox="0 0 160 50" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="nav-automation-title nav-automation-desc" style="max-width:100%;height:auto">
+<title id="nav-automation-title">Go to ~/automation</title>
+<desc id="nav-automation-desc">A 3D key labelled ~/automation.</desc>
+<style>
+:root{--bg:#0d1117;--raised:rgba(255,255,255,.045);--panel:rgba(22,27,34,.92);--screen:rgba(1,4,9,.55);--fg:#e6edf3;--muted:#9198a1;--faint:rgba(255,255,255,.07);--line:rgba(255,255,255,.12);--accent:#7ee787;--glow:#d2ffd6;--deep:#2ea043;--teal:#39c5cf;--blue:#79c0ff;--vox:#2d333b}
+@media (prefers-color-scheme:light){:root{--bg:#ffffff;--raised:rgba(31,35,40,.035);--panel:rgba(255,255,255,.95);--screen:rgba(246,248,250,.9);--fg:#1f2328;--muted:#59636e;--faint:rgba(31,35,40,.07);--line:rgba(31,35,40,.15);--accent:#1a7f37;--glow:#4ac26b;--deep:#0f5323;--teal:#1b7c83;--blue:#0969da;--vox:#8c959f}}
+text{font-family:ui-monospace,'SF Mono','Cascadia Mono','JetBrains Mono',Menlo,Consolas,'Liberation Mono',monospace;fill:var(--fg)}
+.fg{fill:var(--fg)}.mu{fill:var(--muted)}.ac{fill:var(--accent)}.bg{fill:var(--bg)}.fa{fill:var(--faint)}.rs{fill:var(--raised)}
+.frame{fill:var(--raised);stroke:var(--line)}.xa{fill:var(--line)}.xb{fill:var(--faint)}
+.hair{fill:none;stroke:var(--line)}
+.chev,.tick{fill:none;stroke:var(--accent);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.shs{stop-color:var(--accent)}
+.pop,.ring,.chip,.spin,.tick{transform-box:fill-box;transform-origin:center}
+.grow,.run{transform-box:fill-box;transform-origin:0 50%}
+.draw{stroke-dasharray:1 1}
+.mv{transform:translateX(var(--d))}
+.cv,.cvs{transform-box:fill-box;transform-origin:100% 50%}.cv{transform:scaleX(0)}
+.ring{fill:none;stroke:var(--accent);stroke-width:1.5}
+.spin{fill:none;stroke:var(--accent);stroke-width:2;stroke-linecap:round}
+.beam{fill:none;stroke:var(--accent)}
+.ring,.run,.spin,.beam,.pk,.flash,.fr,.off{opacity:0}
+.px{opacity:.55;--o:.55}
+@keyframes in{from{opacity:0}}
+@keyframes up{from{opacity:0;transform:translateY(8px)}}
+@keyframes side{from{opacity:0;transform:translateX(-10px)}}
+@keyframes rise{from{opacity:0;transform:translateY(var(--rise))}}
+@keyframes pop{from{opacity:0;transform:scale(.5)}}
+@keyframes chip{from{opacity:0;transform:translateY(6px) scale(.96)}}
+@keyframes grow{from{transform:scaleX(0)}}
+@keyframes draw{from{stroke-dashoffset:1}}
+@keyframes type{from{transform:translateX(0)}}
+@keyframes wipe{from{transform:scaleX(1)}}
+@keyframes ch{from{fill-opacity:0}}
+@keyframes vanish{to{opacity:0}}
+@keyframes blink{0%,45%{opacity:1}55%,100%{opacity:0}}
+@keyframes ring{0%{opacity:.55;transform:scale(1)}45%,100%{opacity:0;transform:scale(3)}}
+@keyframes run{0%{opacity:1;transform:scaleX(0)}75%{opacity:1;transform:scaleX(1)}100%{opacity:0;transform:scaleX(1)}}
+@keyframes show{from,to{opacity:1}}
+@keyframes spin{from{opacity:1;transform:rotate(0)}to{opacity:1;transform:rotate(360deg)}}
+@keyframes sweep{0%{transform:translateX(0);animation-timing-function:cubic-bezier(.77,0,.175,1)}38%,100%{transform:translateX(var(--d))}}
+@keyframes orbit{from{stroke-dashoffset:var(--o0)}to{stroke-dashoffset:var(--o1)}}
+@keyframes beamfade{0%{opacity:0}6%,94%{opacity:var(--bo)}100%{opacity:0}}
+@keyframes glint{8%{opacity:1}26%{opacity:var(--o)}}
+@keyframes glintT{8%{fill:var(--glow)}26%{fill:var(--accent)}}
+@keyframes descend{0%{opacity:0;transform:translateY(0)}4%,52%{opacity:1}56%,100%{opacity:0;transform:translateY(var(--d))}}
+@keyframes flash{0%{opacity:0}5%{opacity:.22}24%,100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}.transient,.fx{display:none}}
+@media (forced-colors:active){text,.fg,.mu,.ac,.fa,.rs{fill:CanvasText}.frame,.bg{fill:Canvas}.frame,.hair{stroke:CanvasText}.chev,.tick{stroke:CanvasText}}
+</style>
+<defs><clipPath id="nav-automation-key"><rect width="155" height="45" rx="10"/></clipPath><linearGradient id="nav-automation-sheen"><stop offset="0" class="shs" stop-opacity="0"/><stop offset=".5" class="shs" stop-opacity=".22"/><stop offset="1" class="shs" stop-opacity="0"/></linearGradient>
+<style>.kb{fill:var(--line)}.ks{fill:var(--faint)}.face{fill:var(--raised);stroke:var(--line)}@keyframes pop3d{from{transform:translate(5px,5px)}}</style></defs>
+<path class="kb" d="M9.5 44.5L145.5 44.5L150.5 49.5L14.5 49.5Z"/><path class="ks" d="M154.5 9.5L159.5 14.5L159.5 40.5L154.5 35.5Z"/>
+<g style="animation:pop3d 620ms cubic-bezier(.23,1,.32,1) 600ms both">
+<path class="face" d="M10.5 0.5H144.5A10 10 0 0 1 154.5 10.5V34.5A10 10 0 0 1 144.5 44.5H10.5A10 10 0 0 1 0.5 34.5V10.5A10 10 0 0 1 10.5 0.5Z"/>
+<g clip-path="url(#nav-automation-key)"><g transform="skewX(-20)"><rect x="-90" y="0" width="60" height="50" fill="url(#nav-automation-sheen)" style="--d:320px;animation:sweep 5200ms linear 1500ms 2"/></g></g>
+<g class="pop" style="animation:pop 420ms cubic-bezier(.23,1,.32,1) 780ms both"><path class="ac" transform="translate(14 14.5) scale(0.0625)" d="M128 80a48 48 0 1 0 48 48a48 48 0 0 0-48-48zm0 80a32 32 0 1 1 32-32a32 32 0 0 1-32 32zm110-53a8 8 0 0 0-4-5l-30-17l0-34a8 8 0 0 0-3-6a112 112 0 0 0-36-21a8 8 0 0 0-7 1l-30 17l-30-17a8 8 0 0 0-7-1a112 112 0 0 0-36 21a8 8 0 0 0-3 6l0 34l-30 17a8 8 0 0 0-4 5a106 106 0 0 0 0 42a8 8 0 0 0 4 5l30 17l0 34a8 8 0 0 0 3 6a112 112 0 0 0 36 21a8 8 0 0 0 7-1l30-17l30 17a8 8 0 0 0 4 1a8 8 0 0 0 3 0a112 112 0 0 0 36-21a8 8 0 0 0 3-6l0-34l30-17a8 8 0 0 0 4-5a106 106 0 0 0 0-42zm-15 35l-29 16a8 8 0 0 0-3 3c0 1-1 2-1 3a8 8 0 0 0-2 5l0 32a96 96 0 0 1-25 14l-29-16a8 8 0 0 0-4-1h0c-1 0-3 0-4 0a8 8 0 0 0-4 1l-29 16a96 96 0 0 1-25-14l0-32a8 8 0 0 0-1-4c-1-1-2-2-2-3a8 8 0 0 0-3-4l-29-16a90 90 0 0 1 0-28l29-16a8 8 0 0 0 3-3c0-1 1-2 1-3a8 8 0 0 0 2-5l0-32a96 96 0 0 1 25-14l29 16a8 8 0 0 0 4 1c1 0 3 0 4 0a8 8 0 0 0 4-1l29-16a96 96 0 0 1 25 14l0 32a8 8 0 0 0 1 4c1 1 2 2 2 3a8 8 0 0 0 3 4l29 16a90 90 0 0 1 0 28z"/></g>
+<text x="38" y="26.5" font-size="13" textLength="93.6" class="fg" style="animation:up 480ms cubic-bezier(.23,1,.32,1) 860ms both">~/automation</text>
+</g>
+</svg>

@@ -8,9 +8,9 @@
 // (one decimal on the 24-unit grid), which keeps them visually identical at roughly 60% of the size.
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { pathToFileURL } from 'node:url';
 const [dir, out] = process.argv.slice(2);
 const slugs = ['typescript','javascript','python','go','rust','react','nextdotjs','vuedotjs','tailwindcss','threedotjs','nodedotjs','nestjs','graphql','postgresql','mongodb','redis','docker','kubernetes','amazonwebservices','githubactions'];
-const data = JSON.parse(readFileSync(join(dir, 'data.json'), 'utf8')).icons;
 const PARAMS = { m: 2, l: 2, h: 1, v: 1, c: 6, s: 4, q: 4, t: 2, a: 7, z: 0 };
 
 function parse(d) {
@@ -36,7 +36,7 @@ function parse(d) {
 
 // Absolute coordinates, then re-emit relative with rounding measured against the rounded pen,
 // so rounding error never accumulates along the path.
-function minify(d, digits = 1) {
+export function minify(d, digits = 1) {
   const f = 10 ** digits; const R = v => Math.round(v * f) / f;
   const fmt = v => { let s = String(R(v)); if (s === '-0') s = '0'; return s.replace(/^(-?)0\./, '$1.'); };
   let cx = 0, cy = 0, sx = 0, sy = 0;      // true pen
@@ -71,6 +71,8 @@ function minify(d, digits = 1) {
   return out;
 }
 
+const main = () => {
+const data = JSON.parse(readFileSync(join(dir, 'data.json'), 'utf8')).icons;
 const icons = slugs.map(slug => {
   const svg = readFileSync(join(dir, `${slug}.svg`), 'utf8');
   const title = /<title>([^<]+)<\/title>/.exec(svg)[1];
@@ -91,3 +93,5 @@ export const ICONS = {
 ${body}
 };
 `);
+};
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) main();

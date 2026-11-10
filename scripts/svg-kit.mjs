@@ -178,3 +178,7 @@ export function logoInk(hex) {
   const cl = toHex(light);
   return cl.toLowerCase() === hex.toLowerCase() ? `--c:${hex}` : `--c:${hex};--cl:${cl}`;
 }
+
+// A 256-grid icon (ui-icons.mjs) drawn size x size with its top-left corner at (x, y).
+export const icon = (x, y, size, d, cls = 'ac', anim) =>
+  `<path class="${cls}" transform="translate(${Math.round(x * 100) / 100} ${Math.round(y * 100) / 100}) scale(${Math.round((size / 256) * 10000) / 10000})" d="${d}"${style(anim)}/>`;
