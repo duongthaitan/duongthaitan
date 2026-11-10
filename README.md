@@ -94,7 +94,7 @@ Artwork comes from `scripts/gen-profile.mjs` and the interactive page from `scri
 
 ### Connect
 
-<a href="https://github.com/duongthaitan"><img src="./assets/ping.svg" width="100%" alt="ping duongthaitan: a wireframe globe turning with Soc Trang, Vietnam marked, and a reply from github.com/duongthaitan, linkedin.com/in/duongthaitan and @thaitan.duong_." /></a>
+<a href="https://github.com/duongthaitan"><img src="./assets/ping.svg" width="100%" alt="ping duongthaitan: a realistic Earth built from real geography, turning with sunlit oceans, clouds and a glowing atmosphere, Soc Trang, Vietnam marked, and a reply from github.com/duongthaitan, linkedin.com/in/duongthaitan and @thaitan.duong_." /></a>
 
 <p align="center">
   <a href="https://github.com/duongthaitan"><img src="./assets/keys/github.svg" width="270" alt="github.com/duongthaitan" /></a>

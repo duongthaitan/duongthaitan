@@ -10,6 +10,8 @@ import { dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { A, EASE, check, chevron, escapeXml, extrude, haloDef, hexRgb, icon, logoInk, rrect, spinner, style, svg, text, toHex, typed, width } from './svg-kit.mjs';
 import { UI } from './ui-icons.mjs';
+import { LAND } from './earth-data.mjs';
+import { PLATEAUS, RANGES } from './relief-data.mjs';
 import { ICONS } from './tool-icons.mjs';
 import { renderSite } from './gen-site.mjs';
 import { CURRENT, GLYPHS, LINKS, NEOFETCH, PROFILE, SLUGS, STACK } from './profile-data.mjs';
@@ -874,72 +876,167 @@ const navKey = ([slug, label], i) => keycap({ id: `nav-${slug}`, w: 160, h: 50, 
 const linkKey = (link, i) => keycap({ id: `link-${link.where}`, w: 288, h: 64, i, lines: [[link.where, 'mu', 11, -6], [link.label, 'ac', 13, 13]], title: `Open ${link.label}`, glyph: UI[link.where], size: 24 });
 
 // ── Ping globe ──────────────────────────────────────────────────────────────
-// `ping duongthaitan`: a wireframe globe turning on a tilted axis with Soc Trang marked, a satellite
-// on orbit, and one packet per link travelling out along an arc; each reply line prints as its
-// packet lands. Meridians are real projections: seen from the equator a meridian at longitude phi is
-// an ellipse of half-width R*|sin(phi)|, sampled and interpolated by SMIL. SMIL ignores reduced
-// motion, so the animated globe sits under .fx and a still copy (.nofx) replaces it there.
+// `ping duongthaitan` beside a realistic Earth, built from real geography (Natural Earth land).
+// Orthographic projection while turning: the map is cut into vertical strips, and each strip shows
+// the map scaled by the sphere's local stretch at that x (R*cos) and sliding at its own speed, so
+// continents compress toward the limb exactly as on a globe. Latitude is pre-projected (sin) in the
+// data. Lighting is layered gradients: sunlit ocean, latitude-tinted land, clouds, a day/night
+// terminator, limb darkening, specular glint and a glowing atmosphere. All motion is transform-only
+// CSS (strips) or SMIL kept under .fx with a still copy in .nofx for reduced motion.
 
 function pingGlobe() {
   const W = 900;
-  const H = 300;
+  const H = 320;
   const id = 'ping';
-  const [cx, cy, R] = [176, 150, 104];
-  const tilt = -18;
-  const half = 6500; // ms per 180 degrees of spin
-  const turns = 8; // finite: four full turns, then it rests
+  const [cx, cy, R] = [186, 160, 122];
+  const turn = 32000; // ms per revolution
+  const turns = 2;
   const rad = d => (d * Math.PI) / 180;
   const sample = (n, f) => Array.from({ length: n + 1 }, (_, j) => f(j / n));
 
-  const lats = [-60, -30, 30, 60].map(l => `M${r2(cx - R * Math.cos(rad(l)))} ${r2(cy - R * Math.sin(rad(l)))}H${r2(cx + R * Math.cos(rad(l)))}`).join('');
-  const meridian = (k, animated) => {
-    const rx = t => r2(R * Math.abs(Math.sin(rad(30 * k + 180 * t))));
-    const anim = animated ? `<animate attributeName="rx" values="${sample(24, rx).join(';')}" dur="${half}ms" begin="600ms" repeatCount="${turns}"/>` : '';
-    return `<ellipse class="mer" cx="${cx}" cy="${cy}" rx="${rx(0)}" ry="${R}">${anim}</ellipse>`;
-  };
-  // Soc Trang, about 9.6N 106E; placed so it swings round to the front early in each turn.
-  const lat = 9.6;
-  const lon0 = -70;
-  const pinX = t => r2(R * Math.sin(rad(lon0 + 360 * t)) * Math.cos(rad(lat)));
-  const pinO = t => r2(Math.max(0.12, Math.cos(rad(lon0 + 360 * t))));
-  const pinY = r2(cy - R * Math.sin(rad(lat)));
-  const pin = animated => `<g transform="translate(${pinX(0)} 0)" opacity="${pinO(0)}">${animated
-    ? `<animateTransform attributeName="transform" type="translate" values="${sample(48, t => `${pinX(t)} 0`).join(';')}" dur="${half * 2}ms" begin="600ms" repeatCount="${turns / 2}"/><animate attributeName="opacity" values="${sample(48, pinO).join(';')}" dur="${half * 2}ms" begin="600ms" repeatCount="${turns / 2}"/>`
-    : ''}<circle class="ac" cx="${cx}" cy="${pinY}" r="4"/>${animated ? `<circle class="pring" cx="${cx}" cy="${pinY}" r="4"><animate attributeName="r" values="4;18" dur="1800ms" begin="900ms" repeatCount="14"/><animate attributeName="opacity" values=".9;0" dur="1800ms" begin="900ms" repeatCount="14"/></circle>` : ''}</g>`;
-  const globe = animated => `<g transform="rotate(${tilt} ${cx} ${cy})"><circle class="rim" cx="${cx}" cy="${cy}" r="${R}"/><path class="lat" d="${lats}"/><path class="eq" d="M${cx - R} ${cy}H${cx + R}"/>${[0, 1, 2, 3, 4, 5].map(k => meridian(k, animated)).join('')}${pin(animated)}</g>`;
+  // Map units: u = (lon + 180) * 2 (720 per turn, tiled twice), v = -sin(lat) * 500.
+  // The centre meridian sweeps eastward-facing: c(t) falls from 1080 to 360 over one turn.
+  const c0 = 1080;
+  const centre = t => c0 - 720 * t;
+  const N = 20;
+  const sw = (2 * R) / N;
+  const ky = R / 500;
+  const kc = (R * 0.86 * Math.PI) / 360; // clouds: one layer at the mean stretch, no slicing
+  const strips = [];
+  const clips = [];
+  for (let i = 0; i < N; i++) {
+    const x0 = -R + (i + 0.5) * sw;
+    const k = (Math.sqrt(R * R - x0 * x0) * Math.PI) / 360; // px per map unit at this strip
+    const off = (Math.asin(x0 / R) * 360) / Math.PI; // map units from the centre meridian
+    const tx = t => r2(cx + x0 - k * (centre(t) + off));
+    clips.push(`<clipPath id="${id}-s${i}"><rect x="${r2(cx + x0 - sw / 2 - 0.4)}" y="${cy - R}" width="${r2(sw + 0.8)}" height="${2 * R}"/></clipPath>`);
+    strips.push(`<g clip-path="url(#${id}-s${i})"><use href="#${id}-map" class="strip" style="--a:${tx(0)}px;--b:${tx(1)}px;--k:${r2(k * 1000) / 1000}"/></g>`);
+  }
 
-  const orbit = `M${cx - 152} ${cy}a152 40 0 1 0 304 0a152 40 0 1 0 -304 0`;
-  const parts = [];
-  parts.push(`<ellipse cx="${cx}" cy="${cy + 10}" rx="${R * 1.5}" ry="${R * 1.2}" fill="url(#${id}-glow)"/>`);
-  parts.push(`<g class="fx">${globe(true)}<g transform="rotate(${tilt + 12} ${cx} ${cy})"><path class="orb" d="${orbit}"/><g opacity=".95"><circle r="9" fill="url(#${id}-halo)"/><circle class="ac" r="2.6"/><animateMotion path="${orbit}" dur="7000ms" begin="400ms" repeatCount="7"/></g></g></g>`);
-  parts.push(`<g class="nofx">${globe(false)}<g transform="rotate(${tilt + 12} ${cx} ${cy})"><path class="orb" d="${orbit}"/></g></g>`);
+  // Relief: ranges and plateaus in map units, shaded like a relief map (lit north-west flank, shaded
+  // south-east flank, snow on the highest), so they turn with the land through the same strips.
+  const pu = ([lon, lat]) => `${Math.round((lon + 180) * 2)} ${Math.round(-Math.sin(rad(lat)) * 500)}`;
+  const ridges = RANGES.map(r => 'M' + r.path.map(pu).join('L')).join('');
+  const snow = RANGES.filter(r => r.snow).map(r => 'M' + r.path.map(pu).join('L')).join('');
+  const plateaus = PLATEAUS.map(p => 'M' + p.map(pu).join('L') + 'Z').join('');
+
+  // Clouds ride with the surface: soft bands in map units (ITCZ near the equator, storm tracks).
+  const clouds = [[120, -60, 70, 14], [300, -20, 90, 12], [470, 10, 80, 13], [610, -40, 70, 12], [40, 120, 60, 10], [210, -330, 80, 16], [430, -300, 100, 14],
+    [620, -360, 70, 15], [160, 330, 90, 14], [380, 380, 80, 13], [560, 300, 70, 12], [690, 150, 60, 11]];
+  const cloudShapes = clouds.map(([u, v, rx, ry]) => `<ellipse cx="${u}" cy="${v}" rx="${rx}" ry="${ry * 4}" fill="url(#${id}-cloud)"/>`).join('');
+
+  // Soc Trang, 9.6N 106E, and the satellite: SMIL paths sampled from the same rotation.
+  const lat = 9.6;
+  const lonU = (106 + 180) * 2;
+  const delta = t => { let d = (lonU - centre(t)) / 2; while (d < -180) d += 360; while (d > 180) d -= 360; return d; };
+  const pinX = t => r2(R * Math.cos(rad(lat)) * Math.sin(rad(delta(t))));
+  const pinO = t => r2(Math.max(0, Math.min(1, Math.cos(rad(delta(t))) * 3)));
+  const pinY = r2(cy - R * Math.sin(rad(lat)));
+  const pinBody = `<circle class="pin" cx="${cx}" cy="${pinY}" r="3.6"/>${text(cx + 9, pinY + 4, 'soc trang', { size: 11, cls: 'plabel' })}`;
+  const pin = `<g class="fx" opacity="${pinO(0)}" transform="translate(${pinX(0)} 0)"><animateTransform attributeName="transform" type="translate" values="${sample(48, t => `${pinX(t)} 0`).join(';')}" dur="${turn}ms" repeatCount="${turns}"/><animate attributeName="opacity" values="${sample(48, pinO).join(';')}" dur="${turn}ms" repeatCount="${turns}"/>${pinBody}<circle class="pring" cx="${cx}" cy="${pinY}" r="4"><animate attributeName="r" values="4;20" dur="2000ms" begin="600ms" repeatCount="30"/><animate attributeName="opacity" values=".9;0" dur="2000ms" begin="600ms" repeatCount="30"/></circle></g>`;
+  const pinStill = `<g class="nofx" opacity="${pinO(0.7)}" transform="translate(${pinX(0.7)} 0)">${pinBody}</g>`;
+
+  const orx = 176;
+  const ory = 36;
+  const otilt = -14;
+  const back = `M${cx - orx} ${cy}a${orx} ${ory} 0 0 1 ${2 * orx} 0`;
+  const front = `M${cx + orx} ${cy}a${orx} ${ory} 0 0 1 ${-2 * orx} 0`;
+  const full = `${front}a${orx} ${ory} 0 0 1 ${2 * orx} 0`;
+  const satellite = `<g class="fx"><circle r="10" fill="url(#${id}-halo)"/><circle class="sat" r="2.8"/><animateMotion path="${full}" dur="9000ms" repeatCount="6"/><animate attributeName="opacity" values="1;1;.15;.15;1" keyTimes="0;.47;.53;.97;1" dur="9000ms" repeatCount="6"/></g>`;
+
+  // Stars: deterministic, behind everything, a few twinkle.
+  const rand = random(2026);
+  const stars = Array.from({ length: 26 }, (_, n) => {
+    let x;
+    let y;
+    do { x = 14 + rand() * 360; y = 10 + rand() * (H - 20); } while (Math.hypot(x - cx, y - cy) < R + 26);
+    const r = rand() > 0.85 ? 1.3 : 0.8;
+    const tw = n % 6 === 0 ? style(`twinkle ${Math.round(2400 + rand() * 2400)}ms ${EASE.inOut} ${Math.round(rand() * 3000)}ms 8`) : '';
+    return `<circle class="star" cx="${r2(x)}" cy="${r2(y)}" r="${r}" opacity="${r2(0.25 + rand() * 0.5)}"${tw}/>`;
+  }).join('');
+
+  const parts = [
+    stars,
+    `<circle cx="${cx}" cy="${cy}" r="${R + 22}" fill="url(#${id}-atmo)"/>`,
+    `<g transform="rotate(${otilt} ${cx} ${cy})"><path class="orb" d="${back}"/></g>`,
+    `<g clip-path="url(#${id}-disc)"${style(A('in', 1200, 100))}>`,
+    `<circle cx="${cx}" cy="${cy}" r="${R}" fill="url(#${id}-ocean)"/>`,
+    ...strips,
+    `<use href="#${id}-skies" class="sky" style="--a:${r2(cx - kc * centre(0))}px;--b:${r2(cx - kc * centre(1))}px"/>`,
+    `<circle cx="${cx}" cy="${cy}" r="${R}" fill="url(#${id}-night)"/>`,
+    `<circle cx="${cx}" cy="${cy}" r="${R}" fill="url(#${id}-limb)"/>`,
+    `<circle cx="${cx}" cy="${cy}" r="${R}" fill="url(#${id}-haze)"/>`,
+    `<ellipse cx="${cx - R * 0.38}" cy="${cy - R * 0.4}" rx="${R * 0.3}" ry="${R * 0.22}" fill="url(#${id}-glint)"/>`,
+    '</g>',
+    `<circle class="rimlight" cx="${cx}" cy="${cy}" r="${R}"/>`,
+    pin,
+    pinStill,
+    `<g transform="rotate(${otilt} ${cx} ${cy})"><path class="orb" d="${front}"/>${satellite}</g>`,
+  ];
 
   // Terminal side: the command, then one reply per link, each landing with its packet.
-  const tx = 380;
-  const cmd = typed(tx + 20, 70, `ping ${PROFILE.handle}`, { size: 15, delay: 300, cps: 45, caret: 'vanish' });
-  parts.push(chevron(tx, 70, 15, A('in', 240, 200)), cmd.svg);
-  parts.push(text(tx, 104, `PING ${PROFILE.handle} (soc trang, vietnam)`, { size: 13, cls: 'mu', anim: A('in', 300, cmd.end + 400) }));
-  const origin = [cx + R * 0.9, cy - 20];
+  const tx = 410;
+  const cmd = typed(tx + 20, 76, `ping ${PROFILE.handle}`, { size: 15, delay: 300, cps: 45, caret: 'vanish' });
+  parts.push(chevron(tx, 76, 15, A('in', 240, 200)), cmd.svg);
+  parts.push(text(tx, 110, `PING ${PROFILE.handle} (soc trang, vietnam)`, { size: 13, cls: 'mu', anim: A('in', 300, cmd.end + 400) }));
+  const origin = [cx + R + 4, cy - 10];
   LINKS.forEach((link, k) => {
-    const y = 140 + k * 32;
+    const y = 148 + k * 32;
     const land = cmd.end + 1100 + k * 800;
-    const arc = `M${r2(origin[0])} ${r2(origin[1])}C${r2(origin[0] + 56)} ${r2(origin[1])} ${tx - 64} ${y - 5} ${tx - 12} ${y - 5}`;
+    const arc = `M${r2(origin[0])} ${r2(origin[1])}C${r2(origin[0] + 50)} ${r2(origin[1])} ${tx - 60} ${y - 5} ${tx - 12} ${y - 5}`;
     parts.push(`<path class="arc draw" d="${arc}" pathLength="1"${style(A('draw', 700, land - 700, EASE.inOut))}/>`);
     parts.push(`<g class="fx" opacity="0"><circle r="7" fill="url(#${id}-halo)"/><circle class="ac" r="2.4"/><animateMotion path="${arc}" dur="700ms" begin="${land - 700}ms" fill="freeze" calcMode="spline" keyPoints="0;1" keyTimes="0;1" keySplines=".77 0 .175 1"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.1;.85;1" dur="760ms" begin="${land - 700}ms" fill="freeze"/></g>`);
     parts.push(`<g${style(A('side', 420, land))}>${text(tx, y, 'reply from', { size: 13, cls: 'mu' })}${text(tx + 11 * 7.8, y, link.label, { size: 13, cls: 'ac' })}</g>`);
   });
   const done = cmd.end + 1100 + LINKS.length * 800;
-  parts.push(text(tx, 140 + LINKS.length * 32 + 12, `--- ${LINKS.length} replies, every link answered ---`, { size: 12, cls: 'mu', anim: A('in', 400, done) }));
+  parts.push(text(tx, 148 + LINKS.length * 32 + 12, `--- ${LINKS.length} replies, every link answered ---`, { size: 12, cls: 'mu', anim: A('in', 400, done) }));
+
+  // Land colour by latitude (v = -sin(lat) * 500): ice, tundra, forest, steppe, desert, savanna, rainforest.
+  const band = (latDeg, colour) => `<stop offset="${r2((500 - Math.sin(rad(latDeg)) * 500) / 1000)}" stop-color="${colour}"/>`;
+  const landGrad = [[90, '#eef3f6'], [70, '#dfe6ea'], [62, '#7f8f73'], [52, '#3f6b3b'], [40, '#5f7a43'], [30, '#b99c63'], [22, '#c9ab70'],
+    [12, '#7d8f48'], [3, '#2f6a35'], [-10, '#3c7238'], [-22, '#a8935f'], [-32, '#86884f'], [-42, '#4d7440'], [-58, '#8b998a'], [-66, '#e2e9ec'], [-90, '#eef3f6']]
+    .map(([l, c]) => band(l, c)).join('');
 
   return svg({
     w: W, h: H, id, frame: false,
-    defs: `${haloDef(`${id}-halo`)}<radialGradient id="${id}-glow"><stop offset="0" class="shs" stop-opacity=".12"/><stop offset=".55" class="sht" stop-opacity=".05"/><stop offset="1" class="sht" stop-opacity="0"/></radialGradient>
-<style>.sht{stop-color:var(--teal)}.rim{fill:none;stroke:var(--accent);stroke-opacity:.55;stroke-width:1.4}.lat{fill:none;stroke:var(--muted);stroke-opacity:.35}.eq{fill:none;stroke:var(--accent);stroke-opacity:.6}
-.mer{fill:none;stroke:var(--teal);stroke-opacity:.5}.orb{fill:none;stroke:var(--blue);stroke-opacity:.35;stroke-dasharray:3 5}.pring{fill:none;stroke:var(--accent);stroke-width:1.5}
+    defs: `${haloDef(`${id}-halo`)}
+<clipPath id="${id}-disc"><circle cx="${cx}" cy="${cy}" r="${R}"/></clipPath>
+${clips.join('')}
+<linearGradient id="${id}-land" gradientUnits="userSpaceOnUse" x1="0" y1="-500" x2="0" y2="500">${landGrad}</linearGradient>
+<radialGradient id="${id}-cloud"><stop offset="0" stop-color="#fff" stop-opacity=".5"/><stop offset=".55" stop-color="#fff" stop-opacity=".18"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+<path id="${id}-coast" vector-effect="non-scaling-stroke" d="${LAND}"/>
+<path id="${id}-ridge" vector-effect="non-scaling-stroke" d="${ridges}"/>
+<g id="${id}-turn"><use href="#${id}-coast" class="shelf"/><use href="#${id}-coast" class="drop" transform="translate(3 9)"/><use href="#${id}-coast" class="land"/><path class="plateau" d="${plateaus}"/><use href="#${id}-ridge" class="rs" transform="translate(3 8)"/><use href="#${id}-ridge" class="rb"/><use href="#${id}-ridge" class="rl" transform="translate(-2 -6)"/><path class="snow" vector-effect="non-scaling-stroke" d="${snow}"/><use href="#${id}-coast" class="edge"/></g>
+<g id="${id}-map"><use href="#${id}-turn"/><use href="#${id}-turn" x="720"/></g>
+<g id="${id}-sky">${cloudShapes}</g>
+<g id="${id}-skies"><use href="#${id}-sky"/><use href="#${id}-sky" x="720"/></g>
+<radialGradient id="${id}-ocean" cx=".42" cy=".4" r=".7"><stop offset="0" stop-color="#2f7fc4"/><stop offset=".55" stop-color="#14508f"/><stop offset="1" stop-color="#062247"/></radialGradient>
+<linearGradient id="${id}-night" x1="0" y1="0" x2="1" y2=".25"><stop offset=".5" stop-color="#020814" stop-opacity="0"/><stop offset=".68" stop-color="#020814" stop-opacity=".42"/><stop offset=".8" stop-color="#020814" stop-opacity=".62"/><stop offset="1" stop-color="#020814" stop-opacity=".82"/></linearGradient>
+<radialGradient id="${id}-limb" cx=".5" cy=".5" r=".5"><stop offset=".72" stop-color="#000" stop-opacity="0"/><stop offset=".94" stop-color="#000" stop-opacity=".28"/><stop offset="1" stop-color="#000" stop-opacity=".5"/></radialGradient>
+<radialGradient id="${id}-haze" cx=".44" cy=".44" r=".56"><stop offset=".82" stop-color="#7cc4ff" stop-opacity="0"/><stop offset=".97" stop-color="#7cc4ff" stop-opacity=".28"/><stop offset="1" stop-color="#7cc4ff" stop-opacity=".1"/></radialGradient>
+<linearGradient id="${id}-rimg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#cfeaff" stop-opacity=".85"/><stop offset=".55" stop-color="#5fb6ff" stop-opacity=".35"/><stop offset="1" stop-color="#5fb6ff" stop-opacity=".06"/></linearGradient>
+<radialGradient id="${id}-glint"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+<radialGradient id="${id}-atmo" cx=".5" cy=".5" r=".5"><stop offset="${r2(R / (R + 22) - 0.02)}" stop-color="#5fb6ff" stop-opacity="0"/><stop offset="${r2(R / (R + 22) + 0.02)}" stop-color="#5fb6ff" stop-opacity=".45"/><stop offset="1" stop-color="#5fb6ff" stop-opacity="0"/></radialGradient>
+<style>.land{fill:url(#${id}-land)}
+.strip{transform:translate(var(--a),${cy}px) scale(var(--k),${r2(ky * 10000) / 10000});animation:spin ${turn}ms linear ${turns}}
+.sky{transform:translate(var(--a),${cy}px) scale(${r2(kc * 1000) / 1000},${r2(ky * 10000) / 10000});animation:drift ${Math.round(turn * 0.86)}ms linear 3}
+@keyframes drift{to{transform:translate(var(--b),${cy}px) scale(${r2(kc * 1000) / 1000},${r2(ky * 10000) / 10000})}}
+@keyframes spin{to{transform:translate(var(--b),${cy}px) scale(var(--k),${r2(ky * 10000) / 10000})}}
+@keyframes twinkle{50%{opacity:.08}}
+.star{fill:var(--fg)}.rimlight{fill:none;stroke:url(#${id}-rimg);stroke-width:1.6}
+.shelf{fill:none;stroke:#56c6d9;stroke-opacity:.3;stroke-width:6;stroke-linejoin:round}.drop{fill:#010a1c;opacity:.5}
+.plateau{fill:#8f7550;opacity:.42}.rs{fill:none;stroke:#1d1408;stroke-opacity:.3;stroke-width:8;stroke-linecap:round;stroke-linejoin:round}
+.rb{fill:none;stroke:#8a7048;stroke-opacity:.5;stroke-width:4.2;stroke-linecap:round;stroke-linejoin:round}
+.rl{fill:none;stroke:#f4e7cc;stroke-opacity:.24;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.snow{fill:none;stroke:#fff;stroke-opacity:.8;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}
+.edge{fill:none;stroke:#fff;stroke-opacity:.14;stroke-width:.7}
+.pin{fill:#ffd166}.pring{fill:none;stroke:#ffd166;stroke-width:1.5}.plabel{fill:#ffe6a3}.sat{fill:#e6edf3}
+.orb{fill:none;stroke:var(--blue);stroke-opacity:.35;stroke-dasharray:3 5}
 .arc{fill:none;stroke:var(--accent);stroke-opacity:.45;stroke-width:1.4}.nofx{display:none}
+@media (prefers-color-scheme:light){.star{opacity:.35}}
 @media (prefers-reduced-motion:reduce){.nofx{display:inline}}</style>`,
     title: `$ ping ${PROFILE.handle}`,
-    desc: `A wireframe globe turning on a tilted axis with Soc Trang, Vietnam marked and a satellite in orbit. Beside it, ping ${PROFILE.handle} gets a reply from each link: ${LINKS.map(l => l.label).join(', ')}.`,
+    desc: `A realistic Earth built from real geography, turning in orthographic projection with sunlit oceans, clouds, a night side and a glowing atmosphere, Soc Trang, Vietnam marked, and a satellite in orbit. Beside it, ping ${PROFILE.handle} gets a reply from each link: ${LINKS.map(l => l.label).join(', ')}.`,
     body: parts.join('\n'),
   });
 }
