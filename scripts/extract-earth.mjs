@@ -8,7 +8,9 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { minify } from './extract-icons.mjs';
 
-const [file, out] = process.argv.slice(2);
+const [file, out, tolArg, areaArg] = process.argv.slice(2);
+const TOL = Number(tolArg ?? 0.85); // degrees: coarser than 110m, invisible at this globe size
+const MIN_AREA = Number(areaArg ?? 3); // drop islands smaller than this (square degrees)
 const topo = JSON.parse(readFileSync(file, 'utf8'));
 if (topo.type !== 'Topology' || !topo.objects?.land || !Array.isArray(topo.arcs)) throw new Error('not a world-atlas land topology');
 const [sx, sy] = topo.transform.scale;
@@ -66,8 +68,8 @@ let points = 0;
 const d = rings
   .map(unwrap)
   .map(recentre)
-  .filter(r => area(r) > 2.2)
-  .map(r => simplify(r, 0.55))
+  .filter(r => area(r) > MIN_AREA)
+  .map(r => simplify(r, TOL))
   .filter(r => r.length >= 4)
   .map(r => {
     kept++;
