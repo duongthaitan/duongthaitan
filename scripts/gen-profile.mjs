@@ -8,10 +8,11 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import { dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { A, EASE, check, chevron, escapeXml, extrude, haloDef, hexRgb, logoInk, rrect, spinner, style, svg, text, toHex, typed, width } from './svg-kit.mjs';
+import { A, EASE, check, chevron, escapeXml, extrude, haloDef, hexRgb, icon, logoInk, rrect, spinner, style, svg, text, toHex, typed, width } from './svg-kit.mjs';
+import { UI } from './ui-icons.mjs';
 import { ICONS } from './tool-icons.mjs';
 import { renderSite } from './gen-site.mjs';
-import { CURRENT, GLYPHS, NEOFETCH, SLUGS, STACK } from './profile-data.mjs';
+import { CURRENT, GLYPHS, LINKS, NEOFETCH, PROFILE, SLUGS, STACK } from './profile-data.mjs';
 
 const r2 = n => Math.round(n * 100) / 100;
 const ms = n => `${Math.round(n)}ms`;
@@ -406,6 +407,8 @@ ${ansi(['#484f58', '#ff7b72', '#3fb950', '#d29922', '#58a6ff', '#bc8cff', '#39c5
 // Each section opens with its command: it types, runs (spinner plus a progress line across the
 // card), and the spinner resolves into a check.
 
+const SECTION_ICON = { about: 'about', toolkit: 'toolkit', 'selected-work': 'projects', certificates: 'certificates', automation: 'automation', connect: 'connect' };
+
 const SECTIONS = [
   ['about', 'cat about.md'],
   ['toolkit', 'ls ~/toolkit/{client,server}'],
@@ -425,7 +428,7 @@ function sectionHeader(slug, command) {
   const fh = H - depth - 1;
   const id = slug;
   const y = 34;
-  const cmd = typed(48, y, command, { size: 15, delay: 160, cps: 42, caret: 'vanish' });
+  const cmd = typed(76, y, command, { size: 15, delay: 160, cps: 42, caret: 'vanish' });
   const enterAt = cmd.end + 200;
   const runAt = cmd.end + 380;
   const runDur = 1000;
@@ -434,7 +437,9 @@ function sectionHeader(slug, command) {
     extrude(0.5, 0.5, fw, fh, depth, depth, 10, ['kb', 'ks']),
     `<g${style(`press 300ms ${EASE.out} ${Math.round(enterAt)}ms 1`)}>`,
     `<path class="frame" d="${rrect(0.5, 0.5, fw, fh, 11.5)}"/>`,
-    chevron(28, y, 15, A('in', 240, 60)),
+    icon(24, y - 14, 18, UI[SECTION_ICON[slug]], 'ac', A('pop', 360, 40)),
+    `<path class="sep" d="M50 ${y - 15}v20"/>`,
+    chevron(58, y, 15, A('in', 240, 60)),
     cmd.svg,
     `<rect class="ac run" x="0" y="${fh - 2.5}" width="${fw}" height="2" clip-path="url(#${id}-key)"${style(A('run', runDur, runAt, EASE.inOut))}/>`,
     spinner(fw - 66, y - 5, runAt, doneAt - runAt),
@@ -444,7 +449,7 @@ function sectionHeader(slug, command) {
   ].join('\n');
   return svg({
     w: W, h: H, id, body, frame: false,
-    defs: `<clipPath id="${id}-key"><rect width="${fw + 1}" height="${fh + 1}" rx="12"/></clipPath><style>.kb{fill:var(--line)}.ks{fill:var(--faint)}@keyframes press{40%{transform:translate(${depth / 2}px,${depth / 2}px)}}</style>`,
+    defs: `<clipPath id="${id}-key"><rect width="${fw + 1}" height="${fh + 1}" rx="12"/></clipPath><style>.kb{fill:var(--line)}.ks{fill:var(--faint)}@keyframes press{40%{transform:translate(${depth / 2}px,${depth / 2}px)}}.sep{stroke:var(--line)}</style>`,
     title: `$ ${command}`,
     desc: `A 3D terminal key that types the command "${command}", presses in as it runs with a spinner, and reports done.`,
   });
@@ -461,7 +466,7 @@ function launchKey() {
   const fh = H - depth - 1;
   const id = 'launch';
   const y = 46;
-  const cmd = typed(54, y, './terminal --interactive --3d', { size: 17, delay: 300, cps: 40, caret: 'blink', blinks: 6 });
+  const cmd = typed(86, y, './terminal --interactive --3d', { size: 17, delay: 300, cps: 40, caret: 'blink', blinks: 6 });
   const ready = cmd.end + 200;
   const label = 'open the interactive terminal';
   const lx = fw - 76 - width(label, 13);
@@ -470,7 +475,8 @@ function launchKey() {
     extrude(0.5, 0.5, fw, fh, depth, depth, 12, ['kb', 'ks']),
     `<path class="face" d="${rrect(0.5, 0.5, fw, fh, 13)}"/>`,
     `<path class="pulse" d="${rrect(0.5, 0.5, fw, fh, 13)}"${style(`pulse 2600ms ${EASE.inOut} ${Math.round(ready)}ms 4`)}/>`,
-    chevron(30, y, 17, A('in', 240, 80)),
+    icon(26, y - 17, 22, UI.terminal, 'ac', A('pop', 360, 40)),
+    chevron(62, y, 17, A('in', 240, 80)),
     cmd.svg,
     `<g${style(A('side', 520, ready))}>${text(lx, y - 1, label, { size: 13, cls: 'mu' })}<rect class="ek" x="${fw - 66}" y="${y - 22}" width="40" height="28" rx="6"/><path class="tick" d="${enter}"/></g>`,
   ].join('\n');
@@ -834,6 +840,186 @@ ${css.join('\n')}</style>`;
   });
 }
 
+// ── Clickable keys ──────────────────────────────────────────────────────────
+// A README cannot run code, but every image can be a link. Each key is its own small image so each
+// one is its own click target. On load the row pops up like keys springing back in a wave, then a
+// sheen crosses each face once in the same order.
+
+function keycap({ id, w, h, i, lines, title, glyph, size = 16 }) {
+  const depth = 5;
+  const fw = w - depth - 1;
+  const fh = h - depth - 1;
+  const delay = 160 + i * 110;
+  const cy = fh / 2;
+  const body = [
+    extrude(0.5, 0.5, fw, fh, depth, depth, 9, ['kb', 'ks']),
+    `<g${style(`pop3d 620ms ${EASE.out} ${delay}ms both`)}>`,
+    `<path class="face" d="${rrect(0.5, 0.5, fw, fh, 10)}"/>`,
+    `<g clip-path="url(#${id}-key)"><g transform="skewX(-20)"><rect x="-90" y="0" width="60" height="${h}" fill="url(#${id}-sheen)" style="--d:${w + 160}px;animation:sweep 5200ms linear ${delay + 900}ms 2"/></g></g>`,
+    `<g class="pop"${style(A('pop', 420, delay + 180))}>${icon(14, cy - size / 2 + 0.5, size, glyph)}</g>`,
+    ...lines.map(([str, cls, fs, dy], k) => text(22 + size, cy + dy, str, { size: fs, cls, anim: A('up', 480, delay + 260 + k * 70) })),
+    '</g>',
+  ].join('\n');
+  return svg({
+    w, h, id, body, frame: false,
+    defs: `<clipPath id="${id}-key"><rect width="${fw + 1}" height="${fh + 1}" rx="10"/></clipPath><linearGradient id="${id}-sheen"><stop offset="0" class="shs" stop-opacity="0"/><stop offset=".5" class="shs" stop-opacity=".22"/><stop offset="1" class="shs" stop-opacity="0"/></linearGradient>
+<style>.kb{fill:var(--line)}.ks{fill:var(--faint)}.face{fill:var(--raised);stroke:var(--line)}@keyframes pop3d{from{transform:translate(${depth}px,${depth}px)}}</style>`,
+    title,
+    desc: `A 3D key labelled ${lines.map(([s]) => s).join(' ')}.`,
+  });
+}
+
+const NAV = [['about', '~/about'], ['toolkit', '~/toolkit'], ['selected-work', '~/projects'], ['certificates', '~/certificates'], ['automation', '~/automation'], ['connect', '~/connect']];
+const navKey = ([slug, label], i) => keycap({ id: `nav-${slug}`, w: 160, h: 50, i, lines: [[label, 'fg', 13, 4.5]], title: `Go to ${label}`, glyph: UI[SECTION_ICON[slug]] });
+const linkKey = (link, i) => keycap({ id: `link-${link.where}`, w: 288, h: 64, i, lines: [[link.where, 'mu', 11, -6], [link.label, 'ac', 13, 13]], title: `Open ${link.label}`, glyph: UI[link.where], size: 24 });
+
+// ── Ping globe ──────────────────────────────────────────────────────────────
+// `ping duongthaitan`: a wireframe globe turning on a tilted axis with Soc Trang marked, a satellite
+// on orbit, and one packet per link travelling out along an arc; each reply line prints as its
+// packet lands. Meridians are real projections: seen from the equator a meridian at longitude phi is
+// an ellipse of half-width R*|sin(phi)|, sampled and interpolated by SMIL. SMIL ignores reduced
+// motion, so the animated globe sits under .fx and a still copy (.nofx) replaces it there.
+
+function pingGlobe() {
+  const W = 900;
+  const H = 300;
+  const id = 'ping';
+  const [cx, cy, R] = [176, 150, 104];
+  const tilt = -18;
+  const half = 6500; // ms per 180 degrees of spin
+  const turns = 8; // finite: four full turns, then it rests
+  const rad = d => (d * Math.PI) / 180;
+  const sample = (n, f) => Array.from({ length: n + 1 }, (_, j) => f(j / n));
+
+  const lats = [-60, -30, 30, 60].map(l => `M${r2(cx - R * Math.cos(rad(l)))} ${r2(cy - R * Math.sin(rad(l)))}H${r2(cx + R * Math.cos(rad(l)))}`).join('');
+  const meridian = (k, animated) => {
+    const rx = t => r2(R * Math.abs(Math.sin(rad(30 * k + 180 * t))));
+    const anim = animated ? `<animate attributeName="rx" values="${sample(24, rx).join(';')}" dur="${half}ms" begin="600ms" repeatCount="${turns}"/>` : '';
+    return `<ellipse class="mer" cx="${cx}" cy="${cy}" rx="${rx(0)}" ry="${R}">${anim}</ellipse>`;
+  };
+  // Soc Trang, about 9.6N 106E; placed so it swings round to the front early in each turn.
+  const lat = 9.6;
+  const lon0 = -70;
+  const pinX = t => r2(R * Math.sin(rad(lon0 + 360 * t)) * Math.cos(rad(lat)));
+  const pinO = t => r2(Math.max(0.12, Math.cos(rad(lon0 + 360 * t))));
+  const pinY = r2(cy - R * Math.sin(rad(lat)));
+  const pin = animated => `<g transform="translate(${pinX(0)} 0)" opacity="${pinO(0)}">${animated
+    ? `<animateTransform attributeName="transform" type="translate" values="${sample(48, t => `${pinX(t)} 0`).join(';')}" dur="${half * 2}ms" begin="600ms" repeatCount="${turns / 2}"/><animate attributeName="opacity" values="${sample(48, pinO).join(';')}" dur="${half * 2}ms" begin="600ms" repeatCount="${turns / 2}"/>`
+    : ''}<circle class="ac" cx="${cx}" cy="${pinY}" r="4"/>${animated ? `<circle class="pring" cx="${cx}" cy="${pinY}" r="4"><animate attributeName="r" values="4;18" dur="1800ms" begin="900ms" repeatCount="14"/><animate attributeName="opacity" values=".9;0" dur="1800ms" begin="900ms" repeatCount="14"/></circle>` : ''}</g>`;
+  const globe = animated => `<g transform="rotate(${tilt} ${cx} ${cy})"><circle class="rim" cx="${cx}" cy="${cy}" r="${R}"/><path class="lat" d="${lats}"/><path class="eq" d="M${cx - R} ${cy}H${cx + R}"/>${[0, 1, 2, 3, 4, 5].map(k => meridian(k, animated)).join('')}${pin(animated)}</g>`;
+
+  const orbit = `M${cx - 152} ${cy}a152 40 0 1 0 304 0a152 40 0 1 0 -304 0`;
+  const parts = [];
+  parts.push(`<ellipse cx="${cx}" cy="${cy + 10}" rx="${R * 1.5}" ry="${R * 1.2}" fill="url(#${id}-glow)"/>`);
+  parts.push(`<g class="fx">${globe(true)}<g transform="rotate(${tilt + 12} ${cx} ${cy})"><path class="orb" d="${orbit}"/><g opacity=".95"><circle r="9" fill="url(#${id}-halo)"/><circle class="ac" r="2.6"/><animateMotion path="${orbit}" dur="7000ms" begin="400ms" repeatCount="7"/></g></g></g>`);
+  parts.push(`<g class="nofx">${globe(false)}<g transform="rotate(${tilt + 12} ${cx} ${cy})"><path class="orb" d="${orbit}"/></g></g>`);
+
+  // Terminal side: the command, then one reply per link, each landing with its packet.
+  const tx = 380;
+  const cmd = typed(tx + 20, 70, `ping ${PROFILE.handle}`, { size: 15, delay: 300, cps: 45, caret: 'vanish' });
+  parts.push(chevron(tx, 70, 15, A('in', 240, 200)), cmd.svg);
+  parts.push(text(tx, 104, `PING ${PROFILE.handle} (soc trang, vietnam)`, { size: 13, cls: 'mu', anim: A('in', 300, cmd.end + 400) }));
+  const origin = [cx + R * 0.9, cy - 20];
+  LINKS.forEach((link, k) => {
+    const y = 140 + k * 32;
+    const land = cmd.end + 1100 + k * 800;
+    const arc = `M${r2(origin[0])} ${r2(origin[1])}C${r2(origin[0] + 56)} ${r2(origin[1])} ${tx - 64} ${y - 5} ${tx - 12} ${y - 5}`;
+    parts.push(`<path class="arc draw" d="${arc}" pathLength="1"${style(A('draw', 700, land - 700, EASE.inOut))}/>`);
+    parts.push(`<g class="fx" opacity="0"><circle r="7" fill="url(#${id}-halo)"/><circle class="ac" r="2.4"/><animateMotion path="${arc}" dur="700ms" begin="${land - 700}ms" fill="freeze" calcMode="spline" keyPoints="0;1" keyTimes="0;1" keySplines=".77 0 .175 1"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.1;.85;1" dur="760ms" begin="${land - 700}ms" fill="freeze"/></g>`);
+    parts.push(`<g${style(A('side', 420, land))}>${text(tx, y, 'reply from', { size: 13, cls: 'mu' })}${text(tx + 11 * 7.8, y, link.label, { size: 13, cls: 'ac' })}</g>`);
+  });
+  const done = cmd.end + 1100 + LINKS.length * 800;
+  parts.push(text(tx, 140 + LINKS.length * 32 + 12, `--- ${LINKS.length} replies, every link answered ---`, { size: 12, cls: 'mu', anim: A('in', 400, done) }));
+
+  return svg({
+    w: W, h: H, id, frame: false,
+    defs: `${haloDef(`${id}-halo`)}<radialGradient id="${id}-glow"><stop offset="0" class="shs" stop-opacity=".12"/><stop offset=".55" class="sht" stop-opacity=".05"/><stop offset="1" class="sht" stop-opacity="0"/></radialGradient>
+<style>.sht{stop-color:var(--teal)}.rim{fill:none;stroke:var(--accent);stroke-opacity:.55;stroke-width:1.4}.lat{fill:none;stroke:var(--muted);stroke-opacity:.35}.eq{fill:none;stroke:var(--accent);stroke-opacity:.6}
+.mer{fill:none;stroke:var(--teal);stroke-opacity:.5}.orb{fill:none;stroke:var(--blue);stroke-opacity:.35;stroke-dasharray:3 5}.pring{fill:none;stroke:var(--accent);stroke-width:1.5}
+.arc{fill:none;stroke:var(--accent);stroke-opacity:.45;stroke-width:1.4}.nofx{display:none}
+@media (prefers-reduced-motion:reduce){.nofx{display:inline}}</style>`,
+    title: `$ ping ${PROFILE.handle}`,
+    desc: `A wireframe globe turning on a tilted axis with Soc Trang, Vietnam marked and a satellite in orbit. Beside it, ping ${PROFILE.handle} gets a reply from each link: ${LINKS.map(l => l.label).join(', ')}.`,
+    body: parts.join('\n'),
+  });
+}
+
+// ── Brand ───────────────────────────────────────────────────────────────────
+// The tandev mark: a tesseract (4D hypercube) turning in the x-w plane, so it folds itself inside
+// out, with the voxel T held at its centre, beside the wordmark. Real geometry: 16 vertices in 4D,
+// rotated, projected 4D -> 3D -> 2D with perspective, sampled per frame and morphed by SMIL. A
+// tesseract maps onto itself every 90 degrees in that plane, so the loop is seamless.
+
+function tesseractFrames(frames, { cx, cy, S }) {
+  const V = Array.from({ length: 16 }, (_, i) => [i & 1 ? 1 : -1, i & 2 ? 1 : -1, i & 4 ? 1 : -1, i & 8 ? 1 : -1]);
+  const E = [];
+  for (let i = 0; i < 16; i++) for (let b = 0; b < 4; b++) { const j = i ^ (1 << b); if (j > i) E.push([i, j, b]); }
+  const [ry, rx] = [0.62, -0.42]; // fixed 3D viewing angle
+  const out = [];
+  for (let f = 0; f < frames; f++) {
+    const a = (Math.PI / 2) * (f / frames);
+    const P = V.map(([x, y, z, w]) => {
+      const x1 = x * Math.cos(a) - w * Math.sin(a);
+      const w1 = x * Math.sin(a) + w * Math.cos(a);
+      const k4 = 2.4 / (3.3 - w1);
+      let [X, Y, Z] = [x1 * k4, y * k4, z * k4];
+      [X, Z] = [X * Math.cos(ry) + Z * Math.sin(ry), -X * Math.sin(ry) + Z * Math.cos(ry)];
+      [Y, Z] = [Y * Math.cos(rx) - Z * Math.sin(rx), Y * Math.sin(rx) + Z * Math.cos(rx)];
+      const k3 = 5 / (6.2 - Z);
+      return [r1(cx + X * k3 * S), r1(cy + Y * k3 * S)];
+    });
+    const seg = list => list.map(([i, j]) => `M${P[i][0]} ${P[i][1]}L${P[j][0]} ${P[j][1]}`).join('');
+    out.push({ cube: seg(E.filter(e => e[2] < 3)), hyper: seg(E.filter(e => e[2] === 3)) });
+  }
+  return out;
+}
+const r1 = n => Math.round(n * 10) / 10;
+
+function brand() {
+  const W = 900;
+  const H = 150;
+  const id = 'brand';
+  const [cx, cy] = [92, 75];
+  const frames = tesseractFrames(20, { cx, cy, S: 33 });
+  const period = 3200;
+  const loops = 12;
+  const morph = key => `<animate attributeName="d" values="${[...frames, frames[0]].map(f => f[key]).join(';')}" dur="${period}ms" begin="900ms" repeatCount="${loops}"/>`;
+  // Voxel T at the centre of the hypercube.
+  const T = GLYPHS.T.flatMap((row, r) => [...row].map((on, c) => (on === '#' ? `M${cx - 9 + c * 3.6} ${cy - 12.6 + r * 3.6}h3v3h-3z` : ''))).join('');
+  const parts = [
+    `<ellipse cx="${cx}" cy="${cy}" rx="84" ry="70" fill="url(#${id}-glow)"/>`,
+    `<g class="fx"${style(A('in', 900, 200))}><path class="hyper" d="${frames[0].hyper}">${morph('hyper')}</path><path class="cube" d="${frames[0].cube}">${morph('cube')}</path></g>`,
+    `<g class="nofx"><path class="hyper" d="${frames[0].hyper}"/><path class="cube" d="${frames[0].cube}"/></g>`,
+    `<path class="ac pop" d="${T}"${style(A('pop', 600, 500))}/>`,
+  ];
+  // Wordmark with two receding depth layers on the shared up-right axis, then a sheen.
+  const wx = 196;
+  const word = 'tandev';
+  const layers = [['wd2', 3.6, -2.5], ['wd1', 1.8, -1.25]].map(([cls, dx, dy], k) =>
+    text(wx + dx, 86 + dy, word, { size: 56, weight: 800, cls, anim: A('extrude', 700, 760 + (1 - k) * 60), custom: `--e:${-dx}px;` }));
+  parts.push(`<g${style(A('rise', 800, 520), '--rise:24px;')}>${layers.join('')}${text(wx, 86, word, { size: 56, weight: 800 })}</g>`);
+  parts.push(`<g clip-path="url(#${id}-word)"><g transform="skewX(-18)"><rect x="140" y="20" width="90" height="80" fill="url(#${id}-sheen)" style="--d:300px;animation:sweep 6400ms linear 1700ms 2"/></g></g>`);
+  parts.push(text(wx + 2, 116, `${PROFILE.name.toLowerCase()}  /  ${PROFILE.role}  /  soc trang, vietnam`, { size: 13, cls: 'mu', pre: true, anim: A('in', 600, 1100) }));
+  // Right edge: the handle as a quiet signature.
+  parts.push(`<g${style(A('in', 600, 1300))}>${icon(W - 214, 64, 18, UI.github, 'mu')}${text(W - 188, 78, `github.com/${PROFILE.handle}`, { size: 12, cls: 'mu' })}</g>`);
+
+  const glyphs = text(wx, 86, word, { size: 56, weight: 800 });
+  return svg({
+    w: W, h: H, id, frame: false,
+    defs: `<radialGradient id="${id}-glow"><stop offset="0" class="shs" stop-opacity=".2"/><stop offset=".6" class="sht" stop-opacity=".06"/><stop offset="1" class="sht" stop-opacity="0"/></radialGradient>
+<linearGradient id="${id}-sheen"><stop offset="0" class="shs" stop-opacity="0"/><stop offset=".5" class="shs" stop-opacity=".9"/><stop offset="1" class="shs" stop-opacity="0"/></linearGradient>
+<clipPath id="${id}-word">${glyphs}</clipPath>
+<style>.sht{stop-color:var(--teal)}.cube{fill:none;stroke:var(--accent);stroke-width:1.5;stroke-linecap:round;stroke-opacity:.9}.hyper{fill:none;stroke:var(--teal);stroke-width:1.2;stroke-opacity:.7}
+.wd1{fill:var(--teal);opacity:.5}.wd2{fill:var(--blue);opacity:.28}.nofx{display:none}
+@media (prefers-color-scheme:light){.wd1{opacity:.32}.wd2{opacity:.18}}
+@media (prefers-reduced-motion:reduce){.nofx{display:inline}}
+@keyframes extrude{from{opacity:0;transform:translate(var(--e),calc(var(--e) * -.7))}}</style>`,
+    title: 'tandev',
+    desc: `The tandev brand mark: a tesseract folding itself inside out around a voxel T, beside the wordmark tandev and the line ${PROFILE.name}, ${PROFILE.role}, Soc Trang, Vietnam.`,
+    body: parts.join('\n'),
+  });
+}
+
 // ── Output ──────────────────────────────────────────────────────────────────
 
 export function renderAssets() {
@@ -842,10 +1028,14 @@ export function renderAssets() {
     'assets/typing-anim.svg': fetchCard(),
     'assets/section-divider.svg': divider(),
     'assets/launch.svg': launchKey(),
+    'assets/brand.svg': brand(),
+    'assets/ping.svg': pingGlobe(),
     'assets/stack-client.svg': island({ id: 'client', title: 'client', subtitle: 'languages and frontend', groups: STACK.slice(0, 2), cols: 5, offset: 0 }),
     'assets/stack-server.svg': island({ id: 'server', title: 'server', subtitle: 'backend, data and devops', groups: STACK.slice(2), cols: 4, offset: 300 }),
   };
   for (const [slug, command] of SECTIONS) assets[`assets/galaxy/${slug}.svg`] = sectionHeader(slug, command);
+  NAV.forEach((nav, i) => { assets[`assets/keys/${nav[0]}.svg`] = navKey(nav, i); });
+  LINKS.forEach((link, i) => { assets[`assets/keys/${link.where}.svg`] = linkKey(link, i); });
   // The terminal prints the real sizes of everything generated above.
   const bytes = file => Buffer.byteLength(assets[file]);
   const galaxy = SECTIONS.reduce((sum, [slug]) => sum + bytes(`assets/galaxy/${slug}.svg`), 0);

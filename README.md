@@ -1,14 +1,16 @@
+<a href="https://duongthaitan.github.io/duongthaitan/terminal/"><img src="./assets/brand.svg" width="100%" alt="tandev: a tesseract folding itself inside out around a voxel T, beside the wordmark tandev. Duong Thai Tan, full-stack developer, Soc Trang, Vietnam." /></a>
+
 <div align="center">
   <a href="https://duongthaitan.github.io/duongthaitan/terminal/"><img src="./assets/hero-banner.svg" width="100%" alt="Duong Thai Tan: full-stack developer, cloud infrastructure builder, visual creator. I build web apps and the cloud systems that run them. Opens the interactive terminal." /></a>
 </div>
 
 <p align="center">
-  <a href="#about"><code>~/about</code></a>&ensp;
-  <a href="#toolkit"><code>~/toolkit</code></a>&ensp;
-  <a href="#selected-work"><code>~/projects</code></a>&ensp;
-  <a href="#certificates"><code>~/certificates</code></a>&ensp;
-  <a href="#automation"><code>~/automation</code></a>&ensp;
-  <a href="#connect"><code>~/connect</code></a>
+  <a href="#about"><img src="./assets/keys/about.svg" width="138" alt="~/about" /></a>
+  <a href="#toolkit"><img src="./assets/keys/toolkit.svg" width="138" alt="~/toolkit" /></a>
+  <a href="#selected-work"><img src="./assets/keys/selected-work.svg" width="138" alt="~/projects" /></a>
+  <a href="#certificates"><img src="./assets/keys/certificates.svg" width="138" alt="~/certificates" /></a>
+  <a href="#automation"><img src="./assets/keys/automation.svg" width="138" alt="~/automation" /></a>
+  <a href="#connect"><img src="./assets/keys/connect.svg" width="138" alt="~/connect" /></a>
 </p>
 
 <a href="https://duongthaitan.github.io/duongthaitan/terminal/"><img src="./assets/launch.svg" width="100%" alt="Open the interactive 3D terminal: type commands, tilt the terminal with your pointer and press the tool keys." /></a>
@@ -17,7 +19,7 @@
 
 <img src="./assets/section-divider.svg" width="100%" alt="" />
 
-<img src="./assets/galaxy/about.svg" width="100%" alt="$ cat about.md" />
+<a href="https://duongthaitan.github.io/duongthaitan/terminal/"><img src="./assets/galaxy/about.svg" width="100%" alt="$ cat about.md" /></a>
 
 ### About
 
@@ -25,7 +27,7 @@ Full-stack developer focused on production-grade web applications and cloud infr
 
 Right now I ship TypeScript across the stack, from React frontends to Node.js services backed by PostgreSQL, deployed on AWS. I build systems that are meant to scale and meant to be maintained.
 
-<img src="./assets/galaxy/toolkit.svg" width="100%" alt="$ ls ~/toolkit/{client,server}" />
+<a href="https://duongthaitan.github.io/duongthaitan/terminal/#toolkit"><img src="./assets/galaxy/toolkit.svg" width="100%" alt="$ ls ~/toolkit/{client,server}" /></a>
 
 ### Toolkit
 
@@ -33,9 +35,9 @@ Right now I ship TypeScript across the stack, from React frontends to Node.js se
 
 <a href="https://duongthaitan.github.io/duongthaitan/terminal/#toolkit"><img src="./assets/stack-server.svg" width="100%" alt="Server toolkit as 3D keycaps with logos. Backend: Node.js, NestJS, GraphQL. Data: PostgreSQL, MongoDB, Redis. DevOps: Docker, Kubernetes, AWS, GitHub Actions. In production now: Node.js, PostgreSQL, AWS. Opens the playable keyboard." /></a>
 
-<sub>Click either board to press the keys for real. Logos from <a href="https://simpleicons.org">Simple Icons</a> (CC0); trademarks belong to their owners.</sub>
+<sub>Click either board to press the keys for real.</sub>
 
-<img src="./assets/galaxy/selected-work.svg" width="100%" alt="$ ls ~/projects" />
+<a href="https://duongthaitan.github.io/duongthaitan/terminal/#projects"><img src="./assets/galaxy/selected-work.svg" width="100%" alt="$ ls ~/projects" /></a>
 
 ### Selected work
 
@@ -51,7 +53,7 @@ Right now I ship TypeScript across the stack, from React frontends to Node.js se
 
 </details>
 
-<img src="./assets/galaxy/certificates.svg" width="100%" alt="$ cat certificates.json" />
+<a href="https://duongthaitan.github.io/duongthaitan/terminal/#certificates"><img src="./assets/galaxy/certificates.svg" width="100%" alt="$ cat certificates.json" /></a>
 
 ### Certificates
 
@@ -68,7 +70,7 @@ Right now I ship TypeScript across the stack, from React frontends to Node.js se
 
 </details>
 
-<img src="./assets/galaxy/automation.svg" width="100%" alt="$ gh workflow list" />
+<a href="https://github.com/duongthaitan/duongthaitan/actions"><img src="./assets/galaxy/automation.svg" width="100%" alt="$ gh workflow list" /></a>
 
 ### Automation
 
@@ -88,18 +90,24 @@ Artwork comes from `scripts/gen-profile.mjs` and the interactive page from `scri
 
 </details>
 
-<img src="./assets/galaxy/connect.svg" width="100%" alt="$ ping duongthaitan" />
+<a href="https://duongthaitan.github.io/duongthaitan/terminal/#connect"><img src="./assets/galaxy/connect.svg" width="100%" alt="$ ping duongthaitan" /></a>
 
 ### Connect
 
-| Where | Handle |
-|-------|--------|
-| GitHub | [`github.com/duongthaitan`](https://github.com/duongthaitan) |
-| LinkedIn | [`linkedin.com/in/duongthaitan`](https://www.linkedin.com/in/duongthaitan/) |
-| Instagram | [`@thaitan.duong_`](https://www.instagram.com/thaitan.duong_) |
+<a href="https://github.com/duongthaitan"><img src="./assets/ping.svg" width="100%" alt="ping duongthaitan: a wireframe globe turning with Soc Trang, Vietnam marked, and a reply from github.com/duongthaitan, linkedin.com/in/duongthaitan and @thaitan.duong_." /></a>
+
+<p align="center">
+  <a href="https://github.com/duongthaitan"><img src="./assets/keys/github.svg" width="270" alt="github.com/duongthaitan" /></a>
+  <a href="https://www.linkedin.com/in/duongthaitan/"><img src="./assets/keys/linkedin.svg" width="270" alt="linkedin.com/in/duongthaitan" /></a>
+  <a href="https://www.instagram.com/thaitan.duong_"><img src="./assets/keys/instagram.svg" width="270" alt="@thaitan.duong_ on Instagram" /></a>
+</p>
 
 <br/>
 
 <div align="center">
   <a href="https://github.com/duongthaitan?tab=repositories"><img src="./assets/github-metrics.svg" width="100%" alt="Live GitHub metrics. Opens the repositories." /></a>
 </div>
+
+<a href="https://github.com/duongthaitan"><img src="./assets/brand.svg" width="100%" alt="tandev, signing off." /></a>
+
+<sub>Icons: <a href="https://phosphoricons.com">Phosphor</a> (MIT). Tool logos: <a href="https://simpleicons.org">Simple Icons</a> (CC0); trademarks belong to their owners.</sub>
