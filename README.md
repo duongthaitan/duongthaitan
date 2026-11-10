@@ -1,4 +1,4 @@
-<a href="https://duongthaitan.github.io/duongthaitan/terminal/"><img src="./assets/brand.svg" width="100%" alt="tandev: a 3D mirrorless camera that takes a picture every few seconds, beside the wordmark tandev. Duong Thai Tan, full-stack developer, Soc Trang, Vietnam." /></a>
+<a href="https://duongthaitan.github.io/duongthaitan/terminal/"><img src="./assets/brand.svg" width="100%" alt="tandev: a silver Fujifilm X-T5 with a 25mm lens and a speedlight, in 3D, taking a picture every few seconds (half-press, full press, flash), beside the wordmark tandev." /></a>
 
 <div align="center">
   <a href="https://duongthaitan.github.io/duongthaitan/terminal/"><img src="./assets/hero-banner.svg" width="100%" alt="Duong Thai Tan: full-stack developer, cloud infrastructure builder, visual creator. I build web apps and the cloud systems that run them. Opens the interactive terminal." /></a>
@@ -78,7 +78,7 @@ Right now I ship TypeScript across the stack, from React frontends to Node.js se
 
 This profile maintains itself. Every visual on the page is an SVG generated from one set of design tokens, and GitHub Actions keeps the numbers current. Click the terminal to watch the runs.
 
-<a href="https://github.com/duongthaitan/duongthaitan/actions"><img src="./assets/terminal-3d.svg" width="100%" alt="A 3D terminal runs this repo's pipeline: node scripts/gen-profile.mjs lists every generated asset with its size, node --test scripts/*.test.mjs reports both test files ok, and git push origin main lands a new commit on main. Floating panels chart the asset sizes and the git graph as it happens. Opens the Actions runs." /></a>
+<a href="https://github.com/duongthaitan/duongthaitan/actions"><img src="./assets/terminal-3d.svg" width="100%" alt="A terminal window above a 3D 75% mechanical keyboard with RGB lighting. The keyboard types this repo's pipeline into the terminal key by key: node scripts/gen-profile.mjs lists the generated SVGs and their sizes, node --test scripts/*.test.mjs passes, and git push origin main hands over to GitHub Actions, which keeps the numbers current." /></a>
 
 <details>
 <summary><code>cat .github/workflows/*.yml</code> &nbsp;how the pipeline works</summary>

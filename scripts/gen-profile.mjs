@@ -8,13 +8,13 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import { dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { A, EASE, check, chevron, entrance, escapeXml, extrude, haloDef, hexRgb, icon, logoInk, loopEase, loopWindow, loopify, looping, rrect, spinner, startAt, style, svg, text, toHex, typed, width, withLoop } from './svg-kit.mjs';
+import { A, EASE, check, chevron, entrance, escapeXml, extrude, haloDef, hexRgb, icon, logoInk, loopWindow, loopify, looping, rrect, spinner, startAt, style, svg, text, toHex, typed, width, withLoop } from './svg-kit.mjs';
 import { UI } from './ui-icons.mjs';
 import { LAND } from './earth-data.mjs';
 import { PLATEAUS, RANGES } from './relief-data.mjs';
 import { ICONS } from './tool-icons.mjs';
 import { renderSite } from './gen-site.mjs';
-import { keyboard } from './keyboard.mjs';
+import { deskTerminal, keyboard } from './keyboard.mjs';
 import { CURRENT, GLYPHS, LINKS, NEOFETCH, PROFILE, SLUGS, STACK } from './profile-data.mjs';
 
 const r2 = n => Math.round(n * 100) / 100;
@@ -82,7 +82,15 @@ function rotator(id, x, y, phrases, { size, delay, introCps = 34, typeCps = 42, 
 
   // Each glyph gets its own visible window inside the cycle: it switches on at its keystroke while
   // typing and off as the delete passes it. Nothing paints over the text, so the page colour never matters.
-  const kf = [];
+  // Each glyph only says when it switches on (--a) and off (--b) inside the cycle; two shared classes
+  // carry the timing (phrase 0 starts typed, so its window is the other way round). The intro typing
+  // of phrase 0 mirrors with the scene like every other entrance.
+  const half = looping();
+  const kf = [
+    `.${id}0{animation:${half ? `ch ${half}ms linear(0, 0 var(--i), 1 var(--i), 1 100%) 0ms infinite alternate both` : 'ch 1ms linear var(--i) both'},${id}w ${ms(T)} linear(1, 1 var(--b), 0 var(--b), 0 var(--a), 1 var(--a), 1 100%) ${ms(start)} infinite}`,
+    `.${id}n{animation:${id}w ${ms(T)} linear(0, 0 var(--a), 1 var(--a), 1 var(--b), 0 var(--b), 0 100%) ${ms(start)} infinite}`,
+    `@keyframes ${id}w{from{fill-opacity:0}to{fill-opacity:1}}`,
+  ];
   const lines = phrases.map((phrase, j) => {
     const typing = seg('type', j);
     const deleting = seg('del', j);
@@ -90,13 +98,9 @@ function rotator(id, x, y, phrases, { size, delay, introCps = 34, typeCps = 42, 
       if (c === ' ') return ' ';
       const on = typing.start + (k + 1) * typeCps;
       const off = deleting.start + (n[j] - k) * delCps;
-      const name = `${id}${j}_${k}`;
-      kf.push(j === 0
-        ? `@keyframes ${name}{0%{fill-opacity:1}${pct(off)}{fill-opacity:0}${pct(on)}{fill-opacity:1}}`
-        : `@keyframes ${name}{0%{fill-opacity:0}${pct(on)}{fill-opacity:1}${pct(off)}{fill-opacity:0}}`);
-      const anims = [`${name} ${ms(T)} step-end ${ms(start)} ${loops}`];
-      if (j === 0) anims.unshift(A('ch', 1, delay + (k + 1) * introCps, EASE.linear));
-      return `<tspan${j ? ' class="rh"' : ''} style="animation:${anims.join(',')}">${escapeXml(c)}</tspan>`;
+      const intro = delay + (k + 1) * introCps;
+      const i = half ? `--i:${r2((intro / half) * 100)}%;` : `--i:${ms(intro)};`;
+      return `<tspan class="${j ? `rh ${id}n` : `${id}0`}" style="${j ? '' : i}--a:${pct(on)};--b:${pct(off)}">${escapeXml(c)}</tspan>`;
     }).join('');
     return `<text x="${r2(x)}" y="${r2(y)}" font-size="${size}" textLength="${w[j]}" class="ac">${glyphs}</text>`;
   });
@@ -159,10 +163,27 @@ function hero() {
     const x = wordAt(col);
     const layers = depth.slice().reverse().map(([cls, o], k) =>
       text(x + o, 150 + o, word, { size: nameSize, weight: 700, cls, anim: A('extrude', 700, delay + 620 + (3 - k) * 50), custom: `--e:${-o}px;` }));
-    return `<g${style(A('rise', 900, delay), '--rise:84px;')}>${layers.join('')}${text(x, 150, word, { size: nameSize, weight: 700 })}</g>`;
+    return `<g${style(A('rise', 900, delay), '--rise:84px;')}>${layers.join('')}${text(x, 150, word, { size: nameSize, weight: 700, cls: 'nm-f' })}</g>`;
   }).join('')}</g>`);
   // Shiny text: a skewed band of accent light crosses the glyphs a few times, then stops.
   parts.push(`<g clip-path="url(#hero-glyphs)"><g transform="skewX(-18)"><rect x="-96" y="90" width="136" height="90" fill="url(#hero-sheen)" style="--d:790px;animation:sweep 6400ms linear 2350ms 2"/></g></g>`);
+
+  // Viewfinder (the photographer half of tandev): frame corners, then an AF box that hunts in on the
+  // name and locks green, the shot (a soft flash centred on the name, fading out before the edges),
+  // and the exposure readout with its meter needle settling on zero.
+  const vf = (x, y, dx, dy) => `M${x} ${y + dy}V${y}H${x + dx}`;
+  parts.push(`<path class="vfc" d="${vf(14, 14, 26, 26)}${vf(886, 14, -26, 26)}${vf(14, 290, 26, -26)}${vf(886, 290, -26, -26)}"${style(A('in', 900, 200))}/>`);
+  const box = [36, 96, 556, 176];
+  const afd = `${vf(box[0], box[1], 18, 14)}${vf(box[2], box[1], -18, 14)}${vf(box[0], box[3], 18, -14)}${vf(box[2], box[3], -18, -14)}`;
+  const lockAt = 1900;
+  parts.push(`<path class="af afh" d="${afd}"${style(A('lock', 760, lockAt - 760, 'cubic-bezier(.3,1.5,.5,1)'))}/>`);
+  parts.push(`<g${style(A('in', 90, lockAt))}><path class="af afl" d="${afd}"/><rect class="afp" x="${box[2] - 34}" y="${box[1] - 21}" width="34" height="15" rx="3"/>${text(box[2] - 29, box[1] - 10, 'AF-S', { size: 10, cls: 'afpt', weight: 700 })}</g>`);
+  parts.push(`<ellipse class="shot" cx="290" cy="138" rx="270" ry="110" fill="url(#hero-shot)" style="animation:shot 9000ms linear ${lockAt + 260}ms infinite"/>`);
+  const exif = 'F1.8   1/250   ISO 125   25mm';
+  parts.push(`<g${style(A('in', 700, 1700))}>${text(x0, 286, exif, { size: 11, cls: 'mu', pre: true })}<path class="meter" d="M${x0 + 262} 282h120"/><path class="tickm" d="M${x0 + 262} 279v6M${x0 + 322} 277v10M${x0 + 382} 279v6"/>${text(x0 + 252, 286, '-', { size: 11, cls: 'mu' })}${text(x0 + 386, 286, '+', { size: 11, cls: 'mu' })}<path class="needle" d="M${x0 + 322} 291l-4 6h8z"${style(A('slide', 1200, lockAt - 1000, EASE.inOut))}/></g>`);
+  // Bokeh: a few out-of-focus lights drifting behind the name.
+  const bokeh = [[470, 50, 22, 'hero-bk1', 9000], [606, 254, 28, 'hero-bk2', 11000], [372, 262, 14, 'hero-bk1', 13000], [836, 244, 18, 'hero-bk2', 10000], [300, 40, 11, 'hero-bk2', 12000]];
+  parts.splice(1, 0, `<g class="bk"${style(A('in', 1600, 400))}>${bokeh.map(([cx, cy, r, gid, dur], k) => `<circle cx="${cx}" cy="${cy}" r="${r}" fill="url(#${gid})" style="--dx:${k % 2 ? 14 : -12}px;--dy:${k % 2 ? -8 : 10}px;animation:drift ${dur}ms ${EASE.inOut} ${-k * 1700}ms infinite"/>`).join('')}</g>`);
 
   const role = rotator('rr', x0, 194, ['full-stack developer', 'cloud infrastructure builder', 'visual creator'], { size: 18, delay: 1300 });
   parts.push(role.svg);
@@ -233,6 +254,10 @@ function hero() {
 <mask id="hero-fade"><rect width="${W}" height="${H}" fill="url(#hero-fg)"/></mask>
 <linearGradient id="hero-sheen"><stop offset="0" class="shs" stop-opacity="0"/><stop offset=".5" class="shs" stop-opacity=".95"/><stop offset="1" class="shs" stop-opacity="0"/></linearGradient>
 ${haloDef('hero-halo')}<radialGradient id="hero-halo-r"><stop offset="0" class="shr" stop-opacity=".7"/><stop offset="1" class="shr" stop-opacity="0"/></radialGradient>
+<linearGradient id="hero-ng" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="ng0"/><stop offset=".55" class="ng1"/><stop offset="1" class="ng2"/></linearGradient>
+<radialGradient id="hero-shot"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset=".5" stop-color="#fff" stop-opacity=".08"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+<radialGradient id="hero-bk1"><stop offset="0" class="sht" stop-opacity=".07"/><stop offset=".78" class="sht" stop-opacity=".09"/><stop offset=".9" class="sht" stop-opacity=".16"/><stop offset="1" class="sht" stop-opacity="0"/></radialGradient>
+<radialGradient id="hero-bk2"><stop offset="0" class="shs" stop-opacity=".06"/><stop offset=".78" class="shs" stop-opacity=".08"/><stop offset=".9" class="shs" stop-opacity=".15"/><stop offset="1" class="shs" stop-opacity="0"/></radialGradient>
 <radialGradient id="hero-au1"><stop offset="0" class="shs" stop-opacity=".17"/><stop offset="1" class="shs" stop-opacity="0"/></radialGradient>
 <radialGradient id="hero-au2"><stop offset="0" class="sht" stop-opacity=".15"/><stop offset="1" class="sht" stop-opacity="0"/></radialGradient>
 <radialGradient id="hero-au3"><stop offset="0" class="shb" stop-opacity=".14"/><stop offset="1" class="shb" stop-opacity="0"/></radialGradient>
@@ -240,6 +265,13 @@ ${haloDef('hero-halo')}<radialGradient id="hero-halo-r"><stop offset="0" class="
 <clipPath id="hero-glyphs">${glyphs}</clipPath>
 <style>.sht{stop-color:var(--teal)}.shb{stop-color:var(--blue)}.spot{opacity:0}
 @keyframes spot{0%{opacity:0;transform:translate(0,0)}15%{opacity:.9}50%{transform:translate(120px,34px)}85%{opacity:.9}100%{opacity:0;transform:translate(40px,14px)}}
+.nm-f{fill:url(#hero-ng)}.ng0{stop-color:#fff}.ng1{stop-color:#e6edf3}.ng2{stop-color:#9fb0c2}
+@media (prefers-color-scheme:light){.ng0{stop-color:#24292f}.ng1{stop-color:#1f2328}.ng2{stop-color:#57606a}.shot{display:none}}
+.vfc{fill:none;stroke:var(--muted);stroke-opacity:.55;stroke-width:1.5}.af{fill:none;stroke-width:1.6;transform-box:fill-box;transform-origin:center}.afh{stroke:var(--muted)}.afl{stroke:var(--accent)}
+.afp{fill:var(--accent)}.afpt{fill:var(--bg)}.shot{opacity:0}.meter{stroke:var(--line)}.tickm{stroke:var(--muted)}.needle{fill:var(--accent)}
+@keyframes lock{from{opacity:0;transform:scale(1.14)}}
+@keyframes slide{from{transform:translateX(-46px)}}
+@keyframes shot{0%{opacity:0}1.2%{opacity:1}7%,100%{opacity:0}}
 .x1{fill:var(--accent);opacity:.55}.x2{fill:var(--teal);opacity:.42}.x3{fill:var(--blue);opacity:.3}.x4{fill:var(--blue);opacity:.15}
 @media (prefers-color-scheme:light){.aur{opacity:.75}.x1{opacity:.35}.x2{opacity:.28}.x3{opacity:.2}.x4{opacity:.1}}
 @keyframes extrude{from{opacity:0;transform:translate(var(--e),var(--e))}}
@@ -253,7 +285,7 @@ ${css.join('\n')}</style>`;
   return svg({
     w: W, h: H, id, defs,
     title: 'Duong Thai Tan, full-stack developer',
-    desc: 'Terminal-style hero. The command whoami types out and the name Duong Thai Tan rises into view while a sheen of light crosses it. The role line types and rotates between full-stack developer, cloud infrastructure builder and visual creator. The line "I build web apps and the cloud systems that run them." fades in. On the right, a git commit graph draws itself from the first commit up to HEAD on main, with feat/web and infra/aws branches merging in; packets of light then travel up main and pulse on arrival at HEAD.',
+    desc: 'Terminal-style hero framed like a camera viewfinder. The command whoami types out and the name Duong Thai Tan, in brushed metal, rises into view while a sheen of light crosses it; an autofocus box hunts in on the name, locks green and the shot flashes, with the exposure readout F1.8 1/250 ISO 125 25mm along the bottom. The role line types and rotates between full-stack developer, cloud infrastructure builder and visual creator. The line "I build web apps and the cloud systems that run them." fades in. On the right, a git commit graph draws itself from the first commit up to HEAD on main, with feat/web and infra/aws branches merging in; packets of light then travel up main and pulse on arrival at HEAD.',
     body: parts.join('\n'),
   });
 }
@@ -768,197 +800,6 @@ function island({ id, title, subtitle, groups, cols, offset }) {
   });
 }
 
-// ── 3D terminal scene ───────────────────────────────────────────────────────
-// The automation section, shown rather than told: a terminal standing in 3D space runs this
-// repo's real pipeline (generate, test, push) while two panels floating at other depths react to
-// it. Depth cues: thickness plate, floor shadow and glossy reflection, parallax (each panel bobs
-// with its own amplitude and period), and a slow yaw. An orthographic yaw is affine, so it is a
-// skewY plus a scaleX: real geometry, transform-only, compositor-friendly at 60fps.
-
-function terminal3d(sizes) {
-  const W = 900;
-  const H = 452;
-  const id = 'term';
-  const s0 = 0.2; // resting slope of a panel's horizontal axis (camera yaw)
-  const deg = v => r2((Math.atan(v) * 180) / Math.PI);
-  const parts = [];
-  const css = [];
-
-  // Motion is translation only. Any animated skew or scale changes the text's screen scale and
-  // makes Chrome re-layout every glyph each frame (measured: the yaw version dropped to ~45fps).
-  // Depth comes from parallax instead: after the run, each layer pans by an amount set by its
-  // depth (back 6px, middle 12px, front 18px), so near things visibly travel further.
-  // Pan cycle: rest, one side, through to the other, rest; velocity is zero only at the turns.
-  css.push(`.yw{transform:skewY(${deg(s0)}deg)}`);
-  css.push(`@keyframes pan{0%{animation-timing-function:${EASE.inOut}}25%{transform:translateX(var(--pn));animation-timing-function:${EASE.inOut}}75%{transform:translateX(var(--pp));animation-timing-function:${EASE.inOut}}}`);
-  css.push('@keyframes bob{50%{transform:translateY(var(--b))}}');
-  const pan = (amp, delay, inner) => `<g style="--pn:${-amp}px;--pp:${amp}px;animation:pan 9000ms linear ${Math.round(delay)}ms 1">${inner}</g>`;
-
-  // Floor: an oblique grid on the same yaw, fading out radially, with light pooling under panels.
-  const O = [360, 382];
-  const ex = [48, 48 * s0];
-  const ez = [-26, 18];
-  const Q = (u, v) => `${r2(O[0] + u * ex[0] + v * ez[0])} ${r2(O[1] + u * ex[1] + v * ez[1])}`;
-  // Fade by distance from the centre with per-line opacity: a mask would cost an offscreen pass per frame.
-  const grid = [];
-  const fade = k => r2(Math.max(0, 1 - Math.abs(k) / 5.2) ** 1.4);
-  for (let v = -4; v <= 4; v++) grid.push(`<path d="M${Q(-6, v)}L${Q(6, v)}" opacity="${fade(v * 1.3)}"/>`);
-  for (let u = -6; u <= 6; u++) grid.push(`<path d="M${Q(u, -4)}L${Q(u, 4)}" opacity="${fade(u)}"/>`);
-  parts.push(`<g${style(A('in', 1200, 100))}><ellipse cx="300" cy="372" rx="300" ry="70" fill="url(#${id}-pool)"/><ellipse cx="740" cy="300" rx="148" ry="56" fill="url(#${id}-pool2)"/><g class="tg" mask="url(#${id}-floor)">${grid.join('')}</g></g>`);
-
-  // A floating panel: placement > entrance > parallax pan > bob > static yaw. The back plate sits
-  // one step deeper; shadow and reflection pan with the panel but bob against it.
-  const panel = ({ cx, cy, w, h, enter, bobAmp, bobDur, bobDelay, depth, content, reflect = false, gap = 0 }) => {
-    const hw = w / 2;
-    const hh = h / 2;
-    const bob = (amp, inner) => `<g style="--b:${amp}px;animation:bob ${bobDur}ms ${EASE.inOut} ${bobDelay}ms 3">${inner}</g>`;
-    const yawG = inner => `<g class="yw">${inner}</g>`;
-    const plate = `<g transform="translate(8 -5.5)">${yawG(`<rect class="tp" x="${-hw}" y="${-hh}" width="${w}" height="${h}" rx="12"/>`)}</g>`;
-    const face = yawG(`<rect class="tb" x="${-hw}" y="${-hh}" width="${w}" height="${h}" rx="12"/><path class="trim" d="M${-hw + 14} ${-hh + 0.5}H${hw - 14}"/>${content}`);
-    let inner = '';
-    if (reflect) {
-      const shadow = `<ellipse class="tsh" cx="0" cy="${hh + gap + 4}" rx="${hw + 10}" ry="18" transform="rotate(${deg(s0)} 0 ${hh + gap + 4})" fill="url(#${id}-shadow)"/>`;
-      const glass = yawG(`<rect x="${-hw}" y="${hh + 2 * gap}" width="${w}" height="${h * 0.4}" rx="12" fill="url(#${id}-reflect)"/>`);
-      inner += `${shadow}${bob(-bobAmp, glass)}`;
-    }
-    inner += bob(bobAmp, plate + face);
-    return `<g transform="translate(${cx} ${cy})"><g${style(A('up', 900, enter))}>${pan(depth * 6, end + 300 + depth * 120, inner)}</g></g>`;
-  };
-
-  // ── Main terminal content (panel-local coordinates) ──
-  const tw = 440;
-  const th = 250;
-  const x0 = -194;
-  const lineH = 19;
-  const first = -70;
-  const visible = 10;
-  const lines = [];
-  let t = 700;
-  const cmd = text => { const at = t; t += 220; lines.push({ kind: 'cmd', text, at, typeAt: t }); t += text.length * 38 + 320; };
-  const out = (cells, gap = 85) => { lines.push({ kind: 'out', cells, at: t }); t += gap; };
-  const kb = bytes => `${(bytes / 1000).toFixed(1)} kB`;
-
-  cmd('node scripts/gen-profile.mjs');
-  const assetRows = Object.entries(sizes);
-  const assetAt = {};
-  for (const [name, bytes] of assetRows) {
-    assetAt[name] = t;
-    out([[`${name.padEnd(21)}${kb(bytes).padStart(8)}`, 'mu', 0]]);
-  }
-  t += 300;
-  cmd('node --test scripts/*.test.mjs');
-  out([['ok', 'ac', 0], ['render-metrics.test.mjs', 'fg', 30]], 260);
-  out([['ok', 'ac', 0], ['gen-profile.test.mjs', 'fg', 30]], 260);
-  t += 300;
-  cmd('git push origin main');
-  out([['To github.com:duongthaitan/duongthaitan.git', 'mu', 0]], 320);
-  const pushedAt = t;
-  out([['main -> main', 'fg', 24]], 300);
-  lines.push({ kind: 'prompt', at: t });
-  const end = t;
-
-  const rendered = lines.map((line, n) => {
-    const y = first + n * lineH;
-    let inner;
-    if (line.kind === 'cmd') {
-      const typedCmd = typed(x0 + 18, y, line.text, { size: 13, delay: line.typeAt, cps: 38, caret: 'vanish', vanishAt: line.typeAt + line.text.length * 38 + 260 });
-      inner = chevron(x0, y, 13) + typedCmd.svg;
-    } else if (line.kind === 'out') {
-      inner = line.cells.map(([str, cls, dx]) => text(x0 + 18 + dx, y, str, { size: 13, cls, pre: true })).join('');
-    } else {
-      inner = `${chevron(x0, y, 13)}<rect class="ac" x="${x0 + 19}" y="${r2(y - 10.7)}" width="6.5" height="13.3" rx="1"${style(`blink 1100ms linear ${line.at + 200}ms 10`)}/>`;
-    }
-    return `<g${style(A('in', 1, line.at, EASE.linear))}>${inner}</g>`;
-  });
-
-  // Scroll: each line past the tenth pushes the buffer up one row with a short ease-out.
-  const stops = [[0, 0]];
-  lines.forEach((line, n) => {
-    if (n < visible) return;
-    const prev = stops.at(-1)[1];
-    stops.push([line.at, prev], [line.at + 200, -(n - visible + 1) * lineH]);
-  });
-  const finalOffset = stops.at(-1)[1];
-  const scrollT = stops.at(-1)[0];
-  css.push(`.scroll{transform:translateY(${finalOffset}px)}@keyframes scrollm{from{transform:translateY(0)}}@keyframes scroll{${stops.map(([at, off], k) => `${r2((at / scrollT) * 100)}%{transform:translateY(${off}px)${k % 2 ? `;animation-timing-function:${EASE.out}` : ''}}`).join('')}}`);
-
-  const screen = `<rect class="scr" x="-208" y="-92" width="416" height="208" rx="6"/>
-<g clip-path="url(#${id}-scr)"><g class="scroll" style="animation:${looping() ? `scrollm ${looping()}ms linear(0, ${stops.slice(1).map(([at, off]) => `${r2(off / finalOffset)} ${r2((at / looping()) * 100)}%`).join(', ')}, 1 100%) 0ms infinite alternate both` : `scroll ${scrollT}ms linear 0ms both`}">${rendered.join('')}</g>
-<rect class="scan" x="-208" y="-98" width="416" height="8" fill="url(#${id}-scan)" style="animation:scan 4600ms linear ${end + 400}ms 2"/>
-<g transform="skewX(-18)"><rect x="-330" y="-92" width="80" height="208" fill="url(#${id}-glare)" style="--d:620px;animation:sweep 7600ms linear ${end - 1400}ms 2"/></g></g>`;
-  const chrome = `<circle class="a1" cx="-198" cy="-109" r="4.5"/><circle class="a3" cx="-183" cy="-109" r="4.5"/><circle class="a2" cx="-168" cy="-109" r="4.5"/>${text(0, -105, '~/duongthaitan', { size: 11, cls: 'mu', anchor: 'middle' })}<path class="hair" d="M-220 -96H220"/>`;
-
-  // ── Assets panel: bars grow as the terminal prints each file ──
-  const max = Math.max(...assetRows.map(([, bytes]) => bytes));
-  const assetsContent = [
-    // In a yawed plane rows slope, so a label and its value share one short run and the bar sits
-    // right under them: no far-apart columns for the eye to mismatch.
-    text(-112, -80, 'assets, kB', { size: 11, weight: 700 }),
-    `<path class="hair" d="M-130 -68H130"/>`,
-    ...assetRows.map(([name, bytes], i) => {
-      const y = -46 + i * 25;
-      const at = assetAt[name] + 70;
-      const label = name.replace('.svg', '');
-      return `${text(-112, y, label, { size: 11, cls: 'mu' })}${text(-112 + (label.length + 2) * 6.6, y, (bytes / 1000).toFixed(1), { size: 11, anim: A('in', 260, at + 120) })}<rect class="tr" x="-112" y="${y + 5}" width="220" height="4" rx="2"/><rect class="ac grow" x="-112" y="${y + 5}" width="${r2((bytes / max) * 220)}" height="4" rx="2"${style(A('grow', 620, at))}/>`;
-    }),
-  ].join('');
-
-  // ── Git panel: a new commit lands on main the moment the push completes ──
-  const gitContent = [
-    text(-104, -26, 'git log --graph', { size: 11, cls: 'mu' }),
-    `<path class="hair" d="M-120 -14H120"/>`,
-    `<path class="gline" d="M-92 18H32"/>`,
-    `<path class="gline draw" d="M32 18H72" pathLength="1"${style(A('draw', 260, pushedAt, EASE.out))}/>`,
-    ...[-92, -50, -8, 30].map(x => `<circle class="gnode" cx="${x}" cy="18" r="4"/>`),
-    `<circle class="ring" cx="72" cy="18" r="5"${style(`ring 2200ms ${EASE.out} ${pushedAt + 260}ms 3`)}/>`,
-    `<circle class="ac pop" cx="72" cy="18" r="5.5"${style(A('pop', 420, pushedAt + 200))}/>`,
-    `<g style="--d:42px;animation:${A('type', 520, pushedAt + 160)}" class="mv"><rect class="tpill" x="8" y="-5" width="44" height="16" rx="5"/>${text(15, 7, 'main', { size: 11, cls: 'ac' })}</g>`,
-  ].join('');
-
-  parts.push(panel({ cx: 726, cy: 148, w: 260, h: 212, enter: 320, bobAmp: -9, bobDur: 6200, bobDelay: 0, depth: 1, content: assetsContent }));
-  parts.push(panel({ cx: 292, cy: 200, w: tw, h: th, enter: 120, bobAmp: -6, bobDur: 5200, bobDelay: 0, depth: 2, content: chrome + screen, reflect: true, gap: 26 }));
-  parts.push(panel({ cx: 752, cy: 366, w: 240, h: 104, enter: 480, bobAmp: -5, bobDur: 4400, bobDelay: 600, depth: 3, content: gitContent }));
-
-  // Data particles drifting up off the terminal's top edge.
-  const rand = random(4242);
-  const dots = [];
-  for (let n = 0; n < 12; n++) {
-    const px = -190 + rand() * 380;
-    const x = r2(292 + px);
-    const y = r2(200 - 125 + px * s0 - 10);
-    const size = rand() > 0.6 ? 3 : 2;
-    dots.push(`<rect class="${['ac', 'tl', 'bl'][n % 3]} pt" x="${x}" y="${y}" width="${size}" height="${size}" rx=".5" style="animation:rise ${Math.round(2800 + rand() * 1400)}ms ${EASE.out} ${Math.round(end + rand() * 3000)}ms 3"/>`);
-  }
-  parts.push(dots.join(''));
-
-  const defs = `<radialGradient id="${id}-fl" cx=".4" cy=".78" r=".25"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient><mask id="${id}-floor"><rect width="${W}" height="${H}" fill="url(#${id}-fl)"/></mask>
-<clipPath id="${id}-scr"><rect x="-208" y="-84" width="416" height="200" rx="6"/></clipPath>
-<radialGradient id="${id}-pool"><stop offset="0" class="shs" stop-opacity=".14"/><stop offset="1" class="shs" stop-opacity="0"/></radialGradient>
-<radialGradient id="${id}-pool2"><stop offset="0" class="sht" stop-opacity=".12"/><stop offset="1" class="sht" stop-opacity="0"/></radialGradient>
-<radialGradient id="${id}-shadow"><stop offset="0" stop-color="#000" stop-opacity=".5"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
-<linearGradient id="${id}-reflect" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="shs" stop-opacity=".06"/><stop offset=".3" class="shfg" stop-opacity=".025"/><stop offset="1" class="shfg" stop-opacity="0"/></linearGradient>
-<linearGradient id="${id}-scan" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="shs" stop-opacity="0"/><stop offset=".5" class="shs" stop-opacity=".09"/><stop offset="1" class="shs" stop-opacity="0"/></linearGradient>
-<linearGradient id="${id}-glare"><stop offset="0" class="shfg" stop-opacity="0"/><stop offset=".5" class="shfg" stop-opacity=".07"/><stop offset="1" class="shfg" stop-opacity="0"/></linearGradient>
-<style>.sht{stop-color:var(--teal)}.shfg{stop-color:var(--fg)}
-.tg{fill:none;stroke:var(--line);stroke-width:1}.tr{fill:var(--line);opacity:.6}
-.tb{fill:var(--panel);stroke:var(--line)}.tp{fill:var(--line)}.trim{fill:none;stroke:var(--accent);stroke-opacity:.5}
-.tsh{opacity:.9}.tpill{fill:var(--raised);stroke:var(--accent);stroke-opacity:.6}
-.gline{fill:none;stroke:var(--muted);stroke-width:2;opacity:.7}.gnode{fill:var(--muted)}.scr{fill:var(--screen)}
-.a1{fill:#ff7b72}.a2{fill:#3fb950}.a3{fill:#d29922}.tl{fill:var(--teal)}.bl{fill:var(--blue)}
-.scan,.pt{opacity:0}
-@media (prefers-color-scheme:light){.a1{fill:#cf222e}.a2{fill:#1a7f37}.a3{fill:#bf8700}.tsh{opacity:.25}}
-@keyframes scan{0%{opacity:0;transform:translateY(0)}10%,90%{opacity:1}100%{opacity:0;transform:translateY(212px)}}
-@keyframes rise{0%{opacity:0;transform:translateY(0)}15%{opacity:.9}100%{opacity:0;transform:translateY(-72px)}}
-${css.join('\n')}</style>`;
-
-  return svg({
-    w: W, h: H, id, defs,
-    title: 'Automation: the pipeline that builds this profile',
-    desc: `A terminal floating in 3D space runs node scripts/gen-profile.mjs, listing the generated assets (${assetRows.map(([name, bytes]) => `${name} ${kb(bytes)}`).join(', ')}), then node --test scripts/*.test.mjs with render-metrics and gen-profile tests ok, then git push origin main. A panel of asset-size bars grows as each file prints, and a git graph gains a new commit on main when the push completes.`,
-    body: parts.join('\n'),
-  });
-}
-
 // ── Clickable keys ──────────────────────────────────────────────────────────
 // A README cannot run code, but every image can be a link. Each key is its own small image so each
 // one is its own click target. On load the row pops up like keys springing back in a wave, then a
@@ -1159,123 +1000,200 @@ ${clips.join('')}
 }
 
 // ── Brand ───────────────────────────────────────────────────────────────────
-// The tandev mark (Tandev.foto: developer and photographer): a mirrorless camera in three-quarter
-// view on the same receding axis as every other 3D object here, beside the wordmark. The lens is a
-// real cylinder: rings are coaxial circles along the axis toward the viewer, so each shows the
-// crescent you would see from above-right. Every few seconds it takes a picture: the shutter button
-// dips, the iris closes and reopens, the flash fires. Transform/opacity only, finite loops.
+// The tandev mark (Tandev.foto: developer and photographer): a Fujifilm X-T5 in silver with a 25mm
+// prime and a speedlight on the hot shoe, in three-quarter view on the same receding axis as every
+// other 3D object here (faces parallel to the picture plane stay true, so the lens rings are
+// circles). Dials are discs on the top plate drawn through the top-plane matrix. Every few seconds
+// it takes a picture the way a camera does: half-press (AF lamp, focus ring turns), full press (the
+// button bottoms out, the flash fires, the iris snaps shut, the body recoils), then the speedlight
+// recycles (its ready lamp blinks red, then green). Transform, opacity and fill only.
+
+const CAM = { dv: [0.62, -0.42], shot: 6000, first: 1800 };
+// Point on the top plate: u along the width from the front-left corner, d into depth, z up.
+const topAt = (u, d, z = 0) => [30 + u + CAM.dv[0] * d, 92 + CAM.dv[1] * d - z];
+const disc = (u, d, z, r, cls, extra = '') => {
+  const [x, y] = topAt(u, d, z);
+  return `<circle class="${cls}" r="${r}" transform="matrix(1 0 ${CAM.dv[0]} ${CAM.dv[1]} ${r2(x)} ${r2(y)})"${extra}/>`;
+};
+// A knurled dial: side built from stacked discs, vertical knurl lines along its front half, a lit
+// top with engraved ticks, and an index mark.
+function dial(u, d, r, h, { mark = '#e6edf3', ticks = 24 } = {}) {
+  const side = [0, 0.33, 0.66].map(f => disc(u, d, h * f, r, 'dside')).join('');
+  const [cx, cy] = topAt(u, d, h);
+  const knurl = [];
+  for (let k = 0; k <= 16; k++) {
+    const a = Math.PI + (k / 16) * Math.PI; // front half (towards the viewer)
+    const x = cx + r * Math.cos(a) + CAM.dv[0] * r * Math.sin(a);
+    const y = cy + CAM.dv[1] * r * Math.sin(a);
+    knurl.push(`M${r2(x)} ${r2(y)}v${h}`);
+  }
+  return `${side}<path class="dknurl" d="${knurl.join('')}"/>${disc(u, d, h, r, 'dtop')}${disc(u, d, h, r * 0.78, 'dtick', ` stroke-dasharray="${r2((2 * Math.PI * r * 0.78) / ticks / 3)} ${r2(((2 * Math.PI * r * 0.78) / ticks) * (2 / 3))}"`)}${disc(u, d, h, r * 0.3, 'dhub')}${disc(u - r * 0.62, d + r * 0.1, h, 1.3, 'dmark', ` style="fill:${mark}"`)}`;
+}
 
 function camera(id) {
-  const ring = (t, r, cls, extra = '') => { const [x, y] = [98 - 20 * t, 88 + 13 * t]; return `<circle class="${cls}" cx="${r2(x)}" cy="${r2(y)}" r="${r}"${extra}/>`; };
-  const [gx, gy] = [78, 101]; // front of the lens
-  const click = 5200;
-  const firstShot = 2600;
-  const shots = 5;
-  const shot = name => style(`${name} ${click}ms ${EASE.out} ${firstShot}ms ${shots}`);
+  const { shot, first } = CAM;
+  const cyc = name => `${name} ${shot}ms linear ${first}ms infinite`;
+  // Lens: mount centre C, axis towards the viewer (down-left), rings are circles along it.
+  const C = [127, 130];
+  const AX = [-0.62, 0.42];
+  const LEN = 44;
+  const at = t => [C[0] + AX[0] * LEN * t, C[1] + AX[1] * LEN * t];
+  const ring = (t, r, cls, extra = '') => { const [x, y] = at(t); return `<circle class="${cls}" cx="${r2(x)}" cy="${r2(y)}" r="${r}"${extra}/>`; };
+  const norm = Math.hypot(AX[0], AX[1]);
+  const n = [AX[1] / norm, -AX[0] / norm];
+  const band = (t0, t1, r) => { const [a, b] = [at(t0), at(t1)]; return `M${r2(a[0] + n[0] * r)} ${r2(a[1] + n[1] * r)}L${r2(b[0] + n[0] * r)} ${r2(b[1] + n[1] * r)}L${r2(b[0] - n[0] * r)} ${r2(b[1] - n[1] * r)}L${r2(a[0] - n[0] * r)} ${r2(a[1] - n[1] * r)}Z`; };
+  const [gx, gy] = at(1);
+  const iris = Array.from({ length: 7 }, (_, k) => { const a = ((k * 360) / 7 + 12) * Math.PI / 180; return `${r2(gx + 9 * Math.cos(a))} ${r2(gy + 9 * Math.sin(a))}`; });
+  const blades = iris.map((p, k) => { const a = ((k * 360) / 7 + 64) * Math.PI / 180; return `M${p}L${r2(gx + 3 * Math.cos(a))} ${r2(gy + 3 * Math.sin(a))}`; }).join('');
   const arc = (r, a0, a1) => {
     const p = a => [r2(gx + r * Math.cos((a * Math.PI) / 180)), r2(gy + r * Math.sin((a * Math.PI) / 180))];
     const [s, e] = [p(a0), p(a1)];
     return `M${s[0]} ${s[1]}A${r} ${r} 0 0 1 ${e[0]} ${e[1]}`;
   };
-  const iris = Array.from({ length: 6 }, (_, k) => { const a = (k * 60 + 15) * Math.PI / 180; return `${r2(gx + 7.5 * Math.cos(a))} ${r2(gy + 7.5 * Math.sin(a))}`; });
-  const blades = iris.map((p, k) => `M${p}L${r2(gx + 2.6 * Math.cos(((k * 60 + 75) * Math.PI) / 180))} ${r2(gy + 2.6 * Math.sin(((k * 60 + 75) * Math.PI) / 180))}`).join('');
 
-  const body = [
-    // body: top (lit), right side (shade), front (graphite gradient)
-    `<path class="cb-top" d="M33 56L143 56L157 47L47 47Z"/>`,
-    `<path class="cb-side" d="M143 56L157 47L164 54L164 109L150 118L150 63Z"/>`,
-    `<rect x="26" y="56" width="124" height="62" rx="9" fill="url(#${id}-body)"/>`,
-    `<rect x="26.5" y="56.5" width="123" height="61" rx="8.5" class="cb-edge"/>`,
-    // grip, leather textured, with the self-timer lamp and AF assist light
-    `<rect x="19" y="58" width="31" height="60" rx="11" fill="url(#${id}-grip)"/>`,
-    `<rect x="19" y="58" width="31" height="60" rx="11" fill="url(#${id}-leather)"/>`,
-    `<path class="cb-hl" d="M22 66V108"/>`,
-    `<circle class="led" cx="56" cy="64" r="2"${style(`blink 1000ms steps(1) ${firstShot - 1200}ms 14`)}/><circle class="af" cx="56" cy="71" r="1.5"/>`,
-    // viewfinder hump with hot shoe and the wordmark
-    `<path class="cb-side" d="M104 56L118 47L111 25L97 34Z"/>`,
-    `<path class="cb-top" d="M69 34L97 34L111 25L83 25Z"/>`,
-    `<path fill="url(#${id}-body)" d="M62 56L104 56L97 34L69 34Z"/>`,
-    `<path class="shoe" d="M77 31.5L94 31.5L101 27L84 27Z"/><path class="rail" d="M78.5 30.5L95 30.5M85 28H100"/>`,
-    text(83, 48.5, 'tandev', { size: 6.4, cls: 'brandtxt', anchor: 'middle' }),
-    // mode dial and shutter button
-    `<rect x="40" y="47" width="20" height="6" class="dial"/><ellipse cx="50" cy="47" rx="10" ry="3.6" class="dialtop"/><path class="knurl" d="M40 50H60"/>`,
-    `<g${shot('press')}><ellipse cx="31" cy="54.5" rx="7.5" ry="2.8" class="btn"/><ellipse cx="31" cy="53.8" rx="5.5" ry="2" class="btntop"/></g>`,
-    // lens: mount, barrel, rings toward the viewer, then the front element
-    `<circle cx="98" cy="88" r="27" fill="url(#${id}-metal)"/>`,
-    `<circle cx="98" cy="88" r="24" class="barrel-back"/>`,
-    `<path fill="url(#${id}-barrel)" d="M84.9 67.9L111.1 108.1L91.1 121.1L64.9 80.9Z"/>`,
-    ring(0.2, 22.6, 'rubber'),
-    ring(0.45, 22.4, 'focus', style(`turn 3200ms linear 900ms 6`)),
-    ring(0.78, 23.4, 'redring'),
-    ring(1, 24, 'rim', ` fill="url(#${id}-rim)"`),
-    `<circle cx="${gx}" cy="${gy}" r="20" class="rim-in"/>`,
-    `<circle cx="${gx}" cy="${gy}" r="17" fill="url(#${id}-glass)"/>`,
-    // coatings catch the light as faint coloured arcs
-    `<path class="ct-violet" d="${arc(13.5, 200, 285)}"/><path class="ct-green" d="${arc(10, 20, 95)}"/><path class="ct-amber" d="${arc(15, 115, 150)}"/>`,
-    // iris: six blades that close and reopen on each shot
-    `<g class="iris"${shot('iris')}><path class="blade" d="M${iris.join('L')}Z"/><path class="bladeline" d="${blades}"/></g>`,
-    `<ellipse cx="${gx - 6}" cy="${gy - 7}" rx="4.6" ry="2.4" transform="rotate(-32 ${gx - 6} ${gy - 7})" class="spec"/><circle cx="${gx + 5}" cy="${gy + 6}" r=".9" class="spec2"/>`,
-    `<circle cx="${gx}" cy="${gy}" r="17" class="glassflash"${shot('flashglass')}/>`,
+  // Speedlight on the hot shoe: foot, body, then the head with its Fresnel window facing forward.
+  const box = (x, y, w, h, dep, front, top, side) => {
+    const [dx, dy] = [CAM.dv[0] * dep, CAM.dv[1] * dep];
+    return `<path class="${top}" d="M${x} ${y}L${x + w} ${y}L${r2(x + w + dx)} ${r2(y + dy)}L${r2(x + dx)} ${r2(y + dy)}Z"/><path class="${side}" d="M${x + w} ${y}L${r2(x + w + dx)} ${r2(y + dy)}L${r2(x + w + dx)} ${r2(y + h + dy)}L${x + w} ${y + h}Z"/><rect class="${front}" x="${x}" y="${y}" width="${w}" height="${h}" rx="2"/>`;
+  };
+  const flash = [
+    `<path class="shoe" d="M128 55.5L146 55.5L152 51.5L134 51.5Z"/>`,
+    box(129, 47, 16, 7, 9, 'fl-foot', 'fl-top', 'fl-side'),
+    box(122, 27, 30, 20, 16, 'fl-body', 'fl-top', 'fl-side'),
+    `<circle cx="${r2(152 + CAM.dv[0] * 8)}" cy="${r2(37 + CAM.dv[1] * 8)}" r="1.7" class="ready" style="animation:${cyc('ready')}"/>`,
+    box(117, 7, 40, 20, 20, 'fl-head', 'fl-top', 'fl-side'),
+    `<rect x="121" y="10" width="32" height="14" rx="1.5" fill="url(#${id}-fresnel)"/><rect x="121" y="10" width="32" height="14" rx="1.5" fill="url(#${id}-lines)"/>`,
+    `<rect x="121" y="10" width="32" height="14" rx="1.5" class="fwin" style="animation:${cyc('fwin')}"/>`,
   ].join('');
 
-  const markup = [
-    `<ellipse cx="96" cy="133" rx="70" ry="7" fill="url(#${id}-shadow)"${style(`shb 4400ms ${EASE.inOut} 1200ms 4`)} class="cshadow"/>`,
-    `<g${style([A('up', 900, 150), `bob 4400ms ${EASE.inOut} 1200ms 4`])}>${body}</g>`,
-    `<circle cx="96" cy="30" r="64" fill="url(#${id}-flash)" class="flash"${shot('flash')}/>`,
+  const body = [
+    // body: top plate (silver), right side, front (leatherette between silver bands), grip
+    `<path class="c-edge" fill="url(#${id}-top)" d="M30 92L206 92L233.3 73.5L57.3 73.5Z"/>`,
+    `<path class="c-sidel" d="M206 92L233.3 73.5L233.3 159.5L206 178Z"/>`,
+    `<path class="c-side" d="M206 92L233.3 73.5V86.5L206 105Z"/><path class="c-side" d="M206 171L233.3 152.5V159.5L206 178Z"/><path class="c-hl" d="M206.5 105L233 87"/>`,
+    `<ellipse cx="214" cy="93" rx="2.6" ry="3.4" class="lug"/>`,
+    `<rect x="30" y="92" width="176" height="86" rx="8" class="leather"/>`,
+    `<rect x="30" y="92" width="176" height="86" rx="8" fill="url(#${id}-grain)"/>`,
+    `<path fill="url(#${id}-band)" d="M30 105V100a8 8 0 0 1 8 -8H198a8 8 0 0 1 8 8V105Z"/>`,
+    `<path fill="url(#${id}-band)" d="M30 171H206V170a8 8 0 0 1 -8 8H38a8 8 0 0 1 -8 -8Z"/>`,
+    `<rect x="30" y="92" width="176" height="86" rx="8" fill="url(#${id}-shade)"/>`,
+    `<path class="c-hl" d="M33 105.5H203"/><path class="c-hl2" d="M37 92.4H199"/>`,
+    `<rect x="30" y="105" width="30" height="66" rx="7" class="grip"/><rect x="30" y="105" width="30" height="66" rx="7" fill="url(#${id}-grain)"/><path class="c-hl" d="M34 112V164"/>`,
+    text(196, 101, 'X-T5', { size: 5.6, cls: 'c-ink', anchor: 'end', weight: 700 }),
+    `<circle cx="70" cy="114" r="3" class="aflamp"/><circle cx="70" cy="114" r="3" class="afon" style="animation:${cyc('af')}"/>`,
+    `<circle cx="182" cy="150" r="3.4" class="c-btn"/>`,
+    // dials behind the viewfinder: exposure compensation, shutter speed
+    dial(16, 30, 10, 6),
+    dial(46, 25, 13, 7.5, { mark: '#ff6b5b', ticks: 30 }),
+    // viewfinder hump: front, top, side, the FUJIFILM name, hot shoe and speedlight
+    `<path class="c-side" d="M156 60L174.6 47.4L182.6 79.4L164 92Z"/>`,
+    `<path class="c-edge" fill="url(#${id}-top)" d="M100 60L156 60L174.6 47.4L118.6 47.4Z"/>`,
+    `<path class="c-edge" fill="url(#${id}-hump)" d="M92 92L164 92L156 60L100 60Z"/>`,
+    `<path class="c-hl" d="M100.5 60.5H155.5"/>`,
+    text(128, 80, 'FUJIFILM', { size: 7.2, cls: 'c-ink', anchor: 'middle', weight: 700 }),
+    // ISO dial to the right of the hump
+    dial(160, 24, 13, 7.5, { ticks: 28 }),
+    // shutter button in its power-switch collar, at the front of the grip
+    disc(18, 9, 0.5, 8.5, 'collar'),
+    `<path class="lever" d="M${topAt(9, 2, 1).map(r2).join(' ')}l-5 3"/>`,
+    `<g style="animation:${cyc('press')}">${disc(18, 9, 1.5, 4.6, 'btn-s')}${disc(18, 9, 3, 4.6, 'btn-s')}${disc(18, 9, 4, 4.6, 'btn-t')}</g>`,
+    `<g class="rip" style="animation:${cyc('rip')}">${disc(18, 9, 2, 6, 'ripple')}</g>`,
+    // lens: flange, barrel, aperture ring, focus ring, front rim and the glass
+    `<circle cx="${C[0]}" cy="${C[1]}" r="35" fill="url(#${id}-metal)"/>`,
+    `<path fill="url(#${id}-barrel)" d="${band(0.04, 1, 31)}"/>`,
+    ring(0.04, 31.5, 'mount'),
+    ring(0.12, 30, 'ap'),
+    ring(0.3, 30, 'apribs'),
+    `<path class="apmarks" d="${(() => { const [x, y] = at(0.33); return [-62, -50, -38, -26, -14].map(a => { const r = (a * Math.PI) / 180; return `M${r2(x + 30 * Math.cos(r))} ${r2(y + 30 * Math.sin(r))}l${r2(-1.8 * Math.cos(r))} ${r2(-1.8 * Math.sin(r))}`; }).join(''); })()}"/>`,
+    ring(0.46, 31, 'fbase'),
+    ring(0.62, 31, 'focus', ` style="animation:${cyc('focus')}"`),
+    ring(0.86, 29.5, 'front'),
+    ring(1, 29, 'rim', ` fill="url(#${id}-rim)"`),
+    `<path id="${id}-name" class="none" d="M${r2(gx + 25.4 * Math.cos(2.62))} ${r2(gy + 25.4 * Math.sin(2.62))}A25.4 25.4 0 1 1 ${r2(gx + 25.4 * Math.cos(0.52))} ${r2(gy + 25.4 * Math.sin(0.52))}"/>`,
+    `<text font-size="4.2" class="lensname"><textPath href="#${id}-name">25mm  1:1.8  52mm</textPath></text>`,
+    `<circle cx="${r2(gx)}" cy="${r2(gy)}" r="22.5" class="rim-in"/>`,
+    `<circle cx="${r2(gx)}" cy="${r2(gy)}" r="20" fill="url(#${id}-glass)"/>`,
+    `<path class="ct-violet" d="${arc(15.5, 200, 285)}"/><path class="ct-green" d="${arc(11.5, 20, 95)}"/><path class="ct-amber" d="${arc(17.5, 115, 150)}"/>`,
+    `<g class="iris" style="animation:${cyc('iris')}"><path class="blade" d="M${iris.join('L')}Z"/><path class="bladeline" d="${blades}"/></g>`,
+    `<ellipse cx="${r2(gx - 7)}" cy="${r2(gy - 8)}" rx="5.4" ry="2.6" transform="rotate(-32 ${r2(gx - 7)} ${r2(gy - 8)})" class="spec"/><circle cx="${r2(gx + 6)}" cy="${r2(gy + 7)}" r="1" class="spec2"/>`,
+    `<circle cx="${r2(gx)}" cy="${r2(gy)}" r="20" class="glassflash" style="animation:${cyc('gflash')}"/>`,
+    flash,
+  ].join('');
+
+  const markup = ['<g transform="translate(0 24)">',
+    `<ellipse cx="128" cy="186" rx="92" ry="8" fill="url(#${id}-shadow)"${style(`shb 4400ms ${EASE.inOut} 1200ms 4`)} class="cshadow"/>`,
+    `<g${style([A('up', 900, 150), `bob 4400ms ${EASE.inOut} 1200ms 4`])}><g style="animation:${cyc('recoil')}">${body}</g></g>`,
+    `<g class="burst" style="animation:${cyc('burst')}"><circle cx="137" cy="17" r="40" fill="url(#${id}-burst)"/><ellipse cx="137" cy="17" rx="128" ry="5" fill="url(#${id}-burst)"/></g>`,
+    '</g>',
   ].join('\n');
 
-  const defs = `<linearGradient id="${id}-body" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a505a"/><stop offset=".35" stop-color="#2b3038"/><stop offset="1" stop-color="#15181d"/></linearGradient>
-<linearGradient id="${id}-grip" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2e3339"/><stop offset=".55" stop-color="#1a1d22"/><stop offset="1" stop-color="#0d0f12"/></linearGradient>
-<pattern id="${id}-leather" width="3" height="3" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r=".55" fill="#fff" fill-opacity=".07"/></pattern>
-<radialGradient id="${id}-metal" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#d9dee5"/><stop offset=".45" stop-color="#8a929c"/><stop offset="1" stop-color="#3a4048"/></radialGradient>
-<linearGradient id="${id}-barrel" gradientUnits="userSpaceOnUse" x1="70" y1="70" x2="104" y2="116"><stop offset="0" stop-color="#4c535d"/><stop offset=".45" stop-color="#1d2026"/><stop offset="1" stop-color="#0b0d10"/></linearGradient>
+  const defs = `<linearGradient id="${id}-top" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f1f3f5"/><stop offset=".55" stop-color="#c3c9d0"/><stop offset="1" stop-color="#8f979f"/></linearGradient>
+<linearGradient id="${id}-hump" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e4e8ec"/><stop offset=".6" stop-color="#b9c0c8"/><stop offset="1" stop-color="#9aa2ab"/></linearGradient>
+<linearGradient id="${id}-band" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dfe3e8"/><stop offset="1" stop-color="#a3abb4"/></linearGradient>
+<pattern id="${id}-grain" width="2.4" height="2.4" patternUnits="userSpaceOnUse"><circle cx="1.2" cy="1.2" r=".5" fill="#fff" fill-opacity=".06"/></pattern>
+<pattern id="${id}-lines" width="4" height="1.6" patternUnits="userSpaceOnUse"><rect width="4" height=".5" fill="#000" fill-opacity=".14"/></pattern>
+<linearGradient id="${id}-fresnel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f6f8"/><stop offset="1" stop-color="#c2c8cf"/></linearGradient>
+<radialGradient id="${id}-metal" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#eef1f4"/><stop offset=".5" stop-color="#a0a8b1"/><stop offset="1" stop-color="#4a5058"/></radialGradient>
+<linearGradient id="${id}-barrel" gradientUnits="userSpaceOnUse" x1="95" y1="105" x2="130" y2="170"><stop offset="0" stop-color="#4c535d"/><stop offset=".45" stop-color="#1d2026"/><stop offset="1" stop-color="#0b0d10"/></linearGradient>
 <radialGradient id="${id}-rim" cx=".38" cy=".32" r=".75"><stop offset="0" stop-color="#5b626c"/><stop offset=".6" stop-color="#22262c"/><stop offset="1" stop-color="#0c0e11"/></radialGradient>
-<radialGradient id="${id}-glass" cx=".42" cy=".38" r=".7"><stop offset="0" stop-color="#1d3a63"/><stop offset=".45" stop-color="#0a1426"/><stop offset="1" stop-color="#020305"/></radialGradient>
+<radialGradient id="${id}-glass" cx=".42" cy=".38" r=".7"><stop offset="0" stop-color="#23406e"/><stop offset=".45" stop-color="#0a1426"/><stop offset="1" stop-color="#020305"/></radialGradient>
 <radialGradient id="${id}-shadow"><stop offset="0" stop-color="#000" stop-opacity=".55"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
-<radialGradient id="${id}-flash"><stop offset="0" stop-color="#fff" stop-opacity=".9"/><stop offset=".35" stop-color="#fff6d8" stop-opacity=".35"/><stop offset="1" stop-color="#fff6d8" stop-opacity="0"/></radialGradient>`;
+<radialGradient id="${id}-burst"><stop offset="0" stop-color="#fff" stop-opacity=".95"/><stop offset=".3" stop-color="#fffbea" stop-opacity=".5"/><stop offset="1" stop-color="#fff6d8" stop-opacity="0"/></radialGradient>
+<linearGradient id="${id}-shade" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".07"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".25"/></linearGradient>`;
 
-  const css = `.cb-top{fill:#565d67}.cb-side{fill:#14171b}.cb-edge{fill:none;stroke:#fff;stroke-opacity:.07}.cb-hl{stroke:#fff;stroke-opacity:.1;stroke-linecap:round}
-.led{fill:#ff5a4f}.af{fill:#e3b341;opacity:.85}.shoe{fill:#0f1114}.rail{stroke:#9aa3ad;stroke-width:.6;stroke-opacity:.7}.brandtxt{fill:#aeb6c0}
-.dial{fill:#2a2e35}.dialtop{fill:#5d646e;stroke:#89919c;stroke-width:.6}.knurl{stroke:#0d0f12;stroke-width:5;stroke-dasharray:.8 1}
-.btn{fill:#2a2e35}.btntop{fill:#c7ccd3;stroke:#ff5a4f;stroke-width:.7}
-.barrel-back{fill:#1a1d22}.rubber{fill:none;stroke:#0c0e11;stroke-width:4.5;stroke-dasharray:1 1.4}
-.focus{fill:none;stroke:#090a0c;stroke-width:6;stroke-dasharray:1.1 1.1}.redring{fill:none;stroke:#ff4b3e;stroke-width:1.6}
-.rim{stroke:#6c737d;stroke-width:.6}.rim-in{fill:#06070a;stroke:#2c3138;stroke-width:.8}
+  // Shot timeline (one cycle): half-press at 8%, full press at 20%, the shot at 21%, recycle to 60%.
+  const css = `.c-side{fill:#8a929b}.c-sidel{fill:#121417}.lug{fill:none;stroke:#c3c9d0;stroke-width:1.4}.c-hl2{fill:none;stroke:#fff;stroke-opacity:.8;stroke-linecap:round}.leather{fill:#1b1d21}.grip{fill:#141619}.c-hl{fill:none;stroke:#fff;stroke-opacity:.35;stroke-linecap:round}
+.c-ink{fill:#1f2328}.aflamp{fill:#5a3b12}.afon{fill:#ffb347;opacity:0}.c-btn{fill:#c6ccd3;stroke:#7d858e;stroke-width:.6}
+.dside{fill:#7c848d}.dknurl{stroke:#3b4047;stroke-width:.7}.dtop{fill:#d9dee3;stroke:#8f979f;stroke-width:.5}.dtick{fill:none;stroke:#3b4047;stroke-width:1.6}.dhub{fill:#c3c9d0;stroke:#8f979f;stroke-width:.4}
+.collar{fill:#2b2f35;stroke:#5c636c;stroke-width:.5}.lever{stroke:#2b2f35;stroke-width:2.4;stroke-linecap:round}.btn-s{fill:#9aa2ab}.btn-t{fill:#e6e9ed;stroke:#8f979f;stroke-width:.4}
+.rip{opacity:0}.ripple{fill:none;stroke:var(--accent);stroke-width:.8}
+.shoe{fill:#1a1d22}.fl-foot,.fl-body,.fl-head{fill:#202328}.fl-top{fill:#3b4048}.fl-side{fill:#121418}.ready{fill:#3fb950}
+.fwin{fill:#fff;opacity:0}.burst{opacity:0}
+.mount{fill:none;stroke:#c9ced4;stroke-width:1.2}.ap{fill:#16191d}.apribs{fill:#121418;stroke:#000;stroke-width:3;stroke-dasharray:1 1.2}
+.apmarks{stroke:#e6edf3;stroke-width:.7}.fbase{fill:#16191d}.focus{fill:#0f1114;stroke:#050607;stroke-width:6;stroke-dasharray:1.3 1.1}.front{fill:#1d2025}
+.rim{stroke:#6c737d;stroke-width:.6}.rim-in{fill:#06070a;stroke:#2c3138;stroke-width:.8}.none{fill:none}.lensname{fill:#c9d1d9;letter-spacing:.3px}
 .ct-violet{fill:none;stroke:#8f73ff;stroke-width:1.6;stroke-opacity:.55;stroke-linecap:round}.ct-green{fill:none;stroke:#3fd6a0;stroke-width:1.2;stroke-opacity:.42;stroke-linecap:round}
 .ct-amber{fill:none;stroke:#ffb347;stroke-width:1.1;stroke-opacity:.5;stroke-linecap:round}
 .blade{fill:#070a10;stroke:#273041;stroke-width:.5}.bladeline{stroke:#2b3547;stroke-width:.5}
 .spec{fill:#fff;opacity:.75}.spec2{fill:#fff;opacity:.9}
-.iris,.cshadow{transform-box:fill-box;transform-origin:center}
-.flash,.glassflash{opacity:0}.glassflash{fill:#fff}
-@keyframes turn{to{stroke-dashoffset:-22}}
-@keyframes press{6%{transform:translateY(1.4px)}12%{transform:none}}
-@keyframes iris{6%{transform:scale(1)}9%{transform:scale(.22)}15%{transform:scale(1)}}
-@keyframes flash{8%{opacity:0}9.5%{opacity:1}20%{opacity:0}}
-@keyframes flashglass{8%{opacity:0}9.5%{opacity:.55}16%{opacity:0}}
+.iris,.cshadow,.rip{transform-box:fill-box;transform-origin:center}
+.glassflash{fill:#fff;opacity:0}
+@keyframes press{0%,7%{transform:none}9%,19%{transform:translateY(.8px)}21%,27%{transform:translateY(1.8px)}31%,100%{transform:none}}
+@keyframes rip{0%,20%{opacity:0;transform:scale(.6)}21%{opacity:.9;transform:scale(.8)}32%,100%{opacity:0;transform:scale(1.7)}}
+@keyframes af{0%,7.5%{opacity:0}9%,19%{opacity:1}20%,100%{opacity:0}}
+@keyframes focus{0%,8%{stroke-dashoffset:0}16%,100%{stroke-dashoffset:-7}}
+@keyframes recoil{0%,21%{translate:0 0}22%{translate:-.5px 1px}25%,100%{translate:0 0}}
+@keyframes iris{0%,21%{transform:scale(1)}22.5%{transform:scale(.18)}28%,100%{transform:scale(1)}}
+@keyframes fwin{0%,20.8%{opacity:0}21.4%{opacity:1}26%,100%{opacity:0}}
+@keyframes burst{0%,20.8%{opacity:0}21.4%{opacity:1}24%{opacity:.5}34%,100%{opacity:0}}
+@keyframes gflash{0%,21%{opacity:0}22%{opacity:.6}28%,100%{opacity:0}}
+@keyframes ready{0%,21%{fill:#3fb950}22%,38%{fill:#3a1f1f}40%,44%{fill:#ff5a4f}46%,50%{fill:#3a1f1f}52%,56%{fill:#ff5a4f}58%,100%{fill:#3fb950}}
+@media (prefers-color-scheme:light){.c-edge{stroke:#6e7781;stroke-width:.6}}
 @keyframes bob{50%{transform:translateY(-4px)}}
-@keyframes shb{50%{transform:scale(.88);opacity:.7}}
-@keyframes blink{50%{opacity:.15}}`;
+@keyframes shb{50%{transform:scale(.88);opacity:.7}}`;
   return { markup, defs, css };
 }
 
 function brand() {
   const W = 900;
-  const H = 150;
+  const H = 222;
   const id = 'brand';
   const cam = camera(id);
-  const parts = [`<ellipse cx="92" cy="80" rx="88" ry="66" fill="url(#${id}-glow)"/>`, cam.markup];
+  const parts = [`<ellipse cx="128" cy="124" rx="120" ry="96" fill="url(#${id}-glow)"/>`, cam.markup];
   // Wordmark with two receding depth layers on the shared up-right axis, then a sheen.
-  const wx = 196;
+  const wx = 274;
+  const wy = 136;
   const word = 'tandev';
   const layers = [['wd2', 3.6, -2.5], ['wd1', 1.8, -1.25]].map(([cls, dx, dy], k) =>
-    text(wx + dx, 86 + dy, word, { size: 56, weight: 800, cls, anim: A('extrude', 700, 760 + (1 - k) * 60), custom: `--e:${-dx}px;` }));
-  parts.push(`<g${style(A('rise', 800, 520), '--rise:24px;')}>${layers.join('')}${text(wx, 86, word, { size: 56, weight: 800 })}</g>`);
-  parts.push(`<g clip-path="url(#${id}-word)"><g transform="skewX(-18)"><rect x="140" y="20" width="90" height="80" fill="url(#${id}-sheen)" style="--d:300px;animation:sweep 6400ms linear 1700ms 2"/></g></g>`);
-  parts.push(text(wx + 2, 116, `${PROFILE.name.toLowerCase()}  /  ${PROFILE.role}  /  soc trang, vietnam`, { size: 13, cls: 'mu', pre: true, anim: A('in', 600, 1100) }));
-  // Right edge: the handle as a quiet signature.
-  parts.push(`<g${style(A('in', 600, 1300))}>${icon(W - 214, 64, 18, UI.github, 'mu')}${text(W - 188, 78, `github.com/${PROFILE.handle}`, { size: 12, cls: 'mu' })}</g>`);
+    text(wx + dx, wy + dy, word, { size: 60, weight: 800, cls, anim: A('extrude', 700, 760 + (1 - k) * 60), custom: `--e:${-dx}px;` }));
+  parts.push(`<g${style(A('rise', 800, 520), '--rise:24px;')}>${layers.join('')}${text(wx, wy, word, { size: 60, weight: 800 })}</g>`);
+  parts.push(`<g clip-path="url(#${id}-word)"><g transform="skewX(-18)"><rect x="210" y="62" width="96" height="86" fill="url(#${id}-sheen)" style="--d:330px;animation:sweep 6400ms linear 1700ms 2"/></g></g>`);
+  parts.push(text(wx + 2, wy + 32, `${PROFILE.name.toLowerCase()}  /  ${PROFILE.role}  /  soc trang, vietnam`, { size: 13, cls: 'mu', pre: true, anim: A('in', 600, 1100) }));
+  // Top right: the handle as a quiet signature, and what the camera on the left is.
+  parts.push(`<g${style(A('in', 600, 1300))}>${icon(W - 214, 44, 18, UI.github, 'mu')}${text(W - 188, 58, `github.com/${PROFILE.handle}`, { size: 12, cls: 'mu' })}</g>`);
+  parts.push(text(wx + 2, wy + 54, 'shot on x-t5 + 25mm f/1.8', { size: 11, cls: 'mu fade', anim: A('in', 600, 1500) }));
 
-  const glyphs = text(wx, 86, word, { size: 56, weight: 800 });
+  const glyphs = text(wx, wy, word, { size: 60, weight: 800 });
   return svg({
     w: W, h: H, id, frame: false,
     defs: `<radialGradient id="${id}-glow"><stop offset="0" class="shs" stop-opacity=".2"/><stop offset=".6" class="sht" stop-opacity=".06"/><stop offset="1" class="sht" stop-opacity="0"/></radialGradient>
@@ -1283,11 +1201,11 @@ function brand() {
 <clipPath id="${id}-word">${glyphs}</clipPath>
 ${cam.defs}
 <style>.sht{stop-color:var(--teal)}${cam.css}
-.wd1{fill:var(--teal);opacity:.5}.wd2{fill:var(--blue);opacity:.28}
+.wd1{fill:var(--teal);opacity:.5}.wd2{fill:var(--blue);opacity:.28}.fade{opacity:.7}
 @media (prefers-color-scheme:light){.wd1{opacity:.32}.wd2{opacity:.18}}
 @keyframes extrude{from{opacity:0;transform:translate(var(--e),calc(var(--e) * -.7))}}</style>`,
     title: 'tandev',
-    desc: `The tandev brand mark: a mirrorless camera in 3D that takes a picture every few seconds (the shutter dips, the iris closes and reopens, the flash fires), beside the wordmark tandev and the line ${PROFILE.name}, ${PROFILE.role}, Soc Trang, Vietnam.`,
+    desc: `The tandev brand mark: a silver Fujifilm X-T5 with a 25mm f/1.8 lens and a speedlight on the hot shoe, in 3D. Every few seconds it takes a picture: the shutter button half-presses (the AF lamp lights, the focus ring turns), then presses fully, the flash fires, the iris snaps shut and the body recoils, and the speedlight's ready lamp blinks red while it recycles, then turns green. Beside it, the wordmark tandev and the line ${PROFILE.name}, ${PROFILE.role}, Soc Trang, Vietnam.`,
     body: parts.join('\n'),
   });
 }
@@ -1295,7 +1213,7 @@ ${cam.defs}
 // ── Output ──────────────────────────────────────────────────────────────────
 
 // Half-periods: each scene builds, holds, rewinds and rebuilds over twice this long.
-const LOOPS = { hero: 9000, fetch: 8000, divider: 5000, launch: 7000, brand: 9000, ping: 9000, island: 8000, section: 6500, key: 6000, terminal: 14000 };
+const LOOPS = { hero: 9000, fetch: 8000, divider: 5000, launch: 7000, brand: 9000, ping: 9000, island: 8000, section: 6500, key: 6000 };
 
 export function renderAssets() {
   const L = (half, render) => loopify(withLoop(half, render));
@@ -1313,16 +1231,13 @@ export function renderAssets() {
   for (const [slug, command] of SECTIONS) assets[`assets/galaxy/${slug}.svg`] = L(LOOPS.section, () => sectionHeader(slug, command));
   NAV.forEach((nav, i) => { assets[`assets/keys/${nav[0]}.svg`] = L(LOOPS.key, () => navKey(nav, i)); });
   LINKS.forEach((link, i) => { assets[`assets/keys/${link.where}.svg`] = L(LOOPS.key, () => linkKey(link, i)); });
-  // The terminal prints the real sizes of everything generated above.
+  // The terminal prints the real sizes of the files generated above, and counts them (itself and
+  // the metrics card included).
   const bytes = file => Buffer.byteLength(assets[file]);
-  const galaxy = SECTIONS.reduce((sum, [slug]) => sum + bytes(`assets/galaxy/${slug}.svg`), 0);
-  assets['assets/terminal-3d.svg'] = L(LOOPS.terminal, () => terminal3d({
-    'hero-banner.svg': bytes('assets/hero-banner.svg'),
-    'typing-anim.svg': bytes('assets/typing-anim.svg'),
-    'stack-client.svg': bytes('assets/stack-client.svg'),
-    'stack-server.svg': bytes('assets/stack-server.svg'),
-    'galaxy/*.svg': galaxy,
-    'section-divider.svg': bytes('assets/section-divider.svg'),
+  const count = Object.keys(assets).filter(f => f.endsWith('.svg')).length + 2;
+  assets['assets/terminal-3d.svg'] = loopify(deskTerminal({
+    sizes: { 'hero-banner.svg': bytes('assets/hero-banner.svg'), 'keyboard.svg': bytes('assets/keyboard.svg'), 'stack-server.svg': bytes('assets/stack-server.svg') },
+    count,
   }));
   // The interactive page (GitHub Pages) lives alongside the artwork and is checked the same way.
   assets['terminal/index.html'] = renderSite();

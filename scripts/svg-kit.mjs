@@ -87,7 +87,7 @@ text{font-family:${MONO};fill:var(--fg)}
 let LOOP = 0;
 let TYPED = 0; // per-scene counter for shared typing classes
 export const withLoop = (half, render) => { LOOP = half; TYPED = 0; try { return render(); } finally { LOOP = 0; } };
-const MIRRORABLE = new Set(['in', 'up', 'side', 'rise', 'pop', 'chip', 'grow', 'draw', 'type', 'wipe', 'ch', 'extrude', 'drop', 'vanish', 'pop3d', 'shin', 'land', 'slide']);
+const MIRRORABLE = new Set(['in', 'up', 'side', 'rise', 'pop', 'chip', 'grow', 'draw', 'type', 'wipe', 'ch', 'extrude', 'drop', 'vanish', 'pop3d', 'shin', 'land', 'slide', 'lock']);
 
 const pct = v => `${Math.round(Math.min(100, Math.max(0, v)) * 10) / 10}%`;
 function curve(ease) {
