@@ -118,6 +118,18 @@ export const loopWindow = (name, from, to, half = LOOP) =>
   `${name} ${half}ms linear(0, 0 ${pct((from / half) * 100)}, 1 ${pct((from / half) * 100)}, 1 ${pct((to / half) * 100)}, 0 ${pct((to / half) * 100)}, 0 100%) 0ms infinite alternate both`;
 export const looping = () => LOOP;
 
+// One shared entrance for many elements: the class carries the curve, each element only sets its
+// start (--s). In a loop that start is a share of the half-period, so it mirrors with the scene.
+export function loopEaseVar(ease, dur, half = LOOP) {
+  const span = (Math.max(dur, 1) / half) * 100;
+  const pts = curve(ease).map(([x, y]) => `${Math.round(y * 100) / 100} calc(var(--s) + ${pct(x * span)})`);
+  return `linear(0, 0 var(--s), ${pts.join(', ')}, 1 100%)`;
+}
+export const entrance = (name, dur, ease = EASE.out) => (LOOP
+  ? `${name} ${LOOP}ms ${loopEaseVar(ease, dur)} 0ms infinite alternate both`
+  : `${name} ${Math.round(dur)}ms ${ease} var(--s) both`);
+export const startAt = delay => `--s:${LOOP ? pct((delay / LOOP) * 100) : `${Math.round(delay)}ms`}`;
+
 // After a scene renders: ambient motion with a finite count runs forever (CSS and SMIL alike).
 // Mirrored entrances already say `infinite alternate`; one-shots ending in `both` stay as they are.
 export const loopify = svg => svg
@@ -208,15 +220,27 @@ export const spinner = (cx, cy, start, dur) =>
 // Soft light for moving packets: a halo gradient plus a bright core.
 export const haloDef = id => `<radialGradient id="${id}"><stop offset="0" class="shs" stop-opacity=".7"/><stop offset="1" class="shs" stop-opacity="0"/></radialGradient>`;
 
+function prune(doc) {
+  const used = new Set();
+  for (const m of doc.matchAll(/animation(?:-name)?:([^;"}]+)/g)) for (const tok of m[1].split(/[\s,()]+/)) used.add(tok);
+  const classes = new Set();
+  for (const m of doc.matchAll(/class="([^"]+)"/g)) for (const c of m[1].split(/\s+/)) classes.add(c);
+  // Top-level rules of the shared sheet whose selectors are only plain classes nobody uses go too.
+  const sheet = CSS.split('\n').map(line => line.replace(/(?<=^|\})((?:\.[\w-]+,?)+)\{[^{}]*\}/g, (rule, sel) =>
+    (sel.split(',').some(c => classes.has(c.slice(1))) ? rule : ''))).filter(Boolean).join('\n');
+  return doc.replace(CSS, () => sheet).replace(/@keyframes ([\w-]+)\{(?:[^{}]*\{[^{}]*\})*[^{}]*\}\n?/g, (block, name) => (used.has(name) ? block : ''));
+}
+
 export function svg({ w, h, id, title, desc, body, defs = '', radius = 16, frame = true }) {
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="${id}-title ${id}-desc" style="max-width:100%;height:auto">
+  frame = frame && `${defs}${body}`.includes(`#${id}-frame)`);
+  return prune(`<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="${id}-title ${id}-desc" style="max-width:100%;height:auto">
 <title id="${id}-title">${escapeXml(title)}</title>
 <desc id="${id}-desc">${escapeXml(desc)}</desc>
 <style>${CSS}</style>
 <defs>${frame ? `<clipPath id="${id}-frame"><rect width="${w}" height="${h}" rx="${radius}"/></clipPath>` : ''}${defs}</defs>
 ${body}
 </svg>
-`;
+`);
 }
 
 // Colour helpers shared by the artwork and the interactive page.

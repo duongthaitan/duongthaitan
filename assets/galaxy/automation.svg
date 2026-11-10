@@ -1,55 +1,28 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="64" viewBox="0 0 900 64" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="automation-title automation-desc" style="max-width:100%;height:auto">
 <title id="automation-title">$ gh workflow list</title>
 <desc id="automation-desc">A 3D terminal key that types the command &quot;gh workflow list&quot;, presses in as it runs with a spinner, and reports done.</desc>
-<style>
-:root{--bg:#0d1117;--raised:rgba(255,255,255,.045);--panel:rgba(22,27,34,.92);--screen:rgba(1,4,9,.55);--fg:#e6edf3;--muted:#9198a1;--faint:rgba(255,255,255,.07);--line:rgba(255,255,255,.12);--accent:#7ee787;--glow:#d2ffd6;--deep:#2ea043;--teal:#39c5cf;--blue:#79c0ff;--vox:#2d333b;--red:#ff7b72;--yellow:#e3b341}
+<style>:root{--bg:#0d1117;--raised:rgba(255,255,255,.045);--panel:rgba(22,27,34,.92);--screen:rgba(1,4,9,.55);--fg:#e6edf3;--muted:#9198a1;--faint:rgba(255,255,255,.07);--line:rgba(255,255,255,.12);--accent:#7ee787;--glow:#d2ffd6;--deep:#2ea043;--teal:#39c5cf;--blue:#79c0ff;--vox:#2d333b;--red:#ff7b72;--yellow:#e3b341}
 @media (prefers-color-scheme:light){:root{--bg:#ffffff;--raised:rgba(31,35,40,.035);--panel:rgba(255,255,255,.95);--screen:rgba(246,248,250,.9);--fg:#1f2328;--muted:#59636e;--faint:rgba(31,35,40,.07);--line:rgba(31,35,40,.15);--accent:#1a7f37;--glow:#4ac26b;--deep:#0f5323;--teal:#1b7c83;--blue:#0969da;--vox:#8c959f;--red:#cf222e;--yellow:#9a6700}}
 text{font-family:ui-monospace,'SF Mono','Cascadia Mono','JetBrains Mono',Menlo,Consolas,'Liberation Mono',monospace;fill:var(--fg)}
-.fg{fill:var(--fg)}.mu{fill:var(--muted)}.ac{fill:var(--accent)}.bg{fill:var(--bg)}.fa{fill:var(--faint)}.rs{fill:var(--raised)}
-.frame{fill:var(--raised);stroke:var(--line)}.xa{fill:var(--line)}.xb{fill:var(--faint)}
-.hair{fill:none;stroke:var(--line)}
+.fg{fill:var(--fg)}.mu{fill:var(--muted)}.ac{fill:var(--accent)}
+.frame{fill:var(--raised);stroke:var(--line)}
 .chev,.tick{fill:none;stroke:var(--accent);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.shs{stop-color:var(--accent)}
 .pop,.ring,.chip,.spin,.tick{transform-box:fill-box;transform-origin:center}
 .grow,.run{transform-box:fill-box;transform-origin:0 50%}
-.draw{stroke-dasharray:1 1}
 .mv{transform:translateX(var(--d))}
-.cv,.cvs{transform-box:fill-box;transform-origin:100% 50%}.cv{transform:scaleX(0)}
-.ring{fill:none;stroke:var(--accent);stroke-width:1.5}
 .spin{fill:none;stroke:var(--accent);stroke-width:2;stroke-linecap:round}
-.beam{fill:none;stroke:var(--accent)}
 .ring,.run,.spin,.beam,.pk,.flash,.fr,.off{opacity:0}
-.px{opacity:.55;--o:.55}
 @keyframes in{from{opacity:0}}
-@keyframes up{from{opacity:0;transform:translateY(8px)}}
-@keyframes side{from{opacity:0;transform:translateX(-10px)}}
-@keyframes rise{from{opacity:0;transform:translateY(var(--rise))}}
 @keyframes pop{from{opacity:0;transform:scale(.5)}}
-@keyframes chip{from{opacity:0;transform:translateY(6px) scale(.96)}}
 @keyframes grow{from{transform:scaleX(0)}}
-@keyframes draw{from{stroke-dashoffset:1}}
 @keyframes type{from{transform:translateX(0)}}
-@keyframes wipe{from{transform:scaleX(1)}}
 @keyframes ch{from{fill-opacity:0}}
 @keyframes vanish{to{opacity:0}}
-@keyframes blink{0%,45%{opacity:1}55%,100%{opacity:0}}
-@keyframes ring{0%{opacity:.55;transform:scale(1)}45%,100%{opacity:0;transform:scale(3)}}
-@keyframes run{0%{opacity:1;transform:scaleX(0)}75%{opacity:1;transform:scaleX(1)}100%{opacity:0;transform:scaleX(1)}}
-@keyframes show{from,to{opacity:1}}
 @keyframes showw{from{opacity:0}to{opacity:1}}
 @keyframes rot{to{transform:rotate(360deg)}}
-@keyframes spin{from{opacity:1;transform:rotate(0)}to{opacity:1;transform:rotate(360deg)}}
-@keyframes sweep{0%{transform:translateX(0);animation-timing-function:cubic-bezier(.77,0,.175,1)}38%,100%{transform:translateX(var(--d))}}
-@keyframes orbit{from{stroke-dashoffset:var(--o0)}to{stroke-dashoffset:var(--o1)}}
-@keyframes beamfade{0%{opacity:0}6%,94%{opacity:var(--bo)}100%{opacity:0}}
-@keyframes glint{8%{opacity:1}26%{opacity:var(--o)}}
-@keyframes glintT{8%{fill:var(--glow)}26%{fill:var(--accent)}}
-@keyframes descend{0%{opacity:0;transform:translateY(0)}4%,52%{opacity:1}56%,100%{opacity:0;transform:translateY(var(--d))}}
-@keyframes flash{0%{opacity:0}5%{opacity:.22}24%,100%{opacity:0}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important}.transient,.fx{display:none}}
-@media (forced-colors:active){text,.fg,.mu,.ac,.fa,.rs{fill:CanvasText}.frame,.bg{fill:Canvas}.frame,.hair{stroke:CanvasText}.chev,.tick{stroke:CanvasText}}
-</style>
-<defs><clipPath id="automation-key"><rect width="894" height="58" rx="12"/></clipPath><style>.kb{fill:var(--line)}.ks{fill:var(--faint)}@keyframes press{40%{transform:translate(3px,3px)}}@keyframes pressd{to{transform:translate(3px,3px)}}.sep{stroke:var(--line)}</style></defs>
+@media (forced-colors:active){text,.fg,.mu,.ac,.fa,.rs{fill:CanvasText}.frame,.bg{fill:Canvas}.frame,.hair{stroke:CanvasText}.chev,.tick{stroke:CanvasText}}</style>
+<defs><clipPath id="automation-key"><rect width="894" height="58" rx="12"/></clipPath><style>.kb{fill:var(--line)}.ks{fill:var(--faint)}@keyframes pressd{to{transform:translate(3px,3px)}}.sep{stroke:var(--line)}</style></defs>
 <path class="kb" d="M10.5 57.5L883.5 57.5L889.5 63.5L16.5 63.5Z"/><path class="ks" d="M893.5 10.5L899.5 16.5L899.5 53.5L893.5 47.5Z"/>
 <g style="animation:pressd 6500ms linear(0, 0 15.88%, 1 17.57%, 0 20.49%, 0 100%) 0ms infinite alternate both">
 <path class="frame" d="M12 0.5H882A11.5 11.5 0 0 1 893.5 12V46A11.5 11.5 0 0 1 882 57.5H12A11.5 11.5 0 0 1 0.5 46V12A11.5 11.5 0 0 1 12 0.5Z"/>

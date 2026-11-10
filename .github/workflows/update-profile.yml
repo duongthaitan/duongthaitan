@@ -10,6 +10,7 @@ on:
       - 'README.md'
       - 'assets/hero-banner.svg'
       - 'assets/typing-anim.svg'
+      - 'assets/keyboard.svg'
       - 'assets/section-divider.svg'
       - 'assets/galaxy/*.svg'
       - 'assets/stack-*.svg'
@@ -17,6 +18,7 @@ on:
       - 'scripts/render-metrics*'
       - 'scripts/gen-profile*'
       - 'scripts/svg-kit.mjs'
+      - 'scripts/keyboard.mjs'
       - 'scripts/tool-icons.mjs'
       - '.github/workflows/update-profile.yml'
 

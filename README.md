@@ -17,6 +17,8 @@
 
 <a href="https://duongthaitan.github.io/duongthaitan/terminal/"><img src="./assets/typing-anim.svg" width="100%" alt="neofetch for thaitan@github, with a 3D voxel &lt;T/&gt; logo. Role: full-stack developer. Location: Soc Trang, Vietnam. Shipping: TypeScript across the stack. Stack: React, Node.js, PostgreSQL, AWS. Focus: clean architecture, testing. Certificates: Meta, Google, IBM, AWS, DeepLearning.AI. GitHub: duongthaitan." /></a>
 
+<a href="https://duongthaitan.github.io/duongthaitan/terminal/#toolkit"><img src="./assets/keyboard.svg" width="100%" alt="A 3D 75% mechanical keyboard with per-key RGB lighting: a rainbow wave sweeps the legends, the plate and the light bar while it types npm run build, then git push origin main, each key going down as its letter appears. Opens the playable keyboard." /></a>
+
 <img src="./assets/section-divider.svg" width="100%" alt="" />
 
 <a href="https://duongthaitan.github.io/duongthaitan/terminal/"><img src="./assets/galaxy/about.svg" width="100%" alt="$ cat about.md" /></a>

@@ -8,12 +8,13 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import { dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { A, EASE, check, chevron, escapeXml, extrude, haloDef, hexRgb, icon, logoInk, loopEase, loopWindow, loopify, looping, rrect, spinner, style, svg, text, toHex, typed, width, withLoop } from './svg-kit.mjs';
+import { A, EASE, check, chevron, entrance, escapeXml, extrude, haloDef, hexRgb, icon, logoInk, loopEase, loopWindow, loopify, looping, rrect, spinner, startAt, style, svg, text, toHex, typed, width, withLoop } from './svg-kit.mjs';
 import { UI } from './ui-icons.mjs';
 import { LAND } from './earth-data.mjs';
 import { PLATEAUS, RANGES } from './relief-data.mjs';
 import { ICONS } from './tool-icons.mjs';
 import { renderSite } from './gen-site.mjs';
+import { keyboard } from './keyboard.mjs';
 import { CURRENT, GLYPHS, LINKS, NEOFETCH, PROFILE, SLUGS, STACK } from './profile-data.mjs';
 
 const r2 = n => Math.round(n * 100) / 100;
@@ -327,46 +328,96 @@ function fetchCard() {
 <path class="pd-run" d="M${fl}L${fr}L${br}" pathLength="1" stroke-dasharray=".12 .88"${style(`rim 3200ms ${EASE.inOut} 2300ms 2`)}/>
 </g>`);
   const [scx, scy] = P((23 * pitch) / 2, vf, 10).split(' ').map(Number);
-  parts.push(`<ellipse class="vsh" cx="${scx}" cy="${scy}" rx="${(23 * pitch) / 2 + 8}" ry="12" transform="rotate(${r2((Math.atan(S) * 180) / Math.PI)} ${scx} ${scy})" fill="url(#${id}-shadow)" style="animation:in 900ms ${EASE.out} 900ms both,shb 4200ms ${EASE.inOut} 2400ms 3"/>`);
+  parts.push(`<ellipse class="vsh" cx="${scx}" cy="${scy}" rx="${(23 * pitch) / 2 + 8}" ry="12" transform="rotate(${r2((Math.atan(S) * 180) / Math.PI)} ${scx} ${scy})" fill="url(#${id}-shadow)"${style(A('in', 900, 900))}/>`);
 
-  const columns = new Map();
-  voxels.forEach(({ c, r, t }) => {
+  // Hologram volume: light walls rising off the pedestal edges (back and left behind the sign,
+  // front and right over it), fading upward and flickering like a projection.
+  const vt = -34;
+  const wallPath = (ua, da, ub, db) => `<path d="${quad(P(ua, vf, da), P(ub, vf, db), P(ub, vt, db), P(ua, vt, da))}"/>`;
+  parts.push(`<g class="hv"${style(A('in', 900, 1700))}>${wallPath(u0, d1, u1, d1)}${wallPath(u0, d0, u0, d1)}</g>`);
+
+  // Orbit: a tilted ring around the sign. The far half is drawn behind the blocks, the near half
+  // over them, and two sparks ride it (SMIL), each switching layers as it passes the sides.
+  const [cu, cv, cdp, R1, R2, tilt] = [149, 45, 6, 182, 66, (20 * Math.PI) / 180];
+  const scr = (du, dv, dd) => [du + dd * DV[0], dv + du * S + dd * DV[1]];
+  const C0 = P(cu, cv, cdp).split(' ').map(Number);
+  const e1 = scr(R1, 0, 0);
+  const e2 = scr(0, -R2 * Math.sin(tilt), R2 * Math.cos(tilt));
+  const at = t => [C0[0] + e1[0] * Math.cos(t) + e2[0] * Math.sin(t), C0[1] + e1[1] * Math.cos(t) + e2[1] * Math.sin(t)];
+  const tan = t => [-e1[0] * Math.sin(t) + e2[0] * Math.cos(t), -e1[1] * Math.sin(t) + e2[1] * Math.cos(t)];
+  const kq = 0.5523; // quarter-circle Bezier handle, exact under the affine map
+  const arc = (t0, n) => {
+    let d = `M${at(t0).map(r2).join(' ')}`;
+    for (let q = 0; q < n; q++) {
+      const a0 = t0 + (q * Math.PI) / 2;
+      const a1 = a0 + Math.PI / 2;
+      const [p0, p1, g0, g1] = [at(a0), at(a1), tan(a0), tan(a1)];
+      d += `C${r2(p0[0] + kq * g0[0])} ${r2(p0[1] + kq * g0[1])} ${r2(p1[0] - kq * g1[0])} ${r2(p1[1] - kq * g1[1])} ${r2(p1[0])} ${r2(p1[1])}`;
+    }
+    return d;
+  };
+  const spark = (begin, front) => `<g><circle r="8" fill="url(#${id}-halo)"/><circle r="2.2" class="spk"/><animateMotion dur="7s" begin="${begin}" repeatCount="indefinite"><mpath href="#${id}-ring"/></animateMotion>${front ? `<animate attributeName="opacity" values="0;1" keyTimes="0;.5" calcMode="discrete" dur="7s" begin="${begin}" repeatCount="indefinite"/>` : ''}</g>`;
+  const sparks = front => `<g class="fx"${style(A('in', 600, 2000))}>${spark('0s', front)}${spark('-3.5s', front)}</g>`;
+  parts.push(`<path class="orb ob"${style(A('draw', 1100, 1500, EASE.inOut))} pathLength="1" d="${arc(0, 2)}"/>`, sparks(false));
+
+  // Blocks fly in from scattered points in 3D, each from its own depth, height and side, then ride
+  // a slow wave through the columns. A scan plane climbs the sign and each row glints as it passes.
+  const rand3 = random(4242);
+  const blocks = voxels.map(({ c, r, t }) => {
     const u = c * pitch;
     const v = r * pitch;
     const k = t ? 't' : 'g';
-    let faces = `<path class="${k}f" d="${quad(P(u, v), P(u + cell, v), P(u + cell, v + cell), P(u, v + cell))}"${style(`${t ? 'glintT' : 'glintG'} 4600ms ${EASE.inOut} ${ms(3200 + (c + r) * 24)} 2`)}/>`;
+    let faces = `<path class="${k}f" d="${quad(P(u, v), P(u + cell, v), P(u + cell, v + cell), P(u, v + cell))}"/>`;
     if (!filled.has(`${c},${r - 1}`)) faces += `<path class="${k}t" d="${quad(P(u, v), P(u + cell, v), P(u + cell, v, D), P(u, v, D))}"/>`;
     if (!filled.has(`${c + 1},${r}`)) faces += `<path class="${k}r" d="${quad(P(u + cell, v), P(u + cell, v, D), P(u + cell, v + cell, D), P(u + cell, v + cell))}"/>`;
-    columns.set(c, (columns.get(c) || '') + faces);
+    const [fx, fy] = scr((rand3() * 2 - 1) * 46, -44 - rand3() * 70, (rand3() * 2 - 1) * 110);
+    return `<g class="vx" style="${startAt(620 + c * 26 + (6 - r) * 34)};--x:${Math.round(fx)}px;--y:${Math.round(fy)}px;--c:${c};--r:${r}">${faces}</g>`;
   });
-  // Columns drop in a wave from left to right.
-  const blocks = [...columns].sort((p, q) => p[0] - q[0]).map(([c, faces]) => `<g${style(A('drop', 560, 700 + c * 30))}>${faces}</g>`);
-  parts.push(`<g style="--b:-7px;animation:bob 4200ms ${EASE.inOut} 2400ms 3">${blocks.join('')}</g>`);
+  parts.push(blocks.join(''));
+
+  const scanQuad = quad(P(-8, 0, -6), P(306, 0, -6), P(306, 0, D + 6), P(-8, 0, D + 6));
+  parts.push(`<g class="scan"><path class="sp" d="${scanQuad}"/><path class="se" d="M${P(-8, 0, -6)}L${P(306, 0, -6)}L${P(306, 0, D + 6)}"/></g>`);
+  parts.push(`<path class="orb of"${style(A('draw', 1100, 1500, EASE.inOut))} pathLength="1" d="${arc(Math.PI, 2)}"/>`, sparks(true));
+  parts.push(`<g class="hv hf"${style(A('in', 900, 1700))}>${wallPath(u0, d0, u1, d0)}${wallPath(u1, d0, u1, d1)}</g>`);
+  const motes = Array.from({ length: 9 }, (_, n) => {
+    const [mx, my] = P(10 + rand3() * 280, vf - 4, d0 + 6 + rand3() * 28).split(' ').map(Number);
+    return `<rect class="mo" x="${r2(mx)}" y="${r2(my)}" width="3" height="3" style="animation-delay:${-n * 470}ms"/>`;
+  });
+  parts.push(motes.join(''));
+  const ringDef = `<path id="${id}-ring" d="${arc(0, 4)}"/>`;
 
   // ── Info panel: a raised slab with its back plate one step deeper ──
   const [px, py, pw, ph] = [388, 72, 476, 252];
-  parts.push(`<g${style(A('up', 760, 260))}>${extrude(px, py, pw, ph, 8, -5.5, 12, ['ipt', 'ipr'])}<rect class="ip" x="${px}" y="${py}" width="${pw}" height="${ph}" rx="14"/><path class="ip-trim" d="M${px + 16} ${py + 0.5}H${px + pw - 16}"/></g>`);
+  // A comet of light circles the panel edge and a soft scan band rolls down its glass.
+  const edge = rrect(px, py, pw, ph, 14);
+  const comet = [[0.16, 0.2, 1.5], [0.035, 0.95, 2]].map(([len, o, sw]) => `<path class="pbm" d="${edge}" pathLength="1" stroke-width="${sw}" stroke-dasharray="${len} ${r2(1 - len)}" style="--o0:${len};--o1:${r2(len - 1)};opacity:${o}"/>`).join('');
+  parts.push(`<g${style(A('up', 760, 260))}>${extrude(px, py, pw, ph, 8, -5.5, 12, ['ipt', 'ipr'])}<rect class="ip" x="${px}" y="${py}" width="${pw}" height="${ph}" rx="14"/><path class="ip-trim" d="M${px + 16} ${py + 0.5}H${px + pw - 16}"/><rect class="psc" x="${px + 1}" y="${py}" width="${pw - 2}" height="48" fill="url(#${id}-band)"/>${comet}</g>`);
 
   const kx = px + 24;
   const vx = kx + 10 * 8.4;
   const t0 = 900;
-  // Header with two receding depth layers, on the same up-right depth axis as the blocks.
+  // Header with two receding depth layers, on the same up-right depth axis as the blocks. The
+  // layers swing from one side to the other, so the word seems to turn in space (translate only).
   const header = (cls, dx, dy) => `${text(kx + dx, 104 + dy, 'thaitan', { size: 15, cls, weight: 700 })}${text(kx + 7 * 9 + dx, 104 + dy, '@', { size: 15, cls: cls === 'ac' ? 'mu' : cls })}${text(kx + 8 * 9 + dx, 104 + dy, 'github', { size: 15, cls, weight: 700 })}`;
-  parts.push(`<g${style(A('in', 420, t0))}>${header('hx2', 2.4, -1.7)}${header('hx1', 1.2, -0.85)}${header('ac', 0, 0)}</g>`);
+  parts.push(`<g${style(A('in', 420, t0))}><g class="yw" style="--dx:-4.8px">${header('hx2', 2.4, -1.7)}</g><g class="yw" style="--dx:-2.4px">${header('hx1', 1.2, -0.85)}</g>${header('ac', 0, 0)}</g>`);
   parts.push(`<path class="hair grow" d="M${kx} 117H${r2(kx + 14 * 9)}"${style(A('grow', 520, t0 + 80, EASE.inOut))}/>`);
 
   const rows = NEOFETCH;
   // Delays shrink as the list goes on: a wave, not a metronome.
   let delay = t0 + 160;
+  // Each value shows two frames of noise, then itself. Shared classes carry the timing; each row
+  // only sets where its moments fall inside the cycle.
   const frame = 90;
+  const when = ms => startAt(ms).slice(4);
   rows.forEach(([key, value], i) => {
     const y = 142 + i * 21;
     const rand = random(i * 977 + 13);
+    const t = delay + 40;
     const frames = [0, 1].map(k => text(vx, y, garble(value, Math.floor((value.length * k) / 2), rand), {
-      size: 14, cls: 'mu fr', anim: A('show', frame, delay + 40 + k * frame, EASE.linear, '1'),
+      size: 14, cls: 'mu fr fw', custom: `--a:${when(t + k * frame)};--b:${when(t + (k + 1) * frame)}`,
     }));
-    const real = text(vx, y, value, { size: 14, anim: A('in', 1, delay + 40 + 2 * frame, EASE.linear) });
-    parts.push(`<g${style(A('side', 480, delay))}>${text(kx, y, key, { size: 14, cls: 'ac' })}${frames.join('')}${real}</g>`);
+    const real = text(vx, y, value, { size: 14, cls: 'fg rv', custom: `--s:${when(t + 2 * frame)}` });
+    parts.push(`<g class="rw" style="${startAt(delay)}">${text(kx, y, key, { size: 14, cls: 'ac' })}${frames.join('')}${real}</g>`);
     delay += Math.max(34, 70 - i * 6);
   });
 
@@ -382,17 +433,38 @@ function fetchCard() {
     const front = `M${x} ${y}h${cw}v${chh}h${-cw}z`;
     const top = `M${x} ${y}h${cw}l${r2(dx)} ${r2(dy)}h${-cw}z`;
     const right = `M${x + cw} ${y}l${r2(dx)} ${r2(dy)}v${chh}l${r2(-dx)} ${r2(-dy)}z`;
-    cubes.push(`<g${style([A('drop', 480, delay + 260 + i * 40), `wave 2600ms ${EASE.inOut} ${ms(delay + 1400 + i * 90)} 2`])}><path class="a${i}t" d="${top}"/><path class="a${i}r" d="${right}"/><path class="a${i}" d="${front}"/></g>`);
+    cubes.push(`<g class="cb" style="${startAt(delay + 260 + i * 40)};--i:${i}"><path class="a${i}t" d="${top}"/><path class="a${i}r" d="${right}"/><path class="a${i}" d="${front}"/></g>`);
   }
   parts.push(cubes.join(''));
 
+  const cubeWave = delay + 1400;
   const shade = (hex, to, f) => toHex(hexRgb(hex).map((v, i) => v + (hexRgb(to)[i] - v) * f));
   const ansi = list => list.map((hex, i) => `.a${i}{fill:${hex}}.a${i}t{fill:${shade(hex, '#ffffff', 0.32)}}.a${i}r{fill:${shade(hex, '#000000', 0.38)}}`).join('');
 
   return svg({
     w: W, h: H, id,
-    defs: `<radialGradient id="${id}-pool"><stop offset="0" class="shs" stop-opacity=".16"/><stop offset=".6" class="sht" stop-opacity=".05"/><stop offset="1" class="sht" stop-opacity="0"/></radialGradient><radialGradient id="${id}-shadow"><stop offset="0" stop-color="#000" stop-opacity=".55"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+    defs: `<radialGradient id="${id}-pool"><stop offset="0" class="shs" stop-opacity=".16"/><stop offset=".6" class="sht" stop-opacity=".05"/><stop offset="1" class="sht" stop-opacity="0"/></radialGradient><radialGradient id="${id}-shadow"><stop offset="0" stop-color="#000" stop-opacity=".55"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>${haloDef(`${id}-halo`)}${ringDef}
+<linearGradient id="${id}-wall" x1="0" y1="1" x2="0" y2="0"><stop offset="0" class="shs" stop-opacity=".09"/><stop offset=".7" class="sht" stop-opacity="0"/></linearGradient>
+<linearGradient id="${id}-band" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="shs" stop-opacity="0"/><stop offset=".85" class="shs" stop-opacity=".06"/><stop offset="1" class="shs" stop-opacity="0"/></linearGradient>
 <style>.sht{stop-color:var(--teal)}:root{--gf:#4d5562;--gt:#7d8590;--gr:#262c36}
+.rw{animation:${entrance('side', 480)}}.cb{animation:${entrance('drop', 480)},wave 2600ms ${EASE.inOut} calc(${cubeWave}ms + var(--i) * 90ms) infinite}
+.fw{animation:showw ${looping()}ms linear(0, 0 var(--a), 1 var(--a), 1 var(--b), 0 var(--b), 0 100%) 0ms infinite alternate both}.rv{animation:in ${looping()}ms linear(0, 0 var(--s), 1 var(--s), 1 100%) 0ms infinite alternate both}
+.vx{animation:${entrance('asm', 680)},wv 3600ms ${EASE.inOut} calc(var(--c) * -130ms) infinite}
+.tf{animation:glintT 4800ms ${EASE.inOut} calc(4016ms - var(--r) * 260ms) infinite}.gf{animation:glintG 4800ms ${EASE.inOut} calc(4016ms - var(--r) * 260ms) infinite}
+.scan{opacity:0;animation:scan 4800ms linear 2600ms infinite}.sp{fill:var(--accent);fill-opacity:.07}.se{fill:none;stroke:var(--glow);stroke-width:1.2;stroke-opacity:.8}
+.orb{fill:none;stroke:var(--accent);stroke-dasharray:1 1}.ob{stroke-opacity:.22}.of{stroke-opacity:.45}.spk{fill:var(--glow)}
+.hv{fill:url(#${id}-wall)}.hv path{animation:hol 5200ms linear infinite}.hf path{animation-delay:-2600ms}
+.mo{fill:var(--glow);opacity:0;animation:mote 4200ms linear infinite}
+.pbm{fill:none;stroke:var(--accent);stroke-linecap:round;animation:orbit 7000ms linear infinite}
+.psc{opacity:0;animation:band 6000ms linear 1800ms infinite}
+.yw{animation:yaw 6400ms ${EASE.inOut} infinite}
+@keyframes asm{from{opacity:0;transform:translate(var(--x),var(--y))}}
+@keyframes wv{50%{translate:0 -6px}}
+@keyframes scan{0%{opacity:0;transform:translateY(96px)}6%,38%{opacity:1}45%,100%{opacity:0;transform:translateY(-12px)}}
+@keyframes hol{0%,100%{opacity:1}46%{opacity:.75}48%{opacity:.35}50%{opacity:.9}70%{opacity:.6}}
+@keyframes mote{0%{opacity:0;transform:translateY(0)}12%{opacity:.75}100%{opacity:0;transform:translateY(-118px)}}
+@keyframes band{0%{opacity:0;transform:translateY(0)}10%,80%{opacity:1}100%{opacity:0;transform:translateY(${ph - 48}px)}}
+@keyframes yaw{50%{transform:translateX(var(--dx))}}
 @media (prefers-color-scheme:light){:root{--gf:#8c959f;--gt:#c4cbd3;--gr:#57606a}}
 .tf{fill:var(--accent)}.tt{fill:var(--glow)}.tr{fill:var(--deep)}.gf{fill:var(--gf)}.gt{fill:var(--gt)}.gr{fill:var(--gr)}
 .pd-t{fill:var(--raised)}.pd-f{fill:var(--line)}.pd-r{fill:var(--faint)}.pd-rim{fill:none;stroke:var(--accent);stroke-opacity:.45}
@@ -409,7 +481,7 @@ ${ansi(['#484f58', '#ff7b72', '#3fb950', '#d29922', '#58a6ff', '#bc8cff', '#39c5
 @keyframes glintG{8%{fill:var(--gt)}26%{fill:var(--gf)}}
 @keyframes rim{0%{opacity:0;stroke-dashoffset:.12}10%,85%{opacity:1}100%{opacity:0;stroke-dashoffset:-.88}}</style>`,
     title: 'neofetch: thaitan@github',
-    desc: `A neofetch-style card. A 3D voxel <T/> sculpture assembles block by block above a lit pedestal and floats; beside it a raised panel lists ${rows.map(([k, v]) => `${k}: ${v}`).join('; ')}, each value decrypting from noise, above eight 3D colour cubes in the terminal ANSI palette.`,
+    desc: `A neofetch-style card. A 3D voxel <T/> sign assembles from blocks flying in from every side inside a hologram projector, then ripples like a wave while a scan plane climbs it and two sparks orbit it on a tilted ring; beside it a raised panel, with a light circling its edge, lists ${rows.map(([k, v]) => `${k}: ${v}`).join('; ')}, each value decrypting from noise, above eight 3D colour cubes in the terminal ANSI palette.`,
     body: parts.join('\n'),
   });
 }
@@ -534,7 +606,7 @@ function divider() {
 
 function island({ id, title, subtitle, groups, cols, offset }) {
   const W = 900;
-  const H = 336;
+  const H = 372; // headroom above the back row for the holograms
   const a = 56; // iso half-width of a cell
   const b = 28; // iso half-height
   const h = 20; // keycap height
@@ -550,8 +622,8 @@ function island({ id, title, subtitle, groups, cols, offset }) {
   const maxX = (j1 - i0) * a;
   const minY = Math.min((i0 + j0) * b, -h - bk);
   const maxY = (i1 + j1) * b + t;
-  const ox = 268 - (minX + maxX) / 2;
-  const oy = (36 + H) / 2 - (minY + maxY) / 2;
+  const ox = 308 - (minX + maxX) / 2; // right of centre: the holograms rise clear of the title
+  const oy = (84 + H) / 2 - (minY + maxY) / 2;
   const P = (i, j) => [r2(ox + (j - i) * a), r2(oy + (i + j) * b)];
   const pt = ([x, y]) => `${x} ${y}`;
   const quad = (p, q, r, s) => `M${pt(p)}L${pt(q)}L${pt(r)}L${pt(s)}Z`;
@@ -573,14 +645,24 @@ function island({ id, title, subtitle, groups, cols, offset }) {
 <path class="pl" d="${quad(D0, C0, down(C0), down(D0))}"/>
 <path class="pr" d="${quad(C0, B0, down(B0), down(C0))}"/>
 <path class="rim" d="M${pt(D0)}L${pt(C0)}L${pt(B0)}"/>
+<path class="rrun" d="M${pt(D0)}L${pt(C0)}L${pt(B0)}" pathLength="1" stroke-dasharray=".14 .86" style="--o0:.14;--o1:-1"/>
 </g>`);
-  parts.push(`<g${style(A('in', 700, 420))}>${zoneTiles}<path class="grid" d="${grid.join('')}"/></g>`);
+  // Data packets run the floor grid between the caps (painted before the caps, which hide them).
+  const lane2 = (p, q, n) => { const [dx, dy] = [q[0] - p[0], q[1] - p[1]]; const k = 13 / Math.hypot(dx, dy); return `<path class="fp" d="M${pt(p)}l${r2(-dx * k)} ${r2(-dy * k)}" style="--v:${r2(dx)}px,${r2(dy)}px;animation-delay:${n * -900}ms"/>`; };
+  const lanes = [lane2(P(-0.5, 0.5), P(rows - 0.5, 0.5), 0), lane2(P(0.5, -0.5), P(0.5, cols - 0.5), 1), lane2(P(-0.5, cols - 1.5), P(rows - 0.5, cols - 1.5), 2), lane2(P(rows - 0.5, -0.5), P(rows - 0.5, cols - 0.5), 3)];
+  parts.push(`<g${style(A('in', 700, 420))}>${zoneTiles}<path class="grid" d="${grid.join('')}"/>${lanes.join('')}</g>`);
 
   // Keycaps, painted back to front. Logos lie on the cap, foreshortened 2:1 like the floor.
   // Scaled pieces (shadow, halo) are absolute paths: transform-box on <use x y> ignores the offset in Chrome.
   const rhAt = (x, y, f) => `M${x} ${r2(y - bk * f)}l${r2(ak * f)} ${r2(bk * f)}l${r2(-ak * f)} ${r2(bk * f)}l${r2(-ak * f)} ${r2(-bk * f)}z`;
   const cells = groups.flatMap(([, items], i) => items.map((item, j) => ({ item, i, j }))).sort((p, q) => p.i + p.j - (q.i + q.j));
-  for (const { item, i, j } of cells) {
+  // Typing: every cap is struck once per bar, in a fixed shuffled order, so one key is always going down.
+  const order = cells.map((_, n) => n);
+  const rnd = random(cells.length * 31 + offset);
+  for (let n = order.length - 1; n > 0; n--) { const m = Math.floor(rnd() * (n + 1)); [order[n], order[m]] = [order[m], order[n]]; }
+  const holo = [];
+  cells.forEach((cell, n) => { cell.press = 2400 + offset + (order[n] * 6000) / cells.length; });
+  for (const { item, i, j, press } of cells) {
     const icon = ICONS[SLUGS[item]];
     const [x, yf] = P(i, j);
     const yt = r2(yf - h);
@@ -589,11 +671,24 @@ function island({ id, title, subtitle, groups, cols, offset }) {
     const on = CURRENT.has(item);
     const sx = (ak * 0.9) / 24;
     const sy = sx * (b / a);
-    const logo = `<path class="lg" style="${logoInk(icon.hex)}" transform="matrix(${r2(sx)} 0 0 ${r2(sy)} ${r2(x - 12 * sx)} ${r2(yt - 12 * sy)})" d="${icon.d}"/>`;
-    const lit = on ? `<use href="#${id}-cap" x="${x}" y="${yt}" class="on"/><path class="halo" d="${rhAt(x, yt, 1)}" style="animation-delay:${ms(bob + 300)}"/>` : '';
-    parts.push(`<path class="sd shd" d="${rhAt(x, yf, 1.06)}"${style(`shbob 3600ms ${EASE.inOut} ${ms(bob)} 3`)}/>`);
-    parts.push(`<g${style(A('drop', 820, drop))}><g class="bb" style="animation-delay:${ms(bob)}"><use href="#${id}-block" x="${x}" y="${yt}"/><use href="#${id}-tint" x="${x}" y="${yt}" color="${icon.hex}"/>${lit}${logo}</g></g>`);
+    const ink = logoInk(icon.hex);
+    const [tx, ty] = [r2(x - 12 * sx), r2(yt - 12 * sy)];
+    const lid = `${id}-l${i}${j}`;
+    const logo = `<path id="${lid}" class="lg" transform="matrix(${r2(sx)} 0 0 ${r2(sy)} ${tx} ${ty})" d="${icon.d}"/>`;
+    const lit = on ? `<use href="#${id}-cap" x="${x}" y="${yt}" class="on"/>` : '';
+    parts.push(`<path class="sd shd" d="${rhAt(x, yf, 1.06)}" style="--d:${ms(bob)}"/>`);
+    // The ripple rides with the drop but not the bob or the press, so it stays on the floor.
+    parts.push(`<g class="dc" style="${startAt(drop)};${ink};--p:${ms(press)}"><path class="rp" d="${rhAt(x, yf, 1.06)}"/><g class="bb" style="--d:${ms(bob)}"><use href="#${id}-block" x="${x}" y="${yt}"/><use href="#${id}-tint" x="${x}" y="${yt}" color="${icon.hex}"/>${lit}<use href="#${id}-cap" x="${x}" y="${yt}" class="kf"/>${logo}</g></g>`);
+    if (on && (i === 0 || j === 0)) {
+      // Hologram: the cap projects its logo upright above itself, turning slowly in a cone of light.
+      // Only caps with nothing directly behind them project, so no hologram lands on another logo.
+      const sz = 1.3;
+      const yc = yt - 52;
+      const m = `matrix(${r2(sz / sx)} 0 0 ${r2(sz / sy)} ${r2(x - 12 * sz - (sz / sx) * tx)} ${r2(yc - 12 * sz - (sz / sy) * ty)})`;
+      holo.push(`<g class="hg" style="${ink};animation-delay:${-holo.length * 1700}ms"><path class="cone" d="M${r2(x - 12)} ${r2(yt - 2)}L${r2(x + 12)} ${r2(yt - 2)}L${r2(x + 24)} ${r2(yc - 4)}L${r2(x - 24)} ${r2(yc - 4)}Z"/><path class="emit" d="${rhAt(x, yt, 0.32)}"/><g class="hov"><circle cx="${x}" cy="${r2(yc)}" r="26" fill="url(#${id}-glow)"/><g class="sp3" style="animation-delay:${-holo.length * 1300}ms"><use href="#${lid}" transform="${m}"/></g></g></g>`);
+    }
   }
+  parts.push(`<g${style(A('in', 900, offset + 2000))}>${holo.join('')}</g>`);
 
   // Name panel: the readable index, keyed to the floor zones.
   const px = 560;
@@ -609,7 +704,7 @@ function island({ id, title, subtitle, groups, cols, offset }) {
     return { label, lines };
   });
   const panelH = blocks.reduce((sum, blk) => sum + 26 + blk.lines.length * lineH + 18, 0) - 18;
-  let y = Math.round((36 + H) / 2 - panelH / 2 + 10);
+  let y = Math.round((84 + H) / 2 - panelH / 2 + 10);
   blocks.forEach(({ label, lines }, g) => {
     const row = [`<path class="zk z${g}" d="M${px + 6} ${y - 10}l8 5l-8 5l-8 -5z"/>`, text(px + 22, y, label, { size: 13, weight: 700 })];
     lines.forEach((line, n) => {
@@ -629,7 +724,7 @@ function island({ id, title, subtitle, groups, cols, offset }) {
   const right = `M0 ${r2(bk)}L${r2(ak)} 0V${h}L0 ${r2(bk + h)}Z`;
   const rh = f => `M0 ${r2(-bk * f)}L${r2(ak * f)} 0L0 ${r2(bk * f)}L${r2(-ak * f)} 0Z`;
   const zoneDefs = groups.map((_, i) => `<linearGradient id="${id}-z${i}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" class="${zones[i]}" stop-opacity=".3"/><stop offset="1" class="${zones[i]}" stop-opacity=".1"/></linearGradient>`).join('');
-  const defs = `<radialGradient id="${id}-glow"><stop offset="0" class="shs" stop-opacity=".16"/><stop offset=".6" class="sht" stop-opacity=".05"/><stop offset="1" class="sht" stop-opacity="0"/></radialGradient>${zoneDefs}
+  const defs = `<linearGradient id="${id}-beam" x1="0" y1="1" x2="0" y2="0"><stop offset="0" class="shs" stop-opacity=".4"/><stop offset="1" class="sht" stop-opacity="0"/></linearGradient><radialGradient id="${id}-glow"><stop offset="0" class="shs" stop-opacity=".16"/><stop offset=".6" class="sht" stop-opacity=".05"/><stop offset="1" class="sht" stop-opacity="0"/></radialGradient>${zoneDefs}
 <g id="${id}-block"><path class="ft" d="${top}"/><path class="fl" d="${left}"/><path class="fr" d="${right}"/><path class="dish" d="${rh(0.74)}"/><path class="edge" d="M${r2(-ak)} 0L0 ${r2(bk)}L${r2(ak)} 0M0 ${r2(bk)}V${r2(bk + h)}"/></g>
 <g id="${id}-tint" fill="currentColor"><path opacity=".07" d="${top}"/><path opacity=".2" d="${right}"/><path opacity=".1" d="${left}"/></g>
 <path id="${id}-cap" d="${top}"/>
@@ -640,20 +735,35 @@ function island({ id, title, subtitle, groups, cols, offset }) {
 .shd{fill:#000;opacity:.45}.on{fill:none;stroke:var(--accent);stroke-width:1.4;stroke-opacity:.85}
 .lg{fill:var(--c)}
 @media (prefers-color-scheme:light){.ft{fill:#fff}.fl{fill:#f0f3f6}.fr{fill:#dfe4ea}.dish{fill:#1f2328;opacity:.03}.edge{stroke:#1f2328;stroke-opacity:.08}.shd{fill:#1f2328;opacity:.13}.lg{fill:var(--cl,var(--c))}.pl{fill:#e6eaef}.pr{fill:#d8dee4}}
-.bb{animation:bob 3600ms ${EASE.inOut} 3}
-.sd,.halo{transform-box:fill-box;transform-origin:center}
-.halo{fill:none;stroke:var(--accent);opacity:0;animation:halo 3600ms ${EASE.out} 3}
+.dc{animation:${entrance('drop', 820)}}
+.bb{animation:bob 3600ms ${EASE.inOut} var(--d) infinite,press 6000ms linear var(--p) infinite}.sd{animation:shbob 3600ms ${EASE.inOut} var(--d) infinite}
+.kf{fill:var(--c);opacity:0;animation:kfl 6000ms linear var(--p) infinite}
+.rp{fill:none;stroke:var(--c);stroke-width:1.5;opacity:0;animation:rip 6000ms ${EASE.out} var(--p) infinite}
+.rrun{fill:none;stroke:var(--accent);stroke-width:2;stroke-linecap:round;animation:orbit 4200ms linear infinite}
+.fp{fill:none;stroke:var(--glow);stroke-width:2;stroke-linecap:round;opacity:0;animation:fpk 3600ms linear infinite}
+.hg{animation:hol 5200ms linear infinite}.cone{fill:url(#${id}-beam)}.emit{fill:var(--glow);opacity:.5}
+.hov{animation:hov 3000ms ${EASE.inOut} infinite}.sp3{transform-box:fill-box;transform-origin:center;animation:sp3 4200ms cubic-bezier(.45,0,.55,1) infinite}
+.sp3 use{fill:var(--c)}
+@media (prefers-color-scheme:light){.kf,.sp3 use{fill:var(--cl,var(--c))}.rp{stroke:var(--cl,var(--c))}}
+@keyframes press{0%,8%,100%{translate:0 0}3%{translate:0 6px}}
+@keyframes kfl{0%,16%,100%{opacity:0}3%{opacity:.5}}
+@keyframes rip{0%{opacity:0;transform:scale(1)}3%{opacity:.85;transform:scale(1)}22%,100%{opacity:0;transform:scale(1.4)}}
+@keyframes fpk{0%{opacity:0;transform:translate(0,0)}10%,82%{opacity:.95}100%{opacity:0;transform:translate(var(--v))}}
+@keyframes hol{0%,100%{opacity:1}46%{opacity:.8}48%{opacity:.4}50%{opacity:.95}70%{opacity:.7}}
+@keyframes hov{50%{transform:translateY(-5px)}}
+@keyframes sp3{50%{transform:scaleX(-1);opacity:.55}}
+.sd,.rp{transform-box:fill-box;transform-origin:center}
 @keyframes drop{from{opacity:0;transform:translateY(-96px)}}
 @keyframes bob{50%{transform:translateY(-7px)}}
 @keyframes shin{from{opacity:0;transform:scale(.3)}}
 @keyframes shbob{50%{opacity:.45;transform:scale(.8)}}
-@keyframes halo{0%{opacity:.9;transform:scale(1)}55%,100%{opacity:0;transform:scale(1.45)}}</style>`;
+</style>`;
 
   const names = groups.map(([label, items]) => `${label}: ${items.join(', ')}`).join('; ');
   return svg({
     w: W, h: H, id, defs,
     title: `Toolkit, ${title}`,
-    desc: `Isometric keyboard where each tool is a keycap carrying its logo, with a name panel beside it. ${names}. In production now: ${groups.flatMap(([, items]) => items).filter(item => CURRENT.has(item)).join(', ')}.`,
+    desc: `Isometric keyboard where each tool is a keycap carrying its logo. The keys strike one after another and flash their brand colour, packets run along the floor grid, and tools in production project a turning hologram of their logo. A name panel sits beside it. ${names}. In production now: ${groups.flatMap(([, items]) => items).filter(item => CURRENT.has(item)).join(', ')}.`,
     body: parts.join('\n'),
   });
 }
@@ -1192,6 +1302,7 @@ export function renderAssets() {
   const assets = {
     'assets/hero-banner.svg': L(LOOPS.hero, hero),
     'assets/typing-anim.svg': L(LOOPS.fetch, fetchCard),
+    'assets/keyboard.svg': loopify(keyboard()),
     'assets/section-divider.svg': L(LOOPS.divider, divider),
     'assets/launch.svg': L(LOOPS.launch, launchKey),
     'assets/brand.svg': L(LOOPS.brand, brand),
