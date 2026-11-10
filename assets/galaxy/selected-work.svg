@@ -2,8 +2,8 @@
 <title id="selected-work-title">$ ls ~/projects</title>
 <desc id="selected-work-desc">A 3D terminal key that types the command &quot;ls ~/projects&quot;, presses in as it runs with a spinner, and reports done.</desc>
 <style>
-:root{--bg:#0d1117;--raised:rgba(255,255,255,.045);--panel:rgba(22,27,34,.92);--screen:rgba(1,4,9,.55);--fg:#e6edf3;--muted:#9198a1;--faint:rgba(255,255,255,.07);--line:rgba(255,255,255,.12);--accent:#7ee787;--glow:#d2ffd6;--deep:#2ea043;--teal:#39c5cf;--blue:#79c0ff;--vox:#2d333b}
-@media (prefers-color-scheme:light){:root{--bg:#ffffff;--raised:rgba(31,35,40,.035);--panel:rgba(255,255,255,.95);--screen:rgba(246,248,250,.9);--fg:#1f2328;--muted:#59636e;--faint:rgba(31,35,40,.07);--line:rgba(31,35,40,.15);--accent:#1a7f37;--glow:#4ac26b;--deep:#0f5323;--teal:#1b7c83;--blue:#0969da;--vox:#8c959f}}
+:root{--bg:#0d1117;--raised:rgba(255,255,255,.045);--panel:rgba(22,27,34,.92);--screen:rgba(1,4,9,.55);--fg:#e6edf3;--muted:#9198a1;--faint:rgba(255,255,255,.07);--line:rgba(255,255,255,.12);--accent:#7ee787;--glow:#d2ffd6;--deep:#2ea043;--teal:#39c5cf;--blue:#79c0ff;--vox:#2d333b;--red:#ff7b72;--yellow:#e3b341}
+@media (prefers-color-scheme:light){:root{--bg:#ffffff;--raised:rgba(31,35,40,.035);--panel:rgba(255,255,255,.95);--screen:rgba(246,248,250,.9);--fg:#1f2328;--muted:#59636e;--faint:rgba(31,35,40,.07);--line:rgba(31,35,40,.15);--accent:#1a7f37;--glow:#4ac26b;--deep:#0f5323;--teal:#1b7c83;--blue:#0969da;--vox:#8c959f;--red:#cf222e;--yellow:#9a6700}}
 text{font-family:ui-monospace,'SF Mono','Cascadia Mono','JetBrains Mono',Menlo,Consolas,'Liberation Mono',monospace;fill:var(--fg)}
 .fg{fill:var(--fg)}.mu{fill:var(--muted)}.ac{fill:var(--accent)}.bg{fill:var(--bg)}.fa{fill:var(--faint)}.rs{fill:var(--raised)}
 .frame{fill:var(--raised);stroke:var(--line)}.xa{fill:var(--line)}.xb{fill:var(--faint)}
@@ -36,6 +36,8 @@ text{font-family:ui-monospace,'SF Mono','Cascadia Mono','JetBrains Mono',Menlo,C
 @keyframes ring{0%{opacity:.55;transform:scale(1)}45%,100%{opacity:0;transform:scale(3)}}
 @keyframes run{0%{opacity:1;transform:scaleX(0)}75%{opacity:1;transform:scaleX(1)}100%{opacity:0;transform:scaleX(1)}}
 @keyframes show{from,to{opacity:1}}
+@keyframes showw{from{opacity:0}to{opacity:1}}
+@keyframes rot{to{transform:rotate(360deg)}}
 @keyframes spin{from{opacity:1;transform:rotate(0)}to{opacity:1;transform:rotate(360deg)}}
 @keyframes sweep{0%{transform:translateX(0);animation-timing-function:cubic-bezier(.77,0,.175,1)}38%,100%{transform:translateX(var(--d))}}
 @keyframes orbit{from{stroke-dashoffset:var(--o0)}to{stroke-dashoffset:var(--o1)}}
@@ -47,17 +49,17 @@ text{font-family:ui-monospace,'SF Mono','Cascadia Mono','JetBrains Mono',Menlo,C
 @media (prefers-reduced-motion:reduce){*{animation:none!important}.transient,.fx{display:none}}
 @media (forced-colors:active){text,.fg,.mu,.ac,.fa,.rs{fill:CanvasText}.frame,.bg{fill:Canvas}.frame,.hair{stroke:CanvasText}.chev,.tick{stroke:CanvasText}}
 </style>
-<defs><clipPath id="selected-work-key"><rect width="894" height="58" rx="12"/></clipPath><style>.kb{fill:var(--line)}.ks{fill:var(--faint)}@keyframes press{40%{transform:translate(3px,3px)}}.sep{stroke:var(--line)}</style></defs>
+<defs><clipPath id="selected-work-key"><rect width="894" height="58" rx="12"/></clipPath><style>.kb{fill:var(--line)}.ks{fill:var(--faint)}@keyframes press{40%{transform:translate(3px,3px)}}@keyframes pressd{to{transform:translate(3px,3px)}}.sep{stroke:var(--line)}</style></defs>
 <path class="kb" d="M10.5 57.5L883.5 57.5L889.5 63.5L16.5 63.5Z"/><path class="ks" d="M893.5 10.5L899.5 16.5L899.5 53.5L893.5 47.5Z"/>
-<g style="animation:press 300ms cubic-bezier(.23,1,.32,1) 906ms 1">
+<g style="animation:pressd 6500ms linear(0, 0 13.94%, 1 15.63%, 0 18.55%, 0 100%) 0ms infinite alternate both">
 <path class="frame" d="M12 0.5H882A11.5 11.5 0 0 1 893.5 12V46A11.5 11.5 0 0 1 882 57.5H12A11.5 11.5 0 0 1 0.5 46V12A11.5 11.5 0 0 1 12 0.5Z"/>
-<path class="ac" transform="translate(24 20) scale(0.0703)" d="M245 111a16 16 0 0 0-13-7h-16v-16a16 16 0 0 0-16-16h-69l-28-21a16 16 0 0 0-10-3h-53a16 16 0 0 0-16 16v144h0a8 8 0 0 0 8 8h179a8 8 0 0 0 8-5l28-86a16 16 0 0 0-2-14zm-152-47l30 22a8 8 0 0 0 5 2h72v16h-130a16 16 0 0 0-15 11l-15 44v-95zm112 136h-162l27-80h162z" style="animation:pop 360ms cubic-bezier(.23,1,.32,1) 40ms both"/>
+<path class="ac" transform="translate(24 20) scale(0.0703)" d="M245 111a16 16 0 0 0-13-7h-16v-16a16 16 0 0 0-16-16h-69l-28-21a16 16 0 0 0-10-3h-53a16 16 0 0 0-16 16v144h0a8 8 0 0 0 8 8h179a8 8 0 0 0 8-5l28-86a16 16 0 0 0-2-14zm-152-47l30 22a8 8 0 0 0 5 2h72v16h-130a16 16 0 0 0-15 11l-15 44v-95zm112 136h-162l27-80h162z" style="animation:pop 6500ms linear(0, 0 0.6%, 0.32 1%, 0.66 1.7%, 0.91 2.7%, 1 6.2%, 1 100%) 0ms infinite alternate both"/>
 <path class="sep" d="M50 19v20"/>
-<path class="chev" d="M58 23.5l4.8 4.8l-4.8 4.8" style="animation:in 240ms cubic-bezier(.23,1,.32,1) 60ms both"/>
-<text x="76" y="34" font-size="15" textLength="117" class="fg"><tspan style="animation:ch 1ms linear 202ms both">l</tspan><tspan style="animation:ch 1ms linear 244ms both">s</tspan> <tspan style="animation:ch 1ms linear 328ms both">~</tspan><tspan style="animation:ch 1ms linear 370ms both">/</tspan><tspan style="animation:ch 1ms linear 412ms both">p</tspan><tspan style="animation:ch 1ms linear 454ms both">r</tspan><tspan style="animation:ch 1ms linear 496ms both">o</tspan><tspan style="animation:ch 1ms linear 538ms both">j</tspan><tspan style="animation:ch 1ms linear 580ms both">e</tspan><tspan style="animation:ch 1ms linear 622ms both">c</tspan><tspan style="animation:ch 1ms linear 664ms both">t</tspan><tspan style="animation:ch 1ms linear 706ms both">s</tspan></text><rect class="ac mv transient" x="77" y="21.7" width="7.5" height="15.3" rx="1" style="--d:117px;animation:in 1ms linear 160ms both,type 546ms steps(13,end) 160ms both,vanish 120ms linear 1026ms forwards"/>
-<rect class="ac run" x="0" y="54.5" width="893" height="2" clip-path="url(#selected-work-key)" style="animation:run 1000ms cubic-bezier(.77,0,.175,1) 1086ms both"/>
-<circle class="spin" cx="827" cy="29" r="6" pathLength="1" stroke-dasharray=".62 .38" style="animation:spin 640ms linear 1086ms 1.17"/>
-<path class="tick" d="M821 28l3.5 3.5l7 -7" style="animation:pop 360ms cubic-bezier(.23,1,.32,1) 1836ms both"/>
-<text x="871" y="34" font-size="13" textLength="31.2" class="mu" text-anchor="end" style="animation:in 360ms cubic-bezier(.23,1,.32,1) 1896ms both">done</text>
+<path class="chev" d="M58 23.5l4.8 4.8l-4.8 4.8" style="animation:in 6500ms linear(0, 0 0.9%, 0.32 1.2%, 0.66 1.6%, 0.91 2.3%, 1 4.6%, 1 100%) 0ms infinite alternate both"/>
+<style>.ty1{animation:ch 6500ms linear(0, 0 var(--s), 1 var(--s), 1 100%) 0ms infinite alternate both}</style><text x="76" y="34" font-size="15" textLength="117" class="fg"><tspan class="ty1" style="--s:3.1%">l</tspan><tspan class="ty1" style="--s:3.8%">s</tspan> <tspan class="ty1" style="--s:5%">~</tspan><tspan class="ty1" style="--s:5.7%">/</tspan><tspan class="ty1" style="--s:6.3%">p</tspan><tspan class="ty1" style="--s:7%">r</tspan><tspan class="ty1" style="--s:7.6%">o</tspan><tspan class="ty1" style="--s:8.3%">j</tspan><tspan class="ty1" style="--s:8.9%">e</tspan><tspan class="ty1" style="--s:9.6%">c</tspan><tspan class="ty1" style="--s:10.2%">t</tspan><tspan class="ty1" style="--s:10.9%">s</tspan></text><rect class="ac mv transient" x="77" y="21.7" width="7.5" height="15.3" rx="1" style="--d:117px;animation:in 6500ms linear(0, 0 2.5%, 1 2.5%, 1 100%) 0ms infinite alternate both,type 6500ms linear(0, 0 2.5%, 0 3.1%, 0.08 3.1%, 0.08 3.8%, 0.15 3.8%, 0.15 4.4%, 0.23 4.4%, 0.23 5%, 0.31 5%, 0.31 5.7%, 0.38 5.7%, 0.38 6.3%, 0.46 6.3%, 0.46 7%, 0.54 7%, 0.54 7.6%, 0.62 7.6%, 0.62 8.3%, 0.69 8.3%, 0.69 8.9%, 0.77 8.9%, 0.77 9.6%, 0.85 9.6%, 0.85 10.2%, 0.92 10.2%, 0.92 10.9%, 1 10.9%, 1 100%) 0ms infinite alternate both,vanish 6500ms linear(0, 0 15.8%, 1 17.6%, 1 100%) 0ms infinite alternate both"/>
+<rect class="ac run" x="0" y="54.5" width="893" height="2" clip-path="url(#selected-work-key)" style="animation:grow 6500ms linear(0, 0 16.7%, 0.04 19.3%, 0.22 21.3%, 0.57 22.4%, 1 28.2%, 1 100%) 0ms infinite alternate both,showw 6500ms linear(0, 0 16.7%, 1 16.7%, 1 32.1%, 0 32.1%, 0 100%) 0ms infinite alternate both"/>
+<circle class="spin" cx="827" cy="29" r="6" pathLength="1" stroke-dasharray=".62 .38" style="animation:showw 6500ms linear(0, 0 16.7%, 1 16.7%, 1 28.2%, 0 28.2%, 0 100%) 0ms infinite alternate both,rot 640ms linear 0ms infinite"/>
+<path class="tick" d="M821 28l3.5 3.5l7 -7" style="animation:pop 6500ms linear(0, 0 28.2%, 0.32 28.7%, 0.66 29.3%, 0.91 30.3%, 1 33.8%, 1 100%) 0ms infinite alternate both"/>
+<text x="871" y="34" font-size="13" textLength="31.2" class="mu" text-anchor="end" style="animation:in 6500ms linear(0, 0 29.2%, 0.32 29.6%, 0.66 30.2%, 0.91 31.2%, 1 34.7%, 1 100%) 0ms infinite alternate both">done</text>
 </g>
 </svg>

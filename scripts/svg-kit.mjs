@@ -19,8 +19,8 @@ export const EASE = {
 // translucent white (dark) or ink (light) layered over whatever the page colour is.
 // Colour beyond the accent stays analogous (green, teal, blue from GitHub's own ANSI set);
 // brand colours appear only on the tool logos they belong to.
-const DARK = { bg: '#0d1117', raised: 'rgba(255,255,255,.045)', panel: 'rgba(22,27,34,.92)', screen: 'rgba(1,4,9,.55)', fg: '#e6edf3', muted: '#9198a1', faint: 'rgba(255,255,255,.07)', line: 'rgba(255,255,255,.12)', accent: '#7ee787', glow: '#d2ffd6', deep: '#2ea043', teal: '#39c5cf', blue: '#79c0ff', vox: '#2d333b' };
-const LIGHT = { bg: '#ffffff', raised: 'rgba(31,35,40,.035)', panel: 'rgba(255,255,255,.95)', screen: 'rgba(246,248,250,.9)', fg: '#1f2328', muted: '#59636e', faint: 'rgba(31,35,40,.07)', line: 'rgba(31,35,40,.15)', accent: '#1a7f37', glow: '#4ac26b', deep: '#0f5323', teal: '#1b7c83', blue: '#0969da', vox: '#8c959f' };
+const DARK = { bg: '#0d1117', raised: 'rgba(255,255,255,.045)', panel: 'rgba(22,27,34,.92)', screen: 'rgba(1,4,9,.55)', fg: '#e6edf3', muted: '#9198a1', faint: 'rgba(255,255,255,.07)', line: 'rgba(255,255,255,.12)', accent: '#7ee787', glow: '#d2ffd6', deep: '#2ea043', teal: '#39c5cf', blue: '#79c0ff', vox: '#2d333b', red: '#ff7b72', yellow: '#e3b341' };
+const LIGHT = { bg: '#ffffff', raised: 'rgba(31,35,40,.035)', panel: 'rgba(255,255,255,.95)', screen: 'rgba(246,248,250,.9)', fg: '#1f2328', muted: '#59636e', faint: 'rgba(31,35,40,.07)', line: 'rgba(31,35,40,.15)', accent: '#1a7f37', glow: '#4ac26b', deep: '#0f5323', teal: '#1b7c83', blue: '#0969da', vox: '#8c959f', red: '#cf222e', yellow: '#9a6700' };
 const vars = tokens => Object.entries(tokens).map(([key, value]) => `--${key}:${value}`).join(';');
 
 const r2 = n => Math.round(n * 100) / 100;
@@ -63,6 +63,8 @@ text{font-family:${MONO};fill:var(--fg)}
 @keyframes ring{0%{opacity:.55;transform:scale(1)}45%,100%{opacity:0;transform:scale(3)}}
 @keyframes run{0%{opacity:1;transform:scaleX(0)}75%{opacity:1;transform:scaleX(1)}100%{opacity:0;transform:scaleX(1)}}
 @keyframes show{from,to{opacity:1}}
+@keyframes showw{from{opacity:0}to{opacity:1}}
+@keyframes rot{to{transform:rotate(360deg)}}
 @keyframes spin{from{opacity:1;transform:rotate(0)}to{opacity:1;transform:rotate(360deg)}}
 @keyframes sweep{0%{transform:translateX(0);animation-timing-function:${EASE.inOut}}38%,100%{transform:translateX(var(--d))}}
 @keyframes orbit{from{stroke-dashoffset:var(--o0)}to{stroke-dashoffset:var(--o1)}}
@@ -76,7 +78,59 @@ text{font-family:${MONO};fill:var(--fg)}
 `;
 
 // One animation entry for a style attribute: name duration easing delay tail.
-export const A = (name, dur, delay = 0, ease = EASE.out, tail = 'both') => `${name} ${Math.round(dur)}ms ${ease} ${Math.round(delay)}ms ${tail}`;
+// ── Looping scenes ──
+// Every scene plays forever: it builds, holds, rewinds (everything un-types, un-draws and exits in
+// reverse order), then builds again. Each one-shot animation becomes `alternate` over one shared
+// half-period, with its own delay and curve encoded in a linear() easing; because every element
+// shares the same mirror point, the whole scene rewinds in sync. Only two-keyframe animations can be
+// mapped this way (CSS applies the easing per keyframe segment), which is every entrance here.
+let LOOP = 0;
+let TYPED = 0; // per-scene counter for shared typing classes
+export const withLoop = (half, render) => { LOOP = half; TYPED = 0; try { return render(); } finally { LOOP = 0; } };
+const MIRRORABLE = new Set(['in', 'up', 'side', 'rise', 'pop', 'chip', 'grow', 'draw', 'type', 'wipe', 'ch', 'extrude', 'drop', 'vanish', 'pop3d', 'shin', 'land', 'slide']);
+
+const pct = v => `${Math.round(Math.min(100, Math.max(0, v)) * 10) / 10}%`;
+function curve(ease) {
+  const bez = /cubic-bezier\(([^)]+)\)/.exec(ease);
+  if (bez) {
+    const [x1, y1, x2, y2] = bez[1].split(',').map(Number);
+    return [0.12, 0.3, 0.55].map(t => {
+      const u = 1 - t;
+      return [3 * u * u * t * x1 + 3 * u * t * t * x2 + t ** 3, 3 * u * u * t * y1 + 3 * u * t * t * y2 + t ** 3];
+    }).concat([[1, 1]]);
+  }
+  const st = /steps\((\d+)/.exec(ease);
+  if (st) {
+    const n = +st[1];
+    return Array.from({ length: n }, (_, k) => [[(k + 1) / n, k / n], [(k + 1) / n, (k + 1) / n]]).flat();
+  }
+  return [[1, 1]];
+}
+// linear() easing: hold at 0 until the start, follow the original curve for the duration, hold at 1.
+export function loopEase(ease, dur, delay, half = LOOP) {
+  const start = (delay / half) * 100;
+  const span = (Math.max(dur, 1) / half) * 100;
+  const pts = curve(ease).map(([x, y]) => `${Math.round(y * 100) / 100} ${pct(start + x * span)}`);
+  return `linear(0, 0 ${pct(start)}, ${pts.join(', ')}, 1 100%)`;
+}
+// Visible only inside [from, to] of every cycle (for pieces whose resting state is hidden).
+export const loopWindow = (name, from, to, half = LOOP) =>
+  `${name} ${half}ms linear(0, 0 ${pct((from / half) * 100)}, 1 ${pct((from / half) * 100)}, 1 ${pct((to / half) * 100)}, 0 ${pct((to / half) * 100)}, 0 100%) 0ms infinite alternate both`;
+export const looping = () => LOOP;
+
+// After a scene renders: ambient motion with a finite count runs forever (CSS and SMIL alike).
+// Mirrored entrances already say `infinite alternate`; one-shots ending in `both` stay as they are.
+export const loopify = svg => svg
+  .replace(/repeatCount="\d+"/g, 'repeatCount="indefinite"')
+  .replace(/animation:([^";}]+)/g, (m, list) => `animation:${list.split(/,(?![^(]*\))/).map(e => e.replace(/\s\d+(?:\.\d+)?\s*$/, ' infinite')).join(',')}`);
+
+export const A = (name, dur, delay = 0, ease = EASE.out, tail = 'both') => {
+  if (LOOP && MIRRORABLE.has(name) && (tail === 'both' || tail === 'forwards')) {
+    return `${name} ${LOOP}ms ${loopEase(ease, dur, delay)} 0ms infinite alternate both`;
+  }
+  if (LOOP && name === 'show') return loopWindow('showw', delay, delay + dur);
+  return `${name} ${Math.round(dur)}ms ${ease} ${Math.round(delay)}ms ${tail}`;
+};
 
 export const style = (anim, custom = '') => {
   const list = anim ? [].concat(anim) : [];
@@ -108,12 +162,18 @@ export function typed(x, y, str, { size = 15, cls = 'fg', delay = 0, cps = 50, c
   const w = width(str, size);
   const dur = n * cps;
   const steps = `steps(${n},end)`;
-  const glyphs = [...str].map((c, i) => (c === ' ' ? ' ' : `<tspan style="animation:ch 1ms linear ${Math.round(delay + (i + 1) * cps)}ms both">${escapeXml(c)}</tspan>`)).join('');
-  let out = `<text x="${r2(x)}" y="${r2(y)}" font-size="${size}" textLength="${w}" class="${cls}">${glyphs}</text>`;
+  // Looping: one class carries the cycle; each glyph only sets its keystroke point (--s) inside the
+  // shared easing, so every glyph mirrors with the scene and the rewind backspaces from the end.
+  const cls0 = LOOP ? `ty${++TYPED}` : '';
+  const glyphs = [...str].map((c, i) => (c === ' ' ? ' ' : LOOP
+    ? `<tspan class="${cls0}" style="--s:${pct(((delay + (i + 1) * cps) / LOOP) * 100)}">${escapeXml(c)}</tspan>`
+    : `<tspan style="animation:ch 1ms linear ${Math.round(delay + (i + 1) * cps)}ms both">${escapeXml(c)}</tspan>`)).join('');
+  const typeRule = LOOP ? `<style>.${cls0}{animation:ch ${LOOP}ms linear(0, 0 var(--s), 1 var(--s), 1 100%) 0ms infinite alternate both}</style>` : '';
+  let out = `${typeRule}<text x="${r2(x)}" y="${r2(y)}" font-size="${size}" textLength="${w}" class="${cls}">${glyphs}</text>`;
   if (caret) {
     const anims = [A('in', 1, delay, EASE.linear), A('type', dur, delay, steps)];
     if (caret === 'vanish') anims.push(A('vanish', 120, vanishAt ?? delay + dur + 320, EASE.linear, 'forwards'));
-    else anims.push(`blink 1100ms linear ${Math.round(delay + dur + 240)}ms ${blinks}`);
+    else anims.push(`blink 1100ms linear ${Math.round(delay + dur + 240)}ms ${LOOP ? 'infinite' : blinks}`);
     out += `<rect class="ac mv${caret === 'vanish' ? ' transient' : ''}" x="${r2(x + 1)}" y="${r2(y - size * 0.82)}" width="${r2(size * 0.5)}" height="${r2(size * 1.02)}" rx="1"${style(anims, `--d:${w}px;`)}/>`;
   }
   return { svg: out, end: delay + dur, width: w };
@@ -143,7 +203,7 @@ export function extrude(x, y, w, h, dx, dy, r = 0, cls = ['xa', 'xb']) {
 
 // Busy indicator for a running command; hidden before and after it spins.
 export const spinner = (cx, cy, start, dur) =>
-  `<circle class="spin" cx="${cx}" cy="${cy}" r="6" pathLength="1" stroke-dasharray=".62 .38"${style(`spin 640ms linear ${Math.round(start)}ms ${r2(dur / 640)}`)}/>`;
+  `<circle class="spin" cx="${cx}" cy="${cy}" r="6" pathLength="1" stroke-dasharray=".62 .38"${style(LOOP ? [loopWindow('showw', start, start + dur), 'rot 640ms linear 0ms infinite'] : `spin 640ms linear ${Math.round(start)}ms ${r2(dur / 640)}`)}/>`;
 
 // Soft light for moving packets: a halo gradient plus a bright core.
 export const haloDef = id => `<radialGradient id="${id}"><stop offset="0" class="shs" stop-opacity=".7"/><stop offset="1" class="shs" stop-opacity="0"/></radialGradient>`;

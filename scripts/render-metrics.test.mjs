@@ -21,7 +21,7 @@ const rejected = promise => assert.rejects(promise, { message: FAILURE });
 // ponytail: regression guard for owned SVGs; use a real sanitizer before accepting uploaded artwork.
 function checkSvg(svg) {
   assert.match(svg, /<svg(?:\s|>)/);
-  assert.doesNotMatch(svg, /<\s*(?:script|foreignObject)\b|\son\w+\s*=|@import\b|<!DOCTYPE|<!ENTITY|\binfinite\b/i);
+  assert.doesNotMatch(svg, /<\s*(?:script|foreignObject)\b|\son\w+\s*=|@import\b|<!DOCTYPE|<!ENTITY/i);
   const ids = [...svg.matchAll(/\bid=["']([^"']+)["']/g)].map(match => match[1]);
   assert.equal(ids.length, new Set(ids).size, 'SVG IDs must be unique');
   const refs = [...svg.matchAll(/\burl\s*\(\s*([^)]*?)\s*\)/gi)].map(match => match[1].replace(/^(['"])(.*)\\1$/, '$2'));

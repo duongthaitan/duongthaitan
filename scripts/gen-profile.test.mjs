@@ -19,9 +19,8 @@ test('artwork is ASCII only, so no glyph depends on platform font coverage', () 
 
 test('every animated element starts from a finished base state', () => {
   for (const [file, svg] of assets) {
-    // Loops in the README images stay finite: an SVG inside <img> repaints whole while anything moves.
-    if (file.endsWith('.svg')) assert.doesNotMatch(svg, /\bindefinite\b|\binfinite\b/, file);
-    for (const [, count] of svg.matchAll(/repeatCount="([^"]*)"/g)) assert.match(count, /^\d+$/, file);
+    // Everything loops forever (by request); SMIL counts must still be explicit.
+    for (const [, count] of svg.matchAll(/repeatCount="([^"]*)"/g)) assert.match(count, /^(\d+|indefinite)$/, file);
     // SMIL ignores prefers-reduced-motion, so every SMIL animation sits under .fx (display:none there)
     // or inside a mask that only an .fx layer uses.
     const stack = [];
@@ -32,7 +31,7 @@ test('every animated element starts from a finished base state', () => {
     }
     // Fill-mode both on every one-shot entrance keeps delayed items from flashing their end state first.
     for (const [, list] of svg.matchAll(/style="[^"]*?animation:([^"]+)"/g))
-      for (const entry of list.split(/,(?![^(]*\))/)) assert.match(entry.trim(), /\b(both|forwards|\d+)$/, `${file}: ${entry}`);
+      for (const entry of list.split(/,(?![^(]*\))/)) assert.match(entry.trim(), /\b(both|forwards|infinite|\d+)$/, `${file}: ${entry}`);
   }
 });
 

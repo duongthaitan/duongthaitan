@@ -1,7 +1,7 @@
 import { writeFile, rename, rm } from 'node:fs/promises';
 import { randomUUID } from 'node:crypto';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { A, ADV, EASE, chevron, escapeXml, style, svg, text, typed } from './svg-kit.mjs';
+import { A, ADV, EASE, chevron, escapeXml, loopify, style, svg, text, typed, withLoop } from './svg-kit.mjs';
 
 export { escapeXml };
 
@@ -45,7 +45,9 @@ export async function fetchMetrics({ fetchImpl = fetch, timeoutMs = 30_000 } = {
   } catch { throw new Error(FAILURE); }
 }
 
-export function renderSvg(metrics = null, now = new Date()) {
+export const renderSvg = (metrics = null, now = new Date()) => loopify(withLoop(7000, () => renderPanel(metrics, now)));
+
+function renderPanel(metrics, now) {
   const labels = ['Public original repos', 'Stars on original repos', 'Followers'];
   const values = metrics === null ? null : [count(metrics.repos), count(metrics.stars), count(metrics.followers)];
   const updated = values ? now.toISOString().replace('T', ' ').replace(/\.\d{3}Z$/, ' UTC') : null;

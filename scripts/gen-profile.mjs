@@ -8,7 +8,7 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import { dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { A, EASE, check, chevron, escapeXml, extrude, haloDef, hexRgb, icon, logoInk, rrect, spinner, style, svg, text, toHex, typed, width } from './svg-kit.mjs';
+import { A, EASE, check, chevron, escapeXml, extrude, haloDef, hexRgb, icon, logoInk, loopEase, loopWindow, loopify, looping, rrect, spinner, style, svg, text, toHex, typed, width, withLoop } from './svg-kit.mjs';
 import { UI } from './ui-icons.mjs';
 import { LAND } from './earth-data.mjs';
 import { PLATEAUS, RANGES } from './relief-data.mjs';
@@ -185,9 +185,13 @@ function hero() {
   const endA = startA + Alane.length / vBranch;
 
   const line = (d, cls, delay, dur) => `<path class="${cls} draw" d="${d}" pathLength="1"${style(A('draw', dur, delay, EASE.linear))}/>`;
-  parts.push(line(B.d, 'gl gb', startB, B.length / vBranch));
-  parts.push(line(Alane.d, 'gl gb', startA, Alane.length / vBranch));
+  parts.push(line(B.d, 'gl gr', startB, B.length / vBranch));
+  parts.push(line(Alane.d, 'gl gy', startA, Alane.length / vBranch));
   parts.push(line(mainD, 'gl gm', G, (mainBottom - mainTop) / vMain));
+  const flow = (d, tone, delay, dur) => [['glow', 6], ['core', 2.4]].map(([kind, w]) =>
+    `<path class="flow ${tone} ${kind}" d="${d}" pathLength="1" stroke-width="${w}" stroke-dasharray=".14 .86"${style(`flow ${dur}ms linear ${Math.round(delay)}ms 10`)}/>`).join('');
+  parts.push(flow(B.d, 'fr', startB + B.length / vBranch + 200, 2600));
+  parts.push(flow(Alane.d, 'fy', startA + Alane.length / vBranch + 500, 2000));
 
   // Packets ride the lines once they exist. The main packet lands on HEAD at 60% of its period,
   // exactly when the CSS ring pulse fires, so every arrival visibly "commits".
@@ -196,17 +200,17 @@ function hero() {
   const loops = 4;
   const packetAt = tHead + 420;
   const ringAt = packetAt + period * 0.6;
-  const packet = (path, dur, begin, repeat, core, arrive = 0.6) =>
-    `<g class="fx" opacity="0"><circle r="${core * 4}" fill="url(#hero-halo)"/><circle class="ac" r="${core}"/><animateMotion path="${path}" dur="${ms(dur)}" begin="${ms(begin)}" repeatCount="${repeat}" calcMode="spline" keyPoints="0;1;1" keyTimes="0;${arrive};1" keySplines=".77 0 .175 1;0 0 1 1"/><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.08;${r2(arrive - 0.06)};${arrive};1" dur="${ms(dur)}" begin="${ms(begin)}" repeatCount="${repeat}"/></g>`;
-  parts.push(packet(B.d, period * 1.5, packetAt + 900, 3, 2.4, 0.7));
+  const packet = (path, dur, begin, repeat, core, arrive = 0.6, tone = 'ac', halo = 'hero-halo') =>
+    `<g class="fx" opacity="0"><circle r="${core * 4}" fill="url(#${halo})"/><circle class="${tone}" r="${core}"/><animateMotion path="${path}" dur="${ms(dur)}" begin="${ms(begin)}" repeatCount="${repeat}" calcMode="spline" keyPoints="0;1;1" keyTimes="0;${arrive};1" keySplines=".77 0 .175 1;0 0 1 1"/><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.08;${r2(arrive - 0.06)};${arrive};1" dur="${ms(dur)}" begin="${ms(begin)}" repeatCount="${repeat}"/></g>`;
+  parts.push(packet(B.d, period * 1.5, packetAt + 900, 3, 2.4, 0.7, 'nr', 'hero-halo-r'));
   parts.push(packet(mainD, period, packetAt, loops, 3));
 
   const node = (cx, cy, cls, delay) => `<circle class="${cls} pop" cx="${cx}" cy="${cy}" r="4"${style(A('pop', 420, delay))}/>`;
   const merges = { 120: endA, 88: endB };
   for (const y of [276, 238, 176, 120, 88]) parts.push(node(L0, y, 'nm', Math.max(tMain(y), merges[y] ?? 0)));
-  for (const y of [200, 166]) parts.push(node(698, y, 'nb', startA + Alane.at(y) / vBranch));
+  for (const y of [200, 166]) parts.push(node(698, y, 'ny', startA + Alane.at(y) / vBranch));
   const bNodes = [222, 182, 142];
-  for (const y of bNodes) parts.push(node(736, y, 'nb', startB + B.at(y) / vBranch));
+  for (const y of bNodes) parts.push(node(736, y, 'nr', startB + B.at(y) / vBranch));
 
   parts.push(`<circle class="ring" cx="${L0}" cy="${mainTop}" r="5"${style(`ring ${period}ms ${EASE.out} ${ms(ringAt)} ${loops}`)}/>`);
   parts.push(`<circle class="ac pop" cx="${L0}" cy="${mainTop}" r="5.5"${style(A('pop', 480, tHead))}/>`);
@@ -214,12 +218,12 @@ function hero() {
   // Branch decorations, git log style
   const pill = (x, y, label, accent, delay) => {
     const w = width(label, 11) + 14;
-    return `<g${style(A('side', 520, delay))}><rect class="${accent ? 'pill-on' : 'pill'}" x="${x}" y="${y - 13}" width="${r2(w)}" height="19" rx="5"/>${label === 'HEAD -> main'
+    return `<g${style(A('side', 520, delay))}><rect class="${accent === 'red' ? 'pill-r' : accent ? 'pill-on' : 'pill'}" x="${x}" y="${y - 13}" width="${r2(w)}" height="19" rx="5"/>${label === 'HEAD -> main'
       ? `<text x="${x + 7}" y="${y}" font-size="11" textLength="${width(label, 11)}"><tspan class="mu">HEAD -&gt; </tspan><tspan class="ac">main</tspan></text>`
-      : text(x + 7, y, label, { size: 11, cls: 'mu' })}</g>`;
+      : text(x + 7, y, label, { size: 11, cls: 'pr-t' })}</g>`;
   };
   parts.push(pill(676, mainTop + 4, 'HEAD -> main', true, tHead + 120));
-  parts.push(pill(752, bNodes.at(-1) + 4, 'infra/aws', false, startB + B.at(bNodes.at(-1)) / vBranch + 120));
+  parts.push(pill(752, bNodes.at(-1) + 4, 'infra/aws', 'red', startB + B.at(bNodes.at(-1)) / vBranch + 120));
 
 
   const glyphs = words.map(([word, col]) => text(wordAt(col), 150, word, { size: nameSize, weight: 700 })).join('');
@@ -227,7 +231,7 @@ function hero() {
 <radialGradient id="hero-fg" cx=".75" cy=".5" r=".3"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
 <mask id="hero-fade"><rect width="${W}" height="${H}" fill="url(#hero-fg)"/></mask>
 <linearGradient id="hero-sheen"><stop offset="0" class="shs" stop-opacity="0"/><stop offset=".5" class="shs" stop-opacity=".95"/><stop offset="1" class="shs" stop-opacity="0"/></linearGradient>
-${haloDef('hero-halo')}
+${haloDef('hero-halo')}<radialGradient id="hero-halo-r"><stop offset="0" class="shr" stop-opacity=".7"/><stop offset="1" class="shr" stop-opacity="0"/></radialGradient>
 <radialGradient id="hero-au1"><stop offset="0" class="shs" stop-opacity=".17"/><stop offset="1" class="shs" stop-opacity="0"/></radialGradient>
 <radialGradient id="hero-au2"><stop offset="0" class="sht" stop-opacity=".15"/><stop offset="1" class="sht" stop-opacity="0"/></radialGradient>
 <radialGradient id="hero-au3"><stop offset="0" class="shb" stop-opacity=".14"/><stop offset="1" class="shb" stop-opacity="0"/></radialGradient>
@@ -239,7 +243,10 @@ ${haloDef('hero-halo')}
 @media (prefers-color-scheme:light){.aur{opacity:.75}.x1{opacity:.35}.x2{opacity:.28}.x3{opacity:.2}.x4{opacity:.1}}
 @keyframes extrude{from{opacity:0;transform:translate(var(--e),var(--e))}}
 @keyframes drift{50%{transform:translate(var(--dx),var(--dy))}}
-.gl{fill:none;stroke-width:2}.gm{stroke:var(--accent)}.gb{stroke:var(--muted);opacity:.65}.nm{fill:var(--accent)}.nb{fill:var(--muted)}.pill{fill:var(--raised);stroke:var(--line)}.pill-on{fill:var(--raised);stroke:var(--accent);stroke-opacity:.6}
+.gl{fill:none;stroke-width:2}.gm{stroke:var(--accent)}.gb{stroke:var(--muted);opacity:.65}.gr{stroke:var(--red);opacity:.8}.gy{stroke:var(--yellow);opacity:.8}.nm{fill:var(--accent)}.nb{fill:var(--muted)}.nr{fill:var(--red)}.ny{fill:var(--yellow)}.shr{stop-color:var(--red)}
+.flow{fill:none;stroke-linecap:round;opacity:0}.fr{stroke:var(--red)}.fy{stroke:var(--yellow)}.glow{stroke-opacity:.28}
+@keyframes flow{0%{opacity:1;stroke-dashoffset:.14}100%{opacity:1;stroke-dashoffset:-.86}}
+.pill-r{fill:var(--raised);stroke:var(--red);stroke-opacity:.6}.pr-t{fill:var(--red)}.pill{fill:var(--raised);stroke:var(--line)}.pill-on{fill:var(--raised);stroke:var(--accent);stroke-opacity:.6}
 ${css.join('\n')}</style>`;
 
   return svg({
@@ -322,16 +329,18 @@ function fetchCard() {
   const [scx, scy] = P((23 * pitch) / 2, vf, 10).split(' ').map(Number);
   parts.push(`<ellipse class="vsh" cx="${scx}" cy="${scy}" rx="${(23 * pitch) / 2 + 8}" ry="12" transform="rotate(${r2((Math.atan(S) * 180) / Math.PI)} ${scx} ${scy})" fill="url(#${id}-shadow)" style="animation:in 900ms ${EASE.out} 900ms both,shb 4200ms ${EASE.inOut} 2400ms 3"/>`);
 
-  const blocks = voxels.map(({ c, r, t }) => {
+  const columns = new Map();
+  voxels.forEach(({ c, r, t }) => {
     const u = c * pitch;
     const v = r * pitch;
     const k = t ? 't' : 'g';
     let faces = `<path class="${k}f" d="${quad(P(u, v), P(u + cell, v), P(u + cell, v + cell), P(u, v + cell))}"${style(`${t ? 'glintT' : 'glintG'} 4600ms ${EASE.inOut} ${ms(3200 + (c + r) * 24)} 2`)}/>`;
     if (!filled.has(`${c},${r - 1}`)) faces += `<path class="${k}t" d="${quad(P(u, v), P(u + cell, v), P(u + cell, v, D), P(u, v, D))}"/>`;
     if (!filled.has(`${c + 1},${r}`)) faces += `<path class="${k}r" d="${quad(P(u + cell, v), P(u + cell, v, D), P(u + cell, v + cell, D), P(u + cell, v + cell))}"/>`;
-    // Blocks stack from the bottom row up, in a wave from left to right.
-    return `<g${style(A('drop', 560, 700 + c * 20 + (6 - r) * 34))}>${faces}</g>`;
+    columns.set(c, (columns.get(c) || '') + faces);
   });
+  // Columns drop in a wave from left to right.
+  const blocks = [...columns].sort((p, q) => p[0] - q[0]).map(([c, faces]) => `<g${style(A('drop', 560, 700 + c * 30))}>${faces}</g>`);
   parts.push(`<g style="--b:-7px;animation:bob 4200ms ${EASE.inOut} 2400ms 3">${blocks.join('')}</g>`);
 
   // ── Info panel: a raised slab with its back plate one step deeper ──
@@ -349,14 +358,14 @@ function fetchCard() {
   const rows = NEOFETCH;
   // Delays shrink as the list goes on: a wave, not a metronome.
   let delay = t0 + 160;
-  const frame = 55;
+  const frame = 90;
   rows.forEach(([key, value], i) => {
     const y = 142 + i * 21;
     const rand = random(i * 977 + 13);
-    const frames = [0, 1, 2, 3].map(k => text(vx, y, garble(value, Math.floor((value.length * k) / 4), rand), {
+    const frames = [0, 1].map(k => text(vx, y, garble(value, Math.floor((value.length * k) / 2), rand), {
       size: 14, cls: 'mu fr', anim: A('show', frame, delay + 40 + k * frame, EASE.linear, '1'),
     }));
-    const real = text(vx, y, value, { size: 14, anim: A('in', 1, delay + 40 + 4 * frame, EASE.linear) });
+    const real = text(vx, y, value, { size: 14, anim: A('in', 1, delay + 40 + 2 * frame, EASE.linear) });
     parts.push(`<g${style(A('side', 480, delay))}>${text(kx, y, key, { size: 14, cls: 'ac' })}${frames.join('')}${real}</g>`);
     delay += Math.max(34, 70 - i * 6);
   });
@@ -437,13 +446,13 @@ function sectionHeader(slug, command) {
   const doneAt = runAt + runDur * 0.75;
   const body = [
     extrude(0.5, 0.5, fw, fh, depth, depth, 10, ['kb', 'ks']),
-    `<g${style(`press 300ms ${EASE.out} ${Math.round(enterAt)}ms 1`)}>`,
+    `<g${style(looping() ? `pressd ${looping()}ms linear(0, 0 ${r2((enterAt / looping()) * 100)}%, 1 ${r2(((enterAt + 110) / looping()) * 100)}%, 0 ${r2(((enterAt + 300) / looping()) * 100)}%, 0 100%) 0ms infinite alternate both` : `press 300ms ${EASE.out} ${Math.round(enterAt)}ms 1`)}>`,
     `<path class="frame" d="${rrect(0.5, 0.5, fw, fh, 11.5)}"/>`,
     icon(24, y - 14, 18, UI[SECTION_ICON[slug]], 'ac', A('pop', 360, 40)),
     `<path class="sep" d="M50 ${y - 15}v20"/>`,
     chevron(58, y, 15, A('in', 240, 60)),
     cmd.svg,
-    `<rect class="ac run" x="0" y="${fh - 2.5}" width="${fw}" height="2" clip-path="url(#${id}-key)"${style(A('run', runDur, runAt, EASE.inOut))}/>`,
+    `<rect class="ac run" x="0" y="${fh - 2.5}" width="${fw}" height="2" clip-path="url(#${id}-key)"${style(looping() ? [A('grow', runDur * 0.75, runAt, EASE.inOut), loopWindow('showw', runAt, runAt + runDur)] : A('run', runDur, runAt, EASE.inOut))}/>`,
     spinner(fw - 66, y - 5, runAt, doneAt - runAt),
     check(fw - 72, y - 1, A('pop', 360, doneAt)),
     text(fw - 22, y, 'done', { size: 13, cls: 'mu', anchor: 'end', anim: A('in', 360, doneAt + 60) }),
@@ -451,7 +460,7 @@ function sectionHeader(slug, command) {
   ].join('\n');
   return svg({
     w: W, h: H, id, body, frame: false,
-    defs: `<clipPath id="${id}-key"><rect width="${fw + 1}" height="${fh + 1}" rx="12"/></clipPath><style>.kb{fill:var(--line)}.ks{fill:var(--faint)}@keyframes press{40%{transform:translate(${depth / 2}px,${depth / 2}px)}}.sep{stroke:var(--line)}</style>`,
+    defs: `<clipPath id="${id}-key"><rect width="${fw + 1}" height="${fh + 1}" rx="12"/></clipPath><style>.kb{fill:var(--line)}.ks{fill:var(--faint)}@keyframes press{40%{transform:translate(${depth / 2}px,${depth / 2}px)}}@keyframes pressd{to{transform:translate(${depth / 2}px,${depth / 2}px)}}.sep{stroke:var(--line)}</style>`,
     title: `$ ${command}`,
     desc: `A 3D terminal key that types the command "${command}", presses in as it runs with a spinner, and reports done.`,
   });
@@ -507,7 +516,7 @@ function divider() {
 <linearGradient id="div-trace"><stop offset="0" class="g" stop-opacity="0"/><stop offset="1" class="g" stop-opacity=".8"/></linearGradient></defs>
 <rect y="12" width="${W}" height="1" fill="url(#div-edge)"/>
 <rect class="t" x="-160" y="12" width="160" height="1" fill="url(#div-trace)" style="animation:trace 2400ms ${EASE.inOut} 1500ms 2"/>
-<rect class="a" x="${W / 2 - 24}" y="11.5" width="48" height="2" rx="1" style="animation:slide 1600ms ${EASE.out} 200ms both"/>
+<rect class="a" x="${W / 2 - 24}" y="11.5" width="48" height="2" rx="1" style="animation:${A('slide', 1600, 200)}"/>
 </svg>
 `;
 }
@@ -582,8 +591,8 @@ function island({ id, title, subtitle, groups, cols, offset }) {
     const sy = sx * (b / a);
     const logo = `<path class="lg" style="${logoInk(icon.hex)}" transform="matrix(${r2(sx)} 0 0 ${r2(sy)} ${r2(x - 12 * sx)} ${r2(yt - 12 * sy)})" d="${icon.d}"/>`;
     const lit = on ? `<use href="#${id}-cap" x="${x}" y="${yt}" class="on"/><path class="halo" d="${rhAt(x, yt, 1)}" style="animation-delay:${ms(bob + 300)}"/>` : '';
-    parts.push(`<path class="sd shd" d="${rhAt(x, yf, 1.06)}" style="animation-delay:${ms(drop)},${ms(bob)}"/>`);
-    parts.push(`<g class="dr" style="animation-delay:${ms(drop)}"><g class="bb" style="animation-delay:${ms(bob)}"><use href="#${id}-block" x="${x}" y="${yt}"/><use href="#${id}-tint" x="${x}" y="${yt}" color="${icon.hex}"/>${lit}${logo}</g></g>`);
+    parts.push(`<path class="sd shd" d="${rhAt(x, yf, 1.06)}"${style(`shbob 3600ms ${EASE.inOut} ${ms(bob)} 3`)}/>`);
+    parts.push(`<g${style(A('drop', 820, drop))}><g class="bb" style="animation-delay:${ms(bob)}"><use href="#${id}-block" x="${x}" y="${yt}"/><use href="#${id}-tint" x="${x}" y="${yt}" color="${icon.hex}"/>${lit}${logo}</g></g>`);
   }
 
   // Name panel: the readable index, keyed to the floor zones.
@@ -631,10 +640,8 @@ function island({ id, title, subtitle, groups, cols, offset }) {
 .shd{fill:#000;opacity:.45}.on{fill:none;stroke:var(--accent);stroke-width:1.4;stroke-opacity:.85}
 .lg{fill:var(--c)}
 @media (prefers-color-scheme:light){.ft{fill:#fff}.fl{fill:#f0f3f6}.fr{fill:#dfe4ea}.dish{fill:#1f2328;opacity:.03}.edge{stroke:#1f2328;stroke-opacity:.08}.shd{fill:#1f2328;opacity:.13}.lg{fill:var(--cl,var(--c))}.pl{fill:#e6eaef}.pr{fill:#d8dee4}}
-.dr{animation:drop 820ms ${EASE.out} both}
 .bb{animation:bob 3600ms ${EASE.inOut} 3}
 .sd,.halo{transform-box:fill-box;transform-origin:center}
-.sd{animation:shin 820ms ${EASE.out} both,shbob 3600ms ${EASE.inOut} 3}
 .halo{fill:none;stroke:var(--accent);opacity:0;animation:halo 3600ms ${EASE.out} 3}
 @keyframes drop{from{opacity:0;transform:translateY(-96px)}}
 @keyframes bob{50%{transform:translateY(-7px)}}
@@ -763,10 +770,10 @@ function terminal3d(sizes) {
   });
   const finalOffset = stops.at(-1)[1];
   const scrollT = stops.at(-1)[0];
-  css.push(`.scroll{transform:translateY(${finalOffset}px)}@keyframes scroll{${stops.map(([at, off], k) => `${r2((at / scrollT) * 100)}%{transform:translateY(${off}px)${k % 2 ? `;animation-timing-function:${EASE.out}` : ''}}`).join('')}}`);
+  css.push(`.scroll{transform:translateY(${finalOffset}px)}@keyframes scrollm{from{transform:translateY(0)}}@keyframes scroll{${stops.map(([at, off], k) => `${r2((at / scrollT) * 100)}%{transform:translateY(${off}px)${k % 2 ? `;animation-timing-function:${EASE.out}` : ''}}`).join('')}}`);
 
   const screen = `<rect class="scr" x="-208" y="-92" width="416" height="208" rx="6"/>
-<g clip-path="url(#${id}-scr)"><g class="scroll" style="animation:scroll ${scrollT}ms linear 0ms both">${rendered.join('')}</g>
+<g clip-path="url(#${id}-scr)"><g class="scroll" style="animation:${looping() ? `scrollm ${looping()}ms linear(0, ${stops.slice(1).map(([at, off]) => `${r2(off / finalOffset)} ${r2((at / looping()) * 100)}%`).join(', ')}, 1 100%) 0ms infinite alternate both` : `scroll ${scrollT}ms linear 0ms both`}">${rendered.join('')}</g>
 <rect class="scan" x="-208" y="-98" width="416" height="8" fill="url(#${id}-scan)" style="animation:scan 4600ms linear ${end + 400}ms 2"/>
 <g transform="skewX(-18)"><rect x="-330" y="-92" width="80" height="208" fill="url(#${id}-glare)" style="--d:620px;animation:sweep 7600ms linear ${end - 1400}ms 2"/></g></g>`;
   const chrome = `<circle class="a1" cx="-198" cy="-109" r="4.5"/><circle class="a3" cx="-183" cy="-109" r="4.5"/><circle class="a2" cx="-168" cy="-109" r="4.5"/>${text(0, -105, '~/duongthaitan', { size: 11, cls: 'mu', anchor: 'middle' })}<path class="hair" d="M-220 -96H220"/>`;
@@ -795,7 +802,7 @@ function terminal3d(sizes) {
     ...[-92, -50, -8, 30].map(x => `<circle class="gnode" cx="${x}" cy="18" r="4"/>`),
     `<circle class="ring" cx="72" cy="18" r="5"${style(`ring 2200ms ${EASE.out} ${pushedAt + 260}ms 3`)}/>`,
     `<circle class="ac pop" cx="72" cy="18" r="5.5"${style(A('pop', 420, pushedAt + 200))}/>`,
-    `<g style="--d:42px;animation:type 520ms ${EASE.out} ${pushedAt + 160}ms both" class="mv"><rect class="tpill" x="8" y="-5" width="44" height="16" rx="5"/>${text(15, 7, 'main', { size: 11, cls: 'ac' })}</g>`,
+    `<g style="--d:42px;animation:${A('type', 520, pushedAt + 160)}" class="mv"><rect class="tpill" x="8" y="-5" width="44" height="16" rx="5"/>${text(15, 7, 'main', { size: 11, cls: 'ac' })}</g>`,
   ].join('');
 
   parts.push(panel({ cx: 726, cy: 148, w: 260, h: 212, enter: 320, bobAmp: -9, bobDur: 6200, bobDelay: 0, depth: 1, content: assetsContent }));
@@ -855,7 +862,7 @@ function keycap({ id, w, h, i, lines, title, glyph, size = 16 }) {
   const cy = fh / 2;
   const body = [
     extrude(0.5, 0.5, fw, fh, depth, depth, 9, ['kb', 'ks']),
-    `<g${style(`pop3d 620ms ${EASE.out} ${delay}ms both`)}>`,
+    `<g${style(A('pop3d', 620, delay))}>`,
     `<path class="face" d="${rrect(0.5, 0.5, fw, fh, 10)}"/>`,
     `<g clip-path="url(#${id}-key)"><g transform="skewX(-20)"><rect x="-90" y="0" width="60" height="${h}" fill="url(#${id}-sheen)" style="--d:${w + 160}px;animation:sweep 5200ms linear ${delay + 900}ms 2"/></g></g>`,
     `<g class="pop"${style(A('pop', 420, delay + 180))}>${icon(14, cy - size / 2 + 0.5, size, glyph)}</g>`,
@@ -946,7 +953,7 @@ function pingGlobe() {
 
   // Stars: deterministic, behind everything, a few twinkle.
   const rand = random(2026);
-  const stars = Array.from({ length: 26 }, (_, n) => {
+  const stars = Array.from({ length: 16 }, (_, n) => {
     let x;
     let y;
     do { x = 14 + rand() * 360; y = 10 + rand() * (H - 20); } while (Math.hypot(x - cx, y - cy) < R + 26);
@@ -985,7 +992,7 @@ function pingGlobe() {
     const land = cmd.end + 1100 + k * 800;
     const arc = `M${r2(origin[0])} ${r2(origin[1])}C${r2(origin[0] + 50)} ${r2(origin[1])} ${tx - 60} ${y - 5} ${tx - 12} ${y - 5}`;
     parts.push(`<path class="arc draw" d="${arc}" pathLength="1"${style(A('draw', 700, land - 700, EASE.inOut))}/>`);
-    parts.push(`<g class="fx" opacity="0"><circle r="7" fill="url(#${id}-halo)"/><circle class="ac" r="2.4"/><animateMotion path="${arc}" dur="700ms" begin="${land - 700}ms" fill="freeze" calcMode="spline" keyPoints="0;1" keyTimes="0;1" keySplines=".77 0 .175 1"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.1;.85;1" dur="760ms" begin="${land - 700}ms" fill="freeze"/></g>`);
+    parts.push(`<g class="fx" opacity="0"><circle r="7" fill="url(#${id}-halo)"/><circle class="ac" r="2.4"/>${looping() ? (() => { const cyc = looping() * 2; const a = (land - 700) / cyc; const b = land / cyc; const k = v => Math.round(v * 10000) / 10000; return `<animateMotion path="${arc}" dur="${cyc}ms" repeatCount="indefinite" calcMode="linear" keyPoints="0;0;1;1" keyTimes="0;${k(a)};${k(b)};1"/><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;${k(a)};${k(a + 0.004)};${k(b - 0.004)};${k(b)};1" dur="${cyc}ms" repeatCount="indefinite"/>`; })() : `<animateMotion path="${arc}" dur="700ms" begin="${land - 700}ms" fill="freeze" calcMode="spline" keyPoints="0;1" keyTimes="0;1" keySplines=".77 0 .175 1"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.1;.85;1" dur="760ms" begin="${land - 700}ms" fill="freeze"/>`}</g>`);
     parts.push(`<g${style(A('side', 420, land))}>${text(tx, y, 'reply from', { size: 13, cls: 'mu' })}${text(tx + 11 * 7.8, y, link.label, { size: 13, cls: 'ac' })}</g>`);
   });
   const done = cmd.end + 1100 + LINKS.length * 800;
@@ -1042,53 +1049,111 @@ ${clips.join('')}
 }
 
 // ── Brand ───────────────────────────────────────────────────────────────────
-// The tandev mark: a tesseract (4D hypercube) turning in the x-w plane, so it folds itself inside
-// out, with the voxel T held at its centre, beside the wordmark. Real geometry: 16 vertices in 4D,
-// rotated, projected 4D -> 3D -> 2D with perspective, sampled per frame and morphed by SMIL. A
-// tesseract maps onto itself every 90 degrees in that plane, so the loop is seamless.
+// The tandev mark (Tandev.foto: developer and photographer): a mirrorless camera in three-quarter
+// view on the same receding axis as every other 3D object here, beside the wordmark. The lens is a
+// real cylinder: rings are coaxial circles along the axis toward the viewer, so each shows the
+// crescent you would see from above-right. Every few seconds it takes a picture: the shutter button
+// dips, the iris closes and reopens, the flash fires. Transform/opacity only, finite loops.
 
-function tesseractFrames(frames, { cx, cy, S }) {
-  const V = Array.from({ length: 16 }, (_, i) => [i & 1 ? 1 : -1, i & 2 ? 1 : -1, i & 4 ? 1 : -1, i & 8 ? 1 : -1]);
-  const E = [];
-  for (let i = 0; i < 16; i++) for (let b = 0; b < 4; b++) { const j = i ^ (1 << b); if (j > i) E.push([i, j, b]); }
-  const [ry, rx] = [0.62, -0.42]; // fixed 3D viewing angle
-  const out = [];
-  for (let f = 0; f < frames; f++) {
-    const a = (Math.PI / 2) * (f / frames);
-    const P = V.map(([x, y, z, w]) => {
-      const x1 = x * Math.cos(a) - w * Math.sin(a);
-      const w1 = x * Math.sin(a) + w * Math.cos(a);
-      const k4 = 2.4 / (3.3 - w1);
-      let [X, Y, Z] = [x1 * k4, y * k4, z * k4];
-      [X, Z] = [X * Math.cos(ry) + Z * Math.sin(ry), -X * Math.sin(ry) + Z * Math.cos(ry)];
-      [Y, Z] = [Y * Math.cos(rx) - Z * Math.sin(rx), Y * Math.sin(rx) + Z * Math.cos(rx)];
-      const k3 = 5 / (6.2 - Z);
-      return [r1(cx + X * k3 * S), r1(cy + Y * k3 * S)];
-    });
-    const seg = list => list.map(([i, j]) => `M${P[i][0]} ${P[i][1]}L${P[j][0]} ${P[j][1]}`).join('');
-    out.push({ cube: seg(E.filter(e => e[2] < 3)), hyper: seg(E.filter(e => e[2] === 3)) });
-  }
-  return out;
+function camera(id) {
+  const ring = (t, r, cls, extra = '') => { const [x, y] = [98 - 20 * t, 88 + 13 * t]; return `<circle class="${cls}" cx="${r2(x)}" cy="${r2(y)}" r="${r}"${extra}/>`; };
+  const [gx, gy] = [78, 101]; // front of the lens
+  const click = 5200;
+  const firstShot = 2600;
+  const shots = 5;
+  const shot = name => style(`${name} ${click}ms ${EASE.out} ${firstShot}ms ${shots}`);
+  const arc = (r, a0, a1) => {
+    const p = a => [r2(gx + r * Math.cos((a * Math.PI) / 180)), r2(gy + r * Math.sin((a * Math.PI) / 180))];
+    const [s, e] = [p(a0), p(a1)];
+    return `M${s[0]} ${s[1]}A${r} ${r} 0 0 1 ${e[0]} ${e[1]}`;
+  };
+  const iris = Array.from({ length: 6 }, (_, k) => { const a = (k * 60 + 15) * Math.PI / 180; return `${r2(gx + 7.5 * Math.cos(a))} ${r2(gy + 7.5 * Math.sin(a))}`; });
+  const blades = iris.map((p, k) => `M${p}L${r2(gx + 2.6 * Math.cos(((k * 60 + 75) * Math.PI) / 180))} ${r2(gy + 2.6 * Math.sin(((k * 60 + 75) * Math.PI) / 180))}`).join('');
+
+  const body = [
+    // body: top (lit), right side (shade), front (graphite gradient)
+    `<path class="cb-top" d="M33 56L143 56L157 47L47 47Z"/>`,
+    `<path class="cb-side" d="M143 56L157 47L164 54L164 109L150 118L150 63Z"/>`,
+    `<rect x="26" y="56" width="124" height="62" rx="9" fill="url(#${id}-body)"/>`,
+    `<rect x="26.5" y="56.5" width="123" height="61" rx="8.5" class="cb-edge"/>`,
+    // grip, leather textured, with the self-timer lamp and AF assist light
+    `<rect x="19" y="58" width="31" height="60" rx="11" fill="url(#${id}-grip)"/>`,
+    `<rect x="19" y="58" width="31" height="60" rx="11" fill="url(#${id}-leather)"/>`,
+    `<path class="cb-hl" d="M22 66V108"/>`,
+    `<circle class="led" cx="56" cy="64" r="2"${style(`blink 1000ms steps(1) ${firstShot - 1200}ms 14`)}/><circle class="af" cx="56" cy="71" r="1.5"/>`,
+    // viewfinder hump with hot shoe and the wordmark
+    `<path class="cb-side" d="M104 56L118 47L111 25L97 34Z"/>`,
+    `<path class="cb-top" d="M69 34L97 34L111 25L83 25Z"/>`,
+    `<path fill="url(#${id}-body)" d="M62 56L104 56L97 34L69 34Z"/>`,
+    `<path class="shoe" d="M77 31.5L94 31.5L101 27L84 27Z"/><path class="rail" d="M78.5 30.5L95 30.5M85 28H100"/>`,
+    text(83, 48.5, 'tandev', { size: 6.4, cls: 'brandtxt', anchor: 'middle' }),
+    // mode dial and shutter button
+    `<rect x="40" y="47" width="20" height="6" class="dial"/><ellipse cx="50" cy="47" rx="10" ry="3.6" class="dialtop"/><path class="knurl" d="M40 50H60"/>`,
+    `<g${shot('press')}><ellipse cx="31" cy="54.5" rx="7.5" ry="2.8" class="btn"/><ellipse cx="31" cy="53.8" rx="5.5" ry="2" class="btntop"/></g>`,
+    // lens: mount, barrel, rings toward the viewer, then the front element
+    `<circle cx="98" cy="88" r="27" fill="url(#${id}-metal)"/>`,
+    `<circle cx="98" cy="88" r="24" class="barrel-back"/>`,
+    `<path fill="url(#${id}-barrel)" d="M84.9 67.9L111.1 108.1L91.1 121.1L64.9 80.9Z"/>`,
+    ring(0.2, 22.6, 'rubber'),
+    ring(0.45, 22.4, 'focus', style(`turn 3200ms linear 900ms 6`)),
+    ring(0.78, 23.4, 'redring'),
+    ring(1, 24, 'rim', ` fill="url(#${id}-rim)"`),
+    `<circle cx="${gx}" cy="${gy}" r="20" class="rim-in"/>`,
+    `<circle cx="${gx}" cy="${gy}" r="17" fill="url(#${id}-glass)"/>`,
+    // coatings catch the light as faint coloured arcs
+    `<path class="ct-violet" d="${arc(13.5, 200, 285)}"/><path class="ct-green" d="${arc(10, 20, 95)}"/><path class="ct-amber" d="${arc(15, 115, 150)}"/>`,
+    // iris: six blades that close and reopen on each shot
+    `<g class="iris"${shot('iris')}><path class="blade" d="M${iris.join('L')}Z"/><path class="bladeline" d="${blades}"/></g>`,
+    `<ellipse cx="${gx - 6}" cy="${gy - 7}" rx="4.6" ry="2.4" transform="rotate(-32 ${gx - 6} ${gy - 7})" class="spec"/><circle cx="${gx + 5}" cy="${gy + 6}" r=".9" class="spec2"/>`,
+    `<circle cx="${gx}" cy="${gy}" r="17" class="glassflash"${shot('flashglass')}/>`,
+  ].join('');
+
+  const markup = [
+    `<ellipse cx="96" cy="133" rx="70" ry="7" fill="url(#${id}-shadow)"${style(`shb 4400ms ${EASE.inOut} 1200ms 4`)} class="cshadow"/>`,
+    `<g${style([A('up', 900, 150), `bob 4400ms ${EASE.inOut} 1200ms 4`])}>${body}</g>`,
+    `<circle cx="96" cy="30" r="64" fill="url(#${id}-flash)" class="flash"${shot('flash')}/>`,
+  ].join('\n');
+
+  const defs = `<linearGradient id="${id}-body" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a505a"/><stop offset=".35" stop-color="#2b3038"/><stop offset="1" stop-color="#15181d"/></linearGradient>
+<linearGradient id="${id}-grip" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2e3339"/><stop offset=".55" stop-color="#1a1d22"/><stop offset="1" stop-color="#0d0f12"/></linearGradient>
+<pattern id="${id}-leather" width="3" height="3" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r=".55" fill="#fff" fill-opacity=".07"/></pattern>
+<radialGradient id="${id}-metal" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#d9dee5"/><stop offset=".45" stop-color="#8a929c"/><stop offset="1" stop-color="#3a4048"/></radialGradient>
+<linearGradient id="${id}-barrel" gradientUnits="userSpaceOnUse" x1="70" y1="70" x2="104" y2="116"><stop offset="0" stop-color="#4c535d"/><stop offset=".45" stop-color="#1d2026"/><stop offset="1" stop-color="#0b0d10"/></linearGradient>
+<radialGradient id="${id}-rim" cx=".38" cy=".32" r=".75"><stop offset="0" stop-color="#5b626c"/><stop offset=".6" stop-color="#22262c"/><stop offset="1" stop-color="#0c0e11"/></radialGradient>
+<radialGradient id="${id}-glass" cx=".42" cy=".38" r=".7"><stop offset="0" stop-color="#1d3a63"/><stop offset=".45" stop-color="#0a1426"/><stop offset="1" stop-color="#020305"/></radialGradient>
+<radialGradient id="${id}-shadow"><stop offset="0" stop-color="#000" stop-opacity=".55"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+<radialGradient id="${id}-flash"><stop offset="0" stop-color="#fff" stop-opacity=".9"/><stop offset=".35" stop-color="#fff6d8" stop-opacity=".35"/><stop offset="1" stop-color="#fff6d8" stop-opacity="0"/></radialGradient>`;
+
+  const css = `.cb-top{fill:#565d67}.cb-side{fill:#14171b}.cb-edge{fill:none;stroke:#fff;stroke-opacity:.07}.cb-hl{stroke:#fff;stroke-opacity:.1;stroke-linecap:round}
+.led{fill:#ff5a4f}.af{fill:#e3b341;opacity:.85}.shoe{fill:#0f1114}.rail{stroke:#9aa3ad;stroke-width:.6;stroke-opacity:.7}.brandtxt{fill:#aeb6c0}
+.dial{fill:#2a2e35}.dialtop{fill:#5d646e;stroke:#89919c;stroke-width:.6}.knurl{stroke:#0d0f12;stroke-width:5;stroke-dasharray:.8 1}
+.btn{fill:#2a2e35}.btntop{fill:#c7ccd3;stroke:#ff5a4f;stroke-width:.7}
+.barrel-back{fill:#1a1d22}.rubber{fill:none;stroke:#0c0e11;stroke-width:4.5;stroke-dasharray:1 1.4}
+.focus{fill:none;stroke:#090a0c;stroke-width:6;stroke-dasharray:1.1 1.1}.redring{fill:none;stroke:#ff4b3e;stroke-width:1.6}
+.rim{stroke:#6c737d;stroke-width:.6}.rim-in{fill:#06070a;stroke:#2c3138;stroke-width:.8}
+.ct-violet{fill:none;stroke:#8f73ff;stroke-width:1.6;stroke-opacity:.55;stroke-linecap:round}.ct-green{fill:none;stroke:#3fd6a0;stroke-width:1.2;stroke-opacity:.42;stroke-linecap:round}
+.ct-amber{fill:none;stroke:#ffb347;stroke-width:1.1;stroke-opacity:.5;stroke-linecap:round}
+.blade{fill:#070a10;stroke:#273041;stroke-width:.5}.bladeline{stroke:#2b3547;stroke-width:.5}
+.spec{fill:#fff;opacity:.75}.spec2{fill:#fff;opacity:.9}
+.iris,.cshadow{transform-box:fill-box;transform-origin:center}
+.flash,.glassflash{opacity:0}.glassflash{fill:#fff}
+@keyframes turn{to{stroke-dashoffset:-22}}
+@keyframes press{6%{transform:translateY(1.4px)}12%{transform:none}}
+@keyframes iris{6%{transform:scale(1)}9%{transform:scale(.22)}15%{transform:scale(1)}}
+@keyframes flash{8%{opacity:0}9.5%{opacity:1}20%{opacity:0}}
+@keyframes flashglass{8%{opacity:0}9.5%{opacity:.55}16%{opacity:0}}
+@keyframes bob{50%{transform:translateY(-4px)}}
+@keyframes shb{50%{transform:scale(.88);opacity:.7}}
+@keyframes blink{50%{opacity:.15}}`;
+  return { markup, defs, css };
 }
-const r1 = n => Math.round(n * 10) / 10;
 
 function brand() {
   const W = 900;
   const H = 150;
   const id = 'brand';
-  const [cx, cy] = [92, 75];
-  const frames = tesseractFrames(20, { cx, cy, S: 33 });
-  const period = 3200;
-  const loops = 12;
-  const morph = key => `<animate attributeName="d" values="${[...frames, frames[0]].map(f => f[key]).join(';')}" dur="${period}ms" begin="900ms" repeatCount="${loops}"/>`;
-  // Voxel T at the centre of the hypercube.
-  const T = GLYPHS.T.flatMap((row, r) => [...row].map((on, c) => (on === '#' ? `M${cx - 9 + c * 3.6} ${cy - 12.6 + r * 3.6}h3v3h-3z` : ''))).join('');
-  const parts = [
-    `<ellipse cx="${cx}" cy="${cy}" rx="84" ry="70" fill="url(#${id}-glow)"/>`,
-    `<g class="fx"${style(A('in', 900, 200))}><path class="hyper" d="${frames[0].hyper}">${morph('hyper')}</path><path class="cube" d="${frames[0].cube}">${morph('cube')}</path></g>`,
-    `<g class="nofx"><path class="hyper" d="${frames[0].hyper}"/><path class="cube" d="${frames[0].cube}"/></g>`,
-    `<path class="ac pop" d="${T}"${style(A('pop', 600, 500))}/>`,
-  ];
+  const cam = camera(id);
+  const parts = [`<ellipse cx="92" cy="80" rx="88" ry="66" fill="url(#${id}-glow)"/>`, cam.markup];
   // Wordmark with two receding depth layers on the shared up-right axis, then a sheen.
   const wx = 196;
   const word = 'tandev';
@@ -1106,44 +1171,48 @@ function brand() {
     defs: `<radialGradient id="${id}-glow"><stop offset="0" class="shs" stop-opacity=".2"/><stop offset=".6" class="sht" stop-opacity=".06"/><stop offset="1" class="sht" stop-opacity="0"/></radialGradient>
 <linearGradient id="${id}-sheen"><stop offset="0" class="shs" stop-opacity="0"/><stop offset=".5" class="shs" stop-opacity=".9"/><stop offset="1" class="shs" stop-opacity="0"/></linearGradient>
 <clipPath id="${id}-word">${glyphs}</clipPath>
-<style>.sht{stop-color:var(--teal)}.cube{fill:none;stroke:var(--accent);stroke-width:1.5;stroke-linecap:round;stroke-opacity:.9}.hyper{fill:none;stroke:var(--teal);stroke-width:1.2;stroke-opacity:.7}
-.wd1{fill:var(--teal);opacity:.5}.wd2{fill:var(--blue);opacity:.28}.nofx{display:none}
+${cam.defs}
+<style>.sht{stop-color:var(--teal)}${cam.css}
+.wd1{fill:var(--teal);opacity:.5}.wd2{fill:var(--blue);opacity:.28}
 @media (prefers-color-scheme:light){.wd1{opacity:.32}.wd2{opacity:.18}}
-@media (prefers-reduced-motion:reduce){.nofx{display:inline}}
 @keyframes extrude{from{opacity:0;transform:translate(var(--e),calc(var(--e) * -.7))}}</style>`,
     title: 'tandev',
-    desc: `The tandev brand mark: a tesseract folding itself inside out around a voxel T, beside the wordmark tandev and the line ${PROFILE.name}, ${PROFILE.role}, Soc Trang, Vietnam.`,
+    desc: `The tandev brand mark: a mirrorless camera in 3D that takes a picture every few seconds (the shutter dips, the iris closes and reopens, the flash fires), beside the wordmark tandev and the line ${PROFILE.name}, ${PROFILE.role}, Soc Trang, Vietnam.`,
     body: parts.join('\n'),
   });
 }
 
 // ── Output ──────────────────────────────────────────────────────────────────
 
+// Half-periods: each scene builds, holds, rewinds and rebuilds over twice this long.
+const LOOPS = { hero: 9000, fetch: 8000, divider: 5000, launch: 7000, brand: 9000, ping: 9000, island: 8000, section: 6500, key: 6000, terminal: 14000 };
+
 export function renderAssets() {
+  const L = (half, render) => loopify(withLoop(half, render));
   const assets = {
-    'assets/hero-banner.svg': hero(),
-    'assets/typing-anim.svg': fetchCard(),
-    'assets/section-divider.svg': divider(),
-    'assets/launch.svg': launchKey(),
-    'assets/brand.svg': brand(),
-    'assets/ping.svg': pingGlobe(),
-    'assets/stack-client.svg': island({ id: 'client', title: 'client', subtitle: 'languages and frontend', groups: STACK.slice(0, 2), cols: 5, offset: 0 }),
-    'assets/stack-server.svg': island({ id: 'server', title: 'server', subtitle: 'backend, data and devops', groups: STACK.slice(2), cols: 4, offset: 300 }),
+    'assets/hero-banner.svg': L(LOOPS.hero, hero),
+    'assets/typing-anim.svg': L(LOOPS.fetch, fetchCard),
+    'assets/section-divider.svg': L(LOOPS.divider, divider),
+    'assets/launch.svg': L(LOOPS.launch, launchKey),
+    'assets/brand.svg': L(LOOPS.brand, brand),
+    'assets/ping.svg': L(LOOPS.ping, pingGlobe),
+    'assets/stack-client.svg': L(LOOPS.island, () => island({ id: 'client', title: 'client', subtitle: 'languages and frontend', groups: STACK.slice(0, 2), cols: 5, offset: 0 })),
+    'assets/stack-server.svg': L(LOOPS.island, () => island({ id: 'server', title: 'server', subtitle: 'backend, data and devops', groups: STACK.slice(2), cols: 4, offset: 300 })),
   };
-  for (const [slug, command] of SECTIONS) assets[`assets/galaxy/${slug}.svg`] = sectionHeader(slug, command);
-  NAV.forEach((nav, i) => { assets[`assets/keys/${nav[0]}.svg`] = navKey(nav, i); });
-  LINKS.forEach((link, i) => { assets[`assets/keys/${link.where}.svg`] = linkKey(link, i); });
+  for (const [slug, command] of SECTIONS) assets[`assets/galaxy/${slug}.svg`] = L(LOOPS.section, () => sectionHeader(slug, command));
+  NAV.forEach((nav, i) => { assets[`assets/keys/${nav[0]}.svg`] = L(LOOPS.key, () => navKey(nav, i)); });
+  LINKS.forEach((link, i) => { assets[`assets/keys/${link.where}.svg`] = L(LOOPS.key, () => linkKey(link, i)); });
   // The terminal prints the real sizes of everything generated above.
   const bytes = file => Buffer.byteLength(assets[file]);
   const galaxy = SECTIONS.reduce((sum, [slug]) => sum + bytes(`assets/galaxy/${slug}.svg`), 0);
-  assets['assets/terminal-3d.svg'] = terminal3d({
+  assets['assets/terminal-3d.svg'] = L(LOOPS.terminal, () => terminal3d({
     'hero-banner.svg': bytes('assets/hero-banner.svg'),
     'typing-anim.svg': bytes('assets/typing-anim.svg'),
     'stack-client.svg': bytes('assets/stack-client.svg'),
     'stack-server.svg': bytes('assets/stack-server.svg'),
     'galaxy/*.svg': galaxy,
     'section-divider.svg': bytes('assets/section-divider.svg'),
-  });
+  }));
   // The interactive page (GitHub Pages) lives alongside the artwork and is checked the same way.
   assets['terminal/index.html'] = renderSite();
   return assets;

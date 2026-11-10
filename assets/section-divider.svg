@@ -8,6 +8,6 @@
 <defs><linearGradient id="div-edge" gradientUnits="userSpaceOnUse" x1="0" x2="900" y1="0" y2="0"><stop offset="0" class="e" stop-opacity="0"/><stop offset=".2" class="e"/><stop offset=".8" class="e"/><stop offset="1" class="e" stop-opacity="0"/></linearGradient>
 <linearGradient id="div-trace"><stop offset="0" class="g" stop-opacity="0"/><stop offset="1" class="g" stop-opacity=".8"/></linearGradient></defs>
 <rect y="12" width="900" height="1" fill="url(#div-edge)"/>
-<rect class="t" x="-160" y="12" width="160" height="1" fill="url(#div-trace)" style="animation:trace 2400ms cubic-bezier(.77,0,.175,1) 1500ms 2"/>
-<rect class="a" x="426" y="11.5" width="48" height="2" rx="1" style="animation:slide 1600ms cubic-bezier(.23,1,.32,1) 200ms both"/>
+<rect class="t" x="-160" y="12" width="160" height="1" fill="url(#div-trace)" style="animation:trace 2400ms cubic-bezier(.77,0,.175,1) 1500ms infinite"/>
+<rect class="a" x="426" y="11.5" width="48" height="2" rx="1" style="animation:slide 5000ms linear(0, 0 4%, 0.32 6.5%, 0.66 10%, 0.91 16%, 1 36%, 1 100%) 0ms infinite alternate both"/>
 </svg>

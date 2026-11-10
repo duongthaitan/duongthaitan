@@ -1,16 +1,16 @@
-<a href="https://duongthaitan.github.io/duongthaitan/terminal/"><img src="./assets/brand.svg" width="100%" alt="tandev: a tesseract folding itself inside out around a voxel T, beside the wordmark tandev. Duong Thai Tan, full-stack developer, Soc Trang, Vietnam." /></a>
+<a href="https://duongthaitan.github.io/duongthaitan/terminal/"><img src="./assets/brand.svg" width="100%" alt="tandev: a 3D mirrorless camera that takes a picture every few seconds, beside the wordmark tandev. Duong Thai Tan, full-stack developer, Soc Trang, Vietnam." /></a>
 
 <div align="center">
   <a href="https://duongthaitan.github.io/duongthaitan/terminal/"><img src="./assets/hero-banner.svg" width="100%" alt="Duong Thai Tan: full-stack developer, cloud infrastructure builder, visual creator. I build web apps and the cloud systems that run them. Opens the interactive terminal." /></a>
 </div>
 
 <p align="center">
-  <a href="#about"><img src="./assets/keys/about.svg" width="138" alt="~/about" /></a>
-  <a href="#toolkit"><img src="./assets/keys/toolkit.svg" width="138" alt="~/toolkit" /></a>
-  <a href="#selected-work"><img src="./assets/keys/selected-work.svg" width="138" alt="~/projects" /></a>
-  <a href="#certificates"><img src="./assets/keys/certificates.svg" width="138" alt="~/certificates" /></a>
-  <a href="#automation"><img src="./assets/keys/automation.svg" width="138" alt="~/automation" /></a>
-  <a href="#connect"><img src="./assets/keys/connect.svg" width="138" alt="~/connect" /></a>
+  <a href="#about"><img src="./assets/keys/about.svg" width="126" alt="~/about" /></a>
+  <a href="#toolkit"><img src="./assets/keys/toolkit.svg" width="126" alt="~/toolkit" /></a>
+  <a href="#selected-work"><img src="./assets/keys/selected-work.svg" width="126" alt="~/projects" /></a>
+  <a href="#certificates"><img src="./assets/keys/certificates.svg" width="126" alt="~/certificates" /></a>
+  <a href="#automation"><img src="./assets/keys/automation.svg" width="126" alt="~/automation" /></a>
+  <a href="#connect"><img src="./assets/keys/connect.svg" width="126" alt="~/connect" /></a>
 </p>
 
 <a href="https://duongthaitan.github.io/duongthaitan/terminal/"><img src="./assets/launch.svg" width="100%" alt="Open the interactive 3D terminal: type commands, tilt the terminal with your pointer and press the tool keys." /></a>
