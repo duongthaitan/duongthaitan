@@ -1,55 +1,26 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="232" viewBox="0 0 900 232" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="metrics-title metrics-desc" style="max-width:100%;height:auto">
 <title id="metrics-title">GitHub metrics: Public original repos: 12; Stars on original repos: 4; Followers: 11</title>
-<desc id="metrics-desc">Terminal card running gh api for duongthaitan. Public original repos: 12; Stars on original repos: 4; Followers: 11. Updated 2026-11-10 14:21:03 UTC</desc>
-<style>
-:root{--bg:#0d1117;--raised:rgba(255,255,255,.045);--panel:rgba(22,27,34,.92);--screen:rgba(1,4,9,.55);--fg:#e6edf3;--muted:#9198a1;--faint:rgba(255,255,255,.07);--line:rgba(255,255,255,.12);--accent:#7ee787;--glow:#d2ffd6;--deep:#2ea043;--teal:#39c5cf;--blue:#79c0ff;--vox:#2d333b;--red:#ff7b72;--yellow:#e3b341}
+<desc id="metrics-desc">Terminal card running gh api for duongthaitan. Public original repos: 12; Stars on original repos: 4; Followers: 11. Updated 2026-11-10 15:09:32 UTC</desc>
+<style>:root{--bg:#0d1117;--raised:rgba(255,255,255,.045);--panel:rgba(22,27,34,.92);--screen:rgba(1,4,9,.55);--fg:#e6edf3;--muted:#9198a1;--faint:rgba(255,255,255,.07);--line:rgba(255,255,255,.12);--accent:#7ee787;--glow:#d2ffd6;--deep:#2ea043;--teal:#39c5cf;--blue:#79c0ff;--vox:#2d333b;--red:#ff7b72;--yellow:#e3b341}
 @media (prefers-color-scheme:light){:root{--bg:#ffffff;--raised:rgba(31,35,40,.035);--panel:rgba(255,255,255,.95);--screen:rgba(246,248,250,.9);--fg:#1f2328;--muted:#59636e;--faint:rgba(31,35,40,.07);--line:rgba(31,35,40,.15);--accent:#1a7f37;--glow:#4ac26b;--deep:#0f5323;--teal:#1b7c83;--blue:#0969da;--vox:#8c959f;--red:#cf222e;--yellow:#9a6700}}
 text{font-family:ui-monospace,'SF Mono','Cascadia Mono','JetBrains Mono',Menlo,Consolas,'Liberation Mono',monospace;fill:var(--fg)}
-.fg{fill:var(--fg)}.mu{fill:var(--muted)}.ac{fill:var(--accent)}.bg{fill:var(--bg)}.fa{fill:var(--faint)}.rs{fill:var(--raised)}
-.frame{fill:var(--raised);stroke:var(--line)}.xa{fill:var(--line)}.xb{fill:var(--faint)}
+.fg{fill:var(--fg)}.mu{fill:var(--muted)}.ac{fill:var(--accent)}
 .hair{fill:none;stroke:var(--line)}
 .chev,.tick{fill:none;stroke:var(--accent);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.shs{stop-color:var(--accent)}
 .pop,.ring,.chip,.spin,.tick{transform-box:fill-box;transform-origin:center}
 .grow,.run{transform-box:fill-box;transform-origin:0 50%}
-.draw{stroke-dasharray:1 1}
 .mv{transform:translateX(var(--d))}
-.cv,.cvs{transform-box:fill-box;transform-origin:100% 50%}.cv{transform:scaleX(0)}
 .ring{fill:none;stroke:var(--accent);stroke-width:1.5}
-.spin{fill:none;stroke:var(--accent);stroke-width:2;stroke-linecap:round}
-.beam{fill:none;stroke:var(--accent)}
 .ring,.run,.spin,.beam,.pk,.flash,.fr,.off{opacity:0}
-.px{opacity:.55;--o:.55}
 @keyframes in{from{opacity:0}}
-@keyframes up{from{opacity:0;transform:translateY(8px)}}
-@keyframes side{from{opacity:0;transform:translateX(-10px)}}
-@keyframes rise{from{opacity:0;transform:translateY(var(--rise))}}
-@keyframes pop{from{opacity:0;transform:scale(.5)}}
-@keyframes chip{from{opacity:0;transform:translateY(6px) scale(.96)}}
 @keyframes grow{from{transform:scaleX(0)}}
-@keyframes draw{from{stroke-dashoffset:1}}
 @keyframes type{from{transform:translateX(0)}}
-@keyframes wipe{from{transform:scaleX(1)}}
 @keyframes ch{from{fill-opacity:0}}
 @keyframes vanish{to{opacity:0}}
-@keyframes blink{0%,45%{opacity:1}55%,100%{opacity:0}}
 @keyframes ring{0%{opacity:.55;transform:scale(1)}45%,100%{opacity:0;transform:scale(3)}}
-@keyframes run{0%{opacity:1;transform:scaleX(0)}75%{opacity:1;transform:scaleX(1)}100%{opacity:0;transform:scaleX(1)}}
-@keyframes show{from,to{opacity:1}}
-@keyframes showw{from{opacity:0}to{opacity:1}}
-@keyframes rot{to{transform:rotate(360deg)}}
-@keyframes spin{from{opacity:1;transform:rotate(0)}to{opacity:1;transform:rotate(360deg)}}
-@keyframes sweep{0%{transform:translateX(0);animation-timing-function:cubic-bezier(.77,0,.175,1)}38%,100%{transform:translateX(var(--d))}}
-@keyframes orbit{from{stroke-dashoffset:var(--o0)}to{stroke-dashoffset:var(--o1)}}
-@keyframes beamfade{0%{opacity:0}6%,94%{opacity:var(--bo)}100%{opacity:0}}
-@keyframes glint{8%{opacity:1}26%{opacity:var(--o)}}
-@keyframes glintT{8%{fill:var(--glow)}26%{fill:var(--accent)}}
-@keyframes descend{0%{opacity:0;transform:translateY(0)}4%,52%{opacity:1}56%,100%{opacity:0;transform:translateY(var(--d))}}
-@keyframes flash{0%{opacity:0}5%{opacity:.22}24%,100%{opacity:0}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important}.transient,.fx{display:none}}
-@media (forced-colors:active){text,.fg,.mu,.ac,.fa,.rs{fill:CanvasText}.frame,.bg{fill:Canvas}.frame,.hair{stroke:CanvasText}.chev,.tick{stroke:CanvasText}}
-</style>
-<defs><clipPath id="metrics-frame"><rect width="900" height="232" rx="16"/></clipPath></defs>
+@media (forced-colors:active){text,.fg,.mu,.ac,.fa,.rs{fill:CanvasText}.frame,.hair{stroke:CanvasText}.chev,.tick{stroke:CanvasText}}</style>
+<defs></defs>
 <path class="chev" d="M32 39.5l4.8 4.8l-4.8 4.8" style="animation:in 7000ms linear(0, 0 1.1%, 0.32 1.4%, 0.66 1.8%, 0.91 2.4%, 1 4.6%, 1 100%) 0ms infinite alternate both"/>
 <style>.ty1{animation:ch 7000ms linear(0, 0 var(--s), 1 var(--s), 1 100%) 0ms infinite alternate both}</style><text x="52" y="50" font-size="15" textLength="225" class="fg"><tspan class="ty1" style="--s:3.3%">g</tspan><tspan class="ty1" style="--s:3.7%">h</tspan> <tspan class="ty1" style="--s:4.6%">a</tspan><tspan class="ty1" style="--s:5%">p</tspan><tspan class="ty1" style="--s:5.4%">i</tspan> <tspan class="ty1" style="--s:6.3%">u</tspan><tspan class="ty1" style="--s:6.7%">s</tspan><tspan class="ty1" style="--s:7.1%">e</tspan><tspan class="ty1" style="--s:7.6%">r</tspan><tspan class="ty1" style="--s:8%">s</tspan><tspan class="ty1" style="--s:8.4%">/</tspan><tspan class="ty1" style="--s:8.9%">d</tspan><tspan class="ty1" style="--s:9.3%">u</tspan><tspan class="ty1" style="--s:9.7%">o</tspan><tspan class="ty1" style="--s:10.1%">n</tspan><tspan class="ty1" style="--s:10.6%">g</tspan><tspan class="ty1" style="--s:11%">t</tspan><tspan class="ty1" style="--s:11.4%">h</tspan><tspan class="ty1" style="--s:11.9%">a</tspan><tspan class="ty1" style="--s:12.3%">i</tspan><tspan class="ty1" style="--s:12.7%">t</tspan><tspan class="ty1" style="--s:13.1%">a</tspan><tspan class="ty1" style="--s:13.6%">n</tspan></text><rect class="ac mv transient" x="53" y="37.7" width="7.5" height="15.3" rx="1" style="--d:225px;animation:in 7000ms linear(0, 0 2.9%, 1 2.9%, 1 100%) 0ms infinite alternate both,type 7000ms linear(0, 0 2.9%, 0 3.3%, 0.04 3.3%, 0.04 3.7%, 0.08 3.7%, 0.08 4.1%, 0.12 4.1%, 0.12 4.6%, 0.16 4.6%, 0.16 5%, 0.2 5%, 0.2 5.4%, 0.24 5.4%, 0.24 5.9%, 0.28 5.9%, 0.28 6.3%, 0.32 6.3%, 0.32 6.7%, 0.36 6.7%, 0.36 7.1%, 0.4 7.1%, 0.4 7.6%, 0.44 7.6%, 0.44 8%, 0.48 8%, 0.48 8.4%, 0.52 8.4%, 0.52 8.9%, 0.56 8.9%, 0.56 9.3%, 0.6 9.3%, 0.6 9.7%, 0.64 9.7%, 0.64 10.1%, 0.68 10.1%, 0.68 10.6%, 0.72 10.6%, 0.72 11%, 0.76 11%, 0.76 11.4%, 0.8 11.4%, 0.8 11.9%, 0.84 11.9%, 0.84 12.3%, 0.88 12.3%, 0.88 12.7%, 0.92 12.7%, 0.92 13.1%, 0.96 13.1%, 0.96 13.6%, 1 13.6%, 1 100%) 0ms infinite alternate both,vanish 7000ms linear(0, 0 18.1%, 1 19.9%, 1 100%) 0ms infinite alternate both"/>
 <rect class="ac grow" x="32" y="86" width="20" height="2" rx="1" style="animation:grow 7000ms linear(0, 0 18.7%, 0.04 20.2%, 0.22 21.5%, 0.57 22.1%, 1 25.6%, 1 100%) 0ms infinite alternate both"/>
@@ -63,6 +34,6 @@ text{font-family:ui-monospace,'SF Mono','Cascadia Mono','JetBrains Mono',Menlo,C
 <rect class="ac grow" x="589" y="86" width="20" height="2" rx="1" style="animation:grow 7000ms linear(0, 0 21%, 0.04 22.5%, 0.22 23.7%, 0.57 24.4%, 1 27.9%, 1 100%) 0ms infinite alternate both"/>
 <text x="589.33" y="116" font-size="13" textLength="70.2" class="mu" style="animation:in 7000ms linear(0, 0 21.9%, 0.32 22.3%, 0.66 23%, 0.91 24.1%, 1 27.9%, 1 100%) 0ms infinite alternate both">Followers</text>
 <text x="589.33" y="160" font-size="40" textLength="48" class="fg" font-weight="600" style="animation:in 7000ms linear(0, 0 22.7%, 0.32 23.4%, 0.66 24.3%, 0.91 25.9%, 1 31.3%, 1 100%) 0ms infinite alternate both">11</text>
-<g style="animation:in 7000ms linear(0, 0 26.1%, 0.32 26.6%, 0.66 27.3%, 0.91 28.4%, 1 32.1%, 1 100%) 0ms infinite alternate both"><circle class="ac" cx="37" cy="202" r="3.5"/><text x="52" y="206" font-size="12" textLength="223.2" class="mu">Updated 2026-11-10 14:21:03 UTC</text></g>
+<g style="animation:in 7000ms linear(0, 0 26.1%, 0.32 26.6%, 0.66 27.3%, 0.91 28.4%, 1 32.1%, 1 100%) 0ms infinite alternate both"><circle class="ac" cx="37" cy="202" r="3.5"/><text x="52" y="206" font-size="12" textLength="223.2" class="mu">Updated 2026-11-10 15:09:32 UTC</text></g>
 <circle class="ring" cx="37" cy="202" r="3.5" style="animation:ring 2400ms cubic-bezier(.23,1,.32,1) 2330ms infinite"/>
 </svg>
