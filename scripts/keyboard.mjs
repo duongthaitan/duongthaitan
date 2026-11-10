@@ -1,25 +1,42 @@
 // A 75% mechanical keyboard in 3D with per-key RGB, typing real commands.
 //
-// View: orthographic, the board turned 12 degrees and seen from 40 degrees above the desk. That
-// projection is affine, so the whole board is drawn flat in "plane" coordinates (x along the rows,
-// y towards the viewer, in half-pixels so the numbers stay whole) inside one matrix group; height
-// folds into the plane as a constant shift (ZV per unit up). Static keys are merged per row and
-// colour into a few paths (paint cost in an <img> SVG scales with element count); only the keys
-// that type are separate groups, pressed and lit through windows encoded in one linear() easing.
+// View: orthographic, seen from 40 degrees above the desk, the board turned by `yaw` (12 degrees
+// under the neofetch card, square to the screen on the desk). That projection is affine, so the
+// whole board is drawn flat in "plane" coordinates (x along the rows, y towards the viewer, in
+// half-pixels so the numbers stay whole) inside one matrix group; height folds into the plane as a
+// constant shift (lift). Static keys are merged per row and colour into a few paths (paint cost in
+// an <img> SVG scales with element count); only the keys that type are separate groups, pressed and
+// lit through windows encoded in one linear() easing.
 import { EASE, check, chevron, escapeXml, svg, text } from './svg-kit.mjs';
 
 const Q = 2; // plane units per screen px
 const iq = n => `${Math.round(n)}`;
 const f1 = n => `${Math.round(n * 10) / 10}`;
-const YAW = (12 * Math.PI) / 180;
 const PITCH = (40 * Math.PI) / 180;
-const MX = [Math.cos(YAW), Math.sin(YAW) * Math.sin(PITCH)]; // plane x -> screen
-const MY = [-Math.sin(YAW), Math.cos(YAW) * Math.sin(PITCH)]; // plane y -> screen
 const CZ = Math.cos(PITCH); // screen per unit of height
-const DET = MX[0] * MY[1] - MY[0] * MX[1];
-const ZV = [(MY[0] * CZ) / DET, (-MX[0] * CZ) / DET]; // plane shift for one unit up
-const lift = z => [ZV[0] * z, ZV[1] * z];
-const screen = (x, y, z = 0) => [(MX[0] * x + MY[0] * y) / Q, (MX[1] * x + MY[1] * y - CZ * z) / Q];
+
+function view(yawDeg) {
+  const yaw = (yawDeg * Math.PI) / 180;
+  const MX = [Math.cos(yaw), Math.sin(yaw) * Math.sin(PITCH)]; // plane x -> screen
+  const MY = [-Math.sin(yaw), Math.cos(yaw) * Math.sin(PITCH)]; // plane y -> screen
+  const det = MX[0] * MY[1] - MY[0] * MX[1];
+  const ZV = [(MY[0] * CZ) / det, (-MX[0] * CZ) / det]; // plane shift for one unit up
+  return {
+    lift: z => [ZV[0] * z, ZV[1] * z],
+    screen: (x, y, z = 0) => [(MX[0] * x + MY[0] * y) / Q, (MX[1] * x + MY[1] * y - CZ * z) / Q],
+    matrix: (ox, oy) => `matrix(${[MX[0], MX[1], MY[0], MY[1]].map(v => Math.round((v / Q) * 10000) / 10000).join(' ')} ${f1(ox)} ${f1(oy)})`,
+  };
+}
+// Path through rounded points, relative after the first (shorter, and rounding never drifts).
+function poly(pts, close = true) {
+  const r = pts.map(([x, y]) => [Math.round(x), Math.round(y)]);
+  let d = `M${r[0][0]} ${r[0][1]}`;
+  for (let i = 1; i < r.length; i++) {
+    const [dx, dy] = [r[i][0] - r[i - 1][0], r[i][1] - r[i - 1][1]];
+    d += dx === 0 ? `v${dy}` : dy === 0 ? `h${dx}` : `l${dx} ${dy}`;
+  }
+  return close ? `${d}z` : d;
+}
 
 export const RGB = 6000; // one turn of the hue wave
 export const HUES = ['#ff6b81', '#ffb86b', '#f9e66b', '#7ee787', '#56d4dd', '#79a8ff', '#c792ea'];
@@ -51,28 +68,42 @@ export function keysFor(c) {
   return [c.toUpperCase()];
 }
 
-// Keycap colours (top, front wall, right wall): alphas, modifiers, accents.
+// Keycap colours (top, front wall, side walls): alphas, modifiers, accents.
 const KINDS = { a: ['#3a414b', '#262b33', '#1c2026'], m: ['#262c34', '#1a1e24', '#13161b'], x: ['#2ea043', '#1f7a31', '#175f26'] };
 
+// Press windows for one key: down in 50ms, back up by 160ms (sooner if it strikes again).
+function windows(times, cycle) {
+  const p2 = ms => `${Math.round((ms / cycle) * 1000) / 10}%`;
+  const ts = [...times].sort((p, q) => p - q);
+  const win = ['0'];
+  ts.forEach((t, n) => {
+    const up = Math.min(t + 160, (ts[n + 1] ?? Infinity) - 12);
+    win.push(`0 ${p2(t)}`, `1 ${p2(Math.min(t + 50, up - 20))}`, `0 ${p2(up)}`);
+  });
+  win.push('0 100%');
+  return `linear(${win.join(', ')})`;
+}
+
 // presses: key label -> times (ms) inside a cycle of `cycle` ms. U: screen px per key unit.
-export function buildKeyboard({ id, U, presses, cycle }) {
+export function buildKeyboard({ id, U, presses, cycle, yaw = 12, float = true, edges: withEdges = true }) {
+  const V = view(yaw);
+  const { lift, screen } = V;
   const P = U * Q; // plane units per key
   const G = 0.04 * P;
   const CAP = 0.42 * P;
   const [SIDE, BACK, FRONT, RAD] = [0.13 * P, 0.1 * P, 0.17 * P, 0.06 * P];
   const [zx, zy] = lift(CAP);
-  const p2 = ms => `${Math.round((ms / cycle) * 1000) / 10}%`;
-  // Tapered sides: the left wall is edge-on from this view and the back wall faces away, so a cap is
-  // its right wall, front wall and top. The top is a rect inset by the corner radius and stroked in
-  // its own colour with round joins: rounded corners for free.
+  // A cap: its walls as one hull (base outline up to the lifted top), the front wall over it, then
+  // the top, inset by the corner radius and stroked in its own colour with round joins (rounded
+  // corners for free). Walls the view cannot see end up under the top or the front wall.
   const cap = (x0, y0, w) => {
     const [bx0, bx1, by0, by1] = [x0 + G, x0 + w * P - G, y0 + G, y0 + P - G];
     const [tx0, tx1, ty0, ty1] = [bx0 + SIDE + zx, bx1 - SIDE + zx, by0 + BACK + zy, by1 - FRONT + zy];
     return {
-      right: `M${iq(bx1)} ${iq(by0)}V${iq(by1)}L${iq(tx1)} ${iq(ty1)}V${iq(ty0)}Z`,
-      front: `M${iq(bx0)} ${iq(by1)}H${iq(bx1)}L${iq(tx1)} ${iq(ty1)}H${iq(tx0)}Z`,
-      top: `M${iq(tx0 + RAD)} ${iq(ty0 + RAD)}H${iq(tx1 - RAD)}V${iq(ty1 - RAD)}H${iq(tx0 + RAD)}Z`,
-      edge: `M${iq(tx0 + RAD)} ${iq(ty1)}H${iq(tx1 - RAD)}`,
+      body: poly([[bx0, by1], [bx1, by1], [bx1, by0], [tx1, ty0], [tx0, ty0], [bx0, by0]]),
+      front: poly([[bx0, by1], [bx1, by1], [tx1, ty1], [tx0, ty1]]),
+      top: poly([[tx0 + RAD, ty0 + RAD], [tx1 - RAD, ty0 + RAD], [tx1 - RAD, ty1 - RAD], [tx0 + RAD, ty1 - RAD]]),
+      edge: poly([[tx0 + RAD, ty1], [tx1 - RAD, ty1]], false),
       cx: (tx0 + tx1) / 2,
       cy: (ty0 + ty1) / 2,
     };
@@ -87,17 +118,17 @@ export function buildKeyboard({ id, U, presses, cycle }) {
   // Desk: the light bar's reflection fanning out in front (stacked translucent bands; a gradient
   // fade would need a mask, which costs an offscreen pass every frame).
   const [dzx, dzy] = lift(-CASE.h);
-  const deskGlow = [0.1, 0.08, 0.065, 0.05, 0.038, 0.028, 0.019, 0.012, 0.006].map((o, k) => {
-    const [ya, yb] = [CASE.y1 + dzy, CASE.y1 + dzy + (k + 1) * 4.5 * Q];
+  const deskGlow = [0.1, 0.07, 0.045, 0.028, 0.016, 0.008].map((o, k) => {
+    const [ya, yb] = [CASE.y1 + dzy, CASE.y1 + dzy + (k + 1) * 6 * Q];
     const [xa, xb] = [CASE.x0 + CASE.r + dzx, CASE.x1 - CASE.r + dzx];
-    return `<path opacity="${o}" d="M${iq(xa)} ${iq(ya)}H${iq(xb)}L${iq(xb + (k + 1) * 4 * Q)} ${iq(yb)}H${iq(xa - (k + 1) * 4 * Q)}Z"/>`;
+    return `<path opacity="${o}" d="${poly([[xa, ya], [xb, ya], [xb + (k + 1) * 5 * Q, yb], [xa - (k + 1) * 5 * Q, yb]])}"/>`;
   }).join('');
 
   // Case: walls are stacked copies of the footprint (rounded corners included), then the top.
   const walls = [6, 5, 4, 3, 2, 1].map(k => { const [dx, dy] = lift((-CASE.h * k) / 6); return `<use href="#${id}-case" x="${iq(dx)}" y="${iq(dy)}"/>`; }).join('');
   const [bz0, bz1] = [lift(-CASE.h * 0.36), lift(-CASE.h * 0.5)];
-  const bar = `<path class="bar" d="M${iq(CASE.x0 + CASE.r + bz0[0])} ${iq(CASE.y1 + bz0[1])}H${iq(CASE.x1 - CASE.r + bz0[0])}L${iq(CASE.x1 - CASE.r + bz1[0])} ${iq(CASE.y1 + bz1[1])}H${iq(CASE.x0 + CASE.r + bz1[0])}Z"/>`;
-  const caseTop = `<rect class="ctop" x="${CASE.x0}" y="${CASE.y0}" width="${CASE.x1 - CASE.x0}" height="${CASE.y1 - CASE.y0}" rx="${CASE.r}"/><path class="chi" d="M${iq(CASE.x0 + CASE.r)} ${CASE.y1}H${iq(CASE.x1 - CASE.r)}"/>`;
+  const bar = `<path class="bar" d="${poly([[CASE.x0 + CASE.r + bz0[0], CASE.y1 + bz0[1]], [CASE.x1 - CASE.r + bz0[0], CASE.y1 + bz0[1]], [CASE.x1 - CASE.r + bz1[0], CASE.y1 + bz1[1]], [CASE.x0 + CASE.r + bz1[0], CASE.y1 + bz1[1]]])}"/>`;
+  const caseTop = `<rect class="ctop" x="${CASE.x0}" y="${CASE.y0}" width="${CASE.x1 - CASE.x0}" height="${CASE.y1 - CASE.y0}" rx="${CASE.r}"/><path class="chi" d="${poly([[CASE.x0 + CASE.r, CASE.y1], [CASE.x1 - CASE.r, CASE.y1]], false)}"/>`;
   const pl = `x="${iq(-0.08 * P)}" y="${iq(-0.08 * P)}" width="${iq(16.16 * P)}" height="${iq(6.41 * P)}" rx="${iq(0.14 * P)}"`;
   const plate = `<rect class="plate" ${pl}/><rect class="glow" ${pl}/>`;
 
@@ -108,7 +139,7 @@ export function buildKeyboard({ id, U, presses, cycle }) {
     const key = `${kind}${w}`.replace('.', '_');
     if (!symbols.has(key)) {
       const c = cap(0, 0, w);
-      symbols.set(key, `<g id="${id}-${key}"><path class="${kind}r" d="${c.right}"/><path class="${kind}f" d="${c.front}"/><path class="${kind}t" d="${c.top}"/><path class="edge" d="${c.edge}"/></g><path id="${id}-h${key}" d="${c.top}"/>`);
+      symbols.set(key, `<g id="${id}-${key}"><path class="${kind}r" d="${c.body}"/><path class="${kind}f" d="${c.front}"/><path class="${kind}t" d="${c.top}"/><path class="edge" d="${c.edge}"/></g><path id="${id}-h${key}" d="${c.top}"/>`);
     }
     return key;
   };
@@ -117,7 +148,7 @@ export function buildKeyboard({ id, U, presses, cycle }) {
       const [ax, ay] = ARROW[k.label];
       const s = 0.095 * P;
       const tri = [[ax * s, ay * s], [-ay * s * 0.8 - ax * s * 0.6, ax * s * 0.8 - ay * s * 0.6], [ay * s * 0.8 - ax * s * 0.6, -ax * s * 0.8 - ay * s * 0.6]];
-      return `<path style="--x:${xu}" d="M${tri.map(([x, y]) => `${iq(c.cx + x)} ${iq(c.cy + y)}`).join('L')}Z"/>`;
+      return `<path style="--x:${xu}" d="${poly(tri.map(([x, y]) => [c.cx + x, c.cy + y]))}"/>`;
     }
     if (!k.label) return '';
     const big = k.label.length === 1;
@@ -139,27 +170,19 @@ export function buildKeyboard({ id, U, presses, cycle }) {
       const c = cap(x0, y0, k.w);
       const times = presses.get(k.label);
       if (times && !live.some(l => l.label === k.label)) {
-        // Press windows: down in 50ms, back up by 160ms (sooner if the same key strikes again).
-        const ts = [...times].sort((p, q) => p - q);
-        const win = ['0'];
-        ts.forEach((t, n) => {
-          const up = Math.min(t + 160, (ts[n + 1] ?? Infinity) - 12);
-          win.push(`0 ${p2(t)}`, `1 ${p2(Math.min(t + 50, up - 20))}`, `0 ${p2(up)}`);
-        });
-        win.push('0 100%');
         const key = symbol(k.kind, k.w);
-        const leg = `<g class="${k.kind === 'x' ? 'lx' : 'lg'}">${legend(k, c, xu)}</g>`;
-        live.push({ label: k.label, svg: `<g class="p" style="--e:linear(${win.join(', ')})"><use href="#${id}-${key}" x="${iq(x0)}" y="${iq(y0)}"/><use href="#${id}-h${key}" x="${iq(x0)}" y="${iq(y0)}" class="hl"/>${leg}</g>` });
+        const leg = k.kind === 'x' ? `<g class="lx">${legend(k, c, xu)}</g>` : legend(k, c, xu);
+        live.push({ label: k.label, svg: `<g class="p" style="--e:${windows(times, cycle)}"><use href="#${id}-${key}" x="${iq(x0)}" y="${iq(y0)}"/><use href="#${id}-h${key}" x="${iq(x0)}" y="${iq(y0)}" class="hl"/>${leg}</g>` });
         continue;
       }
-      merged[k.kind].r += c.right;
+      merged[k.kind].r += c.body;
       merged[k.kind].f += c.front;
       merged[k.kind].t += c.top;
       edges += c.edge;
       (k.kind === 'x' ? dark : lg).push(legend(k, c, xu));
     }
     const body = Object.entries(merged).filter(([, m]) => m.t).map(([kind, m]) => `<path class="${kind}r" d="${m.r}"/><path class="${kind}f" d="${m.f}"/><path class="${kind}t" d="${m.t}"/>`).join('');
-    rows.push({ svg: `${body}<path class="edge" d="${edges}"/>${live.map(l => l.svg).join('')}<g class="lg">${lg.join('')}</g>${dark.length ? `<g class="lx">${dark.join('')}</g>` : ''}` });
+    rows.push({ svg: `${body}${withEdges ? `<path class="edge" d="${edges}"/>` : ''}${live.map(l => l.svg).join('')}<g class="lg">${lg.join('')}</g>${dark.length ? `<g class="lx">${dark.join('')}</g>` : ''}` });
   }
 
   // Rotary knob in the top-right corner: stacked discs, a knurled rim and a turning indicator.
@@ -173,7 +196,7 @@ export function buildKeyboard({ id, U, presses, cycle }) {
 
   const [px, py] = lift(-0.11 * P);
   const capCss = Object.entries(KINDS).map(([k, [t, f, r]]) => `.${k}t{fill:${t};stroke:${t};stroke-width:${iq(2 * RAD)};stroke-linejoin:round}.${k}f{fill:${f}}.${k}r{fill:${r}}`).join('');
-  const defs = `<linearGradient id="${id}-rgb" class="rgb" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="${16 * P}" y2="0">${rgbStops()}</linearGradient>
+  const defs = `<linearGradient id="${id}-rgb" class="rgb" gradientUnits="userSpaceOnUse" spreadMethod="repeat" x1="0" y1="0" x2="${16 * P}" y2="0">${rgbStops()}</linearGradient>
 <linearGradient id="${id}-top" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3d444d"/><stop offset=".5" stop-color="#2a3038"/><stop offset="1" stop-color="#22272e"/></linearGradient>
 <radialGradient id="${id}-sh"><stop offset="0" stop-color="#000" stop-opacity=".55"/><stop offset=".7" stop-color="#000" stop-opacity=".18"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
 <radialGradient id="${id}-knob" cx=".35" cy=".3"><stop offset="0" stop-color="#8b949e"/><stop offset="1" stop-color="#30363d"/></radialGradient>
@@ -182,12 +205,12 @@ ${[...symbols.values()].join('\n')}`;
   const css = `.ctop{fill:url(#${id}-top)}.cwall{fill:#15191f}.chi{fill:none;stroke:#8b949e;stroke-opacity:.35;stroke-width:${1.2 * Q}}
 .plate{fill:#0b0e12}.glow{fill:url(#${id}-rgb);opacity:.5}.bar{fill:url(#${id}-rgb)}
 ${capCss}.edge{fill:none;stroke:#fff;stroke-opacity:.1;stroke-width:${Q}}
-.lg>*{fill:#c9d1d9;animation:hue ${RGB}ms linear calc(var(--x) * ${RGB / 16}ms - ${RGB}ms) infinite}.lg text,.lx text{text-anchor:middle;font-size:${f1(0.305 * P)}px;font-weight:700}.lg .sm,.lx .sm{font-size:${f1(0.21 * P)}px}
+.lg>*,.p>text,.hu{fill:#c9d1d9;animation:hue ${RGB}ms linear calc(var(--x) * ${RGB / 16}ms - ${RGB}ms) infinite}.lg text,.lx text,.p>text{text-anchor:middle;font-size:${f1(0.305 * P)}px;font-weight:700}.sm{font-size:${f1(0.21 * P)}px}
 .lx>*{fill:#0d1117}
 .p{animation:kp ${cycle}ms var(--e) infinite}.hl{fill:#fff;opacity:0;animation:hlf ${cycle}ms var(--e) infinite}
 .kside{fill:#1c2026}.ktop{fill:url(#${id}-knob)}.knurl{fill:none;stroke:#0d1117;stroke-opacity:.6;stroke-dasharray:3 3}.kind{stroke:var(--accent);stroke-width:${2 * Q};stroke-linecap:round}
 .kn{transform-box:fill-box;transform-origin:center;animation:knob 7000ms ${EASE.inOut} infinite}
-.flt{animation:flt 6000ms ${EASE.inOut} infinite}.ksh{transform-box:fill-box;transform-origin:center;animation:ksh 6000ms ${EASE.inOut} infinite}
+${float ? `.flt{animation:flt 6000ms ${EASE.inOut} infinite}.ksh{transform-box:fill-box;transform-origin:center;animation:ksh 6000ms ${EASE.inOut} infinite}` : ''}
 @media (prefers-color-scheme:light){.ksh{opacity:.45}}
 ${rgbCss}
 @keyframes hue{${hueKeys('fill')}}
@@ -197,15 +220,16 @@ ${rgbCss}
 @keyframes flt{50%{transform:translate(${iq(lift(6 * Q)[0])}px,${iq(lift(6 * Q)[1])}px)}}
 @keyframes ksh{50%{transform:scale(.95);opacity:.8}}`;
 
-  const render = (ox, oy) => {
-    const plane = `matrix(${[MX[0], MX[1], MY[0], MY[1]].map(v => Math.round((v / Q) * 10000) / 10000).join(' ')} ${f1(ox)} ${f1(oy)})`;
+  // over: extra plane content drawn after the board (things standing on the same desk).
+  const render = (ox, oy, over = '') => {
     const [scx, scy] = screen((CASE.x0 + CASE.x1) / 2, (CASE.y0 + CASE.y1) / 2, -CASE.h);
-    const shadow = `<ellipse class="ksh" cx="${f1(ox + scx)}" cy="${f1(oy + scy + 8)}" rx="${f1((box.x1 - box.x0) * 0.56)}" ry="${f1((box.y1 - box.y0) * 0.5)}" fill="url(#${id}-sh)"/>`;
-    return `${shadow}<g transform="${plane}"><g fill="url(#${id}-rgb)">${deskGlow}</g><g class="flt">${walls}${bar}${caseTop}${plate}\n${board}</g></g>`;
+    const k = float ? [0.56, 0.5, 8] : [0.53, 0.42, 4];
+    const shadow = `<ellipse class="ksh" cx="${f1(ox + scx)}" cy="${f1(oy + scy + k[2])}" rx="${f1((box.x1 - box.x0) * k[0])}" ry="${f1((box.y1 - box.y0) * k[1])}" fill="url(#${id}-sh)"/>`;
+    return `${shadow}<g transform="${V.matrix(ox, oy)}"><g fill="url(#${id}-rgb)">${deskGlow}</g><g${float ? ' class="flt"' : ''}>${walls}${bar}${caseTop}${plate}\n${board}</g>${over}</g>`;
   };
   // Screen x of the keys' left and right edges at mid-depth (for syncing other RGB edges).
   const span = [screen(0, 3 * P)[0], screen(16 * P, 3 * P)[0]];
-  return { box, span, render, defs, css };
+  return { box, span, render, defs, css, P, CASE, view: V };
 }
 
 function random(seed) {
@@ -288,10 +312,12 @@ export function keyboard() {
   });
 }
 
-// ── Automation: a flat terminal on the desk and the board typing into it, keystroke for keystroke ──
-// The terminal is an opaque dark window (an object in the scene, like the board), so the typing
-// covers can be its own background colour. Each command reveals in uniform steps, and the caret,
-// the covers and the key presses all share those steps.
+// ── Automation: a desk. A flat terminal (the screen), and below it, square to it, the keyboard on
+// an RGB-edged desk mat with a wireless mouse, wired to the screen by a braided RGB cable. The
+// keyboard types the pipeline into the terminal keystroke for keystroke; the mouse clicks into the
+// terminal before each command. The terminal is an opaque dark window (an object in the scene), so
+// the typing covers can be its own background colour. Each command reveals in uniform steps, and the
+// caret, the covers and the key presses all share those steps.
 export function deskTerminal({ sizes, count }) {
   const id = 'desk';
   const W = 900;
@@ -312,12 +338,14 @@ export function deskTerminal({ sizes, count }) {
     { ok: 'GitHub Actions keeps the numbers current' },
     { prompt: true },
   ];
-  // Timeline: each command shows its prompt, waits a beat, types at a steady pace, then Enter.
+  // Timeline: each command shows its prompt, the mouse clicks, a beat, steady typing, then Enter.
   const IV = 84;
+  const clicks = [];
   let t = 0;
   lines.forEach((l, i) => {
     if (l.cmd) {
       l.appear = i === 0 ? 0 : t + 360;
+      clicks.push(l.appear + 160);
       l.start = l.appear + 420;
       [...l.cmd].forEach((c, k) => keys.add(c, l.start + (k + 1) * IV));
       l.end = l.start + l.cmd.length * IV;
@@ -337,12 +365,37 @@ export function deskTerminal({ sizes, count }) {
   const pc = ms => `${Math.round((ms / CYCLE) * 1000) / 10}%`;
 
   const TH = 34 + 24 + lines.length * lh + 10;
-  const kb = buildKeyboard({ id, U: 34, presses: keys.map, cycle: CYCLE });
-  const ox = W / 2 - (kb.box.x0 + kb.box.x1) / 2;
-  const oy = TY + TH + 22 - kb.box.y0;
-  const H = Math.round(oy + kb.box.y1 + 30);
+  const kb = buildKeyboard({ id, U: 32, presses: keys.map, cycle: CYCLE, yaw: 0, float: false, edges: false });
+  const { P, CASE } = kb;
+  const { lift, screen, matrix } = kb.view;
+
+  // Desk layout in plane units: keyboard, then the mouse to its right, the mat under both.
+  const MW = 3.3 * P; // mouse width
+  const ML = 6.2 * P; // mouse length
+  const MH = 1.45 * P; // mouse height
+  const [mx, my] = [CASE.x1 + 1.4 * P + MW / 2, (CASE.y0 + CASE.y1) / 2 + 0.2 * P];
+  const mat = { x0: CASE.x0 - 0.7 * P, x1: mx + MW / 2 + 0.8 * P, y0: CASE.y0 - 0.6 * P, y1: CASE.y1 + 1.1 * P };
+  const [, dz] = lift(-CASE.h); // the desk is a case-height below the keyboard's top plate
+  const ox = W / 2 - (screen(mat.x0, 0)[0] + screen(mat.x1, 0)[0]) / 2;
+  const gapY = 74; // room for the cable between the screen and the board
+  const oy = TY + TH + gapY - screen(0, CASE.y0, 0)[1];
+  const H = Math.round(oy + screen(0, mat.y1 + dz + 12)[1] + 26);
 
   const parts = [];
+  // Desk mat (own plane group, drawn first: the cable lies on it, the keyboard stands on it).
+  const matRect = (y, cls) => `<rect class="${cls}" x="${iq(mat.x0)}" y="${iq(mat.y0 + y)}" width="${iq(mat.x1 - mat.x0)}" height="${iq(mat.y1 - mat.y0)}" rx="${iq(0.3 * P)}"/>`;
+  parts.push(`<g transform="${matrix(ox, oy)}">${matRect(dz + lift(-8)[1], 'matside')}${matRect(dz, 'mat')}${matRect(dz, 'matglow')}${matRect(dz, 'matedge')}</g>`);
+
+  // Cable: from the back of the board up into the bottom of the screen, braided sleeve over an RGB
+  // core, data pulses running up it, an aviator coupler halfway.
+  const [kx, ky] = screen(9.4 * P, CASE.y0 + 0.2 * P, 0);
+  const [xs, ys] = [ox + kx, oy + ky];
+  const [xe, ye] = [W / 2 + 26, TY + TH - 6];
+  const [xm, ym] = [(xs + xe) / 2 + 26, (ys + ye) / 2 + 2];
+  const cable = `M${f1(xs)} ${f1(ys)}C${f1(xs)} ${f1(ys - 26)} ${f1(xm - 40)} ${f1(ym + 10)} ${f1(xm)} ${f1(ym)}S${f1(xe)} ${f1(ye + 30)} ${f1(xe)} ${f1(ye)}`;
+  parts.push(`<path class="cbl" d="${cable}"/><path class="cbr" d="${cable}"/><path class="cbc" d="${cable}"/><path class="cbp" d="${cable}" pathLength="1"/>`);
+  parts.push(`<g transform="translate(${f1(xm)} ${f1(ym)}) rotate(-28)"><rect x="-11" y="-4.6" width="22" height="9.2" rx="2.4" fill="url(#${id}-metal)"/><path class="avk" d="M-6 -4.6v9.2M-4 -4.6v9.2M-2 -4.6v9.2"/><rect x="5" y="-3.6" width="5" height="7.2" rx="1.2" class="avr"/></g>`);
+
   // Window: body, title bar, separator, traffic lights, title, and an RGB edge in step with the board.
   parts.push(`<rect x="${TX}" y="${TY}" width="${TW}" height="${TH}" rx="12" fill="${BG}"/><path d="M${TX} ${TY + 34}V${TY + 12}a12 12 0 0 1 12 -12H${TX + TW - 12}a12 12 0 0 1 12 12V${TY + 34}Z" fill="#161b22"/><path d="M${TX} ${TY + 34.5}H${TX + TW}" stroke="#30363d"/>`);
   parts.push(['#ff5f57', '#febc2e', '#28c840'].map((c, i) => `<circle cx="${TX + 20 + i * 20}" cy="${TY + 17}" r="6" fill="${c}"/>`).join(''));
@@ -385,22 +438,56 @@ export function deskTerminal({ sizes, count }) {
   });
   ks.push(`${pc(last.appear)}{transform:none;animation-timing-function:step-end}`, `${pc(clear)},100%{transform:${at(lines[0], 2)}}`);
   parts.push(`<rect class="cur" x="${f1(x0 + 2 * cw + 1)}" y="${last.y - 11}" width="7.5" height="14" rx="1"/>`);
-  parts.push(kb.render(ox, oy));
 
-  // The edge gradient spans the keys' width on screen, so the window's wave lines up with the board's.
+  // Mouse (plane units, standing on the mat): side walls from stacked copies of its outline, a
+  // domed shell from shrinking copies under one radial light, the button split, an RGB wheel and
+  // logo, an RGB underglow, and the left button lighting up on each click. It drifts a little in
+  // the hand the whole time.
+  const lifted = (y, z) => my + y + lift(z - CASE.h)[1];
+  const copy = (z, s, dy, cls) => `<use href="#${id}-egg" class="${cls}" transform="translate(${iq(mx)} ${iq(lifted(dy * ML, z * MH))}) scale(${s})"/>`;
+  const shell = [[0, 1, 0, 'mb'], [0.3, 1, 0, 'mb'], [0.55, 0.96, 0.015, 'md'], [0.8, 0.84, 0.04, 'md'], [0.96, 0.6, 0.065, 'md'], [0.98, 0.78, 0.04, 'mhl']];
+  const onShell = (y, z) => [mx, lifted(y * ML, z * MH)];
+  const mouse = [
+    `<ellipse cx="${iq(mx + 6)}" cy="${iq(lifted(0.04 * ML, 0))}" rx="${iq(MW * 0.62)}" ry="${iq(ML * 0.56)}" fill="url(#${id}-sh)"/>`,
+    copy(0.06, 1.01, 0, 'mglow'),
+    ...shell.map(([z, s, dy, cls]) => copy(z, s, dy, cls)),
+    `<path class="msplit" d="${poly([onShell(-0.48, 0.5), onShell(-0.3, 0.76), onShell(-0.08, 0.92)], false)}"/>`,
+    `<path class="mclick" style="--e:${windows(clicks, CYCLE)}" d="${poly([onShell(-0.47, 0.52), onShell(-0.08, 0.92), [mx - MW * 0.3, lifted(-0.08 * ML, 0.8 * MH)], [mx - MW * 0.44, lifted(-0.3 * ML, 0.55 * MH)], [mx - MW * 0.2, lifted(-0.47 * ML, 0.45 * MH)]])}"/>`,
+    `<rect class="mwheel" x="${iq(mx - 0.055 * MW)}" y="${iq(lifted(-0.36 * ML, 0.8 * MH))}" width="${iq(0.11 * MW)}" height="${iq(0.15 * ML)}" rx="${iq(0.05 * MW)}"/><rect class="hu" style="--x:${Math.round(mx / P)}" x="${iq(mx - 0.025 * MW)}" y="${iq(lifted(-0.35 * ML, 0.83 * MH))}" width="${iq(0.05 * MW)}" height="${iq(0.13 * ML)}" rx="${iq(0.025 * MW)}"/>`,
+    `<path class="hu mlogo" style="--x:${Math.round(mx / P) + 1}" d="${poly([[mx, lifted(0.12 * ML, 0.99 * MH)], [mx + 0.09 * MW, lifted(0.155 * ML, 0.99 * MH)], [mx + 0.09 * MW, lifted(0.225 * ML, 0.98 * MH)], [mx, lifted(0.26 * ML, 0.97 * MH)], [mx - 0.09 * MW, lifted(0.225 * ML, 0.98 * MH)], [mx - 0.09 * MW, lifted(0.155 * ML, 0.99 * MH)]])}"/>`,
+  ].join('');
+  parts.push(kb.render(ox, oy, `<g class="mg">${mouse}</g>`));
+
+  // Egg-shaped outline (front, towards the screen, narrower), centred on the origin.
+  const [w2, l2] = [MW / 2, ML / 2];
+  const egg = `M0 ${iq(-l2)}C${iq(w2 * 0.86)} ${iq(-l2)} ${iq(w2)} ${iq(-l2 * 0.3)} ${iq(w2)} ${iq(l2 * 0.2)}C${iq(w2)} ${iq(l2 * 0.78)} ${iq(w2 * 0.56)} ${iq(l2)} 0 ${iq(l2)}C${iq(-w2 * 0.56)} ${iq(l2)} ${iq(-w2)} ${iq(l2 * 0.78)} ${iq(-w2)} ${iq(l2 * 0.2)}C${iq(-w2)} ${iq(-l2 * 0.3)} ${iq(-w2 * 0.86)} ${iq(-l2)} 0 ${iq(-l2)}Z`;
+  const [ex0, ex1] = [f1(ox + kb.span[0]), f1(ox + kb.span[1])];
   return svg({
     w: W, h: H, id,
     defs: `${kb.defs}
-<linearGradient id="${id}-edge" class="rgb" gradientUnits="userSpaceOnUse" spreadMethod="repeat" x1="${f1(ox + kb.span[0])}" y1="0" x2="${f1(ox + kb.span[1])}" y2="0">${rgbStops()}</linearGradient>
+<path id="${id}-egg" d="${egg}"/>
+<linearGradient id="${id}-edge" class="rgb" gradientUnits="userSpaceOnUse" spreadMethod="repeat" x1="${ex0}" y1="0" x2="${ex1}" y2="0">${rgbStops()}</linearGradient>
+<radialGradient id="${id}-dome" cx=".42" cy=".36" r=".6"><stop offset="0" stop-color="#7d8590" stop-opacity=".55"/><stop offset=".55" stop-color="#4b525c" stop-opacity=".22"/><stop offset="1" stop-color="#1d2126" stop-opacity="0"/></radialGradient>
+<linearGradient id="${id}-mat" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#16191e"/><stop offset="1" stop-color="#0e1013"/></linearGradient>
+<linearGradient id="${id}-metal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e6e9ed"/><stop offset=".5" stop-color="#9aa2ab"/><stop offset="1" stop-color="#5a6169"/></linearGradient>
 <style>${kb.css}
 .tedge{fill:none;stroke:url(#${id}-edge);stroke-width:1.5;stroke-opacity:.8}.tglow{fill:none;stroke:url(#${id}-edge);stroke-width:8;stroke-opacity:.08}
 .tp{fill:#8b949e}.tc{fill:#e6edf3}.to{fill:#8b949e}.tk{fill:#3fb950}.tick{stroke:#3fb950}
 .ln{animation:showw ${CYCLE}ms linear(0, 0 var(--a), 1 var(--a), 1 ${pc(clear)}, 0 ${pc(clear)}, 0 100%) infinite}
 .cur{fill:#e6edf3;animation:cur ${CYCLE}ms linear infinite,blink 1100ms linear infinite}
+.mat{fill:url(#${id}-mat)}.matside{fill:#08090b}.matedge{fill:none;stroke:url(#${id}-rgb);stroke-width:3}.matglow{fill:none;stroke:url(#${id}-rgb);stroke-width:16;stroke-opacity:.1}
+.cbl{fill:none;stroke:#0b0d10;stroke-width:7;stroke-linecap:round}.cbr{fill:none;stroke:#1d2127;stroke-width:5;stroke-dasharray:1.5 1.5}
+.cbc{fill:none;stroke:url(#${id}-edge);stroke-width:2;stroke-opacity:.85}.cbp{fill:none;stroke:#fff;stroke-width:2.4;stroke-linecap:round;stroke-dasharray:.04 .21;animation:cbp 1400ms linear infinite}
+.avk{stroke:#5a6169;stroke-width:.8}.avr{fill:#2b3038}
+.mb{fill:#0f1114}.md{fill:#1d2126}.mhl{fill:url(#${id}-dome)}.mglow{fill:none;stroke:url(#${id}-rgb);stroke-width:5}
+.msplit{fill:none;stroke:#07080a;stroke-width:3}.mwheel{fill:#0b0c0e}.mclick{fill:#fff;opacity:0;animation:hlf ${CYCLE}ms var(--e) infinite}
+.mg{animation:mg 8000ms ${EASE.inOut} infinite}
 ${covers.join('\n')}
-@keyframes cur{${ks.join('')}}</style>`,
-    title: 'Automation: a terminal and the keyboard typing into it',
-    desc: `A terminal window above a 3D 75% mechanical keyboard with per-key RGB. Key by key, the keyboard types this repo's pipeline into the terminal: node scripts/gen-profile.mjs lists generated files with their sizes (${entries.map(([n, b]) => `${n} ${fmt(b)}`).join(', ')}), ${count} SVG files from one set of design tokens; node --test scripts/*.test.mjs passes; git push origin main hands over to GitHub Actions, which keeps the numbers current. A rainbow wave runs through the keys, the plate, the light bar and the terminal's edge together.`,
+@keyframes cur{${ks.join('')}}
+@keyframes cbp{to{stroke-dashoffset:-.25}}
+@keyframes mg{30%{transform:translate(-14px,10px)}65%{transform:translate(10px,-6px)}}</style>`,
+    title: 'Automation: a desk, a terminal and the keyboard typing into it',
+    desc: `A desk: a terminal above a 3D 75% RGB keyboard and a mouse on an RGB-edged mat, cabled to the screen. The keyboard types this repo's pipeline key by key (gen-profile builds ${count} SVG files, the tests pass, git push hands over to GitHub Actions); the mouse clicks before each command.`,
     body: parts.join('\n'),
   });
 }

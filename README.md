@@ -78,7 +78,7 @@ Right now I ship TypeScript across the stack, from React frontends to Node.js se
 
 This profile maintains itself. Every visual on the page is an SVG generated from one set of design tokens, and GitHub Actions keeps the numbers current. Click the terminal to watch the runs.
 
-<a href="https://github.com/duongthaitan/duongthaitan/actions"><img src="./assets/terminal-3d.svg" width="100%" alt="A terminal window above a 3D 75% mechanical keyboard with RGB lighting. The keyboard types this repo's pipeline into the terminal key by key: node scripts/gen-profile.mjs lists the generated SVGs and their sizes, node --test scripts/*.test.mjs passes, and git push origin main hands over to GitHub Actions, which keeps the numbers current." /></a>
+<a href="https://github.com/duongthaitan/duongthaitan/actions"><img src="./assets/terminal-3d.svg" width="100%" alt="A desk: a terminal window above a 3D 75% RGB keyboard and a mouse on an RGB-edged mat, the keyboard cabled to the screen. The keyboard types this repo's pipeline into the terminal key by key: node scripts/gen-profile.mjs lists the generated SVGs and their sizes, node --test scripts/*.test.mjs passes, and git push origin main hands over to GitHub Actions, which keeps the numbers current." /></a>
 
 <details>
 <summary><code>cat .github/workflows/*.yml</code> &nbsp;how the pipeline works</summary>
