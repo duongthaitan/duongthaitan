@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="232" viewBox="0 0 900 232" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="metrics-title metrics-desc" style="max-width:100%;height:auto">
 <title id="metrics-title">GitHub metrics: Public original repos: 12; Stars on original repos: 4; Followers: 11</title>
-<desc id="metrics-desc">Terminal card running gh api for duongthaitan. Public original repos: 12; Stars on original repos: 4; Followers: 11. Updated 2026-11-11 09:26:34 UTC</desc>
+<desc id="metrics-desc">Terminal card running gh api for duongthaitan. Public original repos: 12; Stars on original repos: 4; Followers: 11. Updated 2026-11-12 09:50:37 UTC</desc>
 <style>:root{--bg:#0d1117;--raised:rgba(255,255,255,.045);--panel:rgba(22,27,34,.92);--screen:rgba(1,4,9,.55);--fg:#e6edf3;--muted:#9198a1;--faint:rgba(255,255,255,.07);--line:rgba(255,255,255,.12);--accent:#7ee787;--glow:#d2ffd6;--deep:#2ea043;--teal:#39c5cf;--blue:#79c0ff;--vox:#2d333b;--red:#ff7b72;--yellow:#e3b341}
 @media (prefers-color-scheme:light){:root{--bg:#ffffff;--raised:rgba(31,35,40,.035);--panel:rgba(255,255,255,.95);--screen:rgba(246,248,250,.9);--fg:#1f2328;--muted:#59636e;--faint:rgba(31,35,40,.07);--line:rgba(31,35,40,.15);--accent:#1a7f37;--glow:#4ac26b;--deep:#0f5323;--teal:#1b7c83;--blue:#0969da;--vox:#8c959f;--red:#cf222e;--yellow:#9a6700}}
 text{font-family:ui-monospace,'SF Mono','Cascadia Mono','JetBrains Mono',Menlo,Consolas,'Liberation Mono',monospace;fill:var(--fg)}
@@ -34,6 +34,6 @@ text{font-family:ui-monospace,'SF Mono','Cascadia Mono','JetBrains Mono',Menlo,C
 <rect class="ac grow" x="589" y="86" width="20" height="2" rx="1" style="animation:grow 7000ms linear(0, 0 21%, 0.04 22.5%, 0.22 23.7%, 0.57 24.4%, 1 27.9%, 1 100%) 0ms infinite alternate both"/>
 <text x="589.33" y="116" font-size="13" textLength="70.2" class="mu" style="animation:in 7000ms linear(0, 0 21.9%, 0.32 22.3%, 0.66 23%, 0.91 24.1%, 1 27.9%, 1 100%) 0ms infinite alternate both">Followers</text>
 <text x="589.33" y="160" font-size="40" textLength="48" class="fg" font-weight="600" style="animation:in 7000ms linear(0, 0 22.7%, 0.32 23.4%, 0.66 24.3%, 0.91 25.9%, 1 31.3%, 1 100%) 0ms infinite alternate both">11</text>
-<g style="animation:in 7000ms linear(0, 0 26.1%, 0.32 26.6%, 0.66 27.3%, 0.91 28.4%, 1 32.1%, 1 100%) 0ms infinite alternate both"><circle class="ac" cx="37" cy="202" r="3.5"/><text x="52" y="206" font-size="12" textLength="223.2" class="mu">Updated 2026-11-11 09:26:34 UTC</text></g>
+<g style="animation:in 7000ms linear(0, 0 26.1%, 0.32 26.6%, 0.66 27.3%, 0.91 28.4%, 1 32.1%, 1 100%) 0ms infinite alternate both"><circle class="ac" cx="37" cy="202" r="3.5"/><text x="52" y="206" font-size="12" textLength="223.2" class="mu">Updated 2026-11-12 09:50:37 UTC</text></g>
 <circle class="ring" cx="37" cy="202" r="3.5" style="animation:ring 2400ms cubic-bezier(.23,1,.32,1) 2330ms infinite"/>
 </svg>
